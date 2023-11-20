@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  nuxt:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev  # Use the development Dockerfile for the service
+    ports:
+      - "3000:3000"
+    environment:
+      - API_BASE_URL=https://api.example.com
+      - APP_ENV=development
+    volumes:
+      - .:/app  # Mount the local project directory into the container for live code reloading
+
+# With this docker-compose.yml, you can start your Nuxt app and its dependencies using a single command:
+#docker-compose up
+
+
+#This configuration mounts your local project directory into the container (volumes section) so that changes to your code are reflected in real-time without requiring a rebuild of the Docker image.
+#You can create a similar docker-compose.prod.yml file for production, adapting it to use the production Dockerfile and adjusting any other settings specific to your production environment.
+
+#To start your app in production, run:
+#  docker-compose -f docker-compose.prod.yml up

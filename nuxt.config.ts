@@ -29,4 +29,10 @@ export default defineNuxtConfig({
     "primevue/resources/themes/md-light-indigo/theme.css",
     "primeicons/primeicons.css",
   ],
+  runtimeConfig: {
+    public: {
+      apiBaseURL: process.env.API_BASE_URL || 'http://127.0.0.1:8000/api/',
+      appEnv: process.env.APP_ENV || 'development',
+    },
+  },
 })
