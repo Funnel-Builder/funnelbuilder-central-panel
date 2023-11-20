@@ -18,6 +18,13 @@ Adjust the API_BASE_URL and APP_ENV values according to your requirements.
 
 Using Docker Compose
 ====================
+
+Using Bash
+====================
+```bash
+bin/deploy.sh dev
+
+```
 With this docker-compose.yml, you can start your Nuxt app and its dependencies using a single command:
 ```bash
 docker-compose up
