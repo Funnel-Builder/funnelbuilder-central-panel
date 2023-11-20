@@ -1,75 +1,35 @@
-# Nuxt 3 Minimal Starter
-
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
-
-## Setup
-
-Make sure to install the dependencies:
-
+Build and Run
+=============
+build and run your Docker images. For development:
 ```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
+docker build -f Dockerfile.dev -t my-nuxt-app-dev .
+docker run -p 3000:3000 my-nuxt-app-dev
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
+For production:
 ```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
+docker build -f Dockerfile.prod -t my-nuxt-app-prod .
+docker run -p 3000:3000 my-nuxt-app-prod
 ```
 
-## Production
+Make sure to replace my-nuxt-app-dev and my-nuxt-app-prod with your desired image names.
 
-Build the application for production:
+Adjust the API_BASE_URL and APP_ENV values according to your requirements.
 
+Using Docker Compose
+====================
+With this docker-compose.yml, you can start your Nuxt app and its dependencies using a single command:
 ```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+docker-compose up
 ```
 
-Locally preview production build:
+This configuration mounts your local project directory into the container (volumes section) so that changes to your code are reflected in real-time without requiring a rebuild of the Docker image.
 
+
+
+You can create a similar docker-compose.prod.yml file for production, adapting it to use the production Dockerfile and adjusting any other settings specific to your production environment.
+
+To start your app in production, run:
 ```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
+docker-compose -f docker-compose.prod.yml up
 ```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

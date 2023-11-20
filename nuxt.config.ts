@@ -33,6 +33,8 @@ export default defineNuxtConfig({
     public: {
       apiBaseURL: process.env.API_BASE_URL || 'http://127.0.0.1:8000/api/',
       appEnv: process.env.APP_ENV || 'development',
+      appPort: process.env.APP_PORT || 3000,
+      VIRTUAL_HOST_DOMAIN: process.env.VIRTUAL_HOST_DOMAIN || 'localhost',
     },
   },
 })

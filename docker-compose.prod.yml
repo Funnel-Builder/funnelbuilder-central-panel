@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  funnelbuilder:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod  # Use the development Dockerfile for the service
+    ports:
+      - "3000:3000"
+    environment:
+      - API_BASE_URL=https://api.example.com
+      - APP_ENV=production
+    volumes:
+      - .:/app  # Mount the local project directory into the container for live code reloading
