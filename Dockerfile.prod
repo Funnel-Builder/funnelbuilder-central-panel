@@ -19,5 +19,8 @@ RUN yarn build
 # Expose the port that Nuxt will run on in production
 EXPOSE 3000
 
+#remove node_modules
+RUN rm -rf node_modules
+
 # Start the Nuxt app in production mode
 CMD ["yarn", "start"]
