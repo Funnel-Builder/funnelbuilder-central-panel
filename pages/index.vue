@@ -1,13 +1,11 @@
 <template>
-  <div class="mt-8 max-width- card flex justify-content-center">
+  <div class="mt-8 card flex justify-content-center">
     <Calendar v-model="date" />
-
-   <div class="mt-5">
-     <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
-     <i class="pi pi-spin pi-cog" style="font-size: 2rem"></i>
-     <Button label="Danger" severity="danger" />
-   </div>
-
+  </div>
+  <div class="container">
+    <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+    <i class="pi pi-spin pi-cog" style="font-size: 2rem"></i>
+    <Button label="Danger" severity="danger" />
   </div>
 </template>
 
