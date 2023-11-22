@@ -14,9 +14,9 @@
                 class="w-full custom_class h-10 md:h-14 text-xs md:text-lg flex items-center" />
             </div>
             <div class="w-full pt-5">
-              <ButtonPrimaryButton text="Next" />
+              <buttons-primary-button text="Next" />
               <h4 class="text-center py-3 text-[#5A78AD]">Or</h4>
-              <ButtonPrimaryButton text="Create One" />
+              <buttons-primary-button text="Create One" />
             </div>
           </div>
         </div>
@@ -26,6 +26,7 @@
 </template>
 
 <script setup lang="ts">
+
 definePageMeta({
   layout: 'shop'
 })
