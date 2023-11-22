@@ -1,9 +1,10 @@
 <template>
   <div class="container mx-auto">
-    <div class="flex flex-col justify-center items-center h-screen">
+    <div class="pt-[60px] sm:pt-0 sm:flex sm:flex-col justify-center items-center min-h-screen">
       <div class="px-4 sm:px-0 w-[100%] sm:w-[70%] md:w-[60%] lg:w-[50%]">
-        <h1 class="text-[30px] md:text-[36px] lg:text-[40px] xl:text-[44px] 2xl:text-[48px] text-white font-[600] font-['Poppins']">Get Started</h1>
-        <p class="text-[12px] md:text-[14px] text-white font-[400] font-['Poppins']">Welcome to BDFunnelBuilder. Let’s
+        <h1 class="text-[30px] md:text-[36px] lg:text-[40px] xl:text-[44px] 2xl:text-[48px] text-white font-[600]">Get
+          Started</h1>
+        <p class="text-[12px] md:text-[14px] text-white font-[400]">Welcome to BDFunnelBuilder. Let’s
           Get Started.</p>
       </div>
       <div class="px-4 sm:px-0 w-[100%] sm:w-[70%] md:w-[60%] lg:w-[50%]">
@@ -18,17 +19,17 @@
         <div class="pt-4">
           <label class="text-white pl-1" for="phone">Phone Number</label><br>
           <InputGroup class="">
-            <InputGroupAddon class="inputFlag border-0 p-2 md:p-2.5  rounded-l-xl">
+            <InputGroupAddon class="inputFlag border-0 p-1 md:p-2.5  rounded-l-xl">
               <img src="/auth/bdFlag.svg" alt="flag"/>
             </InputGroupAddon>
-            <InputGroupAddon class="w-[35%] sm:w-[30%] md:w-[25%] lg:w-[20%] xl:w-[15%] inputFlag p-1.5 md:p-2.5 ">
-              <p class="text-[14px] md:text-[16px] p-0">BD +880</p>
+            <InputGroupAddon class="w-[30%] sm:w-[30%] md:w-[25%] lg:w-[25%] xl:w-[20%] inputFlag p-1 md:p-2.5 ">
+              <p class="text-[14px] md:text-[16px] px-2 border-r-2 border-white">BD +880</p>
             </InputGroupAddon>
             <InputText
                 class="inputFlag remove-arrow border-0 rounded-l-none rounded-r-xl placeholder-gray-600 focus:shadow-none focus:placeholder-amber-50 focus:text-white"
                 id="phone"
                 type="number" v-model="phone"
-                placeholder="Enter phone number"/>
+            />
           </InputGroup>
         </div>
         <div class="pt-4">
@@ -57,8 +58,8 @@
         </div>
         <div class="pt-4 md:flex justify-between items-center">
           <div class="flex items-center">
-            <Checkbox class="shadow-none" v-model="termsAndCondition" inputId="ingredient1" name="pizza"
-                      value="Cheese"/>
+            <Checkbox class="" v-model="termsAndCondition" inputId="ingredient1" name="termsAndCondition"
+                      value="termsAndCondition"/>
             <label for="ingredient1" class="ml-2 text-white"> Terms & Conditions </label>
           </div>
           <div class="flex gap-x-2">
@@ -99,18 +100,20 @@ const termsAndCondition = ref(false);
   -moz-appearance: textfield;
 }
 
-.inputCss{
+.inputCss {
   background-color: #A0B1D0;
   width: 100%;
   border-radius: 10px;
-  color:white;
+  color: white;
 }
-.inputFlag{
+
+.inputFlag {
   background-color: #A0B1D0;
 }
-.btn{
+
+.btn {
   background-color: white;
-  color:black;
+  color: black;
   width: 100%;
   border-radius: 10px;
 }
