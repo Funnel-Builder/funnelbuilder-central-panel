@@ -20,7 +20,7 @@
                                                     id="phone" type="text" />
                                                 <InputGroupAddon style="background-color: #EFF1F7; color: gray;"
                                                     class="w-full md:w-[50%] h-10 md:h-14 text-xs md:text-lg flex items-center focus:shadow-none">
-                                                    .funnelbuilder.com
+                                                    @funnelbuilder.com
                                                 </InputGroupAddon>
                                             </InputGroup>
                                             <div>
@@ -32,7 +32,8 @@
                                     </div>
                                     <div class="pt-3">
                                         <p class="pb-1"><small class="text-[#5A78AD]">Shop Name</small></p>
-                                        <InputText style="background-color: #EFF1F7 !important;" type="text"
+                                        <InputText placeholder="Enter shop name"
+                                            style="background-color: #EFF1F7 !important;" type="text"
                                             class="w-full h-10 md:h-14 text-xs md:text-lg flex items-center focus:shadow-none" />
                                     </div>
                                     <p class="pt-3 pb-10"><small>By clicking below, you agree to the <a class="underline"
