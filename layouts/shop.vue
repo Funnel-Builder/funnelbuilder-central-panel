@@ -1,6 +1,6 @@
 <template>
     <div class="min-h-screen set_layout_bg">
-        <div class="flex justify-center pt-28 md:pb-12 ">
+        <div class="flex justify-center pt-24 md:pt-10 md:pb-8 ">
             <utilities-Logo classes="w-60" />
         </div>
         <slot />
@@ -16,7 +16,7 @@
     width: 100%;
     background-size: cover;
     background-position: center;
-    height: 100vh;
+    padding-bottom: 20px;
 }
 
 .set_layout_bg {

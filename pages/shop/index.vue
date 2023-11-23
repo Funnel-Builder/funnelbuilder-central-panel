@@ -16,7 +16,9 @@
             <div class="w-full pt-5">
               <buttons-primary-button text="Next" />
               <h4 class="text-center py-3 text-[#5A78AD]">Or</h4>
-              <buttons-primary-button text="Create One" />
+              <div>
+                <nuxt-link to="/shop/create" class="font-bold w-full text-white bg-[#5A78AD] flex justify-center items-center rounded-2xl h-10 md:h-14 text-xs md:text-lg" >Create One</nuxt-link>
+              </div>
             </div>
           </div>
         </div>

@@ -7,12 +7,12 @@
                         <h2 class="text-[#5A78AD] text-[24px] md:text-[32px] font-bold">Create Shop</h2>
                         <p class="text-[12px] md:text-[14px]">Create your own shop. Enter shop credentials</p>
                     </div>
-                    <div class="flex flex-col w-full justify-start">
-                        <div class="w-full ">
+                    <div class="w-full flex">
+                        <div class="w-full">
                             <div>
-                                <p class="pb-1"><small class="text-[#5A78AD]">Shop Url</small></p>
-                                <div class="flex items-center">
-                                    <div class="w-[92%]">
+                                <div v-if="!step">
+                                    <p class="pb-1"><small class="text-[#5A78AD]">Shop Url</small></p>
+                                    <div class="flex items-center">
                                         <InputGroup style="background-color: #EFF1F7;" class="rounded-md ">
                                             <InputText style="background-color: #EFF1F7;"
                                                 class="border-0 w-full h-10 md:h-14 text-xs md:text-lg flex items-center focus:shadow-none"
@@ -22,32 +22,41 @@
                                                 .funnelbuilder.com
                                             </InputGroupAddon>
                                         </InputGroup>
+                                        <div>
+                                            <!-- <i class="pi pi-spin pi-spinner custom_class loading"></i> -->
+                                            <i class="pi pi-verified success pl-2"></i>
+                                            <!-- <i class="pi pi-ban field"></i> -->
+                                        </div>
                                     </div>
-                                    <div class="pl-2 md:pl-4">
-                                        <i class="pi pi-spin pi-spinner custom_class loading"></i>
-                                        <!-- <i class="pi pi-verified success"></i>
-                                        <i class="pi pi-ban failed"></i> -->
+                                    <div class="pt-3">
+                                        <p class="pb-1"><small class="text-[#5A78AD]">Shop Name</small></p>
+                                        <InputText style="background-color: #EFF1F7 !important;" type="text"
+                                            class="w-full h-10 md:h-14 text-xs md:text-lg flex items-center focus:shadow-none" />
+                                    </div>
+                                    <p class="pt-3 pb-10"><small>By clicking below, you agree to the <a class="underline"
+                                                href="#">BDFunnelBuilder</a> Terms of Service and <a class="underline"
+                                                href="#">Privacy Policy</a>.</small></p>
+
+                                    <div class="w-full">
+                                        <Button @click="nextStep"
+                                            style="background-color: #5A78AD; border: none; border-radius: 15px;"
+                                            class="w-full h-10 md:h-14 text-xs md:text-lg focus:shadow-none"
+                                            label="Continue" />
                                     </div>
                                 </div>
+                                <div v-else>
+                                    <shop-next-step />
+                                </div>
                             </div>
-                        </div>
-                        <div class="w-[92%]">
-                            <div class="pt-3">
-                                <p class="pb-1"><small class="text-[#5A78AD]">Shop Name</small></p>
-                                <InputText style="background-color: #EFF1F7 !important;" type="text"
-                                    class="w-full h-10 md:h-14 text-xs md:text-lg flex items-center focus:shadow-none" />
-                            </div>
-                            <p class="py-2"><small>By clicking below, you agree to the <a class="underline"
-                                        href="#">BDFunnelBuilder</a> Terms of Service and <a class="underline"
-                                        href="#">Privacy Policy</a>.</small></p>
-                            <div class="w-full pt-5">
-                                <buttons-primary-button text="Continue" />
+                            <div class="flex justify-center gap-2 mt-12">
+                                <div :class="step ? 'bg-gray-400' : 'bg-[#5A78AD]'" class="w-3 h-3 rounded-full"></div>
+                                <div :class="step ? 'bg-[#5A78AD]' : 'bg-gray-400'" class="w-3 h-3 rounded-full"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
     </div>
 </template>
   
@@ -61,6 +70,12 @@ const shop = ref([
     { name: 'xyz shop', code: 'xyz' },
     { name: 'xyz2 shop', code: 'xyz' },
 ]);
+
+const step = ref(false)
+
+const nextStep = () => {
+    step.value = true
+}
 </script>
 
 <style lang="scss" scoped>
@@ -87,3 +102,4 @@ const shop = ref([
     @include iconColor(red)
 }
 </style>
+
