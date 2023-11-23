@@ -9,7 +9,7 @@
 <script setup lang="ts">
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .authBG {
   background-image: url('/auth/bgMask.svg') !important;
   background-color: #5A78AD !important;
@@ -17,5 +17,6 @@
   background-size: cover;
   background-position-x: center;
 }
+
 </style>
 ```
