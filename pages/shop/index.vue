@@ -4,7 +4,7 @@
       <div class="w-full md:w-[50%]">
         <div class="w-full flex flex-col items-center">
           <div class="text-center pb-10">
-            <h2 class="text-[#5A78AD] trxt-[24px] md:text-[32px] font-bold">Welcome!</h2>
+            <h2 class="text-[#5A78AD] text-[24px] md:text-[32px] font-bold">Welcome!</h2>
             <p class="text-[12px] md:text-[14px]">Choose your existing shop or create one.</p>
           </div>
           <div class="flex flex-col items-center w-full ">

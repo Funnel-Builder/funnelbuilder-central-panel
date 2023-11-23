@@ -1,6 +1,6 @@
 <template>
     <div class="min-h-screen set_layout_bg">
-        <div class="flex justify-center pt-28  md:pb-12 ">
+        <div class="flex justify-center pt-28 md:pb-12 ">
             <utilities-Logo classes="w-60" />
         </div>
         <slot />
@@ -21,10 +21,10 @@
 
 .set_layout_bg {
     @extend .bg_property;
-    background-image: url('../public/shop/shop-group.svg');
+    background-image: url('/shop/shop-group.svg');
 
     @media only screen and (max-width: 768px) {
-        background-image: url('../public/shop/sm-shop-group.svg');
+        background-image: url('/shop/sm-shop-group.svg');
     }
 }
 </style>
