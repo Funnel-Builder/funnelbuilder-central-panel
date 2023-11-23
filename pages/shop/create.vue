@@ -12,21 +12,23 @@
                             <div>
                                 <div v-if="!step">
                                     <p class="pb-1"><small class="text-[#5A78AD]">Shop Url</small></p>
-                                    <div class="flex items-center">
-                                        <InputGroup style="background-color: #EFF1F7;" class="rounded-md ">
-                                            <InputText style="background-color: #EFF1F7;"
-                                                class="border-0 w-full h-10 md:h-14 text-xs md:text-lg flex items-center focus:shadow-none"
-                                                id="phone" type="text" />
-                                            <InputGroupAddon style="background-color: #EFF1F7; color: gray;"
-                                                class="w-full md:w-[50%] h-10 md:h-14 text-xs md:text-lg flex items-center focus:shadow-none">
-                                                .funnelbuilder.com
-                                            </InputGroupAddon>
-                                        </InputGroup>
-                                        <div>
-                                            <!-- <i class="pi pi-spin pi-spinner custom_class loading"></i> -->
-                                            <i class="pi pi-verified success pl-2"></i>
-                                            <!-- <i class="pi pi-ban field"></i> -->
+                                    <div>
+                                        <div class="flex items-center">
+                                            <InputGroup style="background-color: #EFF1F7;" class="rounded-md ">
+                                                <InputText v-model="shopName" style="background-color: #EFF1F7;"
+                                                    class="border-0 w-full h-10 md:h-14 text-xs md:text-lg flex items-center focus:shadow-none"
+                                                    id="phone" type="text" />
+                                                <InputGroupAddon style="background-color: #EFF1F7; color: gray;"
+                                                    class="w-full md:w-[50%] h-10 md:h-14 text-xs md:text-lg flex items-center focus:shadow-none">
+                                                    .funnelbuilder.com
+                                                </InputGroupAddon>
+                                            </InputGroup>
+                                            <div>
+                                                <i :class="checkShopNameValidity"></i>
+                                            </div>
                                         </div>
+                                        <small v-if="shop_status == 'failed'" class="text-red-500">this shop name already
+                                            exist</small>
                                     </div>
                                     <div class="pt-3">
                                         <p class="pb-1"><small class="text-[#5A78AD]">Shop Name</small></p>
@@ -70,8 +72,36 @@ const shop = ref([
     { name: 'xyz shop', code: 'xyz' },
     { name: 'xyz2 shop', code: 'xyz' },
 ]);
-
+const shopName = ref('')
 const step = ref(false)
+
+const shop_status = ref('');
+const text = 'my_shop';
+
+
+watch(shopName, (nv) => {
+    shop_status.value = 'written'
+    setTimeout(() => {
+        if (nv.length > 3) {
+            if (nv == text) {
+                shop_status.value = 'success'
+            } else {
+                shop_status.value = 'failed'
+            }
+        }
+    }, 1000);
+
+})
+
+const checkShopNameValidity = computed(() => {
+    if (shop_status.value) {
+        if (shop_status.value == 'written') return 'pi pi-spin pi-spinner loading ml-2'
+        else if (shop_status.value == 'success') return 'pi pi-verified success ml-2'
+        else if (shop_status.value == 'failed') return 'pi pi-ban failed ml-2'
+    }
+
+})
+
 
 const nextStep = () => {
     step.value = true
