@@ -15,7 +15,6 @@ if (error && error.value) {
 } else {
   products.value = data.value;
 }
-console.log(data);
 </script>
 <style scoped lang="scss">
 .card {
