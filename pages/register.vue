@@ -9,7 +9,7 @@
       </div>
       <div class="px-4 sm:px-0 w-[100%] sm:w-[70%] md:w-[60%] lg:w-[50%]">
         <div class="pt-4">
-          <label class="inputGroupLabel" for="username">Full Name</label><br>
+          <label class="inputGroupLabel" for="username">Full Name *</label><br>
           <InputText
               class="inputGroupField focus:shadow-none "
               id="username"
@@ -17,7 +17,7 @@
               placeholder="Enter your name"/>
         </div>
         <div class="pt-4">
-          <label class="inputGroupLabel" for="phone">Phone Number</label><br>
+          <label class="inputGroupLabel" for="phone">Phone Number *</label><br>
           <InputGroup class="">
             <InputGroupAddon class="inputGroupFieldFlag p-1 md:p-2.5 rounded-l-xl">
               <img src="/auth/bdFlag.svg" alt="flag"/>
