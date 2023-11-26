@@ -1,7 +1,7 @@
 <template>
     <div class="container mx-auto">
         <div class="flex justify-center items-center">
-            <div class="w-full lg:w-[60%]">
+            <div class="w-full sm:w-[80%] md:w-[70%] lg:w-[70%] xl:w-[60%]">
                 <div class="w-full flex flex-col items-center">
                     <div class="text-center pb-10">
                         <h2 class="text-[#5A78AD] text-[24px] md:text-[32px] font-bold">Create Shop</h2>
@@ -20,7 +20,7 @@
                                                     id="phone" type="text" />
                                                 <InputGroupAddon style="background-color: #EFF1F7; color: gray;"
                                                     class="w-full md:w-[50%] h-10 md:h-12 text-xs md:text-lg flex items-center focus:shadow-none">
-                                                    @funnelbuilder.com
+                                                    .funnelbuilder.com
                                                 </InputGroupAddon>
                                             </InputGroup>
                                             <div>

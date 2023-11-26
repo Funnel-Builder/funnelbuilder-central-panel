@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto">
     <div class="flex justify-center items-center">
-      <div class="w-full md:w-[50%]">
+      <div class="w-full sm:w-[80%] md:w-[70%] lg:w-[70%] xl:w-[60%]">
         <div class="w-full flex flex-col items-center">
           <div class="text-center pb-10">
             <h2 class="text-[#5A78AD] text-[24px] md:text-[32px] font-bold">Welcome!</h2>
