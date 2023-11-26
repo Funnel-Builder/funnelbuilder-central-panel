@@ -16,10 +16,10 @@
                                         <div class="flex items-center">
                                             <InputGroup style="background-color: #EFF1F7;" class="rounded-md ">
                                                 <InputText v-model="shopName" style="background-color: #EFF1F7;"
-                                                    class="border-0 w-full h-10 md:h-14 text-xs md:text-lg flex items-center focus:shadow-none"
+                                                    class="border-0 w-full h-10 md:h-12 text-xs md:text-lg flex items-center focus:shadow-none"
                                                     id="phone" type="text" />
                                                 <InputGroupAddon style="background-color: #EFF1F7; color: gray;"
-                                                    class="w-full md:w-[50%] h-10 md:h-14 text-xs md:text-lg flex items-center focus:shadow-none">
+                                                    class="w-full md:w-[50%] h-10 md:h-12 text-xs md:text-lg flex items-center focus:shadow-none">
                                                     @funnelbuilder.com
                                                 </InputGroupAddon>
                                             </InputGroup>
@@ -34,7 +34,7 @@
                                         <p class="pb-1"><small class="text-[#5A78AD]">Shop Name</small></p>
                                         <InputText placeholder="Enter shop name"
                                             style="background-color: #EFF1F7 !important;" type="text"
-                                            class="w-full h-10 md:h-14 text-xs md:text-lg flex items-center focus:shadow-none" />
+                                            class="w-full h-10 md:h-12 text-xs md:text-lg flex items-center focus:shadow-none" />
                                     </div>
                                     <p class="pt-3 pb-10"><small>By clicking below, you agree to the <a class="underline"
                                                 href="#">BDFunnelBuilder</a> Terms of Service and <a class="underline"
@@ -43,7 +43,7 @@
                                     <div class="w-full">
                                         <Button @click="nextStep"
                                             style="background-color: #5A78AD; border: none; border-radius: 15px;"
-                                            class="w-full h-10 md:h-14 text-xs md:text-lg focus:shadow-none"
+                                            class="w-full h-10 md:h-12 text-xs md:text-lg focus:shadow-none"
                                             label="Continue" />
                                     </div>
                                 </div>
@@ -51,13 +51,7 @@
                                     <shop-next-step />
                                 </div>
                             </div>
-                            <div class="py-5 flex justify-center">
-                                <button class="text-gray-500 flex items-center" v-if="step" @click="backNext">
-                                    <i class="pi pi-arrow-left pr-2" style="font-size: 1.2rem"></i>
-                                    <p>Back</p>
-                                </button>
-                            </div>
-                            <div class="flex justify-center gap-2">
+                            <div class="flex justify-center gap-2 mt-12">
                                 <div :class="step ? 'bg-gray-400' : 'bg-[#5A78AD]'" class="w-3 h-3 rounded-full"></div>
                                 <div :class="step ? 'bg-[#5A78AD]' : 'bg-gray-400'" class="w-3 h-3 rounded-full"></div>
                             </div>
@@ -103,7 +97,7 @@ watch(shopName, (nv) => {
 const checkShopNameValidity = computed(() => {
     if (shop_status.value) {
         if (shop_status.value == 'written') return 'pi pi-spin pi-spinner loading ml-2'
-        else if (shop_status.value == 'success') return 'pi pi-check success ml-2'
+        else if (shop_status.value == 'success') return 'pi pi-verified success ml-2'
         else if (shop_status.value == 'failed') return 'pi pi-ban failed ml-2'
     }
 
@@ -113,19 +107,13 @@ const checkShopNameValidity = computed(() => {
 const nextStep = () => {
     step.value = true
 }
-
-const backNext = () => {
-    step.value = false
-}
 </script>
 
 <style lang="scss" scoped>
-@mixin iconColor($color, $bg_color) {
+@mixin iconColor($color) {
     color: $color;
     font-size: 1.5rem;
-    background: $bg_color !important;
-    border-radius: 50%;
-    padding: 5px;
+    background: none !important;
 
     @media only screen and (max-width: 768px) {
         font-size: 1rem;
@@ -134,15 +122,15 @@ const backNext = () => {
 
 
 .loading {
-    @include iconColor(black, none)
+    @include iconColor(black)
 }
 
 .success {
-    @include iconColor(green, #D1FADF)
+    @include iconColor(green)
 }
 
 .failed {
-    @include iconColor(red, #FEE4E2)
+    @include iconColor(red)
 }
 </style>
 

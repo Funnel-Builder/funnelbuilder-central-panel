@@ -17,6 +17,7 @@
     background-size: cover;
     background-position: center;
     padding-bottom: 20px;
+    min-height: 100vh;
 }
 
 .set_layout_bg {

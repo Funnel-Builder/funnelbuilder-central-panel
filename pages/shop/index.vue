@@ -11,13 +11,13 @@
             <div class="w-full ">
               <p class="pb-1"><small class="text-[#5A78AD]">Choose your shop</small></p>
               <Dropdown v-model="selectedCity" :options="shop" optionLabel="name" placeholder="Select your shop"
-                class="w-full custom_class h-10 md:h-14 text-xs md:text-lg flex items-center" />
+                class="w-full custom_class h-10 md:h-12 text-xs md:text-lg flex items-center" />
             </div>
             <div class="w-full pt-5">
               <buttons-primary-button text="Next" />
               <h4 class="text-center py-3 text-[#5A78AD]">Or</h4>
               <div>
-                <nuxt-link to="/shop/create" class="font-bold w-full text-white bg-[#5A78AD] flex justify-center items-center rounded-2xl h-10 md:h-14 text-xs md:text-lg" >Create One</nuxt-link>
+                <nuxt-link to="/shop/create" class="font-bold w-full text-white bg-[#5A78AD] flex justify-center items-center rounded-2xl h-10 md:h-12 text-xs md:text-lg" >Create One</nuxt-link>
               </div>
             </div>
           </div>
