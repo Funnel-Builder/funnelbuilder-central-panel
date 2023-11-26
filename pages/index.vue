@@ -6,6 +6,7 @@
     <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
     <i class="pi pi-spin pi-cog" style="font-size: 2rem"></i>
     <Button label="Danger" severity="danger" />
+    <nuxt-link to="/blank">Blank Page</nuxt-link>
   </div>
 </template>
 

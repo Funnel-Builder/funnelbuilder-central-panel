@@ -21,5 +21,10 @@ export default defineNuxtConfig({
   },
   primevue: {
     usePrimeVue: false,
-  }
+  },
+  runtimeConfig: {
+    public: {
+      baseURL: process.env.BASE_URL || 'http://127.0.0.1:8000/api/',
+    },
+  },
 })
