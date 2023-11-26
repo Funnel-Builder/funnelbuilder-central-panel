@@ -4,7 +4,7 @@ services:
   nuxt-app-dev:
     build:
       context: .
-      dockerfile: docker/Dockerfile.dev
+      dockerfile: ../Dockerfile.dev
     ports:
       - "3000:3000"
 
