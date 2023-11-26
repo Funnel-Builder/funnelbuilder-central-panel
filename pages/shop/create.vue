@@ -51,7 +51,13 @@
                                     <shop-next-step />
                                 </div>
                             </div>
-                            <div class="flex justify-center gap-2 mt-12">
+                            <div class="py-5 flex justify-center">
+                                <button class="text-gray-500 flex items-center" v-if="step" @click="backNext">
+                                    <i class="pi pi-arrow-left pr-2" style="font-size: 1.2rem"></i>
+                                    <p>Back</p>
+                                </button>
+                            </div>
+                            <div class="flex justify-center gap-2">
                                 <div :class="step ? 'bg-gray-400' : 'bg-[#5A78AD]'" class="w-3 h-3 rounded-full"></div>
                                 <div :class="step ? 'bg-[#5A78AD]' : 'bg-gray-400'" class="w-3 h-3 rounded-full"></div>
                             </div>
@@ -97,7 +103,7 @@ watch(shopName, (nv) => {
 const checkShopNameValidity = computed(() => {
     if (shop_status.value) {
         if (shop_status.value == 'written') return 'pi pi-spin pi-spinner loading ml-2'
-        else if (shop_status.value == 'success') return 'pi pi-verified success ml-2'
+        else if (shop_status.value == 'success') return 'pi pi-check success ml-2'
         else if (shop_status.value == 'failed') return 'pi pi-ban failed ml-2'
     }
 
@@ -107,13 +113,19 @@ const checkShopNameValidity = computed(() => {
 const nextStep = () => {
     step.value = true
 }
+
+const backNext = () => {
+    step.value = false
+}
 </script>
 
 <style lang="scss" scoped>
-@mixin iconColor($color) {
+@mixin iconColor($color, $bg_color) {
     color: $color;
     font-size: 1.5rem;
-    background: none !important;
+    background: $bg_color !important;
+    border-radius: 50%;
+    padding: 5px;
 
     @media only screen and (max-width: 768px) {
         font-size: 1rem;
@@ -122,15 +134,15 @@ const nextStep = () => {
 
 
 .loading {
-    @include iconColor(black)
+    @include iconColor(black, none)
 }
 
 .success {
-    @include iconColor(green)
+    @include iconColor(green, #D1FADF)
 }
 
 .failed {
-    @include iconColor(red)
+    @include iconColor(red, #FEE4E2)
 }
 </style>
 
