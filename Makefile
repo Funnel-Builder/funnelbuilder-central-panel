@@ -1,6 +1,6 @@
 VERSION ?= v0.0.1
 
-REGISTRY ?= trshishir
+REGISTRY ?= bdfunnelbuilder
 
 REGISTRY_WITH_PROJECT_SUFFIX ?= ota-common-panel
 

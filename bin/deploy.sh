@@ -3,7 +3,7 @@
 # Check the argument passed to the script
 if [ "$1" == "local" ]; then
     echo "Starting development environment..."
-    docker compose -f docker/compose/docker-compose.dev.yml up --build -d
+    docker compose -f docker-compose.dev.yml up --build
 elif [ "$1" == "prod" ]; then
     echo "Starting production environment..."
     docker compose -f docker/compose/docker-compose.yml up --build -d
