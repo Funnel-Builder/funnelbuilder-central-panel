@@ -73,11 +73,9 @@ const timeEnd = (evn) => {
     text-align: center;
     background-color: #9fb0cf;
 
-    @media only screen and (max-width: 1300px) {
-        height: 50px;
-    }
     @media only screen and (max-width: 768px) {
         height: 40px;
+        font-size: 18px;
     }
 }
 
