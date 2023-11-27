@@ -1,8 +1,8 @@
 <template>
   <div class="bannerBg">
-    <div class="container mx-auto py-12">
+    <div class="container mx-auto py-20">
       <!--     Section One -->
-      <div class="flex flex-col items-center gap-y-8">
+      <div class="flex flex-col items-center gap-y-8 relative pb-20">
         <div class="flex items-center gap-x-2 border rounded-full px-6 py-2">
           <img src="/banner/workIcon.svg" alt="icon">
           <p class="text-[#ffffff] text-[16px] font-[400]">Your Perfect Workspace</p>
@@ -23,6 +23,9 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class="flex justify-center">
+        <img src="/banner/siteBuilder.svg" alt="Banner Image"/>
       </div>
     </div>
   </div>
