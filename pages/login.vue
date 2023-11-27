@@ -43,6 +43,7 @@
 import { useToast } from "primevue/usetoast";
 definePageMeta({
   layout: "auth",
+  middleware: ["guest"]
 });
 const toast = useToast();
 const phone = ref(null);
