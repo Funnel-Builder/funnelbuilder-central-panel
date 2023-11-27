@@ -2,9 +2,9 @@
   <div>
     <div class="py-4 bannerBg">
       <Button label="Submit" @click="login" />
+      <nuxt-link to="/blank">Blank Page</nuxt-link>
       <HomeBanner/>
     </div>
-    <nuxt-link to="/blank">Blank Page</nuxt-link>
   </div>
 </template>
 

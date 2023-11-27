@@ -16,9 +16,10 @@ const isLoading = ref(false);
 const init = async () => {
   isLoading.value = true;
   const { data, pending, error, refresh } = await getData('home');
-  if (error && error.value) {
-    console.log(error.value);
+  if (error && error.value || !data.value) {
+    throw createError({statusCode: 404, statusMessage: 'Page Not Found'})
   } else {
+    console.log('else')
     products.value = data.value;
   }
   isLoading.value = false;
