@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="flex justify-center">
         <div class="container" @click="openUploader">
             <input type="file" id="file" accept="image/*" @change="uploadImage" hidden>
             <div class="img-area" data-img="">
@@ -31,7 +31,7 @@ const uploadImage = () => {
             img.src = imgUrl;
             imgArea.appendChild(img);
             imgArea.classList.add('active');
-            imgArea.dataset.img = image.name;
+            imgArea.dataset.img = 'Upload image';
         }
         reader.readAsDataURL(image);
     } else {
