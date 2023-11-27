@@ -21,6 +21,12 @@ Using Docker Compose
 
 Using Bash
 ====================
+Bash script permissions
+```bash
+chmod +x bin/deploy.sh
+chmod +x deploy.sh
+```
+then run
 ```bash
 bin/deploy.sh dev
 

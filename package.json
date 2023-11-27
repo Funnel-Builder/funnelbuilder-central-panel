@@ -14,15 +14,16 @@
     "@nuxtjs/tailwindcss": "^6.9.5",
     "nuxt": "^3.8.1",
     "nuxt-primevue": "^0.2.0",
-    "vue": "^3.3.8",
-    "vue-router": "^4.2.5"
+    "vue": "^3.3.8"
   },
   "dependencies": {
     "@pinia/nuxt": "^0.5.1",
+    "@vee-validate/rules": "^4.11.8",
     "moment": "^2.29.4",
     "pinia": "^2.1.7",
     "primeicons": "^6.0.1",
     "primevue": "^3.40.1",
-    "sass": "^1.69.5"
+    "sass": "^1.69.5",
+    "vee-validate": "^4.11.8"
   }
 }

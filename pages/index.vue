@@ -3,6 +3,7 @@
     <div class="py-4 bannerBg">
       <HomeBanner/>
     </div>
+    <nuxt-link to="/blank">Blank Page</nuxt-link>
   </div>
 </template>
 
