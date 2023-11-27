@@ -1,3 +1,5 @@
+import moment from "moment";
+
 const createRequest = async (url, method, body = null) => {
     const config = useRuntimeConfig();
     const { data, pending, error, refresh } = await useFetch(url, {
@@ -5,7 +7,8 @@ const createRequest = async (url, method, body = null) => {
         onRequest({ request, options }) {
             options.method = method;
             options.headers = options.headers || {};
-            options.headers.Authorization = getToken() ? `Bearer ${getToken()}` : '';
+            options.headers.Authorization = accessToken() ? `Bearer ${accessToken()}` : '';
+            options.headers.accept = 'application/json'
 
             if (body) {
                 options.body = body;
@@ -16,7 +19,15 @@ const createRequest = async (url, method, body = null) => {
             // Handle the request errors
         },
         onResponse({ request, response, options }) {
-            // Process the response data
+           // if getExpiresIn() expires in less than 30 minutes, refresh token
+            if (getExpiresIn() && accessToken() && url !== 'refresh_token') {
+                const now = moment().format()
+                const expiresIn = moment(getExpiresIn()).subtract(30, 'minutes').format()
+                if (now > expiresIn) {
+                    const authStore = useAuthStore()
+                    authStore.refreshToken()
+                }
+            }
         },
         onResponseError({ request, response, options }) {
             // Handle the response errors
