@@ -23,6 +23,7 @@ export const useAuthStore = defineStore('auth', {
                 this.setToken(data.value?.authorization)
                 this.setUser(data.value?.user)
             }
+            return {data, pending, error, refresh}
         },
         async login(payload) {
             const {data, pending, error, refresh} = await postData('login', payload)
@@ -30,6 +31,7 @@ export const useAuthStore = defineStore('auth', {
                 this.setToken(data.value?.authorization)
                 this.setUser(data.value?.user)
             }
+            return {data, pending, error, refresh}
         },
         async refreshToken() {
             const {data, pending, error, refresh} = await postData('refresh_token')
@@ -43,12 +45,14 @@ export const useAuthStore = defineStore('auth', {
             if (data) {
                 this.setUser(data.value?.data)
             }
+            return {data, pending, error, refresh}
         },
         async logout() {
             const {data, pending, error, refresh} = await postData('logout')
             if (data) {
                 resetAllCookies()
             }
+            return {data, pending, error, refresh}
         }
     },
     persist: true

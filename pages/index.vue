@@ -3,6 +3,8 @@
     <div class="py-4 bannerBg">
       <Button label="Submit" @click="login" />
       <nuxt-link to="/blank">Blank Page</nuxt-link>
+      <Button label="Show" @click="showToast = !showToast" />
+      <utilities-toast :show-toast="showToast"/>
       <HomeBanner/>
     </div>
   </div>
@@ -10,6 +12,7 @@
 
 <script setup>
 const authStore = useAuthStore()
+const showToast = ref(false)
 const login = () => {
   const payload = {
     "email" : "tabrassumm@gmail.com",
