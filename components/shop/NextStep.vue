@@ -3,7 +3,7 @@
         <div>
             <div class="set_anim pb-8">
                 <div>
-                    <FileUploadFileUploader />
+                    <FileUploadFileUploader @photoUploaded="photo = $event" @loading="loading = $event" />
                     <div class="pt-4">
                         <p class="text-[#5A78AD]"><small>Description</small></p>
                         <Textarea placeholder="write here ..." style="background-color: #EFF1F7 !important;"
@@ -31,6 +31,8 @@
     </div>
 </template>
 <script setup>
+const photo = ref(null)
+const loading = ref(false)
 </script>
 <style scoped>
 .set_anim {
