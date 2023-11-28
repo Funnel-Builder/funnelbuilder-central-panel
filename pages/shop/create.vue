@@ -50,7 +50,7 @@
                                     </div>
                                 </div>
                                 <div v-else>
-                                    <shop-next-step />
+                                    <shop-next-step :shopDetails="shopDetails"/>
                                 </div>
                             </div>
                             <div class="flex justify-center gap-2 mt-12">
@@ -75,6 +75,7 @@ definePageMeta({
 const step = ref(false)
 
 const shop_status = ref('');
+const shopDetails = ref({})
 const text = 'my_shop';
 
 //validation schema
@@ -128,9 +129,10 @@ const checkShopNameValidity = computed(() => {
 })
 
 
-const nextStep = () => {
+const nextStep = handleSubmit(async (values) => {
+    shopDetails.value = values
     step.value = true
-}
+})
 </script>
 
 <style lang="scss" scoped>
