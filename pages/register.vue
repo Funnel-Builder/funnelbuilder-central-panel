@@ -8,56 +8,53 @@
           Get Started.</p>
       </div>
       <div class="px-4 sm:px-0 w-[100%] sm:w-[70%] md:w-[60%] lg:w-[50%]">
-        <div class="pt-4">
+        <div class="pt-5">
           <label class="inputGroupLabel" for="username">Full Name *</label><br>
           <InputText
               v-model="name.value.value"
               :class="{ 'invalid': name.errorMessage.value }"
-              class="inputGroupField focus:shadow-none "
+              class="inputGroupField focus:shadow-none py-2 sm:py-3"
               id="username"
               type="text"
               placeholder="Enter your name"/>
           <form-input-error :message="name.errorMessage.value"/>
         </div>
-        <div class="pt-4">
+        <div class="pt-5">
           <label class="inputGroupLabel" for="phone">Phone Number *</label><br>
           <InputGroup class="">
-            <InputGroupAddon class="inputGroupFieldFlag p-1 md:p-2.5 rounded-l-xl">
-              <img src="/auth/bdFlag.svg" alt="flag"/>
-            </InputGroupAddon>
-            <InputGroupAddon
-                class="inputGroupFieldFlag w-[30%] sm:w-[30%] md:w-[25%] lg:w-[25%] xl:w-[20%] p-1 md:p-2.5">
-              <p class="text-[14px] md:text-[16px] px-2 border-r-2 border-white">BD +880</p>
+            <InputGroupAddon class="inputGroupFieldFlag p-2 md:p-2.5 rounded-l-xl">
+              <img class="rounded-md" src="/auth/bdFlag.svg" alt="flag"/>
+              <p class="text-[14px] md:text-[16px] px-2">BD +880</p>
             </InputGroupAddon>
             <InputText
                 v-model="phone.value.value"
                 :class="{ 'invalid': phone.errorMessage.value }"
                 setErrorMessage
-                class="inputGroupFieldFlag rounded-l-none rounded-r-xl focus:shadow-none"
+                class="inputGroupFieldFlag rounded-l-none rounded-r-xl focus:shadow-none py-2 sm:py-3"
                 id="phone"
                 type="text"
             />
           </InputGroup>
           <form-input-error :message="phone.errorMessage.value"/>
         </div>
-        <div class="pt-4">
+        <div class="pt-5">
           <label class="inputGroupLabel" for="email">Email Address *</label><br>
           <InputText
               v-model="email.value.value"
               :class="{ 'invalid': email.errorMessage.value }"
-              class="inputGroupField focus:shadow-none"
+              class="inputGroupField focus:shadow-none py-2 sm:py-3"
               id="email"
               type="email"
               placeholder="Enter email address"/>
           <form-input-error :message="email.errorMessage.value"/>
         </div>
-        <div class="pt-4">
+        <div class="pt-5">
           <label class="inputGroupLabel" for="password">Password *</label><br>
           <div class="p-input-icon-right w-full">
             <InputText
                 v-model="password.value.value"
                 :class="{ 'invalid': password.errorMessage.value }"
-                class="inputGroupField focus:shadow-none"
+                class="inputGroupField focus:shadow-none py-2 sm:py-3"
                 id="password"
                 toggleMask
                 :type="isShow ? 'text' : 'password'"
@@ -66,14 +63,14 @@
           </div>
           <form-input-error :message="password.errorMessage.value"/>
         </div>
-        <div class="pt-4">
+        <div class="pt-5">
           <label class="inputGroupLabel" for="confirmPassword">Confirm Password *</label><br>
           <div class="p-input-icon-right w-full">
             <InputText
                 v-model="password_confirmation.value.value"
                 :disabled="password.value.value && password.value.value.length ? false : true"
                 :class="{ 'invalid': password_confirmation.errorMessage.value }"
-                class="inputGroupField focus:shadow-none"
+                class="inputGroupField focus:shadow-none py-2 sm:py-3"
                 id="confirmPassword"
                 :type="isShowConfirm ? 'text' : 'password'"
                 placeholder="Enter minimum 8 characters"/>
@@ -83,7 +80,7 @@
           <form-input-error :message="password_confirmation.errorMessage.value"/>
         </div>
         <div>
-          <div class="pt-4 md:flex justify-between items-center">
+          <div class="pt-6 md:flex justify-between items-center">
             <div class="flex items-center">
               <Checkbox
                   v-model="termsAndCondition.value.value"
@@ -94,17 +91,17 @@
                   binary
                   name="termsAndCondition"
                   value="termsAndCondition"/>
-              <nuxt-link to="/terms-service" class="ml-2 text-white underline">Terms & Service</nuxt-link>
+              <nuxt-link to="/terms-service" class="ml-2 text-white text-[14px] sm:text-[16px]">Terms & Service</nuxt-link>
             </div>
-            <div class="flex gap-x-2">
-              <p class="text-white">Already have an account?</p>
-              <nuxt-link to="/login" class="text-white font-bold">Login</nuxt-link>
+            <div class="flex py-2 gap-x-2">
+              <p class="text-white text-[14px] sm:text-[16px] ">Already have an account?</p>
+              <nuxt-link to="/login" class="text-white text-[14px] sm:text-[16px] font-bold">Login</nuxt-link>
             </div>
           </div>
           <form-input-error :message="termsAndCondition.errorMessage.value"/>
         </div>
         <div class="py-4">
-          <Button :disabled="isSubmitDisabled" @click="submitForm()" class="btn p-2 md:p-2.5  focus:shadow-none"
+          <Button :disabled="isSubmitDisabled" @click="submitForm()" class="btn p-1 md:p-2.5 focus:shadow-none"
                   label="Register"/>
         </div>
       </div>
@@ -114,21 +111,16 @@
 
 <script setup>
 import {useField, useForm} from 'vee-validate';
-import {postData} from "~/composables/useRequest.js";
+import {useAuthStore} from "~/stores/auth.js";
 
 definePageMeta({
   layout: "auth",
 });
-const pageInfo = ref({
-  title: 'Register',
-  description: 'Register page description',
-  apiUrl: '/register'
-});
 
+const authStore = useAuthStore();
 const isShow = ref(false);
 const isShowConfirm = ref(false);
 const isLoading = ref(false);
-const errors = ref({});
 //validation rules
 const {handleSubmit, isSubmitting, handleReset, setErrors} = useForm({
   validationSchema: {
@@ -169,11 +161,12 @@ const email = useField('email');
 const password = useField('password');
 const password_confirmation = useField('password_confirmation');
 const termsAndCondition = useField('termsAndCondition');
-
-const isPasswordMatch = computed(() => password.value.value === password_confirmation.value.value);
+const isPasswordMatch = computed(() => {
+  return password.value.value === password_confirmation.value.value;
+});
 
 const isSubmitDisabled = computed(() => {
-  return ( name.value.value && name.value.value.length >4 ) && phone.value.value && email.value.value && password.value.value && password_confirmation.value.value && termsAndCondition.value.value && isPasswordMatch.value ? false : true;
+  return !((name.value.value && name.value.value.length > 4) && phone.value.value && email.value.value && password.value.value && password_confirmation.value.value && termsAndCondition.value.value && isPasswordMatch.value);
 });
 
 const isShowPassword = () => {
@@ -187,29 +180,21 @@ const submitForm = handleSubmit(async (values) => {
   // console.log(values);
   isLoading.value = true;
   values.phone = `+88${values.phone}`;
-  let url = pageInfo.value.apiUrl;
-  let msg = `New ${pageInfo.value.title} created successfully!`
-  const {data, pending, error, refresh} = await postData(url, values);
-  if(error && error.value){
-    errors.value = error.value.data.errors;
+  let msg = `New  created successfully!`
+  const {data, pending, error, refresh} = await authStore.register(values);
+  if (error && error.value) {
     setErrors(error.value.data.errors || {})
+    if (error.value.data.errors === 422) {
+      console.log(error.value);
+    }
   }
-  // if(error && error.response && error.response.data && error.response.data.errors){
-  //   // setErrors(error.response.data.errors);
-  //   if(error.response.data.errors === 422 ){
-  //     errors.value = error.response.data;
-  //     console.log(errors.value);
-  //   }
-  // }
-  // else if (error) {
-  //   console.log(error);
-  // } else {
-  //   console.log(data);
-  //   handleReset();
-  //   redirectTo("/"); /// Redirect to ?next or to given path ...
-  // }
-
-  // console.log(data, pending, error, refresh);
+  else {
+    handleReset();
+    console.log(msg)
+    const router = useRouter();
+    router.push('/verify-otp');
+  }
+  isLoading.value = false;
 });
 </script>
 
