@@ -56,7 +56,7 @@ import {useAuthStore} from "~/stores/auth.js";
 definePageMeta({
   layout: "auth",
 });
-
+//Variables
 const authStore = useAuthStore();
 const isShow = ref(false);
 const isLoading = ref(false);
@@ -78,18 +78,18 @@ const {handleSubmit, isSubmitting, handleReset, setErrors} = useForm({
 const email = useField('email');
 const password = useField('password');
 
-
+//Computed Properties
 const isSubmitDisabled = computed(() => {
   return !( email.value.value && password.value.value)
 });
 
+//Methods
 const isShowPassword = () => {
   isShow.value = !isShow.value;
 };
 
 const submitData = handleSubmit(async (values) => {
   isLoading.value = true;
-  let msg = `New  created successfully!`
   const {data, pending, error, refresh} = await authStore.login(values);
   if (error && error.value) {
     setErrors(error.value.data.errors || {})
