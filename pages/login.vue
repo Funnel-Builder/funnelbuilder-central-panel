@@ -12,7 +12,6 @@
         <div class="px-4 sm:px-0">
           <div class="pt-5">
             <label class="inputGroupLabel" for="email">Email Address *</label><br>
-            {{ email.value.value }}
             <InputText
                 v-model="email.value.value"
                 :class="{ 'invalid': email.errorMessage.value }"
@@ -23,9 +22,8 @@
             <form-input-error :message="email.errorMessage.value"/>
           </div>
           <div class="pt-5">
-            <label class="inputGroupLabel" for="password">Password</label><br>
+            <label class="inputGroupLabel" for="password">Password *</label><br>
             <div class="p-input-icon-right w-full">
-              {{ password.value.value }}
               <InputText
                   v-model="password.value.value"
                   :class="{ 'invalid': password.errorMessage.value }"
@@ -90,7 +88,6 @@ const isShowPassword = () => {
 };
 
 const submitData = handleSubmit(async (values) => {
-  console.log(values);
   isLoading.value = true;
   let msg = `New  created successfully!`
   const {data, pending, error, refresh} = await authStore.login(values);
