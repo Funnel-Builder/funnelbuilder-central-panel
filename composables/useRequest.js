@@ -23,7 +23,7 @@ const createRequest = async (url, method, body = null) => {
             if (getExpiresIn() && accessToken() && url !== 'refresh_token') {
                 const now = moment().format()
                 const expiresIn = moment(getExpiresIn()).subtract(30, 'minutes').format()
-                if (now > expiresIn) {
+                if (now > expiresIn && now < moment(getExpiresIn())) {
                     const authStore = useAuthStore()
                     authStore.refreshToken()
                 }
