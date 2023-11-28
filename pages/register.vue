@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto">
-    <div class="pt-[80px] sm:pt-0 sm:flex sm:flex-col justify-center items-center min-h-screen">
+    <div class="flex flex-col items-center justify-center min-h-screen">
       <div class="px-4 sm:px-0 w-[100%] sm:w-[70%] md:w-[60%] lg:w-[50%]">
         <h1 class="text-[30px] md:text-[36px] lg:text-[40px] xl:text-[44px] 2xl:text-[48px] text-white font-[600]">Get
           Started</h1>
@@ -11,10 +11,13 @@
         <div class="pt-4">
           <label class="inputGroupLabel" for="username">Full Name *</label><br>
           <InputText
+              v-model="name.value.value"
+              :class="{ 'invalid': name.errorMessage.value }"
               class="inputGroupField focus:shadow-none "
               id="username"
-              type="text" v-model="name"
+              type="text"
               placeholder="Enter your name"/>
+          <form-input-error :message="name.errorMessage.value"/>
         </div>
         <div class="pt-4">
           <label class="inputGroupLabel" for="phone">Phone Number *</label><br>
@@ -22,53 +25,86 @@
             <InputGroupAddon class="inputGroupFieldFlag p-1 md:p-2.5 rounded-l-xl">
               <img src="/auth/bdFlag.svg" alt="flag"/>
             </InputGroupAddon>
-            <InputGroupAddon class="inputGroupFieldFlag w-[30%] sm:w-[30%] md:w-[25%] lg:w-[25%] xl:w-[20%] p-1 md:p-2.5">
+            <InputGroupAddon
+                class="inputGroupFieldFlag w-[30%] sm:w-[30%] md:w-[25%] lg:w-[25%] xl:w-[20%] p-1 md:p-2.5">
               <p class="text-[14px] md:text-[16px] px-2 border-r-2 border-white">BD +880</p>
             </InputGroupAddon>
             <InputText
+                v-model="phone.value.value"
+                :class="{ 'invalid': phone.errorMessage.value }"
+                setErrorMessage
                 class="inputGroupFieldFlag rounded-l-none rounded-r-xl focus:shadow-none"
                 id="phone"
-                type="number" v-model="phone"
+                type="text"
             />
           </InputGroup>
+          <form-input-error :message="phone.errorMessage.value"/>
         </div>
         <div class="pt-4">
-          <label class="inputGroupLabel" for="email">Email Address</label><br>
+          <label class="inputGroupLabel" for="email">Email Address *</label><br>
           <InputText
+              v-model="email.value.value"
+              :class="{ 'invalid': email.errorMessage.value }"
               class="inputGroupField focus:shadow-none"
               id="email"
-              type="email" v-model="email"
+              type="email"
               placeholder="Enter email address"/>
+          <form-input-error :message="email.errorMessage.value"/>
         </div>
         <div class="pt-4">
-          <label class="inputGroupLabel" for="password">Password</label><br>
-          <InputText
-              class="inputGroupField focus:shadow-none"
-              id="password"
-              type="password" v-model="password"
-              placeholder="Enter minimum 8 characters"/>
+          <label class="inputGroupLabel" for="password">Password *</label><br>
+          <div class="p-input-icon-right w-full">
+            <InputText
+                v-model="password.value.value"
+                :class="{ 'invalid': password.errorMessage.value }"
+                class="inputGroupField focus:shadow-none"
+                id="password"
+                toggleMask
+                :type="isShow ? 'text' : 'password'"
+                placeholder="Enter minimum 8 characters"/>
+            <i @click="isShowPassword" :class="isShow ? 'pi pi-eye' : 'pi pi-eye-slash' " style="color:white"></i>
+          </div>
+          <form-input-error :message="password.errorMessage.value"/>
         </div>
         <div class="pt-4">
-          <label class="inputGroupLabel" for="confirmPassword">Confirm Password</label><br>
-          <InputText
-              class="inputGroupField focus:shadow-none"
-              id="confirmPassword"
-              type="password" v-model="confirmPassword"
-              placeholder="Enter minimum 8 characters"/>
+          <label class="inputGroupLabel" for="confirmPassword">Confirm Password *</label><br>
+          <div class="p-input-icon-right w-full">
+            <InputText
+                v-model="password_confirmation.value.value"
+                :disabled="password.value.value && password.value.value.length ? false : true"
+                :class="{ 'invalid': password_confirmation.errorMessage.value }"
+                class="inputGroupField focus:shadow-none"
+                id="confirmPassword"
+                :type="isShowConfirm ? 'text' : 'password'"
+                placeholder="Enter minimum 8 characters"/>
+            <i @click="isShowConfirmPassword" :class="isShowConfirm ? 'pi pi-eye' : 'pi pi-eye-slash' "
+               style="color:white"></i>
+          </div>
+          <form-input-error :message="password_confirmation.errorMessage.value"/>
         </div>
-        <div class="pt-4 md:flex justify-between items-center">
-          <div class="flex items-center">
-            <Checkbox class="" v-model="termsAndCondition" inputId="ingredient1" name="termsAndCondition"
-                      value="termsAndCondition"/>
-            <label for="ingredient1" class="ml-2 text-white"> Terms & Conditions </label>
+        <div>
+          <div class="pt-4 md:flex justify-between items-center">
+            <div class="flex items-center">
+              <Checkbox
+                  v-model="termsAndCondition.value.value"
+                  :class="{ 'invalid': termsAndCondition.errorMessage.value }"
+                  style="background-color:#36e4da; border: 0 solid #2196F3;"
+                  class="focus:border-0 focus:shadow-none"
+                  id="chbx"
+                  binary
+                  name="termsAndCondition"
+                  value="termsAndCondition"/>
+              <nuxt-link to="/terms-service" class="ml-2 text-white underline">Terms & Service</nuxt-link>
+            </div>
+            <div class="flex gap-x-2">
+              <p class="text-white">Already have an account?</p>
+              <nuxt-link to="/login" class="text-white font-bold">Login</nuxt-link>
+            </div>
           </div>
-          <div class="flex gap-x-2">
-            <p class="text-white">Already have an account?</p>
-            <a href="/login" class="text-white font-bold">Login</a>
-          </div>
+          <form-input-error :message="termsAndCondition.errorMessage.value"/>
         </div>
         <div class="py-4">
-          <Button class="btn p-2 md:p-2.5  focus:shadow-none"
+          <Button :disabled="isSubmitDisabled" @click="submitForm()" class="btn p-2 md:p-2.5  focus:shadow-none"
                   label="Register"/>
         </div>
       </div>
@@ -77,17 +113,104 @@
 </template>
 
 <script setup>
+import {useField, useForm} from 'vee-validate';
+import {postData} from "~/composables/useRequest.js";
+
 definePageMeta({
   layout: "auth",
 });
+const pageInfo = ref({
+  title: 'Register',
+  description: 'Register page description',
+  apiUrl: '/register'
+});
 
-const name = ref(null);
-const phone = ref(null);
-const email = ref(null);
-const password = ref(null);
-const confirmPassword = ref(null);
-const termsAndCondition = ref(false);
+const isShow = ref(false);
+const isShowConfirm = ref(false);
+const isLoading = ref(false);
+const errors = ref({});
+//validation rules
+const {handleSubmit, isSubmitting, handleReset, setErrors} = useForm({
+  validationSchema: {
+    name(value) {
+      if (!value) return 'Name is required'
+      else if (value.length < 4 || value.length > 100) return 'Name must be between 4 and 100 characters'
+      return true;
+    },
+    phone(value) {
+      if (!value) return 'Phone number is required'
+      else if (!/^(?:\+88|01)?(?:\d{11}|\d{13})$/.test(value)) return "Invalid phone number";
+      return true;
+    },
+    email(value) {
+      if (value) return true
+      return 'Email is required'
+    },
+    password(value) {
+      if (!value) return 'Password is required'
+      else if (value.length >= 8) return true;
+      else return 'Password must be at least 8 characters'
+    },
+    password_confirmation(value) {
+      if (!value) return 'Confirm password is required';
+      else if (value !== password.value.value) return 'Password does not match';
+      return true;
+    },
+    termsAndCondition(value) {
+      if (value) return true
+      return 'Terms & Conditions is required'
+    }
+  }
+})
+//form fields
+const name = useField('name');
+const phone = useField('phone');
+const email = useField('email');
+const password = useField('password');
+const password_confirmation = useField('password_confirmation');
+const termsAndCondition = useField('termsAndCondition');
 
+const isPasswordMatch = computed(() => password.value.value === password_confirmation.value.value);
+
+const isSubmitDisabled = computed(() => {
+  return ( name.value.value && name.value.value.length >4 ) && phone.value.value && email.value.value && password.value.value && password_confirmation.value.value && termsAndCondition.value.value && isPasswordMatch.value ? false : true;
+});
+
+const isShowPassword = () => {
+  isShow.value = !isShow.value;
+};
+const isShowConfirmPassword = () => {
+  isShowConfirm.value = !isShowConfirm.value;
+};
+
+const submitForm = handleSubmit(async (values) => {
+  // console.log(values);
+  isLoading.value = true;
+  values.phone = `+88${values.phone}`;
+  let url = pageInfo.value.apiUrl;
+  let msg = `New ${pageInfo.value.title} created successfully!`
+  const {data, pending, error, refresh} = await postData(url, values);
+  if(error && error.value){
+    errors.value = error.value.data.errors;
+    setErrors(error.value.data.errors || {})
+  }
+  // if(error && error.response && error.response.data && error.response.data.errors){
+  //   // setErrors(error.response.data.errors);
+  //   if(error.response.data.errors === 422 ){
+  //     errors.value = error.response.data;
+  //     console.log(errors.value);
+  //   }
+  // }
+  // else if (error) {
+  //   console.log(error);
+  // } else {
+  //   console.log(data);
+  //   handleReset();
+  //   redirectTo("/"); /// Redirect to ?next or to given path ...
+  // }
+
+  // console.log(data, pending, error, refresh);
+});
 </script>
 
 <style scoped lang="scss">
@@ -97,11 +220,13 @@ const termsAndCondition = ref(false);
   -webkit-appearance: none;
   margin: 0;
 }
+
 //This class used for input group label
 .inputGroupLabel {
   color: white;
   padding-left: .2rem;
 }
+
 //This class used for input group(name, email, password, confirm password)
 .inputGroupField {
   background-color: #A0B1D0;
@@ -110,18 +235,26 @@ const termsAndCondition = ref(false);
   color: white;
   border: none;
 }
+
+.toggleMaskButton {
+  width: 100%; /* Set width to 100% */
+}
+
 ::placeholder {
   color: slategray;
 }
+
 input:focus::placeholder {
   color: white;
 }
+
 //This class used for input group(phone)
 .inputGroupFieldFlag {
   background-color: #A0B1D0;
-  color:white;
+  color: white;
   border: none;
 }
+
 //This class used for register button
 .btn {
   background-color: white;
