@@ -1,7 +1,7 @@
 <template>
   <main class="min-h-screen">
     <Header/>
-    <main class="min-h-[100vh] pt-6 md:pt-[60px]">
+    <main class="min-h-[80vh] pt-6 md:pt-[60px]">
       <slot></slot>
     </main>
     <Footer/>

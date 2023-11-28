@@ -20,7 +20,7 @@
         </div>
         <div class="pt-12 flex justify-center items-center gap-x-4">
           <i class="pi pi-arrow-left" style="font-size: 0.8rem; color:white;"></i>
-          <a href="/login" class=" text-white font-bold">Back to login</a>
+          <nuxt-link to="/login" class="text-white font-bold">Back to login</nuxt-link>
         </div>
       </div>
     </div>

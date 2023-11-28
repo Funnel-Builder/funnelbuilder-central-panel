@@ -5,7 +5,7 @@
         <h1 class="text-[30px] md:text-[36px] lg:text-[40px] xl:text-[44px] 2xl:text-[48px] text-white font-[600]">Welcome Back!</h1>
         <div class="flex items-center gap-x-2">
           <p class="text-[12px] md:text-[14px] text-white font-[400]">Don’t have an account?</p>
-          <a href="/register"  class="text-white font-bold">Register</a>
+          <nuxt-link to="/register"  class="text-white font-bold">Register</nuxt-link>
         </div>
       </div>
       <div class="px-4 sm:px-0 w-[100%] sm:w-[70%] md:w-[60%] lg:w-[50%]">
@@ -26,7 +26,7 @@
               placeholder="Enter minimum 8 characters"/>
         </div>
         <div class="pt-4 text-end">
-          <a href="/forgot-password" class=" text-white font-bold underline">Forgot Password</a>
+          <nuxt-link to="/forgot-password"  class="text-white font-bold underline">Forgot Password</nuxt-link>
         </div>
         <div class="pt-12">
           <Toast class="bg-transparent"/>
