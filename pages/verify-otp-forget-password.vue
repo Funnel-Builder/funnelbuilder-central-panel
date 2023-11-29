@@ -6,7 +6,7 @@
                     <utilities-password-otp-shooter validUntil="2023-11-29T08:47:13.978Z"/>
                 </div>
                 <div class="pt-8 flex justify-center">
-                    <button @click="removeUser" class="button flex border-2  items-center px-6 py-2 rounded-md text-white">Logout</button>
+                    <button @click="authStore.logout()" class="button flex border-2  items-center px-6 py-2 rounded-md text-white">Logout</button>
                 </div>
             </div>
         </div>
@@ -14,18 +14,12 @@
 </template>
   
 <script setup>
-import {useAuthStore} from "~/stores/auth.js";
-
 definePageMeta({
     layout: 'auth'
 });
 
 const authStore = useAuthStore();
 
-
-const removeUser = async() => {
-    const {data} = await authStore.logout(values);
-}
 </script>
 <style scoped>
 .button:hover {

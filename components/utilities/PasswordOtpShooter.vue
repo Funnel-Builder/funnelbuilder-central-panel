@@ -25,7 +25,9 @@
                 <form-input-error :message="error_mes"/>
             </div>
             <div class="text-center">
-                <Button :disabled="otpNumber?.length !== 6" link class="btn p-2 md:p-2.5  focus:shadow-none" label="Continue" />
+              {{ otpNumber }}
+              {{ authStore.user_email }}
+                <Button @click="submitOtp" :disabled="otpNumber?.length !== 6" link class="btn p-2 md:p-2.5  focus:shadow-none" label="Continue" />
             </div>
         </div>
     </div>
@@ -78,6 +80,21 @@ const timeEnd = (evn) => {
     timeOver.value = false;
 }
 
+const submitOtp = async () => {
+    const {data, error} = await postData('verify-otp', {email: authStore.user_email, otp: otpNumber.value})
+    console.log(data.value.authorization_code)
+
+    if(error && error.value){
+      if (error.value.statusCode === 422) {
+        setErrors(error.value.data.errors || {})
+      }
+    }
+    else{
+        authStore.setAuthorizationCode(data.value.authorization_code)
+        const router = useRouter()
+        router.push('/reset-password')
+    }
+}
 </script>
   
 <style lang="scss">
