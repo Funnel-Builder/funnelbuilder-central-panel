@@ -22,7 +22,7 @@
                   id="username"
                   type="text"
                   placeholder="Enter your name"/>
-              <form-input-error :message="name.errorMessage.value"/>
+              <form-input-error :message="name.errorMessage.value" text-color="#FFD600"/>
             </div>
             <div class="pt-5">
               <label class="inputGroupLabel" for="phone">Phone Number *</label><br>
@@ -40,7 +40,7 @@
                     type="text"
                 />
               </InputGroup>
-              <form-input-error :message="phone.errorMessage.value"/>
+              <form-input-error :message="phone.errorMessage.value" text-color="#FFD600"/>
             </div>
             <div class="pt-5">
               <label class="inputGroupLabel" for="email">Email Address *</label><br>
@@ -51,7 +51,7 @@
                   id="email"
                   type="email"
                   placeholder="Enter email address"/>
-              <form-input-error :message="email.errorMessage.value"/>
+              <form-input-error :message="email.errorMessage.value" text-color="#FFD600"/>
             </div>
             <div class="pt-5">
               <label class="inputGroupLabel" for="password">Password *</label><br>
@@ -66,14 +66,14 @@
                     placeholder="Enter minimum 8 characters"/>
                 <i @click="isShowPassword" :class="isShow ? 'pi pi-eye' : 'pi pi-eye-slash' " style="color:white"></i>
               </div>
-              <form-input-error :message="password.errorMessage.value"/>
+              <form-input-error :message="password.errorMessage.value" text-color="#FFD600"/>
             </div>
             <div class="pt-5">
               <label class="inputGroupLabel" for="confirmPassword">Confirm Password *</label><br>
               <div class="p-input-icon-right w-full">
                 <InputText
                     v-model="password_confirmation.value.value"
-                    :disabled="password.value.value && password.value.value.length ? false : true"
+                    :disabled="!(password.value.value && password.value.value.length)"
                     :class="{ 'invalid': password_confirmation.errorMessage.value }"
                     class="inputGroupField focus:shadow-none py-2 sm:py-3"
                     id="confirmPassword"
@@ -82,7 +82,7 @@
                 <i @click="isShowConfirmPassword" :class="isShowConfirm ? 'pi pi-eye' : 'pi pi-eye-slash' "
                    style="color:white"></i>
               </div>
-              <form-input-error :message="password_confirmation.errorMessage.value"/>
+              <form-input-error :message="password_confirmation.errorMessage.value" text-color="#FFD600"/>
             </div>
             <div class="pt-6 md:flex justify-between items-center">
               <div class="inline-flex items-center gap-x-2">
@@ -102,7 +102,7 @@
                 <nuxt-link to="/login" class="text-white text-[14px] sm:text-[16px] font-bold">Login</nuxt-link>
               </div>
             </div>
-            <form-input-error :message="termsAndCondition.errorMessage.value"/>
+            <form-input-error :message="termsAndCondition.errorMessage.value" text-color="#FFD600"/>
             <div class="py-4">
               <Button :disabled="isSubmitDisabled" @click="submitForm()" class="btn p-1 md:p-2.5 focus:shadow-none"
                       label="Register"/>
@@ -181,7 +181,7 @@ const isPasswordMatch = computed(() => {
 });
 
 const isSubmitDisabled = computed(() => {
-  return !((name.value.value && name.value.value.length > 3) && phone.value.value && email.value.value && password.value.value && password_confirmation.value.value && termsAndCondition.value.value && isPasswordMatch.value);
+  return !((name.value.value && name.value.value.length >= 3) && phone.value.value && email.value.value && password.value.value && password_confirmation.value.value && termsAndCondition.value.value && isPasswordMatch.value);
 });
 
 //Methods

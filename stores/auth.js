@@ -34,17 +34,17 @@ export const useAuthStore = defineStore('auth', {
 
                 this.setOtpCookies(this.user?.email, 'register')
             }
-            return { data, pending, error, refresh }
+            return {data, pending, error, refresh}
         },
         async login(payload) {
-            const { data, pending, error, refresh } = await postData('login', payload)
+            const {data, pending, error, refresh} = await postData('login', payload)
             if (data) {
                 this.setToken(data.value?.authorization)
                 this.setUser(data.value?.user)
 
                 this.setOtpCookies(this.user?.email, 'login')
             }
-            return { data, pending, error, refresh }
+            return {data, pending, error, refresh}
         },
         async refreshToken() {
             const { data, pending, error, refresh } = await postData('refresh_token')
@@ -61,11 +61,19 @@ export const useAuthStore = defineStore('auth', {
             return { data, pending, error, refresh }
         },
         async logout() {
-            const { data, pending, error, refresh } = await postData('logout')
+            const {data, pending, error, refresh} = await postData('logout')
             if (data) {
-                resetAllCookies()
+                this.clearAuth()
+                const router = useRouter()
+                router.push('/')
             }
-            return { data, pending, error, refresh }
+            return {data, pending, error, refresh}
+        },
+        clearAuth() {
+            this.token = null
+            this.user = null
+            this.isAuthenticate= false
+
         }
     },
     persist: true

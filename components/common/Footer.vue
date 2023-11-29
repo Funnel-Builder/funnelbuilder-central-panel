@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto py-10">
-   <div class="grid grid-cols-2 lg:grid-cols-4">
-     <div class="flex flex-col items-center px-4 sm:px-0 pb-6">
+   <div class="grid grid-cols-1 lg:grid-cols-3">
+     <div class="flex flex-col items-start px-4 sm:px-0 pb-6">
        <div>
          <img src="/landing/logo.svg" alt="logo"/>
          <p style="color:#667085;">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document</p>
@@ -11,29 +11,40 @@
          </div>
        </div>
      </div>
-     <div class="flex flex-col items-center gap-y-3 pt-3">
+     <div class="hidden md:flex flex-col items-center gap-y-3 pt-3">
        <p style="color:#5A78AD" class="font-[600] md:text-[20px]">Company</p>
        <template v-for="(item, i) in company" :key="i">
-          <nuxt-link :to="item.link">
-           <span class="text">{{ item.label }}</span>
-         </nuxt-link>
-       </template>
-     </div>
-     <div class="flex flex-col items-center gap-y-3 pt-3">
-       <p style="color:#5A78AD" class="font-[600] md:text-[20px]">Legal</p>
-       <template v-for="(item, i) in legal" :key="i">
          <nuxt-link :to="item.link">
            <span class="text">{{ item.label }}</span>
          </nuxt-link>
        </template>
      </div>
-     <div class="flex flex-col items-center gap-y-3 pt-3">
+     <div class="hidden md:flex flex-col items-center gap-y-3 pt-3">
        <p style="color:#5A78AD" class="font-[600] md:text-[20px]">Social</p>
        <template v-for="(item, i) in social" :key="i">
          <nuxt-link :to="item.link">
            <span class="text">{{ item.label }}</span>
          </nuxt-link>
        </template>
+     </div>
+<!--     For Mobile View -->
+     <div class="flex justify-evenly md:hidden pb-8">
+       <div class="flex flex-col items-center gap-y-3 pt-3">
+         <p style="color:#5A78AD" class="font-[600] md:text-[20px]">Company</p>
+         <template v-for="(item, i) in company" :key="i">
+           <nuxt-link :to="item.link">
+             <span class="text text-[14px]">{{ item.label }}</span>
+           </nuxt-link>
+         </template>
+       </div>
+       <div class="flex flex-col items-center gap-y-3 pt-3">
+         <p style="color:#5A78AD" class="font-[600] md:text-[20px]">Social</p>
+         <template v-for="(item, i) in social" :key="i">
+           <nuxt-link :to="item.link">
+             <span class="text text-[14px]">{{ item.label }}</span>
+           </nuxt-link>
+         </template>
+       </div>
      </div>
    </div>
     <hr>
@@ -45,23 +56,17 @@
 
 <script setup>
 const company = ref([
-  {label: 'About Us', link: '/about-us'},
-  {label: 'Careers', link: '/careers'},
-  {label: 'News', link: '/news'},
-  {label: 'Contact', link: '/contact-us'},
-]);
-const legal = ref([
-  {label: 'Terms of service', link: '/terms-of-service'},
-  {label: 'Privacy Policy', link: '/privacy-policy'},
-  {label: 'Cookies', link: '/cookies'},
-  {label: 'Licenses', link: '/licenses'},
-  {label: 'Refund Policy', link: '/refund-policy'}
+  {label: 'About Us', link: '/'},
+  {label: 'Contact', link: '/'},
+  {label: 'Terms of service', link: '/terms-service'},
+  {label: 'Refund Policy', link: '/'},
+  {label: 'Privacy Policy', link: '/'}
 ]);
 const social = ref([
-  {label: 'Twitter', link: '/twitter'},
-  {label: 'Linkedin', link: '/linkedin'},
-  {label: 'Facebook', link: '/facebook'},
-  {label: 'Whatsapp', link: '/whatsapp'},
+  {label: 'Twitter', link: '/'},
+  {label: 'Linkedin', link: '/'},
+  {label: 'Facebook', link: '/'},
+  {label: 'Whatsapp', link: '/'},
 ]);
 </script>
 
