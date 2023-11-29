@@ -14,19 +14,18 @@
 </template>
   
 <script setup>
-import {useAuthStore} from "~/stores/auth.js";
 
 definePageMeta({
     layout: 'auth'
 });
 
 const authStore = useAuthStore();
+const router = useRouter();
 
 
 const removeUser = async() => {
     const {data} = await authStore.logout();
     if(data.value.message == 'User logged out successfully'){
-        const router = useRouter();
         router.push('/login')
     }
 }

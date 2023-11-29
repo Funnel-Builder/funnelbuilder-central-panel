@@ -13,7 +13,7 @@
         </div>
       </div>
       <div>
-        <div v-if="authStore.token" class="flex items-center gap-x-2">
+        <div v-if="authStore.isLoggedIn" class="flex items-center gap-x-2">
           <UserMenuDropdown/>
         </div>
         <div v-else class="flex justify-center items-center xl:gap-x-2 2xl:gap-x-6">
@@ -74,8 +74,6 @@ import {useAuthStore} from "~/stores/auth.js";
 import UserMenuDropdown from "~/components/common/UserMenuDropdown.vue";
 
 const authStore = useAuthStore();
-const route = useRoute();
-const isActive = ref(false);
 const items = ref([
   {label: 'Home', link: '/'},
   {label: 'Feature', link: '/feature'},
