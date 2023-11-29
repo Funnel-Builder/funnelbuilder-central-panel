@@ -13,7 +13,7 @@
         </div>
       </div>
       <div>
-        <div v-if="storeToRefs(authStore.isLoggedIn)" class="flex items-center gap-x-2">
+        <div v-if="authStore.isLoggedIn" class="flex items-center gap-x-2">
           <CommonUserMenuDropdown></CommonUserMenuDropdown>
         </div>
         <div v-else class="flex justify-center items-center xl:gap-x-2 2xl:gap-x-6">
