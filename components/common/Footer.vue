@@ -58,7 +58,7 @@
 const company = ref([
   {label: 'About Us', link: '/'},
   {label: 'Contact', link: '/'},
-  {label: 'Terms of service', link: '/terms-of-service'},
+  {label: 'Terms of service', link: '/terms-service'},
   {label: 'Refund Policy', link: '/'},
   {label: 'Privacy Policy', link: '/'}
 ]);
