@@ -63,6 +63,8 @@ export const useAuthStore = defineStore('auth', {
             const {data, pending, error, refresh} = await postData('logout')
             if (data) {
                 this.clearAuth()
+                this.user = null
+                this.token = null
             }
             return {data, pending, error, refresh}
         }
