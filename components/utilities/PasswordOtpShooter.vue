@@ -16,7 +16,6 @@
                 </div>
                 <div class="flex justify-between pt-2 pl-2">
                     <div>
-                        <utilities-otp-timer v-if="setValue" :validUntil="setValue" @timeEnd="timeEnd($event)" />
                         <utilities-otp-timer v-if="setTime > 0" :sec="setTime" @timeEnd="timeEnd($event)" />
                     </div>
                     <div>
@@ -33,34 +32,33 @@
 </template>
   
 <script setup>
-import moment from "moment";
+import {useAuthStore} from "~/stores/auth.js";
 
 definePageMeta({
     layout: "auth",
 });
 const otpNumber = ref(null)
 const timeOver = ref(false)
-const setValue = ref()
 const setTime = ref(0)
 const error_mes = ref('')
-
+const authStore = useAuthStore();
 const otp = getOtp();
 console.log(otp, 'otp')
 
 
-onMounted(() => {
-    // console.log(moment(moment(otp?.expires_in)).diff(moment(), 'seconds'))
-    const timers = moment(moment(otp?.expires_in)).diff(moment(), 'seconds');
-    if(timers > 0){
-        timeOver.value = true
-        setValue.value = otp.expires_in
+onMounted(async() => {
+    if(authStore.user_email){
+        await resendOtp()
+    }else{
+        let router = useRouter()
+        router.push('/forgot-password')
     }
 });
 
 const resendOtp = async() =>{
     timeOver.value = true
     setTime.value = 0
-    const {data, error} = await postData('get-otp', {email: otp.email})
+    const {data, error} = await postData('get-otp', {email: authStore.user_email})
     if(error && error.value){
         if(error.value.statusCode == 422){
             error_mes.value = error.value.data.message
