@@ -24,14 +24,14 @@
                     placeholder="Enter minimum 8 characters"/>
                 <i @click="isShowPassword" :class="isShow ? 'pi pi-eye' : 'pi pi-eye-slash' " style="color:white"></i>
               </div>
-              <form-input-error :message="password.errorMessage.value"/>
+              <form-input-error :message="password.errorMessage.value" text-color="#FFD600"/>
             </div>
             <div class="pt-5">
               <label class="inputGroupLabel" for="confirmPassword">Confirm Password *</label><br>
               <div class="p-input-icon-right w-full">
                 <InputText
                     v-model="password_confirmation.value.value"
-                    :disabled="password.value.value && password.value.value.length ? false : true"
+                    :disabled="!(password.value.value && password.value.value.length)"
                     :class="{ 'invalid': password_confirmation.errorMessage.value }"
                     class="inputGroupField focus:shadow-none py-2 sm:py-3"
                     id="confirmPassword"
@@ -40,7 +40,7 @@
                 <i @click="isShowConfirmPassword" :class="isShowConfirm ? 'pi pi-eye' : 'pi pi-eye-slash' "
                    style="color:white"></i>
               </div>
-              <form-input-error :message="password_confirmation.errorMessage.value"/>
+              <form-input-error :message="password_confirmation.errorMessage.value" text-color="#FFD600"/>
             </div>
             <div class="pt-12">
               <Button @click="submitData" class="btn p-2 md:p-2.5  focus:shadow-none"

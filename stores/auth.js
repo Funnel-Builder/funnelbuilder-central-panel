@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 export const useAuthStore = defineStore('auth', {
     state: () => ({
+        isAuthenticate: !!accessToken(),
         token: accessToken() || null,
         user: getUser() || null
     }),
@@ -50,9 +51,17 @@ export const useAuthStore = defineStore('auth', {
         async logout() {
             const {data, pending, error, refresh} = await postData('logout')
             if (data) {
-                resetAllCookies()
+                this.clearAuth()
+                const router = useRouter()
+                router.push('/')
             }
             return {data, pending, error, refresh}
+        },
+        clearAuth() {
+            this.token = null
+            this.user = null
+            this.isAuthenticate= false
+
         }
     },
     persist: true

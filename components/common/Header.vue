@@ -1,24 +1,29 @@
 <template>
   <div>
-<!--    For Web View -->
+    <!--    For Web View -->
     <div class="hidden md:flex justify-between items-center nav px-8">
       <div>
         <img src="/landing/logo.svg" alt="logo"/>
       </div>
-     <div class="flex justify-center items-center lg:gap-x-6  xl:gap-x-8 2xl:gap-x-12">
-       <div v-for="(item ,i) in items">
-         <nuxt-link class="navActive" :to="item.link">
-           <span class="navItem text-[14px] md:text-[16px] ">{{ item.label }}</span>
-         </nuxt-link>
-       </div>
-     </div>
-      <div class="flex justify-center items-center xl:gap-x-2 2xl:gap-x-6">
-        <nuxt-link to="/register">
-          <span class="navItem text-[14px] md:text-[16px] ">Sign up</span>
-        </nuxt-link>
-        <nuxt-link to="/login">
-          <span class="navItem text-[14px] md:text-[16px] ">Get Started</span>
-        </nuxt-link>
+      <div class="flex justify-center items-center lg:gap-x-6  xl:gap-x-8 2xl:gap-x-12">
+        <div v-for="(item ,i) in items">
+          <nuxt-link class="navActive" :to="item.link">
+            <span class="navItem text-[14px] md:text-[16px] ">{{ item.label }}</span>
+          </nuxt-link>
+        </div>
+      </div>
+      <div>
+        <div v-if="authStore.token" class="flex items-center gap-x-2">
+          <UserMenuDropdown/>
+        </div>
+        <div v-else class="flex justify-center items-center xl:gap-x-2 2xl:gap-x-6">
+          <nuxt-link to="/register">
+            <span class="navItem text-[14px] md:text-[16px] ">Sign up</span>
+          </nuxt-link>
+          <nuxt-link to="/login">
+            <span class="navItem text-[14px] md:text-[16px] ">Get Started</span>
+          </nuxt-link>
+        </div>
       </div>
     </div>
     <!--    For Mobile View -->
@@ -28,27 +33,34 @@
           <img class="h-[50px] md:h-[70px]" src="/landing/logo.svg" alt="logo"/>
         </div>
         <div class="flex justify-center items-center gap-x-2">
-          <nuxt-link to="/login" class="text-[14px] md:text-[16px] rounded-full font-[600]" style="padding: 4px 10px; background-color:#5A78AD; color:white">Get Started</nuxt-link>
-          <i  @click="showMenu()" class="pi pi-bars menu" style="font-size: 20px; padding:10px; color:#5A78AD;"></i>
+          <nuxt-link to="/login" class="text-[14px] md:text-[16px] rounded-full font-[600]"
+                     style="padding: 4px 10px; background-color:#5A78AD; color:white">Get Started
+          </nuxt-link>
+          <i @click="showMenu()" class="pi pi-bars menu" style="font-size: 20px; padding:10px; color:#5A78AD;"></i>
         </div>
       </div>
       <div :class="showMobileMenu ? 'open-menu' : 'closed-menu'" class="text">
         <div class="nav-menu">
           <div class="flex justify-end items-center gap-x-2">
-            <div class="flex justify-center items-center px-4 py-2 gap-x-2 rounded-full" style=" background-color:#eff1f7;">
+            <div class="flex justify-center items-center px-4 py-2 gap-x-2 rounded-full"
+                 style=" background-color:#eff1f7;">
               <img src="/landing/userIcon.svg" alt="logo"/>
               <p class="text-[14px] font-[600]" style="color:#5a78ad;">Rick Lichard</p>
             </div>
-            <i @click="closeMenu" class="pi pi-times-circle menu" style="font-size: 20px; padding:10px;  background-color:#5A78AD;  color:#ffffff;"></i>
+            <i @click="closeMenu" class="pi pi-times-circle menu"
+               style="font-size: 20px; padding:10px;  background-color:#5A78AD;  color:#ffffff;"></i>
           </div>
           <div class="px-4 py-12" style="">
             <div v-for="(item ,i) in items" class="py-2">
-             <nuxt-link :to="item.link">
-               <span class="px-2 ">{{ item.label }}</span>
-             </nuxt-link>
+              <nuxt-link :to="item.link">
+                <span class="px-2 ">{{ item.label }}</span>
+              </nuxt-link>
             </div>
             <div class="mt-8">
-              <button class="flex justify-center items-center gap-x-2 px-8 py-1 rounded-[16px]" style="background-color:#5A78AD; color:#ffffff;"><i class="pi pi-sign-out" style="font-size: 15px; padding:2px 2px; color:#ffffff;"></i>Logout</button>
+              <button class="flex justify-center items-center gap-x-2 px-8 py-1 rounded-[16px]"
+                      style="background-color:#5A78AD; color:#ffffff;"><i class="pi pi-sign-out"
+                                                                          style="font-size: 15px; padding:2px 2px; color:#ffffff;"></i>Logout
+              </button>
             </div>
           </div>
         </div>
@@ -58,6 +70,10 @@
 </template>
 
 <script setup>
+import {useAuthStore} from "~/stores/auth.js";
+import UserMenuDropdown from "~/components/common/UserMenuDropdown.vue";
+
+const authStore = useAuthStore();
 const route = useRoute();
 const isActive = ref(false);
 const items = ref([
@@ -74,6 +90,7 @@ const showMenu = () => {
 const closeMenu = () => {
   showMobileMenu.value = false;
 };
+
 </script>
 
 <style scoped lang="scss">
@@ -85,6 +102,7 @@ const closeMenu = () => {
   width: 100%;
   z-index: 1000;
 }
+
 .router-link-active {
   padding: 4px 10px;
   font-weight: 600;
@@ -92,6 +110,7 @@ const closeMenu = () => {
   background: #5A78AD;
   border-radius: 16px;
 }
+
 .navItem {
   border-radius: 16px;
   padding: 4px 10px;
@@ -110,7 +129,7 @@ const closeMenu = () => {
   transition: 0.5s;
 }
 
-.btn{
+.btn {
   background: white;
   border-radius: 16px;
   color: black;
@@ -118,11 +137,12 @@ const closeMenu = () => {
   margin: 0;
   font-size: 14px;
 }
-.menu{
-  background-color:#eff1f7;
-  margin:0;
+
+.menu {
+  background-color: #eff1f7;
+  margin: 0;
   padding: 0;
-  border-radius:50%;
+  border-radius: 50%;
 }
 
 @media screen and (max-width: 768px) {
@@ -133,7 +153,7 @@ const closeMenu = () => {
     position: fixed;
     top: 0;
     width: 100%;
-    height:auto;
+    height: auto;
     z-index: 1000;
   }
   .open-menu {

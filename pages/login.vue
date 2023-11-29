@@ -23,7 +23,7 @@
                   id="email"
                   type="email"
                   placeholder="Enter email address"/>
-              <form-input-error :message="email.errorMessage.value"/>
+              <form-input-error :message="email.errorMessage.value" text-color="#FFD600"/>
             </div>
             <div class="pt-5">
               <label class="inputGroupLabel" for="password">Password *</label><br>
@@ -38,7 +38,7 @@
                     placeholder="Enter minimum 8 characters"/>
                 <i @click="isShowPassword" :class="isShow ? 'pi pi-eye' : 'pi pi-eye-slash' " style="color:white"></i>
               </div>
-              <form-input-error :message="password.errorMessage.value"/>
+              <form-input-error :message="password.errorMessage.value" text-color="#FFD600"/>
             </div>
             <div class="pt-4 text-end">
               <nuxt-link to="/forgot-password"  class="text-white font-bold underline">Forgot Password</nuxt-link>
