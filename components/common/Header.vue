@@ -14,7 +14,7 @@
       </div>
       <div>
         <div v-if="authStore.isLoggedIn" class="flex items-center gap-x-2">
-          <UserMenuDropdown/>
+          <CommonUserMenuDropdown></CommonUserMenuDropdown>
         </div>
         <div v-else class="flex justify-center items-center xl:gap-x-2 2xl:gap-x-6">
           <nuxt-link to="/register">
@@ -70,9 +70,6 @@
 </template>
 
 <script setup>
-import {useAuthStore} from "~/stores/auth.js";
-import UserMenuDropdown from "~/components/common/UserMenuDropdown.vue";
-
 const authStore = useAuthStore();
 const items = ref([
   {label: 'Home', link: '/'},
