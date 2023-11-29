@@ -56,7 +56,6 @@
 
 <script setup>
 import {useField, useForm} from 'vee-validate';
-import {useAuthStore} from "~/stores/auth.js";
 
 definePageMeta({
   layout: "auth",
@@ -103,7 +102,6 @@ const submitData = handleSubmit(async (values) => {
     }
   }
   else {
-    handleReset();
     const router = useRouter();
     if(data.value.user.email_verified_at !== null){
       router.push('/')

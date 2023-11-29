@@ -116,7 +116,6 @@
 
 <script setup>
 import {useField, useForm} from 'vee-validate';
-import {useAuthStore} from "~/stores/auth.js";
 
 definePageMeta({
   layout: "auth",
@@ -193,7 +192,6 @@ const isShowConfirmPassword = () => {
 };
 
 const submitForm = handleSubmit(async (values) => {
-  // console.log(values);
   isLoading.value = true;
   if(values.phone.startsWith('0')){
     values.phone = `+880${values.phone.substring(1)}`;
@@ -201,7 +199,6 @@ const submitForm = handleSubmit(async (values) => {
   else if(values.phone.startsWith('1')){
     values.phone = `+880${values.phone}`;
   }
-  // console.log(values.phone);
   const {data, pending, error, refresh} = await authStore.register(values);
   if (error && error.value) {
     if (error.value.statusCode === 422) {
@@ -209,7 +206,6 @@ const submitForm = handleSubmit(async (values) => {
     }
   }
   else {
-    handleReset();
     const router = useRouter();
     router.push('/verify-email');
   }
