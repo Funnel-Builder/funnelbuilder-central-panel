@@ -27,7 +27,6 @@ let uploadPercentage = ref(0)
 let downloadPercentage = ref(0)
 let uploadedPhoto = ref([])
 const tempPhotos = ref([])
-const totalFileLength = ref(0)
 
 const emit = defineEmits(['photoUploaded', 'photoDeleted', 'loading'])
 
@@ -38,7 +37,6 @@ watch(loading, async (newVal, oldVal) => {
   emit('loading', newVal)
 })
 const submitHandler = async (event) => {
-  totalFileLength.value = event.files.length
   for (const fileItem of event.files) {
     await getSignedUrl(fileItem)
   }
