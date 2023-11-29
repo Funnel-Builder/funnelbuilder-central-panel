@@ -3,7 +3,7 @@
         <div>
             <div class="set_anim pb-8">
                 <div>
-                    <FileUploadFileUploader />
+                    <FileUploadFileUploader @photoUploaded="photoUploaded($event)"/>
                     <div class="pt-4">
                         <div>
                             <p class="text-[rgb(90,120,173)]"><small>Description</small></p>
@@ -63,7 +63,8 @@ const props = defineProps({
 });
 
 const domain_error = ref('');
-const loading = ref(false)
+const loading = ref(false);
+const awsSignUrl = ref('')
 
 //validation schema
 const { handleSubmit, isSubmitting, handleReset, setErrors } = useForm({
@@ -100,6 +101,10 @@ const isDisabled = computed(() => {
     );
 });
 
+const photoUploaded = (evn) => {
+    awsSignUrl.value = evn
+}
+
 
 const description = useField('description');
 const phone = useField('phone');
@@ -113,7 +118,7 @@ const createShop = handleSubmit(async (values) => {
     values.subdomain = props.shopDetails.shopUrl
     values.phone = `+88${values.phone}`
     values.name = props.shopDetails.shopName
-    values.image = 'https://funnel.sgp1.digitaloceanspaces.com/tmp/uploads/6uR8KMMrWGIs8tAEN7Ilx0K6mpsI8oDT.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=DO007KP2BXWV3MFXNG8B%2F20231128%2Fsgp1%2Fs3%2Faws4_request&X-Amz-Date=20231128T091207Z&X-Amz-SignedHeaders=host&X-Amz-Expires=1800&X-Amz-Signature=30f950094da98c2f7ccd2e68f6c182a7566da0af3808f0b1927d03e89ac6b7c5'
+    values.image = awsSignUrl.value
 
     const { data, pending, error, refresh } = await postData('shop', values);
     if (error && error.value) {
