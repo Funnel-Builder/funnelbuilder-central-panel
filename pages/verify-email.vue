@@ -25,8 +25,8 @@ const router = useRouter();
 
 const removeUser = async() => {
     const {data} = await authStore.logout();
-    if(data.value.message == 'User logged out successfully'){
-        router.push('/login')
+    if(data.value.message === 'User logged out successfully'){
+        await router.push('/login')
     }
 }
 </script>
