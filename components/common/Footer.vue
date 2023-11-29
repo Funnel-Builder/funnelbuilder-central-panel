@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto py-10">
-   <div class="grid grid-cols-1 lg:grid-cols-4">
+   <div class="grid grid-cols-2 lg:grid-cols-4">
      <div class="flex flex-col items-center px-4 sm:px-0 pb-6">
        <div>
          <img src="/landing/logo.svg" alt="logo"/>
