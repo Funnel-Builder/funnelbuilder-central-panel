@@ -16,30 +16,33 @@
                         <form-input-error :message="description.errorMessage.value" />
                         <div>
                             <p class="text-[rgb(90,120,173)]"><small>Phone number</small></p>
-                            <InputText id="phone_number" v-model="phone_number.value.value"
-                                :class="{ 'invalid': phone_number.errorMessage.value }" placeholder="Enter your number"
+                            <InputText id="phone" v-model="phone.value.value"
+                                :class="{ 'invalid': phone.errorMessage.value }" placeholder="Enter your number"
                                 style="background-color: #EFF1F7 !important;" type="text"
                                 class="mb-3 w-full h-10 md:h-12 text-xs md:text-lg flex items-center focus:shadow-none" />
                         </div>
-                        <form-input-error :message="phone_number.errorMessage.value" />
+                        <form-input-error :message="phone.errorMessage.value" />
                         <div>
                             <p class="text-[#5A78AD]"><small>Shop email</small></p>
-                            <InputText id="phone_number" v-model="shop_mail.value.value"
-                                :class="{ 'invalid': phone_number.errorMessage.value }"
+                            <InputText id="email" v-model="email.value.value"
+                                :class="{ 'invalid': email.errorMessage.value }"
                                 placeholder="Enter a email to manage your shop"
                                 style="background-color: #EFF1F7 !important;" type="text"
                                 class="mb-3 w-full h-10 md:h-12 text-xs md:text-lg flex items-center focus:shadow-none" />
                         </div>
-                        <form-input-error :message="shop_mail.errorMessage.value" />
+                        <form-input-error :message="email.errorMessage.value" />
                         <div>
                             <p class="text-[#5A78AD]"><small>Shop address</small></p>
-                            <InputText id="shop_address" v-model="shop_address.value.value"
-                                :class="{ 'invalid': shop_address.errorMessage.value }" placeholder="Enter shop address"
+                            <InputText id="address" v-model="address.value.value"
+                                :class="{ 'invalid': address.errorMessage.value }" placeholder="Enter shop address"
                                 style="background-color: #EFF1F7 !important;" type="text"
                                 class="mb-3 w-full h-10 md:h-12 text-xs md:text-lg flex items-center focus:shadow-none" />
                         </div>
-                        <form-input-error :message="shop_address.errorMessage.value" />
+                        <form-input-error :message="address.errorMessage.value" />
                     </div>
+                </div>
+                <div>
+                    <form-input-error :message="domain_error" />
                 </div>
                 <div class="w-full pt-4">
                     <button @click="createShop" :disabled="isDisabled"
@@ -59,6 +62,9 @@ const props = defineProps({
     }
 });
 
+const domain_error = ref('');
+const loading = ref(false)
+
 //validation schema
 const { handleSubmit, isSubmitting, handleReset, setErrors } = useForm({
     validationSchema: {
@@ -66,18 +72,18 @@ const { handleSubmit, isSubmitting, handleReset, setErrors } = useForm({
             if (value?.length > 250) return 'Description must less then 250 characters'
             return true;
         },
-        phone_number(value) {
+        phone(value) {
             if (!value) return 'Phone number Name is required'
             else if (!/^(?:\+88|01)?(?:\d{11}|\d{13})$/.test(value)) return "Invalid phone number";
             return true;
         },
-        shop_mail(value) {
-            if (!value) return 'Shop Email is required'
+        email(value) {
+            if (!value) return 'Email is required'
             else if (!/[a-z0-9]+@[a-z]+\.[a-z]{2,3}/.test(value)) return "Invalid email"
             return true;
         },
-        shop_address(value) {
-            if (!value) return 'Shop Address is required'
+        address(value) {
+            if (!value) return 'Address is required'
             else if (value.length > 100) return 'Shop Address must less then 40 characters'
             return true;
         }
@@ -87,25 +93,39 @@ const { handleSubmit, isSubmitting, handleReset, setErrors } = useForm({
 const isDisabled = computed(() => {
     return !(
         description.value?.value?.length <= 250 &&
-        phone_number.value?.value &&
-        shop_mail.value?.value &&
-        shop_address.value?.value?.length <= 40 &&
-        !(!/[a-z0-9]+@[a-z]+\.[a-z]{2,3}/.test(shop_mail.value?.value))
+        phone.value?.value &&
+        email.value?.value &&
+        address.value?.value?.length <= 40 &&
+        !(!/[a-z0-9]+@[a-z]+\.[a-z]{2,3}/.test(email.value?.value)) && !domain_error.value
     );
 });
 
 
 const description = useField('description');
-const phone_number = useField('phone_number');
-const shop_mail = useField('shop_mail');
-const shop_address = useField('shop_address');
+const phone = useField('phone');
+const email = useField('email');
+const address = useField('address');
 
 
 
 const createShop = handleSubmit(async (values) => {
-    values.shop_url = props.shopDetails.shopUrl
-    values.shop_name = props.shopDetails.shopName
-    console.log(values);
+    loading.value = true
+    values.subdomain = props.shopDetails.shopUrl
+    values.phone = `+88${values.phone}`
+    values.name = props.shopDetails.shopName
+    values.image = 'https://funnel.sgp1.digitaloceanspaces.com/tmp/uploads/6uR8KMMrWGIs8tAEN7Ilx0K6mpsI8oDT.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=DO007KP2BXWV3MFXNG8B%2F20231128%2Fsgp1%2Fs3%2Faws4_request&X-Amz-Date=20231128T091207Z&X-Amz-SignedHeaders=host&X-Amz-Expires=1800&X-Amz-Signature=30f950094da98c2f7ccd2e68f6c182a7566da0af3808f0b1927d03e89ac6b7c5'
+
+    const { data, pending, error, refresh } = await postData('shop', values);
+    if (error && error.value) {
+        setErrors(error.value.data.errors || {});
+        if (error.value.statusCode === 422) {
+            domain_error.value = error.value.data.message;
+        }
+    }
+    else {
+        console.log(data.value);
+    }
+
 })
 
 </script>
