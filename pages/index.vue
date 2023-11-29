@@ -15,7 +15,7 @@ const authStore = useAuthStore()
 const showToast = ref(false)
 const login = () => {
   const payload = {
-    "email" : "tabrassummmmmmmmm@gmail.com",
+    "email" : "tabrassumm@gmail.com",
     "password" : "secretsecret"
   }
   authStore.login(payload)

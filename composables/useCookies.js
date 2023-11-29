@@ -18,7 +18,7 @@ export function getUser() {
 export const setUser = (user) => {
     let cookieMaxAge = 43200
     const cookieExpires = useCookie('expires_in')
-    if (cookieExpires.value) {
+    if (cookieExpires.value && moment(cookieExpires.value).diff(moment(), 'seconds') > 0) {
         cookieMaxAge = moment(cookieExpires.value).diff(moment(), 'seconds')
     }
     const cookieOptions = {
