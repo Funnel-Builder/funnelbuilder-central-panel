@@ -28,7 +28,7 @@
                                                 <i :class="checkShopNameValidity"></i>
                                             </div>
                                         </div>
-                                        <form-input-error :message="shopUrl.errorMessage.value" />
+                                        <form-input-error :message="error_message =='error' ? 'This url has already taken' : shopUrl.errorMessage.value" />
                                     </div>
                                     <div class="pt-3">
                                         <p class="pb-1"><small class="text-[#5A78AD]">Shop Name*</small></p>
@@ -50,7 +50,7 @@
                                     </div>
                                 </div>
                                 <div v-else>
-                                    <shop-next-step :shopDetails="shopDetails"/>
+                                    <shop-next-step :shopDetails="shopDetails" />
                                 </div>
                             </div>
                             <div class="flex justify-center gap-2 mt-12">
@@ -76,7 +76,8 @@ const step = ref(false)
 
 const shop_status = ref('');
 const shopDetails = ref({})
-const text = 'my_shop';
+const error_message = ref('');
+const timeout = ref(null);
 
 //validation schema
 const { handleSubmit, isSubmitting, handleReset, setErrors } = useForm({
@@ -84,6 +85,7 @@ const { handleSubmit, isSubmitting, handleReset, setErrors } = useForm({
         shopUrl(value) {
             if (!value) return 'Shop URL is required'
             else if (value.length < 4 || value.length > 100) return 'Shop Url must be between 4 and 100 characters'
+            else if (!/^[^\s_]+$/.test(value)) return "Invalid shope url";
             return true;
         },
         shopName(value) {
@@ -99,7 +101,9 @@ const isDisabled = computed(() => {
         shopUrl.value?.value?.length >= 4 &&
         shopUrl.value?.value?.length <= 100 &&
         shopName.value?.value?.length >= 4 &&
-        shopName.value?.value?.length <= 40
+        shopName.value?.value?.length <= 40 &&
+        !(!/^[^\s_]+$/.test(shopUrl.value.value)) &&
+        error_message.value == 'success'
     );
 });
 
@@ -107,23 +111,33 @@ const isDisabled = computed(() => {
 const shopUrl = useField('shopUrl');
 const shopName = useField('shopName');
 
-watch(() => shopUrl.value.value, (nv) => {
-    shop_status.value = 'written'
-    setTimeout(async () => {
-        if (nv.length > 3) {
-            const { data, pending, error, refresh } = await postData('validate-shop-domain', { sub_domain: nv });
-            console.log(data.value.message);
+watch(() => shopUrl.value.value, (nv, ov) => {
+    if (
+        (nv && nv.length > 3) ||
+        ov?.length === 3
+    ) {
+        if (timeout.nv) {
+            clearTimeout(timeout.nv);
         }
-    }, 1000);
+        timeout.nv = setTimeout(() => {
+            if (!(!/^[^\s_]+$/.test(shopUrl.value.value))) {
+                validityShopUrl(nv)
+            }
+        }, 500);
+    }
 }
 )
 
+const validityShopUrl = async (nv) => {
+    const { data, pending, error, refresh } = await postData('validate-shop-domain', { subdomain: nv });
+    error_message.value = data.value.status;
+}
+
 
 const checkShopNameValidity = computed(() => {
-    if (shop_status.value) {
-        if (shop_status.value == 'written') return 'pi pi-spin pi-spinner loading ml-2'
-        else if (shop_status.value == 'success') return 'pi pi-verified success ml-2'
-        else if (shop_status.value == 'failed') return 'pi pi-ban failed ml-2'
+    if (error_message.value) {
+        if (error_message.value == 'success') return 'pi pi-verified success ml-2'
+        else if (error_message.value == 'error') return 'pi pi-ban failed ml-2'
     }
 
 })
