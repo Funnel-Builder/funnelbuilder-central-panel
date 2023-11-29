@@ -211,7 +211,7 @@ const submitForm = handleSubmit(async (values) => {
   else {
     handleReset();
     const router = useRouter();
-    router.push('/verify-otp');
+    router.push('/verify-email');
   }
   isLoading.value = false;
 });

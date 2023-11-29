@@ -43,7 +43,7 @@ export const setOtpCookies = (data) => {
 
     const cookieOtp = useCookie('otp', cookieOptions)
     cookieOtp.value = ''
-    data.expires_in = moment().add(5, 'm')
+    data.expires_in = moment().add(5, 'm').format('lll')
     
 
     cookieOtp.value = data

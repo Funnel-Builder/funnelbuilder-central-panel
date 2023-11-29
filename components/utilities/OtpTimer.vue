@@ -1,7 +1,6 @@
 <template>
     <div class="">
         <span class="text-white" id="countdown"></span>
-        
     </div>
 </template>
 <script setup>
@@ -9,10 +8,8 @@ import moment from "moment";
 
 const emit = defineEmits(["timeEnd"]);
 const props = defineProps({
-    validUntil: {
-        type: String,
-        required: true,
-    }
+    validUntil: { type: String, default: ''},
+    sec: {type: Number, default: 0}
 });
 let timeInSecs = ref(0);
 let timeTaken = ref(0);
@@ -39,10 +36,17 @@ function tick() {
 }
 
 onMounted(() => {
-    let duration = 5 * 60 || 0;
+    let duration = 0;
     if (props.validUntil) {
-        duration = moment(props.validUntil).diff(moment(), 'seconds');
+        const diff = moment(props.validUntil).diff(moment(), 'seconds');
+       if (diff > 0) {
+        duration = diff
+       }
     }
+    if (props.sec && props.sec > 0) {
+        duration = props.sec
+    }
+    if(duration )
     startTimer(duration);
 
     // startTimer(props.exam.duration * 60 || 0); // 5 minutes in seconds

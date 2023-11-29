@@ -16,16 +16,17 @@
                 </div>
                 <div class="flex justify-between pt-2 pl-2">
                     <div>
-                        {{ setValue }}
-                        <utilities-otp-timer validUntil="2023-11-29T09:04:59.041Z" @timeEnd="timeEnd($event)" />
+                        <utilities-otp-timer v-if="setValue" :validUntil="setValue" @timeEnd="timeEnd($event)" />
+                        <utilities-otp-timer v-if="setTime > 0" :sec="setTime" @timeEnd="timeEnd($event)" />
                     </div>
                     <div>
-                        <button :disabled="!timeOver" class="underline text-white">Resend</button>
+                        <button @click="resendOtp"   class="underline text-white">Resend</button>
                     </div>
                 </div>
+                <form-input-error :message="error_mes"/>
             </div>
             <div class="text-center">
-                <Button link class="btn p-2 md:p-2.5  focus:shadow-none" label="Continue" />
+                <Button :disabled="otpNumber?.length !== 6" link class="btn p-2 md:p-2.5  focus:shadow-none" label="Continue" />
             </div>
         </div>
     </div>
@@ -40,6 +41,8 @@ definePageMeta({
 const otpNumber = ref(null)
 const timeOver = ref(false)
 const setValue = ref()
+const setTime = ref(0)
+const error_mes = ref('')
 
 const otp = getOtp();
 console.log(otp, 'otp')
@@ -49,19 +52,22 @@ onMounted(() => {
     // console.log(moment(moment(otp?.expires_in)).diff(moment(), 'seconds'))
     const timers = moment(moment(otp?.expires_in)).diff(moment(), 'seconds');
     if(timers > 0){
-        setValue.value = timers
+        timeOver.value = true
+        setValue.value = otp.expires_in
     }
 });
 
-
-
-
-const getMomentFrom = (t) => {
-    const referenceDate = new Date('2023-11-29T09:00:00.041Z');
-
-    const resultDate = new Date(referenceDate.getTime() + t * 1000);
-    console.log(resultDate.toISOString());
-    formattedDate.value = resultDate.toISOString();
+const resendOtp = async() =>{
+    timeOver.value = true
+    setTime.value = 0
+    const {data, error} = await postData('get-otp', {email: otp.email})
+    if(error && error.value){
+        if(error.value.statusCode == 422){
+            error_mes.value = error.value.data.message
+        }
+    }else{
+        setTime.value = data.value.retry_after;
+    }
 }
 
 const handleOnComplete = async (value) => {
@@ -71,7 +77,7 @@ const handleOnChange = async (value) => {
     //do some action
 }
 const timeEnd = (evn) => {
-    timeOver.value = evn;
+    timeOver.value = false;
 }
 
 </script>
