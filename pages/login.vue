@@ -64,8 +64,9 @@ const isLoading = ref(false);
 const {handleSubmit, isSubmitting, handleReset, setErrors} = useForm({
   validationSchema: {
     email(value) {
-      if (value) return true
-      return 'Email is required'
+      if (!value) return 'Email is required'
+      else if (/^[a-z0-9.-]+@[a-z0-9.-]+.[a-z]+$/i.test(value)) return true;
+      return "Invalid email";
     },
     password(value) {
       if (!value) return 'Password is required'
@@ -92,14 +93,12 @@ const submitData = handleSubmit(async (values) => {
   isLoading.value = true;
   const {data, pending, error, refresh} = await authStore.login(values);
   if (error && error.value) {
-    setErrors(error.value.data.errors || {})
-    if (error.value.data.errors === 422) {
-      console.log(error.value);
+    if (error.value.statusCode === 422) {
+      setErrors(error.value.data.errors || {})
     }
   }
   else {
     handleReset();
-    console.log(msg)
     const router = useRouter();
     router.push('/');
   }
