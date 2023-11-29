@@ -105,7 +105,11 @@ const submitData = handleSubmit(async (values) => {
   else {
     handleReset();
     const router = useRouter();
-    router.push('/');
+    if(data.value.user.email_verified_at !== null){
+      router.push('/')
+    }else{
+      router.push('/verify-email')
+    }
   }
   isLoading.value = false;
 });
