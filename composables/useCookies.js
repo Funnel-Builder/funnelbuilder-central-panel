@@ -1,85 +1,86 @@
 import moment from "moment";
 
+const commonCookieOptions = {
+    priority: 'high',
+    secure: true,
+};
+
+const useTokenCookie = () => useCookie('token', commonCookieOptions);
+const useExpiresCookie = () => useCookie('expires_in', commonCookieOptions);
+const useUserCookie = () => useCookie('user', commonCookieOptions);
+const useOtpCookie = () => useCookie('otp', commonCookieOptions);
+
 export function accessToken() {
-    const cookieToken = useCookie('token')
-    return cookieToken.value || null
+    const cookieToken = useTokenCookie();
+    return cookieToken.value || null;
 }
 
 export function getExpiresIn() {
-    const cookieExpires = useCookie('expires_in')
-    return cookieExpires.value || 0
+    const cookieExpires = useExpiresCookie();
+    return cookieExpires.value || 0;
 }
 
 export function getUser() {
-    const cookieUser = useCookie('user')
-    return cookieUser.value || null
-}
-export function getOtp() {
-    const cookieOtp = useCookie('otp')
-    return cookieOtp.value || null
+    const cookieUser = useUserCookie();
+    return cookieUser.value || null;
 }
 
-export const setUser = (user) => {
-    let cookieMaxAge = 43200
-    const cookieExpires = useCookie('expires_in')
-    if (cookieExpires.value && moment(cookieExpires.value).diff(moment(), 'seconds') > 0) {
-        cookieMaxAge = moment(cookieExpires.value).diff(moment(), 'seconds')
-    }
-    const cookieOptions = {
-        maxAge: cookieMaxAge,
-        priority: 'high',
-        secure: true
-    }
-    const cookieUser = useCookie('user', cookieOptions)
-    cookieUser.value = user || ''
+export function getOtp() {
+    const cookieOtp = useOtpCookie();
+    return cookieOtp.value || null;
 }
+
+export const setCookies = (name, value, maxAge) => {
+    const cookieOptions = {
+        ...commonCookieOptions,
+        maxAge,
+    };
+    const cookie = useCookie(name, cookieOptions);
+    cookie.value = value;
+};
+
+export const setUser = (user, expires) => {
+    let cookieMaxAge = 43200;
+    const cookieExpires = useExpiresCookie();
+    if (cookieExpires.value && moment(cookieExpires.value).diff(moment(), 'seconds') > 0) {
+        cookieMaxAge = moment(cookieExpires.value).diff(moment(), 'seconds');
+    }
+    setCookies('user', user || '', cookieMaxAge);
+    setCookies('expires_in', expires, cookieMaxAge);
+};
 
 export const setOtpCookies = (data) => {
     const cookieOptions = {
+        ...commonCookieOptions,
         maxAge: 3600,
-        priority: 'high',
-        secure: true
-    }
-
-    const cookieOtp = useCookie('otp', cookieOptions)
-    cookieOtp.value = ''
-    data.expires_in = moment().add(5, 'm').format('lll')
-    
-
-    cookieOtp.value = data
+    };
+    const cookieOtp = useOtpCookie(cookieOptions);
+    cookieOtp.value = '';
+    data.expires_in = moment().add(5, 'm').format('lll');
+    cookieOtp.value = data;
     console.log(moment(cookieOtp.value.expires_in).format('lll'));
-}
+};
 
-export function setAccessToken(authorization) {
+export const setAccessToken = (authorization) =>{
     const cookieOptions = {
+        ...commonCookieOptions,
         maxAge: authorization?.expires_in,
-        priority: 'high',
-        // httpOnly: true, // Secure cooke ... don't allow javascript to access cookie
-        secure: true
-    }
-    const cookieToken = useCookie('token', cookieOptions)
-    cookieToken.value = authorization?.token || ''
+    };
+    setCookies('token', authorization?.token || '', cookieOptions.maxAge);
 
-    //create const setExpire which is moment current time + expires_in in seconds then save it in timestamp
-    const now = moment().format()
-    const setExpire = moment(now).add(authorization?.expires_in, 'seconds').format()
-    const cookieExpires = useCookie('expires_in', cookieOptions)
-    cookieExpires.value = setExpire
-    return true
+    const now = moment().format();
+    const setExpire = moment(now).add(authorization?.expires_in, 'seconds').format();
+    setCookies('expires_in', setExpire, cookieOptions.maxAge);
+
+    return true;
 }
 
 export const resetAllCookies = () => {
     const cookieOptions = {
+        ...commonCookieOptions,
         maxAge: 0,
-        priority: 'high',
-        secure: true
-    }
-    const cookieToken = useCookie('token', cookieOptions)
-    cookieToken.value = ''
-
-    const cookieExpires = useCookie('expires_in', cookieOptions)
-    cookieExpires.value = ''
-
-    const cookieUser = useCookie('user', cookieOptions)
-    cookieUser.value = ''
-}
+    };
+    setCookies('token', '', cookieOptions.maxAge);
+    setCookies('expires_in', '', cookieOptions.maxAge);
+    setCookies('user', '', cookieOptions.maxAge);
+};
