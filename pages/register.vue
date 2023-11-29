@@ -1,107 +1,112 @@
 <template>
   <div class="container mx-auto">
-    <div class="py-12 sm:py-0 flex flex-col items-center justify-center min-h-screen">
-      <div class="w-[100%] sm:w-[70%] md:w-[60%] lg:w-[50%]">
-        <div class="px-4 sm:px-0 ">
-          <h1 class="text-[30px] md:text-[36px] lg:text-[40px] xl:text-[44px] 2xl:text-[48px] text-white font-[600]">Get
-            Started</h1>
-          <p class="text-[12px] md:text-[14px] text-white font-[400]">Welcome to BDFunnelBuilder. Let’s
-            Get Started.</p>
-        </div>
-        <div class="px-4 sm:px-0">
-          <div class="pt-5">
-            <label class="inputGroupLabel" for="username">Full Name *</label><br>
-            <InputText
-                v-model="name.value.value"
-                :class="{ 'invalid': name.errorMessage.value }"
-                class="inputGroupField focus:shadow-none py-2 sm:py-3"
-                id="username"
-                type="text"
-                placeholder="Enter your name"/>
-            <form-input-error :message="name.errorMessage.value"/>
+    <div v-if="isLoading">
+      <CommonLoader></CommonLoader>
+    </div>
+    <div v-else>
+      <div class="py-12 sm:py-0 flex flex-col items-center justify-center min-h-screen">
+        <div class="w-[100%] sm:w-[70%] md:w-[60%] lg:w-[50%]">
+          <div class="px-4 sm:px-0 ">
+            <h1 class="text-[30px] md:text-[36px] lg:text-[40px] xl:text-[44px] 2xl:text-[48px] text-white font-[600]">Get
+              Started</h1>
+            <p class="text-[12px] md:text-[14px] text-white font-[400]">Welcome to BDFunnelBuilder. Let’s
+              Get Started.</p>
           </div>
-          <div class="pt-5">
-            <label class="inputGroupLabel" for="phone">Phone Number *</label><br>
-            <InputGroup class="">
-              <InputGroupAddon class="inputGroupFieldFlag p-2 md:p-2.5 rounded-l-xl">
-                <img class="rounded-md" src="/auth/bdFlag.svg" alt="flag"/>
-                <p class="text-[14px] md:text-[16px] px-2">BD +880</p>
-              </InputGroupAddon>
+          <div class="px-4 sm:px-0">
+            <div class="pt-5">
+              <label class="inputGroupLabel" for="username">Full Name *</label><br>
               <InputText
-                  v-model="phone.value.value"
-                  :class="{ 'invalid': phone.errorMessage.value }"
-                  setErrorMessage
-                  class="inputGroupFieldFlag rounded-l-none rounded-r-xl focus:shadow-none py-2 sm:py-3"
-                  id="phone"
+                  v-model="name.value.value"
+                  :class="{ 'invalid': name.errorMessage.value }"
+                  class="inputGroupField focus:shadow-none py-2 sm:py-3"
+                  id="username"
                   type="text"
-              />
-            </InputGroup>
-            <form-input-error :message="phone.errorMessage.value"/>
-          </div>
-          <div class="pt-5">
-            <label class="inputGroupLabel" for="email">Email Address *</label><br>
-            <InputText
-                v-model="email.value.value"
-                :class="{ 'invalid': email.errorMessage.value }"
-                class="inputGroupField focus:shadow-none py-2 sm:py-3"
-                id="email"
-                type="email"
-                placeholder="Enter email address"/>
-            <form-input-error :message="email.errorMessage.value"/>
-          </div>
-          <div class="pt-5">
-            <label class="inputGroupLabel" for="password">Password *</label><br>
-            <div class="p-input-icon-right w-full">
+                  placeholder="Enter your name"/>
+              <form-input-error :message="name.errorMessage.value"/>
+            </div>
+            <div class="pt-5">
+              <label class="inputGroupLabel" for="phone">Phone Number *</label><br>
+              <InputGroup class="">
+                <InputGroupAddon class="inputGroupFieldFlag p-2 md:p-2.5 rounded-l-xl">
+                  <img class="rounded-md" src="/auth/bdFlag.svg" alt="flag"/>
+                  <p class="text-[14px] md:text-[16px] px-2">BD +880</p>
+                </InputGroupAddon>
+                <InputText
+                    v-model="phone.value.value"
+                    :class="{ 'invalid': phone.errorMessage.value }"
+                    setErrorMessage
+                    class="inputGroupFieldFlag rounded-l-none rounded-r-xl focus:shadow-none py-2 sm:py-3"
+                    id="phone"
+                    type="text"
+                />
+              </InputGroup>
+              <form-input-error :message="phone.errorMessage.value"/>
+            </div>
+            <div class="pt-5">
+              <label class="inputGroupLabel" for="email">Email Address *</label><br>
               <InputText
-                  v-model="password.value.value"
-                  :class="{ 'invalid': password.errorMessage.value }"
+                  v-model="email.value.value"
+                  :class="{ 'invalid': email.errorMessage.value }"
                   class="inputGroupField focus:shadow-none py-2 sm:py-3"
-                  id="password"
-                  toggleMask
-                  :type="isShow ? 'text' : 'password'"
-                  placeholder="Enter minimum 8 characters"/>
-              <i @click="isShowPassword" :class="isShow ? 'pi pi-eye' : 'pi pi-eye-slash' " style="color:white"></i>
+                  id="email"
+                  type="email"
+                  placeholder="Enter email address"/>
+              <form-input-error :message="email.errorMessage.value"/>
             </div>
-            <form-input-error :message="password.errorMessage.value"/>
-          </div>
-          <div class="pt-5">
-            <label class="inputGroupLabel" for="confirmPassword">Confirm Password *</label><br>
-            <div class="p-input-icon-right w-full">
-              <InputText
-                  v-model="password_confirmation.value.value"
-                  :disabled="password.value.value && password.value.value.length ? false : true"
-                  :class="{ 'invalid': password_confirmation.errorMessage.value }"
-                  class="inputGroupField focus:shadow-none py-2 sm:py-3"
-                  id="confirmPassword"
-                  :type="isShowConfirm ? 'text' : 'password'"
-                  placeholder="Enter minimum 8 characters"/>
-              <i @click="isShowConfirmPassword" :class="isShowConfirm ? 'pi pi-eye' : 'pi pi-eye-slash' "
-                 style="color:white"></i>
+            <div class="pt-5">
+              <label class="inputGroupLabel" for="password">Password *</label><br>
+              <div class="p-input-icon-right w-full">
+                <InputText
+                    v-model="password.value.value"
+                    :class="{ 'invalid': password.errorMessage.value }"
+                    class="inputGroupField focus:shadow-none py-2 sm:py-3"
+                    id="password"
+                    toggleMask
+                    :type="isShow ? 'text' : 'password'"
+                    placeholder="Enter minimum 8 characters"/>
+                <i @click="isShowPassword" :class="isShow ? 'pi pi-eye' : 'pi pi-eye-slash' " style="color:white"></i>
+              </div>
+              <form-input-error :message="password.errorMessage.value"/>
             </div>
-            <form-input-error :message="password_confirmation.errorMessage.value"/>
-          </div>
-          <div class="pt-6 md:flex justify-between items-center">
-            <div class="inline-flex items-center gap-x-2">
-              <Checkbox
-                  v-model="termsAndCondition.value.value"
-                  :class="{ 'invalid': termsAndCondition.errorMessage.value }"
-                  style="background-color:#6582b2 !important; border: 0 solid #2196F3;"
-                  class="focus:border-0 hover:border-green-500 bg-blue-900 focus:shadow-none focus:outline-none focus:outline-offset-0 check"
-                  id="chbx"
-                  binary
-                  name="termsAndCondition"
-                  value="termsAndCondition"/>
-              <nuxt-link to="/terms-service" class="ml-2 text-white text-[14px] sm:text-[16px]">Terms & Service</nuxt-link>
+            <div class="pt-5">
+              <label class="inputGroupLabel" for="confirmPassword">Confirm Password *</label><br>
+              <div class="p-input-icon-right w-full">
+                <InputText
+                    v-model="password_confirmation.value.value"
+                    :disabled="password.value.value && password.value.value.length ? false : true"
+                    :class="{ 'invalid': password_confirmation.errorMessage.value }"
+                    class="inputGroupField focus:shadow-none py-2 sm:py-3"
+                    id="confirmPassword"
+                    :type="isShowConfirm ? 'text' : 'password'"
+                    placeholder="Enter minimum 8 characters"/>
+                <i @click="isShowConfirmPassword" :class="isShowConfirm ? 'pi pi-eye' : 'pi pi-eye-slash' "
+                   style="color:white"></i>
+              </div>
+              <form-input-error :message="password_confirmation.errorMessage.value"/>
             </div>
-            <div class="flex py-2 gap-x-2">
-              <p class="text-white text-[14px] sm:text-[16px] ">Already have an account?</p>
-              <nuxt-link to="/login" class="text-white text-[14px] sm:text-[16px] font-bold">Login</nuxt-link>
+            <div class="pt-6 md:flex justify-between items-center">
+              <div class="inline-flex items-center gap-x-2">
+                <Checkbox
+                    v-model="termsAndCondition.value.value"
+                    :class="{ 'invalid': termsAndCondition.errorMessage.value }"
+                    style="background-color:#6582b2 !important; border: 0 solid #2196F3;"
+                    class="focus:border-0 hover:border-green-500 bg-blue-900 focus:shadow-none focus:outline-none focus:outline-offset-0 check"
+                    id="chbx"
+                    binary
+                    name="termsAndCondition"
+                    value="termsAndCondition"/>
+                <nuxt-link to="/terms-service" class="ml-2 text-white text-[14px] sm:text-[16px]">Terms & Service</nuxt-link>
+              </div>
+              <div class="flex py-2 gap-x-2">
+                <p class="text-white text-[14px] sm:text-[16px] ">Already have an account?</p>
+                <nuxt-link to="/login" class="text-white text-[14px] sm:text-[16px] font-bold">Login</nuxt-link>
+              </div>
             </div>
-          </div>
-          <form-input-error :message="termsAndCondition.errorMessage.value"/>
-          <div class="py-4">
-            <Button :disabled="isSubmitDisabled" @click="submitForm()" class="btn p-1 md:p-2.5 focus:shadow-none"
-                    label="Register"/>
+            <form-input-error :message="termsAndCondition.errorMessage.value"/>
+            <div class="py-4">
+              <Button :disabled="isSubmitDisabled" @click="submitForm()" class="btn p-1 md:p-2.5 focus:shadow-none"
+                      label="Register"/>
+            </div>
           </div>
         </div>
       </div>
