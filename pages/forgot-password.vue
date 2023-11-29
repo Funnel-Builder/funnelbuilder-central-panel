@@ -1,21 +1,25 @@
 <template>
   <div class="container mx-auto">
-    <div class="pt-[100px] sm:pt-0 sm:flex sm:flex-col justify-center items-center min-h-screen">
-      <div class="px-4 sm:px-0 w-[100%] sm:w-[70%] md:w-[60%] lg:w-[50%]">
+    <div class="flex flex-col items-center justify-center min-h-screen">
+    <div class="w-[100%] sm:w-[70%] md:w-[60%] lg:w-[50%]">
+      <div class="px-4 sm:px-0">
         <h1 class="text-[30px] md:text-[36px] lg:text-[40px] xl:text-[44px] 2xl:text-[48px] text-white font-[600]">Forgot Password?</h1>
         <p class="text-[12px] md:text-[14px] text-white font-[400]">No worry! we will send you reset instruction. Provide your valid email.</p>
       </div>
-      <div class="px-4 sm:px-0 w-[100%] sm:w-[70%] md:w-[60%] lg:w-[50%]">
+      <div class="px-4 sm:px-0">
         <div class="pt-8">
           <label class="inputGroupLabel" for="email">Email</label><br>
           <InputText
-              class="inputGroupField focus:shadow-none"
+              v-model="email.value.value"
+              :class="{ 'invalid': email.errorMessage.value}"
+              class="inputGroupField focus:shadow-none py-2 sm:py-3"
               id="email"
-              type="email" v-model="email"
+              type="email"
               placeholder="Enter email address"/>
+          <form-input-error :message="email.errorMessage.value"/>
         </div>
         <div class="pt-12 text-center">
-          <Button link  class="btn p-2 md:p-2.5  focus:shadow-none"
+          <Button :disabled="isSubmitDisabled" @click="submitData"  class="btn p-2 md:p-2.5  focus:shadow-none"
                   label="Continue"/>
         </div>
         <div class="pt-12 flex justify-center items-center gap-x-4">
@@ -24,15 +28,45 @@
         </div>
       </div>
     </div>
+    </div>
   </div>
 </template>
 
 <script setup>
+import {useField, useForm} from 'vee-validate';
+
 definePageMeta({
   layout: "auth",
 });
-const isLoading = true;
-const email = ref(null);
+//Variables
+const authStore = useAuthStore();
+const isLoading = ref(false);
+//validation rules
+const {handleSubmit, isSubmitting, handleReset, setErrors} = useForm({
+  validationSchema: {
+    email(value) {
+      if (!value) return 'Email is required'
+      else if (/^[a-z0-9.-]+@[a-z0-9.-]+.[a-z]+$/i.test(value)) return true;
+      return "Invalid email";
+    }
+  }
+})
+//form fields
+const email = useField('email');
+
+
+//Computed Properties
+const isSubmitDisabled = computed(() => {
+  return !(email.value.value);
+});
+
+//Methods
+
+const submitData = handleSubmit(async (values) => {
+  console.log(values)
+  const router = useRouter();
+  router.push('/verify-otp');
+});
 </script>
 
 <style scoped lang="scss">

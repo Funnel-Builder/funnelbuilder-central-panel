@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto">
-    <div class="flex flex-col items-center justify-center min-h-screen">
+    <div class="py-12 sm:py-0 flex flex-col items-center justify-center min-h-screen">
       <div class="w-[100%] sm:w-[70%] md:w-[60%] lg:w-[50%]">
         <div class="px-4 sm:px-0 ">
           <h1 class="text-[30px] md:text-[36px] lg:text-[40px] xl:text-[44px] 2xl:text-[48px] text-white font-[600]">Get
@@ -133,12 +133,18 @@ const {handleSubmit, isSubmitting, handleReset, setErrors} = useForm({
     },
     phone(value) {
       if (!value) return 'Phone number is required'
-      else if (!/^(?:\+88|01)?(?:\d{11}|\d{13})$/.test(value)) return "Invalid phone number";
+      else if(value && value.startsWith('0')) {
+         if (!/^(?:\+88|01)?(?:\d{11}|\d{13})$/.test(value)) return "Invalid phone number";
+      }
+      else if(value && value.startsWith('1')){
+         if (/^(?:(?:\+|00)88|01)?\d{11}$/.test(value)) return "Invalid phone number";
+      }
       return true;
     },
     email(value) {
-      if (value) return true
-      return 'Email is required'
+      if (!value) return 'Email is required'
+      else if (/^[a-z0-9.-]+@[a-z0-9.-]+.[a-z]+$/i.test(value)) return true;
+      return "Invalid email";
     },
     password(value) {
       if (!value) return 'Password is required'
@@ -184,17 +190,21 @@ const isShowConfirmPassword = () => {
 const submitForm = handleSubmit(async (values) => {
   // console.log(values);
   isLoading.value = true;
-  values.phone = `+880${values.phone}`;
+  if(values.phone.startsWith('0')){
+    values.phone = `+880${values.phone.substring(1)}`;
+  }
+  else if(values.phone.startsWith('1')){
+    values.phone = `+880${values.phone}`;
+  }
+  // console.log(values.phone);
   const {data, pending, error, refresh} = await authStore.register(values);
   if (error && error.value) {
-    setErrors(error.value.data.errors || {})
-    if (error.value.data.errors === 422) {
-      console.log(error.value);
+    if (error.value.statusCode === 422) {
+      setErrors(error.value.data.errors || {})
     }
   }
   else {
     handleReset();
-    console.log(msg)
     const router = useRouter();
     router.push('/verify-otp');
   }
