@@ -6,7 +6,7 @@
                     <utilities-otp-shooter />
                 </div>
                 <div class="pt-8 flex justify-center">
-                    <button class="flex border-2  items-center px-6 py-2 rounded-md text-white">Logout</button>
+                    <button class="button flex border-2  items-center px-6 py-2 rounded-md text-white">Logout</button>
                 </div>
             </div>
         </div>
@@ -18,6 +18,14 @@ definePageMeta({
     layout: 'auth'
 })
 </script>
+<style scoped>
+.button:hover {
+  background: white;
+  color: black;
+  border: 2px solid rgb(185, 93, 93);
+  transition: .6s;
+}
+</style>
   
   
   

@@ -1,7 +1,7 @@
 <template>
     <div class="container mx-auto px-2">
         <div class="flex justify-center items-center">
-            <div class="w-full sm:w-[80%] md:w-[70%] lg:w-[70%] xl:w-[60%]">
+            <div class="w-full sm:w-[80%] md:w-[70%] lg:w-[70%] xl:w-[50%]">
                 <div class="w-full flex flex-col items-center">
                     <div class="text-center pb-10">
                         <h2 class="text-[#5A78AD] text-[24px] md:text-[32px] font-bold">Create Shop</h2>
@@ -11,13 +11,14 @@
                         <div class="w-full">
                             <div>
                                 <div v-if="!step">
-                                    <p class="pb-1"><small class="text-[#5A78AD]">Shop Url</small></p>
+                                    <p class="pb-1"><small class="text-[#5A78AD]">Shop URL*</small></p>
                                     <div>
                                         <div class="flex items-center">
-                                            <InputGroup style="background-color: #EFF1F7;" class="rounded-md ">
-                                                <InputText v-model="shopName" style="background-color: #EFF1F7;"
+                                            <InputGroup :class="{ 'invalid': shopUrl.errorMessage.value }"
+                                                style="background-color: #EFF1F7;" class="rounded-md ">
+                                                <InputText v-model="shopUrl.value.value" style="background-color: #EFF1F7;"
                                                     class="border-0 w-full h-10 md:h-12 text-xs md:text-lg flex items-center focus:shadow-none"
-                                                    id="phone" type="text" />
+                                                    id="shopUrl" type="text" />
                                                 <InputGroupAddon style="background-color: #EFF1F7; color: gray;"
                                                     class="w-full md:w-[50%] h-10 md:h-12 text-xs md:text-lg flex items-center focus:shadow-none">
                                                     .funnelbuilder.com
@@ -27,28 +28,29 @@
                                                 <i :class="checkShopNameValidity"></i>
                                             </div>
                                         </div>
-                                        <small v-if="shop_status == 'failed'" class="text-red-500">this shop name already
-                                            exist</small>
+                                        <form-input-error :message="error_message =='error' ? 'This url has already taken' : shopUrl.errorMessage.value" />
                                     </div>
                                     <div class="pt-3">
-                                        <p class="pb-1"><small class="text-[#5A78AD]">Shop Name</small></p>
-                                        <InputText placeholder="Enter shop name"
+                                        <p class="pb-1"><small class="text-[#5A78AD]">Shop Name*</small></p>
+                                        <InputText v-model="shopName.value.value"
+                                            placeholder="Enter shop name minimum 5 character"
                                             style="background-color: #EFF1F7 !important;" type="text"
+                                            :class="{ 'invalid': shopName.errorMessage.value }" id="shopName"
                                             class="w-full h-10 md:h-12 text-xs md:text-lg flex items-center focus:shadow-none" />
                                     </div>
+                                    <form-input-error :message="shopName.errorMessage.value" />
                                     <p class="pt-3 pb-10"><small>By clicking below, you agree to the <a class="underline"
                                                 href="#">BDFunnelBuilder</a> Terms of Service and <a class="underline"
                                                 href="#">Privacy Policy</a>.</small></p>
 
                                     <div class="w-full">
-                                        <Button @click="nextStep"
-                                            style="background-color: #5A78AD; border: none; border-radius: 15px;"
-                                            class="w-full h-10 md:h-12 text-xs md:text-lg focus:shadow-none"
-                                            label="Continue" />
+                                        <button @click="nextStep" :disabled="isDisabled"
+                                            :class="{ 'bg-gray-400': isDisabled, 'bg-[#5A78AD]': !isDisabled }"
+                                            class="bg-[#5A78AD] rounded-lg w-full h-10 md:h-12 text-xs md:text-lg focus:shadow-none text-white font-semibold">Continue</button>
                                     </div>
                                 </div>
                                 <div v-else>
-                                    <shop-next-step />
+                                    <shop-next-step :shopDetails="shopDetails" />
                                 </div>
                             </div>
                             <div class="flex justify-center gap-2 mt-12">
@@ -63,50 +65,88 @@
     </div>
 </template>
   
-<script setup lang="ts">
+<script setup>
+import { useField, useForm } from 'vee-validate';
 
 definePageMeta({
     layout: 'shop'
 })
-const selectedCity = ref();
-const shop = ref([
-    { name: 'xyz shop', code: 'xyz' },
-    { name: 'xyz2 shop', code: 'xyz' },
-]);
-const shopName = ref('')
+
 const step = ref(false)
 
 const shop_status = ref('');
-const text = 'my_shop';
+const shopDetails = ref({})
+const error_message = ref('');
+const timeout = ref(null);
 
-
-watch(shopName, (nv) => {
-    shop_status.value = 'written'
-    setTimeout(() => {
-        if (nv.length > 3) {
-            if (nv == text) {
-                shop_status.value = 'success'
-            } else {
-                shop_status.value = 'failed'
-            }
+//validation schema
+const { handleSubmit, isSubmitting, handleReset, setErrors } = useForm({
+    validationSchema: {
+        shopUrl(value) {
+            if (!value) return 'Shop URL is required'
+            else if (value.length < 4 || value.length > 100) return 'Shop Url must be between 4 and 100 characters'
+            else if (!/^[^\s_]+$/.test(value)) return "Invalid shope url";
+            return true;
+        },
+        shopName(value) {
+            if (!value) return 'Shop Name is required'
+            else if (value.length < 4 || value.length > 100) return 'Shop Name url must be between 4 and 40 characters'
+            return true;
         }
-    }, 1000);
+    }
+});
 
-})
+const isDisabled = computed(() => {
+    return !(
+        shopUrl.value?.value?.length >= 4 &&
+        shopUrl.value?.value?.length <= 100 &&
+        shopName.value?.value?.length >= 4 &&
+        shopName.value?.value?.length <= 40 &&
+        !(!/^[^\s_]+$/.test(shopUrl.value.value)) &&
+        error_message.value == 'success'
+    );
+});
+
+
+const shopUrl = useField('shopUrl');
+const shopName = useField('shopName');
+
+watch(() => shopUrl.value.value, (nv, ov) => {
+    if (
+        (nv && nv.length > 3) ||
+        ov?.length === 3
+    ) {
+        if (timeout.nv) {
+            clearTimeout(timeout.nv);
+        }
+        timeout.nv = setTimeout(() => {
+            if (!(!/^[^\s_]+$/.test(shopUrl.value.value))) {
+                validityShopUrl(nv)
+            }
+        }, 500);
+    }
+}
+)
+
+const validityShopUrl = async (nv) => {
+    const { data, pending, error, refresh } = await postData('validate-shop-domain', { subdomain: nv });
+    error_message.value = data.value.status;
+}
+
 
 const checkShopNameValidity = computed(() => {
-    if (shop_status.value) {
-        if (shop_status.value == 'written') return 'pi pi-spin pi-spinner loading ml-2'
-        else if (shop_status.value == 'success') return 'pi pi-verified success ml-2'
-        else if (shop_status.value == 'failed') return 'pi pi-ban failed ml-2'
+    if (error_message.value) {
+        if (error_message.value == 'success') return 'pi pi-verified success ml-2'
+        else if (error_message.value == 'error') return 'pi pi-ban failed ml-2'
     }
 
 })
 
 
-const nextStep = () => {
+const nextStep = handleSubmit(async (values) => {
+    shopDetails.value = values
     step.value = true
-}
+})
 </script>
 
 <style lang="scss" scoped>
