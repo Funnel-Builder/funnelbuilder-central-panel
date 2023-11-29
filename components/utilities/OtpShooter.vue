@@ -16,7 +16,8 @@
                 </div>
                 <div class="flex justify-between pt-2 pl-2">
                     <div>
-                        <utilities-otp-timer validUntil="2023-11-27T06:05:59.222850Z" @timeEnd="timeEnd($event)"/>
+                        {{ setValue }}
+                        <utilities-otp-timer validUntil="2023-11-29T09:04:59.041Z" @timeEnd="timeEnd($event)" />
                     </div>
                     <div>
                         <button :disabled="!timeOver" class="underline text-white">Resend</button>
@@ -31,11 +32,37 @@
 </template>
   
 <script setup>
+import moment from "moment";
+
 definePageMeta({
     layout: "auth",
 });
 const otpNumber = ref(null)
 const timeOver = ref(false)
+const setValue = ref()
+
+const otp = getOtp();
+console.log(otp, 'otp')
+
+
+onMounted(() => {
+    // console.log(moment(moment(otp?.expires_in)).diff(moment(), 'seconds'))
+    const timers = moment(moment(otp?.expires_in)).diff(moment(), 'seconds');
+    if(timers > 0){
+        setValue.value = timers
+    }
+});
+
+
+
+
+const getMomentFrom = (t) => {
+    const referenceDate = new Date('2023-11-29T09:00:00.041Z');
+
+    const resultDate = new Date(referenceDate.getTime() + t * 1000);
+    console.log(resultDate.toISOString());
+    formattedDate.value = resultDate.toISOString();
+}
 
 const handleOnComplete = async (value) => {
     otpNumber.value = value;

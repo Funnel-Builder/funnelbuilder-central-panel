@@ -3,6 +3,7 @@ export const useAuthStore = defineStore('auth', {
     state: () => ({
         token: accessToken() || null,
         user: getUser() || null
+
     }),
     getters: {
         isLoggedIn: (state) => {
@@ -17,11 +18,17 @@ export const useAuthStore = defineStore('auth', {
             this.user = user
             setUser(user)
         },
+        setOtpCookies(email){
+            setOtpCookies({email: email, from: 'register'})
+        },
+
         async register(payload) {
             const {data, pending, error, refresh} = await postData('register', payload)
             if (data) {
                 this.setToken(data.value?.authorization)
                 this.setUser(data.value?.user)
+
+                this.setOtpCookies(this.user?.email)
             }
             return {data, pending, error, refresh}
         },

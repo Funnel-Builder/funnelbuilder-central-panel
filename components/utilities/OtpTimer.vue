@@ -1,6 +1,7 @@
 <template>
     <div class="">
         <span class="text-white" id="countdown"></span>
+        
     </div>
 </template>
 <script setup>

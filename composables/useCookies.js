@@ -14,6 +14,10 @@ export function getUser() {
     const cookieUser = useCookie('user')
     return cookieUser.value || null
 }
+export function getOtp() {
+    const cookieOtp = useCookie('otp')
+    return cookieOtp.value || null
+}
 
 export const setUser = (user) => {
     let cookieMaxAge = 43200
@@ -28,6 +32,22 @@ export const setUser = (user) => {
     }
     const cookieUser = useCookie('user', cookieOptions)
     cookieUser.value = user || ''
+}
+
+export const setOtpCookies = (data) => {
+    const cookieOptions = {
+        maxAge: 3600,
+        priority: 'high',
+        secure: true
+    }
+
+    const cookieOtp = useCookie('otp', cookieOptions)
+    cookieOtp.value = ''
+    data.expires_in = moment().add(5, 'm')
+    
+
+    cookieOtp.value = data
+    console.log(moment(cookieOtp.value.expires_in).format('lll'));
 }
 
 export function setAccessToken(authorization) {
