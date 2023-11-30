@@ -3,7 +3,7 @@
     <!--    For Web View -->
     <div class="hidden md:flex justify-between items-center nav px-8">
       <div>
-        <img src="/landing/logo.svg" alt="logo"/>
+        <utilities-logo classes="h-[80px]"></utilities-logo>
       </div>
       <div class="flex justify-center items-center lg:gap-x-6  xl:gap-x-8 2xl:gap-x-12">
         <div v-for="(item ,i) in items">
@@ -46,7 +46,7 @@
           <div class="flex justify-end items-center gap-x-2">
             <div v-if="authStore.isLoggedIn" class="flex justify-center items-center px-4 py-2 gap-x-2 rounded-full"
                  style=" background-color:#eff1f7;">
-              <img src="/landing/userIcon.svg" alt="logo"/>
+              <utilities-logo classes="h-[80px]"></utilities-logo>
               <p class="text-[14px] font-[600]" style="color:#5a78ad;">{{ authStore.user.name }}</p>
             </div>
             <div v-if="!authStore.isLoggedIn">
@@ -136,7 +136,7 @@ const logout = async () => {
 }
 
 .router-link-active {
-  padding: 4px 10px;
+  padding: 4px 0px;
   font-weight: 600;
   color: #ffffff;
   background: #5A78AD;
