@@ -3,7 +3,7 @@
         <div class="flex justify-center items-center h-screen">
             <div class="w-full sm:w-[80%] md:w-[70%] lg:w-[40%] xl:w-[35%]">
                 <div>
-                    <utilities-password-otp-shooter validUntil="2023-11-29T08:47:13.978Z"/>
+                    <utilities-password-otp-shooter/>
                 </div>
             </div>
         </div>
@@ -12,7 +12,8 @@
   
 <script setup>
 definePageMeta({
-    layout: 'auth'
+    layout: 'auth',
+    middleware: ['guest']
 });
 
 </script>

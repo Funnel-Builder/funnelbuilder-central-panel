@@ -47,15 +47,12 @@ const setTime = ref(0)
 const error_mes = ref('')
 const authStore = useAuthStore();
 const otp = getOtp();
-console.log(otp, 'otp')
-
 
 onMounted(async () => {
     if (authStore.user_email) {
         await resendOtp()
     } else {
-        let router = useRouter()
-        router.push('/forget-password')
+        await router.push('/forget-password')
     }
 });
 

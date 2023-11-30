@@ -73,6 +73,12 @@ const isShow = ref(false);
 const isShowConfirm = ref(false);
 const isLoading = ref(false);
 
+onMounted(async () => {
+  if (!authStore.user_email) {
+    await router.push('/forget-password')
+  }
+});
+
 //validation rules
 const {handleSubmit, isSubmitting, handleReset, setErrors} = useForm({
   validationSchema: {
