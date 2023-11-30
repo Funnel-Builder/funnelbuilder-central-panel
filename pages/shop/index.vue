@@ -31,9 +31,10 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 definePageMeta({
-  layout: 'shop'
+  layout: 'shop',
+  middleware:['verify-user']
 })
 
 const selectedShop = ref();
@@ -55,7 +56,6 @@ const getShop = async () => {
     console.log(error);
   }
   else {
-    console.log(data, 'kkk');
     shop.value = data.value.data
   }
   loading.value = false

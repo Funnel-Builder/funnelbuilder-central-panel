@@ -92,7 +92,7 @@ const timeEnd = (evn) => {
 }
 
 const submitOtp = async () => {
-  const {data, error} = await postData('verify-email', {authorized_code: authorizedCode.value})
+  const {data, error} = await postData('verify-email', {authorization_code: authorizedCode.value})
   if(error && error.value){
     if(error.value.statusCode === 422){
          error_mes.value = error.value.data.message
