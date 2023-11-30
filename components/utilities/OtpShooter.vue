@@ -25,6 +25,7 @@ div<template>
         <form-input-error text-color="#FFD600" :message="error_msg" />
       </div>
       <div class="text-center">
+        {{ checkValidity }}
         <button @click="submitOtp" :disabled="otpNumber?.length !== 6"
           :class="otpNumber?.length !== 6 ? 'bg-gray-400 text-gray-300 cursor-not-allowed' : 'bg-white text-black'"
           class="rounded-lg w-full h-10 md:h-12 text-xs md:text-lg focus:shadow-none font-semibold">
@@ -65,6 +66,10 @@ onMounted(async () => {
   // console.log(moment(moment(otp?.expires_in)).diff(moment(), 'seconds'))
 
 });
+
+const checkValidity = computed(()=>{
+  return  otpNumber.value >5 ? true : false
+})
 
 const resendOtp = async () => {
   timeOver.value = true
