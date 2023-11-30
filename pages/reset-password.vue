@@ -67,6 +67,7 @@ definePageMeta({
 
 //Define Variables
 const authStore = useAuthStore();
+const router = useRouter();
 const isShow = ref(false);
 const isShowConfirm = ref(false);
 const isLoading = ref(false);
@@ -112,13 +113,12 @@ const submitData = handleSubmit(async (values) => {
   values.authorization_code = authStore.authorization_code;
   const {data, error} = await postData('reset-password', values);
   if( error && error.value ){
-    if(error.value.statusCode == 422){
+    if(error.value.statusCode === 422){
       setErrors(error.value.data.errors || {})
     }
   }
   else{
-     const router = useRouter();
-    router.push('/login')
+    await router.push('/login')
   }
 });
 
