@@ -11,6 +11,9 @@
 </template>
 
 <script setup>
+definePageMeta({
+  middleware: 'should-be-verified'
+})
 const authStore = useAuthStore()
 const showToast = ref(false)
 const login = () => {
