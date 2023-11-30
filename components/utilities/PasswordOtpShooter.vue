@@ -27,8 +27,8 @@
                 <form-input-error :message="error_mes" text-color="#FFD600" />
             </div>
             <div class="text-center">
-                <Button @click="submitOtp" :disabled="otpNumber?.length !== 6"
-                    class="btn p-2 md:p-2.5  focus:shadow-none" label="Continue" />
+                <Button @click="submitOtp" :disabled="otpNumber?.length !== 6" class="btn p-2 md:p-2.5  focus:shadow-none"
+                    label="Continue" />
             </div>
         </div>
     </div>
@@ -42,7 +42,7 @@ definePageMeta({
 });
 const router = useRouter()
 const otpNumber = ref(null)
-const timeOver = ref(false)
+const timeOver = ref(true)
 const setTime = ref(0)
 const error_mes = ref('')
 const authStore = useAuthStore();
@@ -50,13 +50,14 @@ const otp = getOtp();
 
 onMounted(async () => {
     if (authStore.otp_email_time && Object.keys(authStore.otp_email_time).length > 0) {
-      setTime.value = authStore.otp_email_time.retry_after;
+        setTime.value = authStore.otp_email_time.retry_after;
     } else {
         await router.push('/forget-password')
     }
 });
 
 const resendOtp = async () => {
+    resetOtp()
     timeOver.value = true
     setTime.value = 0
     const { data, error } = await postData('get-otp', { email: authStore.otp_email_time.email })
@@ -91,6 +92,13 @@ const submitOtp = async () => {
         authStore.setAuthorizationCode(data.value.authorization_code)
         await router.push('/reset-password')
     }
+}
+
+const resetOtp = () => {
+    const inputFields = document.querySelectorAll('.otp-input');
+    inputFields.forEach((input) => {
+        input.value = '';
+    });
 }
 </script>
   
@@ -129,7 +137,7 @@ const submitOtp = async () => {
 }
 
 .p-button:not(.p-disabled):hover {
-    background-color: white; 
+    background-color: white;
 }
 </style>
   
