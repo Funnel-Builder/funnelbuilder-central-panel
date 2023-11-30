@@ -118,7 +118,7 @@ const isShowConfirmPassword = () => {
 };
 
 const submitData = handleSubmit(async (values) => {
-  values.email = authStore.user_email;
+  values.email = authStore.otp_email_time.email;
   values.authorization_code = authStore.authorization_code;
   const {data, error} = await postData('reset-password', values);
   if( error && error.value ){
