@@ -33,19 +33,26 @@
           <img class="h-[50px] md:h-[70px]" src="/landing/logo.svg" alt="logo"/>
         </div>
         <div class="flex justify-center items-center gap-x-2">
-          <nuxt-link to="/login" class="text-[14px] md:text-[16px] rounded-full font-[600]"
-                     style="padding: 4px 10px; background-color:#5A78AD; color:white">Get Started
-          </nuxt-link>
+         <div v-if="!authStore.isLoggedIn">
+           <nuxt-link to="/login" class="text-[14px] md:text-[16px] rounded-full font-[600]"
+                      style="padding: 4px 10px; background-color:#5A78AD; color:white">Get Started
+           </nuxt-link>
+         </div>
           <i @click="showMenu()" class="pi pi-bars menu" style="font-size: 20px; padding:10px; color:#5A78AD;"></i>
         </div>
       </div>
       <div :class="showMobileMenu ? 'open-menu' : 'closed-menu'" class="text">
         <div class="nav-menu">
           <div class="flex justify-end items-center gap-x-2">
-            <div class="flex justify-center items-center px-4 py-2 gap-x-2 rounded-full"
+            <div v-if="authStore.isLoggedIn" class="flex justify-center items-center px-4 py-2 gap-x-2 rounded-full"
                  style=" background-color:#eff1f7;">
               <img src="/landing/userIcon.svg" alt="logo"/>
-              <p class="text-[14px] font-[600]" style="color:#5a78ad;">Rick Lichard</p>
+              <p class="text-[14px] font-[600]" style="color:#5a78ad;">{{ authStore.user.name }}</p>
+            </div>
+            <div v-if="!authStore.isLoggedIn">
+              <nuxt-link to="/login" class="text-[14px] md:text-[16px] rounded-full font-[600]"
+                         style="padding: 4px 10px; background-color:#5A78AD; color:white">Get Started
+              </nuxt-link>
             </div>
             <i @click="closeMenu" class="pi pi-times-circle menu"
                style="font-size: 20px; padding:10px;  background-color:#5A78AD;  color:#ffffff;"></i>
@@ -57,9 +64,9 @@
               </nuxt-link>
             </div>
             <div class="mt-8">
-              <button class="flex justify-center items-center gap-x-2 px-8 py-1 rounded-[16px]"
-                      style="background-color:#5A78AD; color:#ffffff;"><i class="pi pi-sign-out"
-                                                                          style="font-size: 15px; padding:2px 2px; color:#ffffff;"></i>Logout
+              <button @click="logout" class="flex justify-center items-center gap-x-2 px-8 py-1 rounded-[16px]" style="background-color:#5A78AD; color:#ffffff;">
+                <i class="pi pi-sign-out" style="font-size: 15px; padding:2px 2px; color:#ffffff;"></i>
+                Logout
               </button>
             </div>
           </div>
@@ -71,6 +78,7 @@
 
 <script setup>
 const authStore = useAuthStore();
+const router = useRouter();
 
 const items = ref([
   {label: 'Home', link: '/'},
@@ -79,12 +87,40 @@ const items = ref([
   {label: 'Contact Us', link: '/contact-us'},
 ]);
 
+
+const menu = ref();
+const itemss = ref([
+  {
+    label: 'Options',
+    items: [
+      {
+        label: 'Refresh',
+        icon: 'pi pi-refresh'
+      },
+      {
+        label: 'Export',
+        icon: 'pi pi-upload'
+      }
+    ]
+  }
+]);
+
+const toggle = (event) => {
+  menu.value.toggle(event);
+};
+
+
 const showMobileMenu = ref(false);
 const showMenu = () => {
   showMobileMenu.value = !showMobileMenu.value;
 };
 const closeMenu = () => {
   showMobileMenu.value = false;
+};
+
+const logout = async () => {
+  const {data, pending, error, refresh} = await authStore.logout();
+  await router.push('/');
 };
 
 </script>

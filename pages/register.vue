@@ -37,7 +37,7 @@
                     setErrorMessage
                     class="inputGroupFieldFlag rounded-l-none rounded-r-xl focus:shadow-none py-2 sm:py-3"
                     id="phone"
-                    type="text"
+                    type="number"
                 />
               </InputGroup>
               <form-input-error :message="phone.errorMessage.value" text-color="#FFD600"/>

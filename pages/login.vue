@@ -35,7 +35,7 @@
                     id="password"
                     toggleMask
                     :type="isShow ? 'text' : 'password'"
-                    placeholder="Enter minimum 8 characters"/>
+                    placeholder="Enter password"/>
                 <i @click="isShowPassword" :class="isShow ? 'pi pi-eye' : 'pi pi-eye-slash' " style="color:white"></i>
               </div>
               <form-input-error :message="password.errorMessage.value" text-color="#FFD600"/>
@@ -75,9 +75,8 @@ const {handleSubmit, isSubmitting, handleReset, setErrors} = useForm({
       return "Invalid email";
     },
     password(value) {
-      if (!value) return 'Password is required'
-      else if (value.length >= 8) return true;
-      else return 'Password must be at least 8 characters'
+      if (value) return true
+      return 'Password is required'
     }
   }
 })
