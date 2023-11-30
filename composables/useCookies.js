@@ -75,11 +75,7 @@ export const setAccessToken = (authorization) =>{
 }
 
 export const resetAllCookies = () => {
-    const cookieOptions = {
-        ...commonCookieOptions,
-        maxAge: 0,
-    };
-    setCookies('token', '', cookieOptions.maxAge);
-    setCookies('expires_in', '', cookieOptions.maxAge);
-    setCookies('user', '', cookieOptions.maxAge);
+    setCookies('token', '');
+    setCookies('expires_in', '');
+    setCookies('user', '');
 };
