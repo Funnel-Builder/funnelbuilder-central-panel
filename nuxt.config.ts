@@ -24,7 +24,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      baseURL: process.env.BASE_URL || 'http://auth-service-webserver/api/',
+      baseURL: process.env.BASE_URL || 'https://auth-service-webserver/api/',
     },
   },
 })
