@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - common/app-config.yml
+  - common/app-secret.yml
+  # - fpm/deployment.yml
+  # - fpm/service.yml
+  # - webserver/deployment.yml
+  # - webserver/service.yml
+  # - webserver/ingress.yml
+  - nuxt-with-nginx/deployment.yml
+  - nuxt-with-nginx/service.yml
+  - nuxt-with-nginx/ingress.yml
+  - cron/deployment.yml
+  - queue-workers/deployment-default.yml
