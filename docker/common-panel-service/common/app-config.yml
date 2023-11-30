@@ -4,4 +4,4 @@ metadata:
   name: common-panel-service
   namespace: funnelbuiler-solution
 data:
-  BASE_URL: "http://ota-common.local"
+  BASE_URL: "http://auth-service-webserver/api/"
