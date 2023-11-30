@@ -13,6 +13,7 @@ export const useAuthStore = defineStore('auth', {
     },
     actions: {
         setToken(token) {
+            this.token = token
             setAccessToken(token)
         },
         setUser(user) {

@@ -64,6 +64,7 @@ definePageMeta({
 const authStore = useAuthStore();
 const isShow = ref(false);
 const isLoading = ref(false);
+const router = useRouter();
 //validation rules
 const {handleSubmit, isSubmitting, handleReset, setErrors} = useForm({
   validationSchema: {
@@ -102,7 +103,6 @@ const submitData = handleSubmit(async (values) => {
     }
   }
   else {
-    const router = useRouter();
     if(data.value.user.email_verified_at !== null){
       router.push('/')
     }else{
