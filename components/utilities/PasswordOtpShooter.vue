@@ -127,6 +127,10 @@ const submitOtp = async () => {
 .otp-input:focus {
     outline: none;
 }
+
+.p-button:not(.p-disabled):hover {
+    background-color: white; 
+}
 </style>
   
   
