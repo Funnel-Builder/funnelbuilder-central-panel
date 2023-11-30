@@ -1,7 +1,7 @@
 <template>
     <div class="min-h-screen set_layout_bg">
         <div class="flex justify-center pt-24 md:pt-10 md:pb-8 ">
-            <utilities-Logo classes="w-60" />
+            <utilities-Logo classes="w-60 md:w-full" />
         </div>
         <slot />
     </div>
