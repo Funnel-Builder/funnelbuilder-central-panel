@@ -113,10 +113,7 @@ const shopUrl = useField('shopUrl');
 const shopName = useField('shopName');
 
 watch(() => shopUrl.value.value, (nv, ov) => {
-    if (
-        (nv && nv.length > 3) ||
-        ov?.length === 3
-    ) {
+    if ((nv && nv.length > 3) || ov?.length === 3) {
         if (timeout.nv) {
             clearTimeout(timeout.nv);
         }
@@ -137,8 +134,9 @@ const validityShopUrl = async (nv) => {
 
 const checkShopNameValidity = computed(() => {
     if (error_message.value) {
-        if (error_message.value == 'success') return 'pi pi-verified success ml-2'
-        else if (error_message.value == 'error') return 'pi pi-ban failed ml-2'
+      if (shopUrl.value.value.length < 4 || shopUrl.value.value.length > 100) return 'pi pi-ban failed ml-2'
+      else if (error_message.value === 'success') return 'pi pi-verified success ml-2'
+      else if (error_message.value === 'error') return 'pi pi-ban failed ml-2'
     }
 
 })
