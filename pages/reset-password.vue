@@ -74,7 +74,7 @@ const isShowConfirm = ref(false);
 const isLoading = ref(false);
 
 onMounted(async () => {
-  if (!authStore.user_email) {
+  if (!authStore.otp_email_time || Object.keys(authStore.otp_email_time).length === 0) {
     await router.push('/forget-password')
   }
 });

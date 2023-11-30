@@ -7,7 +7,7 @@
         </div>
         <div>
             <div class="py-16">
-                <div v-if="!error_mes">
+                <div>
                     <p class="text-[12px] md:text-[14px] text-white font-[400] pl-2">Enter Code</p>
                     <div class="mt-1 flex justify-between">
                         <v-otp-input ref="otpInput" input-classes="otp-input" separator="" :num-inputs="6"
@@ -49,8 +49,8 @@ const authStore = useAuthStore();
 const otp = getOtp();
 
 onMounted(async () => {
-    if (authStore.user_email) {
-        await resendOtp()
+    if (authStore.otp_email_time && Object.keys(authStore.otp_email_time).length > 0) {
+      setTime.value = authStore.otp_email_time.retry_after;
     } else {
         await router.push('/forget-password')
     }
@@ -59,7 +59,7 @@ onMounted(async () => {
 const resendOtp = async () => {
     timeOver.value = true
     setTime.value = 0
-    const { data, error } = await postData('get-otp', { email: authStore.user_email })
+    const { data, error } = await postData('get-otp', { email: authStore.otp_email_time.email })
     if (error && error.value) {
         if (error.value.statusCode == 422) {
             error_mes.value = error.value.data.message
@@ -80,12 +80,11 @@ const timeEnd = (evn) => {
 }
 
 const submitOtp = async () => {
-    const { data, error } = await postData('verify-otp', { email: authStore.user_email, otp: otpNumber.value })
-    console.log(data.value.authorization_code)
+    const { data, error } = await postData('verify-otp', { email: authStore.otp_email_time.email, otp: otpNumber.value })
 
     if (error && error.value) {
         if (error.value.statusCode === 422) {
-            setErrors(error.value.data.errors || {})
+            error_mes.value = error.value.data.message
         }
     }
     else {

@@ -68,8 +68,15 @@ const isSubmitDisabled = computed(() => {
 
 //Methods
 const submitData = handleSubmit(async (values) => {
-  authStore.setUserMail(values.email)
-  await router.push('/forget-password/verify');
+  const { data, error } = await postData('get-otp', values)
+  if (error && error.value) {
+    if (error.value.statusCode == 422) {
+      setErrors(error.value.data.errors || {})
+    }
+  } else {
+    await authStore.setUserMailAndTime({email: values.email, retry_after: data.value.retry_after})
+    await router.push('/forget-password/verify');
+  }
 });
 
 

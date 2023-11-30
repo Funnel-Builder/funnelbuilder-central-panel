@@ -3,7 +3,7 @@ export const useAuthStore = defineStore('auth', {
     state: () => ({
         token: accessToken() || null,
         user: getUser() || null,
-        user_email: '',
+        otp_email_time: null,
         authorization_code: '',
     }),
     getters: {
@@ -31,8 +31,8 @@ export const useAuthStore = defineStore('auth', {
             this.token = null
             resetAllCookies()
         },
-        setUserMail(email){
-            this.user_email = email
+        setUserMailAndTime(data){
+            this.otp_email_time = data
         },
         setAuthorizationCode(code){
           this.authorization_code = code
