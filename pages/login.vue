@@ -8,10 +8,6 @@
         <div class="w-[100%] sm:w-[70%] md:w-[60%] lg:w-[50%]">
           <div class="px-4 sm:px-0">
             <h1 class="text-[30px] md:text-[36px] lg:text-[40px] xl:text-[44px] 2xl:text-[48px] text-white font-[600]">Welcome Back!</h1>
-            <div class="flex items-center gap-x-2">
-              <p class="text-[12px] md:text-[14px] text-white font-[400]">Don’t have an account?</p>
-              <nuxt-link to="/register"  class="text-white font-bold">Register</nuxt-link>
-            </div>
           </div>
           <div class="px-4 sm:px-0">
             <div class="pt-5">
@@ -40,8 +36,12 @@
               </div>
               <form-input-error :message="password.errorMessage.value" text-color="#FFD600"/>
             </div>
-            <div class="pt-4 text-end">
-              <nuxt-link to="/forget-password"  class="text-white font-bold underline">Forgot your password?</nuxt-link>
+            <div class="pt-4 flex justify-between items-center">
+              <nuxt-link to="/forget-password" class="text-white font-bold underline">Forget Password</nuxt-link>
+              <div class="flex items-center gap-x-2">
+                <p class="text-[12px] md:text-[14px] text-white font-[400]">Don’t have an account?</p>
+                <nuxt-link to="/register"  class="text-white font-bold">Register</nuxt-link>
+              </div>
             </div>
             <div class="pt-8 md:pt-12">
               <Button :disabled="isSubmitDisabled" @click="submitData" class="btn p-1 md:p-2.5 focus:shadow-none"
