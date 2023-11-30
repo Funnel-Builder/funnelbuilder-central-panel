@@ -35,7 +35,7 @@
                     id="password"
                     toggleMask
                     :type="isShow ? 'text' : 'password'"
-                    placeholder="Enter minimum 8 characters"/>
+                    placeholder="Enter password"/>
                 <i @click="isShowPassword" :class="isShow ? 'pi pi-eye' : 'pi pi-eye-slash' " style="color:white"></i>
               </div>
               <form-input-error :message="password.errorMessage.value" text-color="#FFD600"/>
