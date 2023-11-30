@@ -1,4 +1,4 @@
-<template>
+div<template>
   <div>
     <div class="pl-2">
       <h1 class="text-[30px] md:text-[36px] lg:text-[40px] xl:text-[44px] 2xl:text-[48px] text-white font-[600]">
@@ -9,26 +9,25 @@
       <div class="py-16">
         <p class="text-[12px] md:text-[14px] text-white font-[400] pl-2">Enter Code</p>
         <div class="mt-1 flex justify-between">
-          <v-otp-input ref="otpInput" input-classes="otp-input" separator="" :num-inputs="6"
-                       :should-auto-focus="true" :is-input-num="true" @on-change="handleOnChange"
-                       @on-complete="handleOnComplete">
+          <v-otp-input ref="otpInput" input-classes="otp-input" separator="" :num-inputs="6" :should-auto-focus="true"
+            :is-input-num="true" @on-change="handleOnChange" @on-complete="handleOnComplete">
           </v-otp-input>
         </div>
         <div class="flex justify-between pt-2 pl-2">
           <div>
-            <utilities-otp-timer v-if="setValue" :validUntil="setValue" @timeEnd="timeEnd($event)"/>
-            <utilities-otp-timer v-if="setTime > 0" :sec="setTime" @timeEnd="timeEnd($event)"/>
+            <utilities-otp-timer v-if="setValue" :validUntil="setValue" @timeEnd="timeEnd($event)" />
+            <utilities-otp-timer v-if="setTime > 0" :sec="setTime" @timeEnd="timeEnd($event)" />
           </div>
           <div>
             <button @click="resendOtp" :disabled="timeOver" class="underline text-white">Resend</button>
           </div>
         </div>
-        <form-input-error text-color="#FFD600" :message="error_msg"/>
+        <form-input-error text-color="#FFD600" :message="error_msg" />
       </div>
       <div class="text-center">
         <button @click="submitOtp" :disabled="otpNumber?.length !== 6"
-                :class="otpNumber?.length !== 6 ? 'bg-gray-400 cursor-not-allowed' : 'bg-white text-black'"
-                class="bg-[#5A78AD] rounded-lg w-full h-10 md:h-12 text-xs md:text-lg focus:shadow-none text-white font-semibold">
+          :class="otpNumber?.length !== 6 ? 'bg-gray-400 text-gray-300 cursor-not-allowed' : 'bg-white text-black'"
+          class="rounded-lg w-full h-10 md:h-12 text-xs md:text-lg focus:shadow-none font-semibold">
           Continue
         </button>
       </div>
@@ -38,10 +37,6 @@
 
 <script setup>
 import moment from "moment";
-
-definePageMeta({
-  layout: "auth",
-});
 
 const authStore = useAuthStore();
 const router = useRouter()
@@ -57,19 +52,24 @@ const otp = getOtp();
 console.log(otp, 'otp')
 
 
-onMounted(() => {
-  // console.log(moment(moment(otp?.expires_in)).diff(moment(), 'seconds'))
-  const timers = moment(moment(otp?.expires_in)).diff(moment(), 'seconds');
-  if (timers > 0) {
-    timeOver.value = true
-    setValue.value = otp.expires_in
+onMounted(async () => {
+  if (otp) {
+    const timers = moment(moment(otp?.expires_in)).diff(moment(), 'seconds');
+    if (timers > 0) {
+      timeOver.value = true
+      setValue.value = otp.expires_in
+    }
+  } else {
+    await router.push('/login')
   }
+  // console.log(moment(moment(otp?.expires_in)).diff(moment(), 'seconds'))
+
 });
 
 const resendOtp = async () => {
   timeOver.value = true
   setTime.value = 0
-  const {data, error} = await postData('get-otp', {email: otp.email})
+  const { data, error } = await postData('get-otp', { email: otp.email })
   if (error && error.value) {
     if (error.value.statusCode == 422) {
       error_msg.value = error.value.data.message
@@ -81,7 +81,7 @@ const resendOtp = async () => {
 
 const handleOnComplete = async (value) => {
   otpNumber.value = value;
-  const {data, error} = await postData('verify-otp', {otp: value, email: otp.email})
+  const { data, error } = await postData('verify-otp', { otp: value, email: otp.email })
   if (error && error.value) {
     if (error.value.statusCode === 422) {
       error_msg.value = error.value.data.message
@@ -98,7 +98,7 @@ const timeEnd = (evn) => {
 }
 
 const submitOtp = async () => {
-  const {data, error} = await postData('verify-email', {authorization_code: authorizedCode.value})
+  const { data, error } = await postData('verify-email', { authorization_code: authorizedCode.value })
   if (error && error.value) {
     if (error.value.statusCode === 422) {
       error_msg.value = error.value.data.message

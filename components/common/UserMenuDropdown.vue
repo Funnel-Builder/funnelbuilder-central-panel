@@ -18,10 +18,10 @@
 
 <script setup>
 const authStore = useAuthStore();
+const router = useRouter();
 
 const logout = async () => {
   const {data, pending, error, refresh} = await authStore.logout();
-  const router = useRouter();
-  router.push('/');
+  await router.push('/');
 };
 </script>
