@@ -6,7 +6,7 @@ if [ "$1" == "local" ]; then
     docker compose -f docker-compose.dev.yml up --build
 elif [ "$1" == "prod" ]; then
     echo "Starting production environment..."
-    docker compose -f docker-compose.yml up --build
+    docker compose -f docker/compose/docker-compose.yml up --build -d
 else
     echo "Invalid argument. Please use 'local' or 'prod'."
 fi
