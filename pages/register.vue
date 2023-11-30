@@ -95,7 +95,7 @@
                     binary
                     name="termsAndCondition"
                     value="termsAndCondition"/>
-                <nuxt-link to="/terms-service" class="ml-2 text-white text-[14px] sm:text-[16px]">Terms & Service</nuxt-link>
+                <p class="text-white">I accept the</p><nuxt-link to="/terms-and-conditions" target="_blank"  class="text-white text-[14px] sm:text-[16px] underline">Terms & conditions</nuxt-link>
               </div>
               <div class="flex py-2 gap-x-2">
                 <p class="text-white text-[14px] sm:text-[16px] ">Already have an account?</p>
