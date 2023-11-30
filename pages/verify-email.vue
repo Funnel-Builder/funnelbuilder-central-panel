@@ -17,7 +17,7 @@
 
 definePageMeta({
     layout:'auth',
-    middleware:['auth']
+    middleware:['auth', 'unverified']
 });
 
 const authStore = useAuthStore();
