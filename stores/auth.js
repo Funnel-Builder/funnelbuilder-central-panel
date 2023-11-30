@@ -8,7 +8,7 @@ export const useAuthStore = defineStore('auth', {
     }),
     getters: {
         isLoggedIn: (state) => {
-            return !!(state.token && (state.user && Object.keys(state.user).length))
+            return !!(state.token)
         }
     },
     actions: {
@@ -24,6 +24,8 @@ export const useAuthStore = defineStore('auth', {
         },
         clearAuth() {
             resetAllCookies()
+            this.user = null
+            this.token = null
         },
         setUserMail(email){
             this.user_email = email
@@ -45,7 +47,9 @@ export const useAuthStore = defineStore('auth', {
             if (data) {
                 this.setToken(data.value?.authorization)
                 this.setUser(data.value?.user)
-                this.setOtpCookies(this.user?.email, 'login')
+                if (this.user?.email_verified_at === null){
+                    this.setOtpCookies(this.user?.email, 'login')
+                }
             }
             return {data, pending, error, refresh}
         },
@@ -67,11 +71,8 @@ export const useAuthStore = defineStore('auth', {
             const {data, pending, error, refresh} = await postData('logout')
             if (data) {
                 this.clearAuth()
-                this.user = null
-                this.token = null
             }
             return {data, pending, error, refresh}
         }
-    },
-    persist: true
+    }
 })

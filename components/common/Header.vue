@@ -13,7 +13,8 @@
         </div>
       </div>
       <div>
-        <div v-if="authStore.isLoggedIn" class="flex items-center gap-x-2">
+        {{ isLoggedIn }}
+        <div v-if="isLoggedIn" class="flex items-center gap-x-2">
           <CommonUserMenuDropdown></CommonUserMenuDropdown>
         </div>
         <div v-else class="flex justify-center items-center xl:gap-x-2 2xl:gap-x-6">
@@ -71,6 +72,7 @@
 
 <script setup>
 const authStore = useAuthStore();
+const { isLoggedIn } = storeToRefs(authStore);
 const items = ref([
   {label: 'Home', link: '/'},
   {label: 'Feature', link: '/feature'},

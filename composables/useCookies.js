@@ -58,7 +58,6 @@ export const setOtpCookies = (data) => {
     cookieOtp.value = '';
     data.expires_in = moment().add(5, 'm').format('lll');
     cookieOtp.value = data;
-    console.log(moment(cookieOtp.value.expires_in).format('lll'));
 };
 
 export const setAccessToken = (authorization) =>{
