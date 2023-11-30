@@ -65,7 +65,6 @@ const authStore = useAuthStore();
 const router = useRouter();
 const isShow = ref(false);
 const isLoading = ref(false);
-const router = useRouter();
 //validation rules
 const {handleSubmit, isSubmitting, handleReset, setErrors} = useForm({
   validationSchema: {
