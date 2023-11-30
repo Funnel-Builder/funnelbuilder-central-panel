@@ -24,9 +24,9 @@ export const useAuthStore = defineStore('auth', {
             setOtpCookies({ email, from })
         },
         clearAuth() {
-            resetAllCookies()
             this.user = null
             this.token = null
+            resetAllCookies()
         },
         setUserMail(email){
             this.user_email = email
