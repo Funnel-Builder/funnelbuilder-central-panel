@@ -75,8 +75,9 @@ const {handleSubmit, isSubmitting, handleReset, setErrors} = useForm({
       return "Invalid email";
     },
     password(value) {
-      if (value) return true
-      return 'Password is required'
+      if (!value) return 'Password is required'
+      else if (value.length >= 8) return true;
+      else return 'Password must be at least 8 characters'
     }
   }
 })
