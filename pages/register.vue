@@ -84,7 +84,7 @@
               </div>
               <form-input-error :message="password_confirmation.errorMessage.value" text-color="#FFD600"/>
             </div>
-            <div class="pt-6 md:flex justify-between items-center">
+            <div class="pt-6 xl:flex justify-between items-center">
               <div class="inline-flex items-center gap-x-2">
                 <Checkbox
                     v-model="termsAndCondition.value.value"
