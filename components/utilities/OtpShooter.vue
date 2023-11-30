@@ -38,10 +38,6 @@ div<template>
 <script setup>
 import moment from "moment";
 
-definePageMeta({
-  layout: "auth",
-});
-
 const authStore = useAuthStore();
 const router = useRouter()
 
