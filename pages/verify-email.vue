@@ -16,7 +16,8 @@
 <script setup>
 
 definePageMeta({
-    layout: 'auth'
+    layout: 'auth',
+    middleware:[]
 });
 
 const authStore = useAuthStore();

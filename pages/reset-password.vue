@@ -63,6 +63,7 @@ import {useField, useForm} from 'vee-validate';
 
 definePageMeta({
   layout: "auth",
+  middleware: ['guest']
 });
 
 //Define Variables

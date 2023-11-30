@@ -27,7 +27,7 @@
                 <form-input-error :message="error_mes" text-color="#FFD600" />
             </div>
             <div class="text-center">
-                <Button @click="submitOtp" :disabled="otpNumber?.length !== 6" link
+                <Button @click="submitOtp" :disabled="otpNumber?.length !== 6"
                     class="btn p-2 md:p-2.5  focus:shadow-none" label="Continue" />
             </div>
         </div>
@@ -40,6 +40,7 @@ import { useAuthStore } from "~/stores/auth.js";
 definePageMeta({
     layout: "auth",
 });
+const router = useRouter()
 const otpNumber = ref(null)
 const timeOver = ref(false)
 const setTime = ref(0)
@@ -92,8 +93,7 @@ const submitOtp = async () => {
     }
     else {
         authStore.setAuthorizationCode(data.value.authorization_code)
-        const router = useRouter()
-        router.push('/reset-password')
+        await router.push('/reset-password')
     }
 }
 </script>

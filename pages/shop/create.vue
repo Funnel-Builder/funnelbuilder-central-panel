@@ -69,7 +69,8 @@
 import { useField, useForm } from 'vee-validate';
 
 definePageMeta({
-    layout: 'shop'
+    layout: 'shop',
+    middleware: ['auth', 'should-be-verified']
 })
 
 const step = ref(false)
