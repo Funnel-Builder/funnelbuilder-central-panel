@@ -9,7 +9,10 @@ export const useAuthStore = defineStore('auth', {
     getters: {
         isLoggedIn: (state) => {
             return !!(state.token)
-        }
+        },
+        isVerified: (state) => {
+            return !!(state.user?.email_verified_at)
+        },
     },
     actions: {
         setToken(token) {

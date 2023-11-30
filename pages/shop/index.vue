@@ -34,7 +34,7 @@
 <script setup>
 definePageMeta({
   layout: 'shop',
-  middleware: 'should-be-verified'
+  middleware: ['auth', 'should-be-verified']
 })
 
 const selectedShop = ref();
