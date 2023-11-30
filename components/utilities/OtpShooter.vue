@@ -25,8 +25,8 @@ div<template>
         <form-input-error text-color="#FFD600" :message="error_msg" />
       </div>
       <div class="text-center">
-        <button @click="submitOtp" :disabled="otpNumber?.length !== 6"
-          :class="otpNumber?.length !== 6 ? 'bg-gray-400 text-gray-300 cursor-not-allowed' : 'bg-white text-black'"
+        <button @click="submitOtp" :disabled="isDisabled || error_msg.length > 0"
+          :class="isDisabled || error_msg.length > 0 ? 'bg-gray-400 text-gray-300 cursor-not-allowed' : 'bg-white text-black'"
           class="rounded-lg w-full h-10 md:h-12 text-xs md:text-lg focus:shadow-none font-semibold">
           Continue
         </button>
@@ -41,6 +41,7 @@ import moment from "moment";
 const authStore = useAuthStore();
 const router = useRouter()
 
+const isDisabled = ref(false)
 const authorizedCode = ref('')
 const otpNumber = ref(null)
 const timeOver = ref(false)
@@ -49,7 +50,6 @@ const setTime = ref(0)
 const error_msg = ref('')
 
 const otp = getOtp();
-console.log(otp, 'otp')
 
 
 onMounted(async () => {
@@ -96,7 +96,7 @@ const handleOnComplete = async (value) => {
 };
 const handleOnChange = async (value) => {
   error_msg.value = ''
-  //do some action
+  isDisabled.value = value.length < 6;
 }
 const timeEnd = (evn) => {
   timeOver.value = false;
@@ -109,6 +109,7 @@ const submitOtp = async () => {
       error_msg.value = error.value.data.message
     }
   } else {
+    console.log(data.value.data)
     if (data.value.data.email_verified_at !== null) {
       authStore.setUser(data.value.data)
       await router.push('/shop')
