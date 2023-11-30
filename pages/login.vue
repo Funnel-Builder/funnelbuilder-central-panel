@@ -41,7 +41,7 @@
               <form-input-error :message="password.errorMessage.value" text-color="#FFD600"/>
             </div>
             <div class="pt-4 text-end">
-              <nuxt-link to="/forgot-password"  class="text-white font-bold underline">Forgot Password</nuxt-link>
+              <nuxt-link to="/forget-password"  class="text-white font-bold underline">Forgot Password</nuxt-link>
             </div>
             <div class="pt-8 md:pt-12">
               <Button :disabled="isSubmitDisabled" @click="submitData" class="btn p-1 md:p-2.5 focus:shadow-none"

@@ -55,7 +55,7 @@ onMounted(async () => {
         await resendOtp()
     } else {
         let router = useRouter()
-        router.push('/forgot-password')
+        router.push('/forget-password')
     }
 });
 
