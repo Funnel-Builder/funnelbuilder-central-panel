@@ -7,7 +7,8 @@
       <div class="flex flex-col items-center justify-center min-h-screen">
         <div class="w-[100%] sm:w-[70%] md:w-[60%] lg:w-[50%]">
           <div class="px-4 sm:px-0">
-            <h1 class="text-[30px] md:text-[36px] lg:text-[40px] xl:text-[44px] 2xl:text-[48px] text-white font-[600]">Reset Password</h1>
+            <h1 class="text-[30px] md:text-[36px] lg:text-[40px] xl:text-[44px] 2xl:text-[48px] text-white font-[600]">
+              Reset Password</h1>
             <p class="text-[12px] md:text-[14px] text-white font-[400]">Must be at least 8 characters</p>
           </div>
           <div class="px-4 sm:px-0">
@@ -106,21 +107,19 @@ const isShowConfirmPassword = () => {
   isShowConfirm.value = !isShowConfirm.value;
 };
 
-
 const submitData = handleSubmit(async (values) => {
-  isLoading.value = true;
-  let url = '/reset-password'
-  const {data, pending, error, refresh} = await postData(url , values);
-  if (error && error.value) {
-    if (error.value.statusCode === 422) {
+  values.email = authStore.user_email;
+  values.authorization_code = authStore.authorization_code;
+  const {data, error} = await postData('reset-password', values);
+  if( error && error.value ){
+    if(error.value.statusCode == 422){
       setErrors(error.value.data.errors || {})
     }
   }
-  else {
-    const router = useRouter();
-    router.push('/login');
+  else{
+     const router = useRouter();
+    router.push('/login')
   }
-  isLoading.value = false;
 });
 
 </script>
@@ -132,11 +131,13 @@ const submitData = handleSubmit(async (values) => {
   -webkit-appearance: none;
   margin: 0;
 }
+
 //This class used for input group label
 .inputGroupLabel {
   color: white;
   padding-left: .2rem;
 }
+
 //This class used for input group(name, email, password, confirm password)
 .inputGroupField {
   background-color: #A0B1D0 !important;
@@ -145,12 +146,15 @@ const submitData = handleSubmit(async (values) => {
   color: white;
   border: none;
 }
+
 ::placeholder {
   color: slategray;
 }
+
 input:focus::placeholder {
   color: white;
 }
+
 //This class used for register button
 .btn {
   background-color: white;

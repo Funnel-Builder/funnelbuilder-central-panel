@@ -37,13 +37,29 @@ definePageMeta({
 })
 
 const selectedShop = ref();
-
+const loading = ref(false)
 const isDisabled = computed(() => !selectedShop.value);
 
-const shop = ref([
-  { name: 'xyz shop', code: 'xyz' },
-  { name: 'xyz2 shop', code: 'xyz' },
-]);
+const shop = ref([]);
+
+onMounted(async () => {
+  setTimeout(async () => {
+    await getShop()
+  }, 500);
+})
+
+const getShop = async () => {
+  loading.value = true
+  const { data, error } = await getData('user-shop-list')
+  if (error && error.value) {
+    console.log(error);
+  }
+  else {
+    console.log(data, 'kkk');
+    shop.value = data.value.data
+  }
+  loading.value = false
+}
 
 const goToShop = () => {
   console.log(selectedShop.value);
@@ -56,4 +72,5 @@ const goToShop = () => {
   width: 100% !important;
   border: none !important;
   background-color: #EFF1F7 !important;
-}</style>
+}
+</style>

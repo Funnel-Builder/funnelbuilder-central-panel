@@ -26,7 +26,7 @@
                 <form-input-error :message="error_mes"/>
             </div>
             <div class="text-center">
-                <Button :disabled="otpNumber?.length !== 6" link class="btn p-2 md:p-2.5  focus:shadow-none" label="Continue" />
+                <Button @click="submitOtp" :disabled="otpNumber?.length !== 6" link class="btn p-2 md:p-2.5  focus:shadow-none" label="Continue" />
             </div>
         </div>
     </div>
@@ -38,6 +38,8 @@ import moment from "moment";
 definePageMeta({
     layout: "auth",
 });
+
+const authorizedCode = ref('')
 const otpNumber = ref(null)
 const timeOver = ref(false)
 const setValue = ref()
@@ -72,12 +74,35 @@ const resendOtp = async() =>{
 
 const handleOnComplete = async (value) => {
     otpNumber.value = value;
+    const {data, error} = await postData('verify-otp', {otp: value, email: otp.email})
+    if(error && error.value){
+      if(error.value.statusCode === 422){
+           error_mes.value = error.value.data.message
+        }
+    }
+    else {
+      authorizedCode.value = data.value.authorization_code
+    }
 };
 const handleOnChange = async (value) => {
     //do some action
 }
 const timeEnd = (evn) => {
     timeOver.value = false;
+}
+
+const submitOtp = async () => {
+  const {data, error} = await postData('verify-email', {authorized_code: authorizedCode.value})
+  if(error && error.value){
+    if(error.value.statusCode === 422){
+         error_mes.value = error.value.data.message
+      }
+  }
+  else {
+    console.log(data.value)
+    const router = useRouter()
+    router.push('/shop')
+  }
 }
 
 </script>
