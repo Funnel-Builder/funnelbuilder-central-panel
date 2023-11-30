@@ -1,7 +1,7 @@
 <template>
-    <div class="">
+    <nuxt-link to="/" class="">
         <img class="w-60 md:w-full" src="/shop/ota-logo.svg" alt="">
-    </div>
+    </nuxt-link>
 </template>
 <script setup>
 const props = defineProps({

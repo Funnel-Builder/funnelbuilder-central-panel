@@ -29,7 +29,7 @@
               <InputGroup class="">
                 <InputGroupAddon class="inputGroupFieldFlag p-2 md:p-2.5 rounded-l-xl">
                   <img class="rounded-md" src="/auth/bdFlag.svg" alt="flag"/>
-                  <p class="text-[14px] md:text-[16px] px-2">BD +880</p>
+                  <p class="text-[14px] md:text-[16px] px-2">+880</p>
                 </InputGroupAddon>
                 <InputText
                     v-model="phone.value.value"
