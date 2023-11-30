@@ -23,10 +23,12 @@
                         <button @click="resendOtp" :disabled="timeOver" class="underline text-white">Resend</button>
                     </div>
                 </div>
-                <form-input-error :message="error_mes"/>
+                <form-input-error text-color="#FFD600" :message="error_mes" />
             </div>
             <div class="text-center">
-                <Button @click="submitOtp" :disabled="otpNumber?.length !== 6" link class="btn p-2 md:p-2.5  focus:shadow-none" label="Continue" />
+                <button @click="submitOtp" :disabled="otpNumber?.length !== 6"
+                    :class="otpNumber?.length !== 6 ? 'bg-gray-400 cursor-not-allowed' : 'bg-white text-black'"
+                    class="bg-[#5A78AD] rounded-lg w-full h-10 md:h-12 text-xs md:text-lg focus:shadow-none text-white font-semibold">Continue</button>
             </div>
         </div>
     </div>
@@ -53,35 +55,35 @@ console.log(otp, 'otp')
 onMounted(() => {
     // console.log(moment(moment(otp?.expires_in)).diff(moment(), 'seconds'))
     const timers = moment(moment(otp?.expires_in)).diff(moment(), 'seconds');
-    if(timers > 0){
+    if (timers > 0) {
         timeOver.value = true
         setValue.value = otp.expires_in
     }
 });
 
-const resendOtp = async() =>{
+const resendOtp = async () => {
     timeOver.value = true
     setTime.value = 0
-    const {data, error} = await postData('get-otp', {email: otp.email})
-    if(error && error.value){
-        if(error.value.statusCode == 422){
+    const { data, error } = await postData('get-otp', { email: otp.email })
+    if (error && error.value) {
+        if (error.value.statusCode == 422) {
             error_mes.value = error.value.data.message
         }
-    }else{
+    } else {
         setTime.value = data.value.retry_after;
     }
 }
 
 const handleOnComplete = async (value) => {
     otpNumber.value = value;
-    const {data, error} = await postData('verify-otp', {otp: value, email: otp.email})
-    if(error && error.value){
-      if(error.value.statusCode === 422){
-           error_mes.value = error.value.data.message
+    const { data, error } = await postData('verify-otp', { otp: value, email: otp.email })
+    if (error && error.value) {
+        if (error.value.statusCode === 422) {
+            error_mes.value = error.value.data.message
         }
     }
     else {
-      authorizedCode.value = data.value.authorization_code
+        authorizedCode.value = data.value.authorization_code
     }
 };
 const handleOnChange = async (value) => {
@@ -92,17 +94,18 @@ const timeEnd = (evn) => {
 }
 
 const submitOtp = async () => {
-  const {data, error} = await postData('verify-email', {authorized_code: authorizedCode.value})
-  if(error && error.value){
-    if(error.value.statusCode === 422){
-         error_mes.value = error.value.data.message
-      }
-  }
-  else {
-    console.log(data.value)
-    const router = useRouter()
-    router.push('/shop')
-  }
+    const { data, error } = await postData('verify-email', { authorization_code: authorizedCode.value })
+    if (error && error.value) {
+        if (error.value.statusCode === 422) {
+            error_mes.value = error.value.data.message
+        }
+    }
+    else {
+        if (data.value.data.email_verified_at !== null) {
+            const router = useRouter()
+            router.push('/shop')
+        }
+    }
 }
 
 </script>
@@ -116,7 +119,7 @@ const submitOtp = async () => {
     border-radius: 10px;
     border: none;
     cursor: pointer;
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 .otp-input {

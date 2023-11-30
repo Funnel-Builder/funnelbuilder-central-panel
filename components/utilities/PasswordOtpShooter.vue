@@ -7,34 +7,35 @@
         </div>
         <div>
             <div class="py-16">
-                <p class="text-[12px] md:text-[14px] text-white font-[400] pl-2">Enter Code</p>
-                <div class="mt-1 flex justify-between">
-                    <v-otp-input ref="otpInput" input-classes="otp-input" separator="" :num-inputs="6"
-                        :should-auto-focus="true" :is-input-num="true" @on-change="handleOnChange"
-                        @on-complete="handleOnComplete">
-                    </v-otp-input>
-                </div>
-                <div class="flex justify-between pt-2 pl-2">
-                    <div>
-                        <utilities-otp-timer v-if="setTime > 0" :sec="setTime" @timeEnd="timeEnd($event)" />
+                <div v-if="!error_mes">
+                    <p class="text-[12px] md:text-[14px] text-white font-[400] pl-2">Enter Code</p>
+                    <div class="mt-1 flex justify-between">
+                        <v-otp-input ref="otpInput" input-classes="otp-input" separator="" :num-inputs="6"
+                            :should-auto-focus="true" :is-input-num="true" @on-change="handleOnChange"
+                            @on-complete="handleOnComplete">
+                        </v-otp-input>
                     </div>
-                    <div>
-                        <button @click="resendOtp" :disabled="timeOver" class="underline text-white">Resend</button>
+                    <div class="flex justify-between pt-2 pl-2">
+                        <div>
+                            <utilities-otp-timer v-if="setTime > 0" :sec="setTime" @timeEnd="timeEnd($event)" />
+                        </div>
+                        <div>
+                            <button @click="resendOtp" :disabled="timeOver" class="underline text-white">Resend</button>
+                        </div>
                     </div>
                 </div>
-                <form-input-error :message="error_mes"/>
+                <form-input-error :message="error_mes" text-color="#FFD600" />
             </div>
             <div class="text-center">
-              {{ otpNumber }}
-              {{ authStore.user_email }}
-                <Button @click="submitOtp" :disabled="otpNumber?.length !== 6" link class="btn p-2 md:p-2.5  focus:shadow-none" label="Continue" />
+                <Button @click="submitOtp" :disabled="otpNumber?.length !== 6" link
+                    class="btn p-2 md:p-2.5  focus:shadow-none" label="Continue" />
             </div>
         </div>
     </div>
 </template>
   
 <script setup>
-import {useAuthStore} from "~/stores/auth.js";
+import { useAuthStore } from "~/stores/auth.js";
 
 definePageMeta({
     layout: "auth",
@@ -48,24 +49,24 @@ const otp = getOtp();
 console.log(otp, 'otp')
 
 
-onMounted(async() => {
-    if(authStore.user_email){
+onMounted(async () => {
+    if (authStore.user_email) {
         await resendOtp()
-    }else{
+    } else {
         let router = useRouter()
         router.push('/forgot-password')
     }
 });
 
-const resendOtp = async() =>{
+const resendOtp = async () => {
     timeOver.value = true
     setTime.value = 0
-    const {data, error} = await postData('get-otp', {email: authStore.user_email})
-    if(error && error.value){
-        if(error.value.statusCode == 422){
+    const { data, error } = await postData('get-otp', { email: authStore.user_email })
+    if (error && error.value) {
+        if (error.value.statusCode == 422) {
             error_mes.value = error.value.data.message
         }
-    }else{
+    } else {
         setTime.value = data.value.retry_after;
     }
 }
@@ -81,15 +82,15 @@ const timeEnd = (evn) => {
 }
 
 const submitOtp = async () => {
-    const {data, error} = await postData('verify-otp', {email: authStore.user_email, otp: otpNumber.value})
+    const { data, error } = await postData('verify-otp', { email: authStore.user_email, otp: otpNumber.value })
     console.log(data.value.authorization_code)
 
-    if(error && error.value){
-      if (error.value.statusCode === 422) {
-        setErrors(error.value.data.errors || {})
-      }
+    if (error && error.value) {
+        if (error.value.statusCode === 422) {
+            setErrors(error.value.data.errors || {})
+        }
     }
-    else{
+    else {
         authStore.setAuthorizationCode(data.value.authorization_code)
         const router = useRouter()
         router.push('/reset-password')

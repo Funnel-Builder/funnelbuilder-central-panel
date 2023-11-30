@@ -18,7 +18,7 @@
               <InputText v-model="email.value.value" :class="{ 'invalid': email.errorMessage.value }"
                          class="inputGroupField focus:shadow-none py-2 sm:py-3" id="email" type="email"
                          placeholder="Enter email address" />
-              <form-input-error :message="email.errorMessage.value" />
+              <form-input-error :message="email.errorMessage.value" text-color="#FFD600" />
             </div>
             <div class="pt-12 text-center">
               <Button :disabled="isSubmitDisabled" @click="submitData" class="btn p-2 md:p-2.5  focus:shadow-none"
@@ -68,7 +68,7 @@ const isSubmitDisabled = computed(() => {
 //Methods
 const submitData = handleSubmit(async (values) => {
   authStore.setUserMail(values.email)
-  router.push('/verify-otp-forget-password');
+  router.push('/verify-forget-password-otp');
 });
 
 
