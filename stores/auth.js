@@ -3,7 +3,8 @@ export const useAuthStore = defineStore('auth', {
     state: () => ({
         token: accessToken() || null,
         user: getUser() || null,
-        user_email: ''
+        user_email: '',
+        authorization_code: '',
     }),
     getters: {
         isLoggedIn: (state) => {
@@ -26,6 +27,9 @@ export const useAuthStore = defineStore('auth', {
         },
         setUserMail(email){
             this.user_email = email
+        },
+        setAuthorizationCode(code){
+          this.authorization_code = code
         },
         async register(payload) {
             const { data, pending, error, refresh } = await postData('register', payload)
@@ -63,6 +67,8 @@ export const useAuthStore = defineStore('auth', {
             const {data, pending, error, refresh} = await postData('logout')
             if (data) {
                 this.clearAuth()
+                this.user = null
+                this.token = null
             }
             return {data, pending, error, refresh}
         }
