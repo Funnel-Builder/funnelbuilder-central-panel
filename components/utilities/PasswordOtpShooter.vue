@@ -20,7 +20,7 @@
                             <utilities-otp-timer v-if="setTime > 0" :sec="setTime" @timeEnd="timeEnd($event)" />
                         </div>
                         <div>
-                            <button @click="resendOtp" :disabled="timeOver" class="underline text-white">Resend</button>
+                            <button @click="resendOtp" :disabled="timeOver" :class="timeOver ? 'text-gray-400':'text-white'" class="underline">Resend</button>
                         </div>
                     </div>
                 </div>
@@ -57,7 +57,6 @@ onMounted(async () => {
 });
 
 const resendOtp = async () => {
-    resetOtp()
     timeOver.value = true
     setTime.value = 0
     const { data, error } = await postData('get-otp', { email: authStore.otp_email_time.email })
@@ -74,6 +73,7 @@ const handleOnComplete = async (value) => {
     otpNumber.value = value;
 };
 const handleOnChange = async (value) => {
+    error_mes.value = ''
     //do some action
 }
 const timeEnd = (evn) => {
@@ -95,6 +95,7 @@ const submitOtp = async () => {
 }
 
 const resetOtp = () => {
+    error_mes.value = ''
     const inputFields = document.querySelectorAll('.otp-input');
     inputFields.forEach((input) => {
         input.value = '';
