@@ -104,10 +104,11 @@ const submitData = handleSubmit(async (values) => {
     }
   }
   else {
-    if(data.value.user.email_verified_at !== null){
-      await router.push('/')
-    }else{
+    if(data.value.next === 'verify-email'){
       await router.push('/verify-email')
+    } else{
+      // data.value.next = 'create-shop'
+      await router.push('/shop')
     }
   }
   isLoading.value = false;
