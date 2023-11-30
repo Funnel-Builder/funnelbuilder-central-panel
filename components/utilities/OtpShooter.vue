@@ -23,7 +23,7 @@
                         <button @click="resendOtp" :disabled="timeOver" class="underline text-white">Resend</button>
                     </div>
                 </div>
-                <form-input-error :message="error_mes"/>
+                <form-input-error text-color="#FFD600" :message="error_mes"/>
             </div>
             <div class="text-center">
                 <Button @click="submitOtp" :disabled="otpNumber?.length !== 6" link class="btn p-2 md:p-2.5  focus:shadow-none" label="Continue" />
