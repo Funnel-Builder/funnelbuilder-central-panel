@@ -95,11 +95,11 @@
                     binary
                     name="termsAndCondition"
                     value="termsAndCondition"/>
-                <p class="text-white">I accept the</p><nuxt-link to="/terms-and-conditions" target="_blank"  class="text-white text-[14px] sm:text-[16px] underline">Terms & conditions</nuxt-link>
+                <p class="text-white">I accept</p><nuxt-link to="/terms-and-conditions" target="_blank"  class="text-white text-[14px] sm:text-[16px] underline">Terms & conditions</nuxt-link>
               </div>
               <div class="flex py-2 gap-x-2">
                 <p class="text-white text-[14px] sm:text-[16px] ">Already have an account?</p>
-                <nuxt-link to="/login" class="text-white text-[14px] sm:text-[16px] font-bold">Login</nuxt-link>
+                <nuxt-link to="/login" class="text-white text-[14px] sm:text-[16px] font-[400] underline">Login</nuxt-link>
               </div>
             </div>
             <form-input-error :message="termsAndCondition.errorMessage.value" text-color="#FFD600"/>

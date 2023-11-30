@@ -37,10 +37,10 @@
               <form-input-error :message="password.errorMessage.value" text-color="#FFD600"/>
             </div>
             <div class="pt-4 flex justify-between items-center">
-              <nuxt-link to="/forget-password" class="text-white font-bold underline">Forget Password</nuxt-link>
+              <nuxt-link to="/forget-password" class="text-white font-[400] underline">Forget Password</nuxt-link>
               <div class="flex items-center gap-x-2">
                 <p class="text-[12px] md:text-[14px] text-white font-[400]">Don’t have an account?</p>
-                <nuxt-link to="/register"  class="text-white font-bold">Register</nuxt-link>
+                <nuxt-link to="/register"  class="text-white font-[400] underline">Register</nuxt-link>
               </div>
             </div>
             <div class="pt-8 md:pt-12">
