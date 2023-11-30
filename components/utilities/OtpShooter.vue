@@ -91,6 +91,7 @@ const handleOnComplete = async (value) => {
   }
 };
 const handleOnChange = async (value) => {
+  error_msg.value = ''
   //do some action
 }
 const timeEnd = (evn) => {
