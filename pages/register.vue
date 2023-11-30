@@ -9,7 +9,7 @@
           <div class="px-4 sm:px-0 ">
             <h1 class="text-[30px] md:text-[36px] lg:text-[40px] xl:text-[44px] 2xl:text-[48px] text-white font-[600]">Get
               Started</h1>
-            <p class="text-[12px] md:text-[14px] text-white font-[400]">Welcome to BDFunnelBuilder. Let’s
+            <p class="text-[14px] sm:text-[16px] text-white font-[400]">Welcome to BDFunnelBuilder. Let’s
               Get Started.</p>
           </div>
           <div class="px-4 sm:px-0">
@@ -95,7 +95,7 @@
                     binary
                     name="termsAndCondition"
                     value="termsAndCondition"/>
-                <p class="text-white">I accept</p><nuxt-link to="/terms-and-conditions" target="_blank"  class="text-white text-[14px] sm:text-[16px] underline">Terms & conditions</nuxt-link>
+                <p class="text-white text-[14px] sm:text-[16px]">I accept</p><nuxt-link to="/terms-and-conditions" target="_blank"  class="text-white text-[14px] sm:text-[16px] underline">Terms & conditions</nuxt-link>
               </div>
               <div class="flex py-2 gap-x-2">
                 <p class="text-white text-[14px] sm:text-[16px] ">Already have an account?</p>
@@ -143,7 +143,7 @@ const {handleSubmit, isSubmitting, handleReset, setErrors} = useForm({
          if (!/^(?:\+88|01)?(?:\d{11}|\d{13})$/.test(value)) return "Invalid phone number";
       }
       else if(value && value.startsWith('1')){
-         if (/^(?:(?:\+|00)88|01)?\d{11}$/.test(value)) return "Invalid phone number";
+        if (!/^(?:\+88|01)?(?:\d{10}|\d{12})$/.test(value)) return "Invalid phone number";
       }
       return true;
     },
