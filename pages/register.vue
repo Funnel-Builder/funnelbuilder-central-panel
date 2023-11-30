@@ -123,6 +123,7 @@ definePageMeta({
 
 //Define Variables
 const authStore = useAuthStore();
+const router = useRouter();
 const isShow = ref(false);
 const isShowConfirm = ref(false);
 const isLoading = ref(false);
@@ -206,8 +207,7 @@ const submitForm = handleSubmit(async (values) => {
     }
   }
   else {
-    const router = useRouter();
-    router.push('/verify-email');
+    await router.push('/verify-email');
   }
   isLoading.value = false;
 });

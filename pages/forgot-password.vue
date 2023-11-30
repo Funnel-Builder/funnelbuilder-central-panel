@@ -68,7 +68,7 @@ const isSubmitDisabled = computed(() => {
 //Methods
 const submitData = handleSubmit(async (values) => {
   authStore.setUserMail(values.email)
-  router.push('/verify-otp-forget-password');
+  await router.push('/verify-otp-forget-password');
 });
 
 

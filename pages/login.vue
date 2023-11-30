@@ -62,6 +62,7 @@ definePageMeta({
 });
 //Variables
 const authStore = useAuthStore();
+const router = useRouter();
 const isShow = ref(false);
 const isLoading = ref(false);
 //validation rules
@@ -102,11 +103,10 @@ const submitData = handleSubmit(async (values) => {
     }
   }
   else {
-    const router = useRouter();
     if(data.value.user.email_verified_at !== null){
-      router.push('/')
+      await router.push('/')
     }else{
-      router.push('/verify-email')
+      await router.push('/verify-email')
     }
   }
   isLoading.value = false;
