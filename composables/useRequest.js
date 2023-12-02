@@ -1,4 +1,5 @@
 import moment from "moment";
+import {useToast} from "vue-toastification";
 
 const createRequest = async (url, method, body = null) => {
     const config = useRuntimeConfig();
@@ -30,7 +31,21 @@ const createRequest = async (url, method, body = null) => {
             }
         },
         onResponseError({ request, response, options }) {
-            // Handle the response errors
+           // Handle the response errors
+            const toast = useToast()
+            // if (response.status === 401 && url !== 'refresh_token') {
+            //     const authStore = useAuthStore()
+            //     authStore.refreshToken()
+            // }
+            if (response.status === 422) {
+                toast.error('Oops, something went wrong!')
+            }
+            if (response.status === 500) {
+                toast.error('Oops, Server Error!')
+            }
+            if (response.status === 404) {
+                toast.error('Oops, Not Found!')
+            }
         }
     });
 
