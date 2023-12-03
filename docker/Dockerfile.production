@@ -3,8 +3,8 @@ FROM node:20-alpine as build
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json /app/
-COPY .env /app/
 RUN yarn install --silent
+COPY .env.example /app/.env
 COPY . /app
 RUN yarn run generate
 
