@@ -13,6 +13,9 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxtjs/tailwindcss'
   ],
+  build : {
+    transpile: ['vue-toastification']
+  },
   postcss: {
     plugins: {
       tailwindcss: {},

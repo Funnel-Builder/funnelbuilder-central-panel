@@ -21,14 +21,16 @@ const createRequest = async (url, method, body = null) => {
         },
         onResponse({ request, response, options }) {
            // if getExpiresIn() expires in less than 30 minutes, refresh token
-            if (getExpiresIn() && accessToken() && url !== 'refresh_token') {
-                const now = moment().format()
-                const expiresIn = moment(getExpiresIn()).subtract(30, 'minutes').format()
-                if (now > expiresIn && now < moment(getExpiresIn())) {
-                    const authStore = useAuthStore()
-                    authStore.refreshToken()
-                }
+            if (!(getExpiresIn() && accessToken() && url !== 'refresh_token')) {
+                return;
             }
+            const now = moment().format()
+            const expiresIn = moment(getExpiresIn()).subtract(30, 'minutes').format()
+            if (now > expiresIn && now < moment(getExpiresIn())) {
+                const authStore = useAuthStore()
+                authStore.refreshToken()
+            }
+
         },
         onResponseError({ request, response, options }) {
            // Handle the response errors
