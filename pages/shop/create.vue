@@ -20,15 +20,17 @@
                                                     class="border-0 w-full h-10 md:h-12 text-xs md:text-lg flex items-center focus:shadow-none"
                                                     id="shopUrl" type="text" />
                                                 <InputGroupAddon style="background-color: #EFF1F7; color: gray;"
-                                                    class="w-full md:w-[50%] h-10 md:h-12 text-xs md:text-lg flex items-center focus:shadow-none">
+                                                    class="w-full md:w-[30%] h-10 md:h-12 text-xs md:text-lg flex items-center focus:shadow-none">
                                                     .funnelbuilder.com
                                                 </InputGroupAddon>
+                                                <InputGroupAddon style="background-color: #EFF1F7; color: gray;"
+                                                    class="h-10 md:h-12 text-xs md:text-lg flex items-center focus:shadow-none">
+                                                    <i :class="checkShopNameValidity"></i>
+                                                </InputGroupAddon>
                                             </InputGroup>
-                                            <div>
-                                                <i :class="checkShopNameValidity"></i>
-                                            </div>
                                         </div>
-                                        <form-input-error :message="error_message =='error' ? 'This url has already taken' : shopUrl.errorMessage.value" />
+                                        <form-input-error
+                                            :message="error_message == 'error' ? 'This url has already taken' : shopUrl.errorMessage.value" />
                                     </div>
                                     <div class="pt-3">
                                         <p class="pb-1"><small class="text-[#5A78AD]">Shop Name*</small></p>
@@ -134,9 +136,9 @@ const validityShopUrl = async (nv) => {
 
 const checkShopNameValidity = computed(() => {
     if (error_message.value) {
-      if (shopUrl.value.value.length < 4 || shopUrl.value.value.length > 100) return 'pi pi-ban failed ml-2'
-      else if (error_message.value === 'success') return 'pi pi-verified success ml-2'
-      else if (error_message.value === 'error') return 'pi pi-ban failed ml-2'
+        if (shopUrl.value.value.length < 4 || shopUrl.value.value.length > 100) return 'pi pi-ban failed ml-2'
+        else if (error_message.value === 'success') return 'pi pi-check-circle success ml-2'
+        else if (error_message.value === 'error') return 'pi pi-ban failed ml-2'
     }
 
 })

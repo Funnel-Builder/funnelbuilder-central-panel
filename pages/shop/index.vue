@@ -14,14 +14,13 @@
                 class="w-full custom-class" />
             </div>
             <div class="w-full pt-8">
-              <button @click="goToShop" :disabled="isDisabled"
-                :class="{ 'bg-gray-400': isDisabled, 'bg-[#5A78AD]': !isDisabled }"
-                class="font-bold w-full text-white flex justify-center items-center rounded-2xl h-10 md:h-12 text-xs md:text-lg">Next</button>
+              <buttons-action-button @submitData="goToShop" :disabled="isDisabled" :loading="loading" text="Continue"
+                activeClass="bg-[#5A78AD] text-white" />
               <h4 class="text-center py-3 text-[#5A78AD]">Or</h4>
               <div>
-                <nuxt-link to="/shop/create"
-                  class="font-bold w-full text-white bg-[#5A78AD] flex justify-center items-center rounded-2xl h-10 md:h-12 text-xs md:text-lg">Create
-                  One</nuxt-link>
+                <buttons-action-button classes="font-bold w-full text-white bg-[#5A78AD]"
+                  type="link" :disabled="isDisabled" :loading="loading" text="Create One" to="/shop/create"
+                  activeClass="bg-[#5A78AD] text-white" />
               </div>
             </div>
           </div>
@@ -72,5 +71,4 @@ const goToShop = () => {
   width: 100% !important;
   border: none !important;
   background-color: #EFF1F7 !important;
-}
-</style>
+}</style>

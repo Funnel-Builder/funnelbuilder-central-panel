@@ -1,51 +1,42 @@
 <template>
   <div class="container mx-auto">
-    <div v-if="isLoading">
-      <CommonLoader></CommonLoader>
-    </div>
-    <div v-else>
+    <div>
       <div class="flex flex-col items-center justify-center min-h-screen">
         <div class="w-[100%] sm:w-[70%] md:w-[60%] lg:w-[50%]">
           <div class="px-4 sm:px-0">
-            <h1 class="text-[30px] md:text-[36px] lg:text-[40px] xl:text-[44px] 2xl:text-[48px] text-white font-[600]">Welcome Back!</h1>
+            <h1 class="text-[30px] md:text-[36px] lg:text-[40px] xl:text-[44px] 2xl:text-[48px] text-white font-[600]">
+              Welcome Back!</h1>
           </div>
           <div class="px-4 sm:px-0">
             <div class="pt-5">
               <label class="inputGroupLabel" for="email">Email Address *</label><br>
-              <InputText
-                  v-model="email.value.value"
-                  :class="{ 'invalid': email.errorMessage.value }"
-                  class="inputGroupField focus:shadow-none py-2 sm:py-3"
-                  id="email"
-                  type="email"
-                  placeholder="Enter email address"/>
-              <form-input-error :message="email.errorMessage.value" text-color="#FFD600"/>
+              <InputText v-model="email.value.value" :class="{ 'invalid': email.errorMessage.value }"
+                class="inputGroupField focus:shadow-none py-2 sm:py-3" id="email" type="email"
+                placeholder="Enter email address" />
+              <form-input-error :message="email.errorMessage.value" text-color="#FFD600" />
             </div>
             <div class="pt-5">
               <label class="inputGroupLabel" for="password">Password *</label><br>
               <div class="p-input-icon-right w-full">
-                <InputText
-                    v-model="password.value.value"
-                    :class="{ 'invalid': password.errorMessage.value }"
-                    class="inputGroupField focus:shadow-none py-2 sm:py-3"
-                    id="password"
-                    toggleMask
-                    :type="isShow ? 'text' : 'password'"
-                    placeholder="Enter password"/>
-                <i @click="isShowPassword" :class="isShow ? 'pi pi-eye' : 'pi pi-eye-slash' " style="color:white"></i>
+                <InputText v-model="password.value.value" :class="{ 'invalid': password.errorMessage.value }"
+                  class="inputGroupField focus:shadow-none py-2 sm:py-3" id="password" toggleMask
+                  :type="isShow ? 'text' : 'password'" placeholder="Enter password" />
+                <i @click="isShowPassword" :class="isShow ? 'pi pi-eye' : 'pi pi-eye-slash'" style="color:white"></i>
               </div>
-              <form-input-error :message="password.errorMessage.value" text-color="#FFD600"/>
+              <form-input-error :message="password.errorMessage.value" text-color="#FFD600" />
             </div>
             <div class="pt-4 md:flex justify-between items-center">
-              <nuxt-link to="/forget-password" class="text-[14px] md:text-[16px] text-white font-[400] underline">Forget Password</nuxt-link>
+              <nuxt-link to="/forget-password" class="text-[14px] md:text-[16px] text-white font-[400] underline">Forget
+                Password</nuxt-link>
               <div class="pt-2 flex items-center gap-x-2">
                 <p class="text-[14px] md:text-[16px] text-white font-[400]">Don’t have an account?</p>
-                <nuxt-link to="/register"  class="text-[14px] md:text-[16px] text-white font-[400] underline">Register</nuxt-link>
+                <nuxt-link to="/register"
+                  class="text-[14px] md:text-[16px] text-white font-[400] underline">Register</nuxt-link>
               </div>
             </div>
             <div class="pt-8 md:pt-12">
-              <Button :disabled="isSubmitDisabled" @click="submitData" class="btn p-1 md:p-2.5 focus:shadow-none"
-                      label="Login"/>
+              <buttons-action-button @submitData="submitData" text="Login" :disabled="isSubmitDisabled"
+                :loading="isLoading" />
             </div>
           </div>
         </div>
@@ -55,11 +46,11 @@
 </template>
 
 <script setup>
-import {useField, useForm} from 'vee-validate';
+import { useField, useForm } from 'vee-validate';
 
 definePageMeta({
   layout: "auth",
-  middleware:['guest']
+  middleware: ['guest']
 });
 //Variables
 const authStore = useAuthStore();
@@ -67,7 +58,7 @@ const router = useRouter();
 const isShow = ref(false);
 const isLoading = ref(false);
 //validation rules
-const {handleSubmit, isSubmitting, handleReset, setErrors} = useForm({
+const { handleSubmit, isSubmitting, handleReset, setErrors } = useForm({
   validationSchema: {
     email(value) {
       if (!value) return 'Email is required'
@@ -87,7 +78,7 @@ const password = useField('password');
 
 //Computed Properties
 const isSubmitDisabled = computed(() => {
-  return !( email.value.value && password.value.value)
+  return !(email.value.value && password.value.value)
 });
 
 //Methods
@@ -97,17 +88,16 @@ const isShowPassword = () => {
 
 const submitData = handleSubmit(async (values) => {
   isLoading.value = true;
-  const {data, pending, error, refresh} = await authStore.login(values);
+  const { data, pending, error, refresh } = await authStore.login(values);
   if (error && error.value) {
     if (error.value.statusCode === 422) {
       setErrors(error.value.data.errors || {})
     }
   }
   else {
-    if(data.value.next === 'verify-email'){
+    if (data.value.next === 'verify-email') {
       await router.push('/verify-email')
-    } else{
-      // data.value.next = 'create-shop'
+    } else {
       await router.push('/shop')
     }
   }
@@ -122,11 +112,13 @@ const submitData = handleSubmit(async (values) => {
   -webkit-appearance: none;
   margin: 0;
 }
+
 //This class used for input group label
 .inputGroupLabel {
   color: white;
   padding-left: .2rem;
 }
+
 //This class used for input group(name, email, password, confirm password)
 .inputGroupField {
   background-color: #A0B1D0 !important;
@@ -135,20 +127,13 @@ const submitData = handleSubmit(async (values) => {
   color: white;
   border: none;
 }
+
 ::placeholder {
   color: slategray;
 }
+
 input:focus::placeholder {
   color: white;
-}
-//This class used for register button
-.btn {
-  background-color: white;
-  color: black;
-  width: 100%;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
 }
 </style>
 

@@ -75,7 +75,7 @@ const { handleSubmit, isSubmitting, handleReset, setErrors } = useForm({
         },
         phone(value) {
             if (!value) return 'Phone number Name is required'
-            else if (!/^(?:\+88|01)?(?:\d{11}|\d{13})$/.test(value)) return "Invalid phone number";
+            else if (!/^(?:\+88|88)?(01[3-9]\d{8})$/.test(value)) return "Invalid phone number";
             return true;
         },
         email(value) {
@@ -97,7 +97,7 @@ const isDisabled = computed(() => {
         phone.value?.value &&
         email.value?.value &&
         address.value?.value?.length <= 40 &&
-        !(!/[a-z0-9]+@[a-z]+\.[a-z]{2,3}/.test(email.value?.value)) && !domain_error.value
+        (!/^(?:\+88|88)?(01[3-9]\d{8})$/.test(email.value?.value)) && !domain_error.value
     );
 });
 

@@ -15,37 +15,28 @@
             <div class="pt-5">
               <label class="inputGroupLabel" for="password">Password *</label><br>
               <div class="p-input-icon-right w-full">
-                <InputText
-                    v-model="password.value.value"
-                    :class="{ 'invalid': password.errorMessage.value }"
-                    class="inputGroupField focus:shadow-none py-2 sm:py-3"
-                    id="password"
-                    toggleMask
-                    :type="isShow ? 'text' : 'password'"
-                    placeholder="Enter minimum 8 characters"/>
-                <i @click="isShowPassword" :class="isShow ? 'pi pi-eye' : 'pi pi-eye-slash' " style="color:white"></i>
+                <InputText v-model="password.value.value" :class="{ 'invalid': password.errorMessage.value }"
+                  class="inputGroupField focus:shadow-none py-2 sm:py-3" id="password" toggleMask
+                  :type="isShow ? 'text' : 'password'" placeholder="Enter minimum 8 characters" />
+                <i @click="isShowPassword" :class="isShow ? 'pi pi-eye' : 'pi pi-eye-slash'" style="color:white"></i>
               </div>
-              <form-input-error :message="password.errorMessage.value" text-color="#FFD600"/>
+              <form-input-error :message="password.errorMessage.value" text-color="#FFD600" />
             </div>
             <div class="pt-5">
               <label class="inputGroupLabel" for="confirmPassword">Confirm Password *</label><br>
               <div class="p-input-icon-right w-full">
-                <InputText
-                    v-model="password_confirmation.value.value"
-                    :disabled="!(password.value.value && password.value.value.length)"
-                    :class="{ 'invalid': password_confirmation.errorMessage.value }"
-                    class="inputGroupField focus:shadow-none py-2 sm:py-3"
-                    id="confirmPassword"
-                    :type="isShowConfirm ? 'text' : 'password'"
-                    placeholder="Enter minimum 8 characters"/>
-                <i @click="isShowConfirmPassword" :class="isShowConfirm ? 'pi pi-eye' : 'pi pi-eye-slash' "
-                   style="color:white"></i>
+                <InputText v-model="password_confirmation.value.value"
+                  :disabled="!(password.value.value && password.value.value.length)"
+                  :class="{ 'invalid': password_confirmation.errorMessage.value }"
+                  class="inputGroupField focus:shadow-none py-2 sm:py-3" id="confirmPassword"
+                  :type="isShowConfirm ? 'text' : 'password'" placeholder="Enter minimum 8 characters" />
+                <i @click="isShowConfirmPassword" :class="isShowConfirm ? 'pi pi-eye' : 'pi pi-eye-slash'"
+                  style="color:white"></i>
               </div>
-              <form-input-error :message="password_confirmation.errorMessage.value" text-color="#FFD600"/>
+              <form-input-error :message="password_confirmation.errorMessage.value" text-color="#FFD600" />
             </div>
             <div class="pt-12">
-              <Button @click="submitData" class="btn p-2 md:p-2.5  focus:shadow-none"
-                      label="Reset Password"/>
+              <buttons-action-button @submitData="submitData" :disabled="isSubmitDisabled" :loading="false" text="Reset Password" />
             </div>
             <div class="pt-12 flex justify-center items-center gap-x-4">
               <i class="pi pi-arrow-left" style="font-size: 0.8rem; color:white;"></i>
@@ -59,7 +50,7 @@
 </template>
 
 <script setup>
-import {useField, useForm} from 'vee-validate';
+import { useField, useForm } from 'vee-validate';
 
 definePageMeta({
   layout: "auth",
@@ -80,7 +71,7 @@ onMounted(async () => {
 });
 
 //validation rules
-const {handleSubmit, isSubmitting, handleReset, setErrors} = useForm({
+const { handleSubmit, isSubmitting, handleReset, setErrors } = useForm({
   validationSchema: {
     password(value) {
       if (!value) return 'Password is required'
@@ -120,13 +111,13 @@ const isShowConfirmPassword = () => {
 const submitData = handleSubmit(async (values) => {
   values.email = authStore.otp_email_time.email;
   values.authorization_code = authStore.authorization_code;
-  const {data, error} = await postData('reset-password', values);
-  if( error && error.value ){
-    if(error.value.statusCode === 422){
+  const { data, error } = await postData('reset-password', values);
+  if (error && error.value) {
+    if (error.value.statusCode === 422) {
       setErrors(error.value.data.errors || {})
     }
   }
-  else{
+  else {
     await router.push('/login')
   }
 });
@@ -173,6 +164,5 @@ input:focus::placeholder {
   border: none;
   cursor: pointer;
 }
-
 </style>
 

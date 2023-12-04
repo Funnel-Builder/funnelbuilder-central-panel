@@ -1,9 +1,6 @@
 <template>
   <div class="container mx-auto">
-    <div v-if="isLoading">
-      <CommonLoader></CommonLoader>
-    </div>
-    <div v-else>
+    <div>
       <div class="py-12 sm:py-0 flex flex-col items-center justify-center min-h-screen">
         <div class="w-[100%] sm:w-[70%] md:w-[60%] lg:w-[50%]">
           <div class="px-4 sm:px-0 ">
@@ -15,97 +12,73 @@
           <div class="px-4 sm:px-0">
             <div class="pt-5">
               <label class="inputGroupLabel" for="username">Full Name *</label><br>
-              <InputText
-                  v-model="name.value.value"
-                  :class="{ 'invalid': name.errorMessage.value }"
-                  class="inputGroupField focus:shadow-none py-2 sm:py-3"
-                  id="username"
-                  type="text"
-                  placeholder="Enter your name"/>
-              <form-input-error :message="name.errorMessage.value" text-color="#FFD600"/>
+              <InputText v-model="name.value.value" :class="{ 'invalid': name.errorMessage.value }"
+                class="inputGroupField focus:shadow-none py-2 sm:py-3" id="username" type="text"
+                placeholder="Enter your name" />
+              <form-input-error :message="name.errorMessage.value" text-color="#FFD600" />
             </div>
             <div class="pt-5">
               <label class="inputGroupLabel" for="phone">Phone Number *</label><br>
               <InputGroup class="">
                 <InputGroupAddon class="inputGroupFieldFlag p-2 md:p-2.5 rounded-l-xl">
-                  <img class="rounded-md" src="/auth/bdFlag.svg" alt="flag"/>
+                  <img class="rounded-md" src="/auth/bdFlag.svg" alt="flag" />
                   <p class="text-[14px] md:text-[16px] px-2">+880</p>
                 </InputGroupAddon>
-                <InputText
-                    v-model="phone.value.value"
-                    :class="{ 'invalid': phone.errorMessage.value }"
-                    setErrorMessage
-                    class="inputGroupFieldFlag rounded-l-none rounded-r-xl focus:shadow-none py-2 sm:py-3"
-                    id="phone"
-                    type="number"
-                />
+                <InputText v-model="phone.value.value" :class="{ 'invalid': phone.errorMessage.value }" setErrorMessage
+                  class="inputGroupFieldFlag rounded-l-none rounded-r-xl focus:shadow-none py-2 sm:py-3" id="phone"
+                  type="number" />
               </InputGroup>
-              <form-input-error :message="phone.errorMessage.value" text-color="#FFD600"/>
+              <form-input-error :message="phone.errorMessage.value" text-color="#FFD600" />
             </div>
             <div class="pt-5">
               <label class="inputGroupLabel" for="email">Email Address *</label><br>
-              <InputText
-                  v-model="email.value.value"
-                  :class="{ 'invalid': email.errorMessage.value }"
-                  class="inputGroupField focus:shadow-none py-2 sm:py-3"
-                  id="email"
-                  type="email"
-                  placeholder="Enter email address"/>
-              <form-input-error :message="email.errorMessage.value" text-color="#FFD600"/>
+              <InputText v-model="email.value.value" :class="{ 'invalid': email.errorMessage.value }"
+                class="inputGroupField focus:shadow-none py-2 sm:py-3" id="email" type="email"
+                placeholder="Enter email address" />
+              <form-input-error :message="email.errorMessage.value" text-color="#FFD600" />
             </div>
             <div class="pt-5">
               <label class="inputGroupLabel" for="password">Password *</label><br>
               <div class="p-input-icon-right w-full">
-                <InputText
-                    v-model="password.value.value"
-                    :class="{ 'invalid': password.errorMessage.value }"
-                    class="inputGroupField focus:shadow-none py-2 sm:py-3"
-                    id="password"
-                    toggleMask
-                    :type="isShow ? 'text' : 'password'"
-                    placeholder="Enter minimum 8 characters"/>
-                <i @click="isShowPassword" :class="isShow ? 'pi pi-eye' : 'pi pi-eye-slash' " style="color:white"></i>
+                <InputText v-model="password.value.value" :class="{ 'invalid': password.errorMessage.value }"
+                  class="inputGroupField focus:shadow-none py-2 sm:py-3" id="password" toggleMask
+                  :type="isShow ? 'text' : 'password'" placeholder="Enter minimum 8 characters" />
+                <i @click="isShowPassword" :class="isShow ? 'pi pi-eye' : 'pi pi-eye-slash'" style="color:white"></i>
               </div>
-              <form-input-error :message="password.errorMessage.value" text-color="#FFD600"/>
+              <form-input-error :message="password.errorMessage.value" text-color="#FFD600" />
             </div>
             <div class="pt-5">
               <label class="inputGroupLabel" for="confirmPassword">Confirm Password *</label><br>
               <div class="p-input-icon-right w-full">
-                <InputText
-                    v-model="password_confirmation.value.value"
-                    :disabled="!(password.value.value && password.value.value.length)"
-                    :class="{ 'invalid': password_confirmation.errorMessage.value }"
-                    class="inputGroupField focus:shadow-none py-2 sm:py-3"
-                    id="confirmPassword"
-                    :type="isShowConfirm ? 'text' : 'password'"
-                    placeholder="Enter minimum 8 characters"/>
-                <i @click="isShowConfirmPassword" :class="isShowConfirm ? 'pi pi-eye' : 'pi pi-eye-slash' "
-                   style="color:white"></i>
+                <InputText v-model="password_confirmation.value.value"
+                  :disabled="!(password.value.value && password.value.value.length)"
+                  :class="{ 'invalid': password_confirmation.errorMessage.value }"
+                  class="inputGroupField focus:shadow-none py-2 sm:py-3" id="confirmPassword"
+                  :type="isShowConfirm ? 'text' : 'password'" placeholder="Enter minimum 8 characters" />
+                <i @click="isShowConfirmPassword" :class="isShowConfirm ? 'pi pi-eye' : 'pi pi-eye-slash'"
+                  style="color:white"></i>
               </div>
-              <form-input-error :message="password_confirmation.errorMessage.value" text-color="#FFD600"/>
+              <form-input-error :message="password_confirmation.errorMessage.value" text-color="#FFD600" />
             </div>
             <div class="pt-6 xl:flex justify-between items-center">
               <div class="inline-flex items-center gap-x-2">
-                <Checkbox
-                    v-model="termsAndCondition.value.value"
-                    :class="{ 'invalid': termsAndCondition.errorMessage.value }"
-                    style="background-color:#6582b2 !important; border: 0 solid #2196F3;"
-                    class="focus:border-0 hover:border-green-500 bg-blue-900 focus:shadow-none focus:outline-none focus:outline-offset-0 check"
-                    id="chbx"
-                    binary
-                    name="termsAndCondition"
-                    value="termsAndCondition"/>
-                <p class="text-white text-[14px] sm:text-[16px]">I accept</p><nuxt-link to="/terms-and-conditions" target="_blank"  class="text-white text-[14px] sm:text-[16px] underline">Terms & conditions</nuxt-link>
+                <Checkbox v-model="termsAndCondition.value.value"
+                  :class="{ 'invalid': termsAndCondition.errorMessage.value }"
+                  style="background-color:#6582b2 !important; border: 0 solid #2196F3;"
+                  class="focus:border-0 hover:border-green-500 bg-blue-900 focus:shadow-none focus:outline-none focus:outline-offset-0 check"
+                  id="chbx" binary name="termsAndCondition" value="termsAndCondition" />
+                <p class="text-white text-[14px] sm:text-[16px]">I accept</p><nuxt-link to="/terms-and-conditions"
+                  target="_blank" class="text-white text-[14px] sm:text-[16px] underline">Terms & conditions</nuxt-link>
               </div>
               <div class="flex py-2 gap-x-2">
                 <p class="text-white text-[14px] sm:text-[16px] ">Already have an account?</p>
-                <nuxt-link to="/login" class="text-white text-[14px] sm:text-[16px] font-[400] underline">Login</nuxt-link>
+                <nuxt-link to="/login"
+                  class="text-white text-[14px] sm:text-[16px] font-[400] underline">Login</nuxt-link>
               </div>
             </div>
-            <form-input-error :message="termsAndCondition.errorMessage.value" text-color="#FFD600"/>
+            <form-input-error :message="termsAndCondition.errorMessage.value" text-color="#FFD600" />
             <div class="py-4">
-              <Button :disabled="isSubmitDisabled" @click="submitForm()" class="btn p-1 md:p-2.5 focus:shadow-none"
-                      label="Register"/>
+              <buttons-action-button @submitData="submitForm" :disabled="isSubmitDisabled" :loading="isLoading" text="Register" />
             </div>
           </div>
         </div>
@@ -115,11 +88,11 @@
 </template>
 
 <script setup>
-import {useField, useForm} from 'vee-validate';
+import { useField, useForm } from 'vee-validate';
 
 definePageMeta({
   layout: "auth",
-  middleware:['guest']
+  middleware: ['guest']
 });
 
 //Define Variables
@@ -130,7 +103,7 @@ const isShowConfirm = ref(false);
 const isLoading = ref(false);
 
 //validation rules
-const {handleSubmit, isSubmitting, handleReset, setErrors} = useForm({
+const { handleSubmit, isSubmitting, handleReset, setErrors } = useForm({
   validationSchema: {
     name(value) {
       if (!value) return 'Name is required'
@@ -139,10 +112,10 @@ const {handleSubmit, isSubmitting, handleReset, setErrors} = useForm({
     },
     phone(value) {
       if (!value) return 'Phone number is required'
-      else if(value && value.startsWith('0')) {
-         if (!/^(?:\+88|01)?(?:\d{11}|\d{13})$/.test(value)) return "Invalid phone number";
+      else if (value && value.startsWith('0')) {
+        if (!/^(?:\+88|01)?(?:\d{11}|\d{13})$/.test(value)) return "Invalid phone number";
       }
-      else if(value && value.startsWith('1')){
+      else if (value && value.startsWith('1')) {
         if (!/^(?:\+88|01)?(?:\d{10}|\d{12})$/.test(value)) return "Invalid phone number";
       }
       return true;
@@ -195,13 +168,13 @@ const isShowConfirmPassword = () => {
 
 const submitForm = handleSubmit(async (values) => {
   isLoading.value = true;
-  if(values.phone.startsWith('0')){
+  if (values.phone.startsWith('0')) {
     values.phone = `+880${values.phone.substring(1)}`;
   }
-  else if(values.phone.startsWith('1')){
+  else if (values.phone.startsWith('1')) {
     values.phone = `+880${values.phone}`;
   }
-  const {data, pending, error, refresh} = await authStore.register(values);
+  const { data, pending, error, refresh } = await authStore.register(values);
   if (error && error.value) {
     if (error.value.statusCode === 422) {
       setErrors(error.value.data.errors || {})
@@ -238,7 +211,8 @@ const submitForm = handleSubmit(async (values) => {
 }
 
 .toggleMaskButton {
-  width: 100%; /* Set width to 100% */
+  width: 100%;
+  /* Set width to 100% */
 }
 
 ::placeholder {
@@ -254,16 +228,6 @@ input:focus::placeholder {
   background-color: #A0B1D0;
   color: white;
   border: none;
-}
-
-//This class used for register button
-.btn {
-  background-color: white;
-  color: black;
-  width: 100%;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
 }
 </style>
 
