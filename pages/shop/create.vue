@@ -20,7 +20,7 @@
                                                     class="border-0 w-full h-10 md:h-12 text-xs md:text-lg flex items-center focus:shadow-none"
                                                     id="shopUrl" type="text" />
                                                 <InputGroupAddon style="background-color: #EFF1F7; color: gray;"
-                                                    class="w-full md:w-[50%] h-10 md:h-12 text-xs md:text-lg flex items-center focus:shadow-none">
+                                                    class="w-full xl:w-[50%] h-10 md:h-12 text-xs md:text-lg flex items-center focus:shadow-none">
                                                     .funnelbuilder.com
                                                     <i :class="checkShopNameValidity"></i>
                                                 </InputGroupAddon>
@@ -113,6 +113,7 @@ const shopName = useField('shopName');
 
 watch(() => shopUrl.value.value, (nv, ov) => {
     error_message.value = '';
+    server_error_message.value = ''
     if ((nv && nv.length > 3) || ov?.length === 3) {
         if (timeout.nv) {
             clearTimeout(timeout.nv);
