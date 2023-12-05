@@ -20,17 +20,14 @@
                                                     class="border-0 w-full h-10 md:h-12 text-xs md:text-lg flex items-center focus:shadow-none"
                                                     id="shopUrl" type="text" />
                                                 <InputGroupAddon style="background-color: #EFF1F7; color: gray;"
-                                                    class="w-full md:w-[30%] h-10 md:h-12 text-xs md:text-lg flex items-center focus:shadow-none">
+                                                    class="w-full md:w-[50%] h-10 md:h-12 text-xs md:text-lg flex items-center focus:shadow-none">
                                                     .funnelbuilder.com
-                                                </InputGroupAddon>
-                                                <InputGroupAddon style="background-color: #EFF1F7; color: gray;"
-                                                    class="h-10 md:h-12 text-xs md:text-lg flex items-center focus:shadow-none">
                                                     <i :class="checkShopNameValidity"></i>
                                                 </InputGroupAddon>
                                             </InputGroup>
                                         </div>
                                         <form-input-error
-                                            :message="error_message == 'error' ? 'This url has already taken' : shopUrl.errorMessage.value" />
+                                            :message="error_message == 'error' ? 'This url has already taken' : shopUrl.errorMessage.value ? shopUrl.errorMessage.value : server_error_message" />
                                     </div>
                                     <div class="pt-3">
                                         <p class="pb-1"><small class="text-[#5A78AD]">Shop Name*</small></p>
@@ -77,7 +74,7 @@ definePageMeta({
 
 const step = ref(false)
 
-const shop_status = ref('');
+const server_error_message = ref('');
 const shopDetails = ref({})
 const error_message = ref('');
 const timeout = ref(null);
@@ -115,14 +112,13 @@ const shopUrl = useField('shopUrl');
 const shopName = useField('shopName');
 
 watch(() => shopUrl.value.value, (nv, ov) => {
+    error_message.value = '';
     if ((nv && nv.length > 3) || ov?.length === 3) {
         if (timeout.nv) {
             clearTimeout(timeout.nv);
         }
         timeout.nv = setTimeout(() => {
-            if (!(!/^[^\s_]+$/.test(shopUrl.value.value))) {
-                validityShopUrl(nv)
-            }
+            validityShopUrl(nv)
         }, 500);
     }
 }
@@ -130,7 +126,17 @@ watch(() => shopUrl.value.value, (nv, ov) => {
 
 const validityShopUrl = async (nv) => {
     const { data, pending, error, refresh } = await postData('validate-shop-domain', { subdomain: nv });
-    error_message.value = data.value.status;
+    
+    if(data.value){
+        error_message.value = data.value.status;
+    }
+    else{
+        if(error.value.statusCode == 422){
+            error_message.value = 'server-error';
+            server_error_message.value = error.value.data.message
+        }
+    }
+
 }
 
 
@@ -139,6 +145,7 @@ const checkShopNameValidity = computed(() => {
         if (shopUrl.value.value.length < 4 || shopUrl.value.value.length > 100) return 'pi pi-ban failed ml-2'
         else if (error_message.value === 'success') return 'pi pi-check-circle success ml-2'
         else if (error_message.value === 'error') return 'pi pi-ban failed ml-2'
+        else if (error_message.value === 'server-error') return 'pi pi-ban failed ml-2'
     }
 
 })
