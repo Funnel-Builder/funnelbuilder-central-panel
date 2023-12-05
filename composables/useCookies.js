@@ -39,14 +39,14 @@ export const setCookies = (name, value, maxAge) => {
     cookie.value = value;
 };
 
-export const setUser = (user, expires) => {
+export const setUser = (user) => {
     let cookieMaxAge = 43200;
-    const cookieExpires = useExpiresCookie();
-    if (cookieExpires.value && moment(cookieExpires.value).diff(moment(), 'seconds') > 0) {
-        cookieMaxAge = moment(cookieExpires.value).diff(moment(), 'seconds');
-    }
+    // const cookieExpires = useExpiresCookie();
+    // if (cookieExpires.value && moment(cookieExpires.value).diff(moment(), 'seconds') > 0) {
+    //     cookieMaxAge = moment(cookieExpires.value).diff(moment(), 'seconds');
+    // }
     setCookies('user', user || '', cookieMaxAge);
-    setCookies('expires_in', expires, cookieMaxAge);
+    // setCookies('expires_in', expires, cookieMaxAge);
 };
 
 export const setOtpCookies = (data) => {
