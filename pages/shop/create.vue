@@ -20,7 +20,7 @@
                                                     class="border-0 w-full h-10 md:h-12 text-xs md:text-lg flex items-center focus:shadow-none"
                                                     id="shopUrl" type="text" />
                                                 <InputGroupAddon style="background-color: #EFF1F7; color: gray;"
-                                                    class="w-full md:w-[50%] h-10 md:h-12 text-xs md:text-lg flex items-center focus:shadow-none">
+                                                    class="w-full xl:w-[50%] h-10 md:h-12 text-xs md:text-lg flex items-center focus:shadow-none">
                                                     .funnelbuilder.com
                                                     <i :class="checkShopNameValidity"></i>
                                                 </InputGroupAddon>
@@ -84,13 +84,13 @@ const { handleSubmit, isSubmitting, handleReset, setErrors } = useForm({
     validationSchema: {
         shopUrl(value) {
             if (!value) return 'Shop URL is required'
-            else if (value.length < 4 || value.length > 100) return 'Shop Url must be between 4 and 100 characters'
+            else if (value.length < 4 || value.length > 30) return 'Shop Url must be between 4 and 30 characters'
             else if (!/^[^\s_]+$/.test(value)) return "Invalid shope url";
             return true;
         },
         shopName(value) {
             if (!value) return 'Shop Name is required'
-            else if (value.length < 4 || value.length > 100) return 'Shop Name url must be between 4 and 40 characters'
+            else if (value.length < 3 || value.length > 100) return 'Shop Name url must be between 3 and 100 characters'
             return true;
         }
     }
@@ -99,9 +99,9 @@ const { handleSubmit, isSubmitting, handleReset, setErrors } = useForm({
 const isDisabled = computed(() => {
     return !(
         shopUrl.value?.value?.length >= 4 &&
-        shopUrl.value?.value?.length <= 100 &&
-        shopName.value?.value?.length >= 4 &&
-        shopName.value?.value?.length <= 40 &&
+        shopUrl.value?.value?.length <= 30 &&
+        shopName.value?.value?.length >= 3 &&
+        shopName.value?.value?.length <= 100 &&
         !(!/^[^\s_]+$/.test(shopUrl.value.value)) &&
         error_message.value == 'success'
     );
@@ -113,6 +113,7 @@ const shopName = useField('shopName');
 
 watch(() => shopUrl.value.value, (nv, ov) => {
     error_message.value = '';
+    server_error_message.value = ''
     if ((nv && nv.length > 3) || ov?.length === 3) {
         if (timeout.nv) {
             clearTimeout(timeout.nv);
