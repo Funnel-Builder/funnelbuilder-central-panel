@@ -26,7 +26,11 @@ jobs:
           # k8s-args: doctl k8s cluster kubeconfig show funnelbuilder
       - name: Save DigitalOcean kubeconfig with short-lived credentials
         run: doctl k8s cluster kubeconfig save --expiry-seconds 600 funnelbuilder
+      - name: Remove config to Kubernetes
+        run: kubectl delete -f docker/common-panel-service/common
       - name: Deploy config to Kubernetes
         run: kubectl apply -f docker/common-panel-service/common
+      - name: Remove to Kubernetes
+        run: kubectl delete -f docker/common-panel-service/nuxt-with-nginx
       - name: Deploy to Kubernetes
         run: kubectl apply -f docker/common-panel-service/nuxt-with-nginx
