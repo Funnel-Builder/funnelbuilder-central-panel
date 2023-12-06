@@ -45,7 +45,7 @@ const shop = ref([]);
 onMounted(async () => {
   setTimeout(async () => {
     await getShop()
-  }, 500);
+  }, 100);
 })
 
 const getShop = async () => {

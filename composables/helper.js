@@ -9,3 +9,14 @@ export const randomString = (length = 32) => {
 
     return result;
 }
+
+// export const apiService = (type= 'auth') => {
+//     const config = useRuntimeConfig();
+//     if (type === 'auth') {
+//         return config.public.SELLER_SERVICE_URL
+//     }
+//     if (type === 'seller') {
+//         return config.public.BASE_URL
+//     }
+//     return config.public.BASE_URL
+// }
