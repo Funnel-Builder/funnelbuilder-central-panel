@@ -128,10 +128,21 @@ const createShop = handleSubmit(async (values) => {
         }
     }
     else {
-        console.log(data.value);
+        await goToShop(data.value.data.id)
     }
 
 })
+
+const goToShop = async (shopID) => {
+  const { data, pending, error, refresh } = await getData('get-secret')
+  if (error && error.value) {
+    console.log(error);
+  }
+  else {
+    let redirectUrl = urlService('seller-front')
+    window.location.href = `${redirectUrl}/auth/verify?shop_id=${shopID}&token=${data.value.data}`
+  }
+}
 
 </script>
 <style scoped>
