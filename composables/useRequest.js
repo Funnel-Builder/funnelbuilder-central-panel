@@ -15,21 +15,23 @@ const createRequest = async (url, method, body = null) => {
                 options.body = body;
                 options.headers.contentType = 'multipart/form-data'
             }
+
+            // if getExpiresIn() expires in less than 30 minutes, refresh token
+            if (!(getExpiresIn() && accessToken() && url !== 'refresh_token')) {
+                return;
+            }
+            const now = moment().format();
+            console.log(moment(getExpiresIn()).diff(moment(now), 'seconds'))
+            if (moment(getExpiresIn()).diff(moment(now), 'seconds') < 1800 && moment(getExpiresIn()).diff(moment(now), 'seconds') > 0) {
+                const authStore = useAuthStore()
+                authStore.refreshToken()
+            }
         },
         onRequestError({ request, options, error }) {
             // Handle the request errors
         },
         onResponse({ request, response, options }) {
-           // if getExpiresIn() expires in less than 30 minutes, refresh token
-            if (!(getExpiresIn() && accessToken() && url !== 'refresh_token')) {
-                return;
-            }
-            const now = moment().format()
-            const expiresIn = moment(getExpiresIn()).subtract(30, 'minutes').format()
-            if (now > expiresIn && now < moment(getExpiresIn())) {
-                const authStore = useAuthStore()
-                authStore.refreshToken()
-            }
+           // Handle the response object
 
         },
         onResponseError({ request, response, options }) {

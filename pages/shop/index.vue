@@ -45,12 +45,6 @@ const isDisabled = computed(() => !selectedShop.value);
 
 const shop = ref([]);
 
-onMounted(async () => {
-  setTimeout(async () => {
-    await getShop()
-  }, 100);
-})
-
 const getShop = async () => {
   loading.value = true
   const { data, error } = await getData('user-shop-list')
@@ -62,6 +56,8 @@ const getShop = async () => {
   }
   loading.value = false
 }
+
+await getShop()
 
 const goToShop = async () => {
   const { data, pending, error, refresh } = await getData('get-secret')
