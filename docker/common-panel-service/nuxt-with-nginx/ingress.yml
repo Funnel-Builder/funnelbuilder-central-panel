@@ -3,6 +3,10 @@ kind: Ingress
 metadata:
   name: common-panel-service-webserver
   namespace: funnelbuiler-solution
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-cookie-path: "/"
+    nginx.ingress.kubernetes.io/proxy-cookie-domain: ".bdfunnelbuilder.com"
+    nginx.ingress.kubernetes.io/proxy-cookie-secure: "true"
 spec:
   ingressClassName: nginx
   rules:

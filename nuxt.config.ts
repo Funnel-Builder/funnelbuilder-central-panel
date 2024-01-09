@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  ssr: false,
+  ssr: true,
   css: [
     "@/assets/css/tailwind.css",
     "@/assets/scss/main.scss",
@@ -29,7 +29,6 @@ export default defineNuxtConfig({
     public: {
       baseURL: process.env.BASE_URL || 'https://auth-service-webserver/api/',
       sellerServiceURL: process.env.SELLER_SERVICE_URL || 'https://seller-service-webserver/api/',
-      sellerServiceFrontendURL: process.env.SELLER_SERVICE_FRONTEND_URL || 'https://seller-service-webserver/',
     },
   },
 })
