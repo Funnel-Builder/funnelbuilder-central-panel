@@ -59,7 +59,9 @@ export const useAuthStore = defineStore('auth', {
         },
         async refreshToken() {
             const { data, pending, error, refresh } = await postData('refresh_token')
-            if (data) {
+            if (error && error.value) {
+                this.clearAuth()
+            } else {
                 this.setToken(data.value)
                 setUser(getUser())
             }

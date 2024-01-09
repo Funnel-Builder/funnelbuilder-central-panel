@@ -31,22 +31,19 @@
 </template>
 
 <script setup>
+
 definePageMeta({
   layout: 'shop',
   middleware: ['auth', 'should-be-verified']
 })
+
+const router = useRouter();
 
 const selectedShop = ref();
 const loading = ref(false)
 const isDisabled = computed(() => !selectedShop.value);
 
 const shop = ref([]);
-
-onMounted(async () => {
-  setTimeout(async () => {
-    await getShop()
-  }, 100);
-})
 
 const getShop = async () => {
   loading.value = true
@@ -60,8 +57,17 @@ const getShop = async () => {
   loading.value = false
 }
 
-const goToShop = () => {
-  console.log(selectedShop.value);
+await getShop()
+
+const goToShop = async () => {
+  const { data, pending, error, refresh } = await getData('get-secret')
+  if (error && error.value) {
+    console.log(error);
+  }
+  else {
+    let redirectUrl = urlService('seller-front')
+    window.location.href = `${redirectUrl}/auth/verify?shop_id=${selectedShop.value.id}&token=${data.value.data}`
+  }
 }
 </script>
 

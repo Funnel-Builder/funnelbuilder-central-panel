@@ -10,13 +10,17 @@ export const randomString = (length = 32) => {
     return result;
 }
 
-// export const apiService = (type= 'auth') => {
-//     const config = useRuntimeConfig();
-//     if (type === 'auth') {
-//         return config.public.SELLER_SERVICE_URL
-//     }
-//     if (type === 'seller') {
-//         return config.public.BASE_URL
-//     }
-//     return config.public.BASE_URL
-// }
+export const urlService = (type= 'auth') => {
+    const config = useRuntimeConfig();
+    switch (type) {
+        case 'auth':
+            return config.public.baseURL
+        case 'seller':
+            return config.public.sellerServiceURL
+        case 'seller-front':
+            return config.public.sellerServiceFrontendURL
+        default:
+            return config.public.baseURL
+    }
+
+}
