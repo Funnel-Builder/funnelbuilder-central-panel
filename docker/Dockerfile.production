@@ -8,13 +8,17 @@ COPY .env.example /app/.env
 COPY . /app
 RUN yarn run build
 
-### STAGE 2: NGINX ###
-FROM node:20-alpine
-# Install Nginx
-RUN apk add --no-cache nginx
+### STAGE 2: NGINX with Node.js ###
+FROM nginx:stable-alpine
+# Install Node.js
+RUN apk add --update nodejs npm
+# Copy built assets
 COPY --from=build /app/.output /usr/share/nginx/html
 COPY --from=build /app/.env /usr/share/nginx/html
+# Nginx configuration
 RUN rm /etc/nginx/conf.d/default.conf
 COPY ./docker/nginx/nginx.conf /etc/nginx/conf.d
+# Expose port 80 for Nginx
 EXPOSE 80
-CMD ["node", "/usr/share/nginx/html/server/index.mjx"]
+# Set the command to start Nginx and the Node.js server
+CMD ["sh", "-c", "nginx & node /usr/share/nginx/html/server/index.mjs"]
