@@ -2,8 +2,8 @@
 const name = useCookie('test')
 
 const clientSideName = ref('')
+clientSideName.value = useCookie('test').value as string
 onMounted(() => {
-  clientSideName.value = useCookie('test').value as string
   name.value = 'Setting Value'
 })
 </script>
