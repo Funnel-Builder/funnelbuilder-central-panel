@@ -32,6 +32,8 @@
 
 <script setup>
 
+import {useCookie} from "#app";
+
 definePageMeta({
   layout: 'shop',
   // middleware: ['auth', 'should-be-verified']
@@ -45,6 +47,7 @@ definePageMeta({
   } else {
     console.log('found',authStore.token,process.client)
   }
+  console.log(useCookie('token').value)
 // })
 
 const router = useRouter();
