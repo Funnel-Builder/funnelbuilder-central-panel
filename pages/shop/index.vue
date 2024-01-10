@@ -48,6 +48,11 @@ definePageMeta({
     console.log('found',authStore.token,process.client)
   }
   console.log(useCookie('token').value)
+onMounted(()=>{
+  console.log('mounted')
+  console.log(useCookie('token').value)
+  console.log(authStore.token)
+})
 // })
 
 const router = useRouter();
