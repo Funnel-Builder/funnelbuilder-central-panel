@@ -1,8 +1,8 @@
 import moment from "moment";
 
 const commonCookieOptions = {
-    priority: 'high',
-    secure: true,
+    // priority: 'high',
+    // secure: true,
 };
 
 const useTokenCookie = () => useCookie('token', commonCookieOptions);
