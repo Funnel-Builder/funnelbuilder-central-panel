@@ -7,7 +7,6 @@ RUN yarn install --silent
 COPY .env.example /app/.env
 COPY . /app
 RUN yarn build
-RUN node .output/server/index.mjs
 
 ### STAGE 2: NGINX ###
 #FROM nginx:stable-alpine
