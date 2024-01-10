@@ -1,18 +1,17 @@
 <script setup lang="ts">
-const name = useCookie('test')
+const name = useCookie('token')
 
 const clientSideName = ref('')
-clientSideName.value = useCookie('test').value as string
 onMounted(() => {
-  name.value = 'Setting Value'
+  clientSideName.value = useCookie('token').value as string
 })
 </script>
 
 <template>
-  <div class="mt-10 flex justify-center">
-    Server Side {{ name }}
+  <div class="mt-10 flex">
+    Server Side: <br> {{ name }}
     <br/>
-    Client Side: {{ clientSideName }}
+    Client Side: <br> {{ clientSideName }}
   </div>
 </template>
 
