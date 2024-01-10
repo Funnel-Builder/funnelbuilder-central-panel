@@ -31,4 +31,4 @@ COPY . .
 
 EXPOSE 80
 
-CMD ["node", "PORT=80 app/.output/server/index.mjs"]
+CMD ["node", "PORT=80", "app/.output/server/index.mjs"]
