@@ -30,7 +30,7 @@ spec:
               cpu: "0.2"
               memory: "128M"
           ports:
-            - containerPort: 80
+            - containerPort: 3000
           envFrom:
             - configMapRef:
                 name: common-panel-service
