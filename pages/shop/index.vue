@@ -34,8 +34,18 @@
 
 definePageMeta({
   layout: 'shop',
-  middleware: ['auth', 'should-be-verified']
+  // middleware: ['auth', 'should-be-verified']
 })
+
+// addRouteMiddleware('test',()=>{
+  const authStore = useAuthStore()
+  if (!authStore.isLoggedIn) {
+    console.log('not found',authStore.token,process.client)
+    // return navigateTo('/login')
+  } else {
+    console.log('found',authStore.token,process.client)
+  }
+// })
 
 const router = useRouter();
 
