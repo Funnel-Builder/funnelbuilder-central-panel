@@ -25,7 +25,7 @@ jobs:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
           # k8s-args: doctl k8s cluster kubeconfig show funnelbuilder
       - name: Save DigitalOcean kubeconfig with short-lived credentials
-        run: doctl k8s cluster kubeconfig save --expiry-seconds 600 funnelbuilder
+        run: doctl k8s cluster kubeconfig save --expiry-seconds 600 funnelbuilder-dev
       - name: Remove config to Kubernetes
         run: kubectl delete -f docker/common-panel-service/common
       - name: Deploy config to Kubernetes
