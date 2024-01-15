@@ -21,7 +21,6 @@ const createRequest = async (url, method, body = null) => {
                 return;
             }
             const now = moment().format();
-            console.log(moment(getExpiresIn()).diff(moment(now), 'seconds'))
             if (moment(getExpiresIn()).diff(moment(now), 'seconds') < 1800 && moment(getExpiresIn()).diff(moment(now), 'seconds') > 0) {
                 const authStore = useAuthStore()
                 authStore.refreshToken()
