@@ -1,9 +1,9 @@
-div<template>
+<template>
   <div>
     <div class="pl-2">
       <h1 class="text-[30px] md:text-[36px] lg:text-[40px] xl:text-[44px] 2xl:text-[48px] text-white font-[600]">
         Verification Code</h1>
-      <p class="text-[12px] md:text-[14px] text-white font-[400]">Enter your six digit verification code.</p>
+      <p class="text-[12px] md:text-[14px] text-white font-[400]">To complete your verification, please check your email for a verification code.</p>
     </div>
     <div>
       <div class="py-16">

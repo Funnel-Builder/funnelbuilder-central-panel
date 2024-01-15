@@ -3,7 +3,7 @@
         <div class="pl-2">
             <h1 class="text-[30px] md:text-[36px] lg:text-[40px] xl:text-[44px] 2xl:text-[48px] text-white font-[600]">
                 Verification Code</h1>
-            <p class="text-[12px] md:text-[14px] text-white font-[400]">Enter your six digit verification code.</p>
+            <p class="text-[12px] md:text-[14px] text-white font-[400]">We have sent six digit code to<span class="font-bold"> your email</span></p>
         </div>
         <div>
             <div class="py-16">
