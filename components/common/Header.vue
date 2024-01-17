@@ -1,11 +1,11 @@
 <template>
   <div>
     <!--    For Web View -->
-    <div class="hidden md:flex justify-between items-center nav px-8">
+    <div class="hidden md:flex shadow justify-between items-center  nav px-8">
       <div>
-        <utilities-logo classes="h-[80px]"></utilities-logo>
+        <utilities-logo classes="h-[70px]"></utilities-logo>
       </div>
-      <div class="flex justify-center items-center lg:gap-x-6  xl:gap-x-8 2xl:gap-x-12">
+      <div class="container mx-auto flex justify-center items-center lg:gap-x-6  xl:gap-x-8 2xl:gap-x-12">
         <div v-for="(item ,i) in items">
           <nuxt-link class="navActive" :to="item.link">
             <span class="navItem text-[14px] md:text-[16px] ">{{ item.label }}</span>

@@ -1,6 +1,6 @@
 <template>
     <nuxt-link to="/" class="">
-        <img :class="classes" src="/shop/ota-logo.svg" alt="logo">
+        <img :class="classes" src="/logo/logo.png" alt="logo">
     </nuxt-link>
 </template>
 <script setup>
