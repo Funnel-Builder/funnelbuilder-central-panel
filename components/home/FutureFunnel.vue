@@ -1,22 +1,39 @@
 <template>
   <div class="container mx-auto pt-20 px-16">
      <div class="text-center">
-       <p class="text-[36px] font-[600] px-20">Analytics that feels like it’s from the future</p>
-       <p class="text-[16px] font-[400] text-[#667085]">Powerful, self-serve product and growth analytics to help you convert, engage, and retain more users. Trusted by over 4,000 startups.</p>
+       <section-heading title="Analytics that feels like it’s from the future" sub-title="Powerful, self-serve product and growth analytics to help you convert, engage, and retain more users. Trusted by over 4,000 startups." />
      </div>
-    <div>
+    <div class="grid grid-cols-3 gap-x-12 gap-y-12 py-16">
       <template v-for="(item,i) in items" :key="i">
-        <div>
-        </div>
+        <section-feature :title="item.title" :sub-title="item.subtitle" :image-icon="item.image" />
       </template>
+    </div>
+    <div class="bannerBg rounded-md h-[600px] flex flex-col justify-center">
+      <div class="relatives flex justify-between items-center">
+        <div class="pl-8">
+          <p class="text-[36px] text-white font-[600]">Providing Some Great Features for You</p>
+          <template v-for="(item,i) in features" :key="i">
+            <div class="flex items-center gap-x-3 pt-3">
+              <img class="h-[18px]" src="/futureFunnel/check.svg" alt="icon">
+              <p class="text-[20px] font-[400] text-white">{{ item.name }}</p>
+            </div>
+          </template>
+        </div>
+        <div class="">
+          <img class="h-[500px]" src="/futureFunnel/image.svg" alt="icon">
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
 
+import SectionHeading from "~/components/common/SectionHeading.vue";
+import SectionFeature from "~/components/common/SectionFeature.vue";
+
 const items =  ref([
-  { title:'Site Builder', subtitle: 'Lorem ipsum is placeholder text commonly used in the graphic, print and publishing industries for previewing layouts.', image: '/futureFunnel/site.svg'},
+  { title:'Site Builder', subtitle: 'Lorem ipsum is placeholder text commonly used in the graphic, print and publishing industries for previewing layouts.', image: '/futureFunnel/builder.svg'},
   { title:'Unlimited Templates & Components', subtitle: 'Lorem ipsum is placeholder text commonly used in the graphic, print and publishing industries for previewing layouts.', image:'/futureFunnel/template.svg' },
   { title:'Order Management', subtitle: 'Lorem ipsum is placeholder text commonly used in the graphic, print and publishing industries for previewing layouts.', image:'/futureFunnel/order.svg' },
   { title:'Courier Automation', subtitle: 'Lorem ipsum is placeholder text commonly used in the graphic, print and publishing industries for previewing layouts.', image:'/futureFunnel/courier.svg' },
@@ -25,11 +42,33 @@ const items =  ref([
   { title:'SMS Marketing', subtitle: 'Lorem ipsum is placeholder text commonly used in the graphic, print and publishing industries for previewing layouts.', image:'/futureFunnel/sms.svg' },
   { title:'Auto Invoice Making', subtitle: 'Lorem ipsum is placeholder text commonly used in the graphic, print and publishing industries for previewing layouts.', image:'/futureFunnel/invoice.svg' },
   { title:'Super Fast Hosting', subtitle: 'Lorem ipsum is placeholder text commonly used in the graphic, print and publishing industries for previewing layouts.', image:'/futureFunnel/hosting.svg' }
+])
 
+const features = ref([
+  { name:'Customizable workflows will give freedom' },
+  { name:'End task has time tracking and reporting' },
+  { name:'Real-time data management' },
+  { name:'Role permission and invite users' },
+  { name:'Custom Domain setup and Courier Management' },
+  { name:'Support Ticket' }
 ])
 
 </script>
 
 <style lang="scss" scoped>
-
+.bannerBg {
+  background-image: url('/futureFunnel/mask.png') !important;
+  background-color: #5A78AD !important;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-x: center;
+}
+.authBG {
+  background-image: url('/auth/bgMask.svg') !important;
+  background-color: #5A78AD !important;
+  border-radius: 10px !important;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-x: center;
+}
 </style>

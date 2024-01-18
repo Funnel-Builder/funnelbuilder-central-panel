@@ -1,11 +1,11 @@
 <template>
   <div class="container mx-auto pt-20 px-16">
-     <div>
-        <p class="text-[32px] font-[600] text-center">The Funnel Is The Secret To Your Online Success</p>
-        <p class="text-[16px] font-[400] text-center text-[#667085] pt-2">It’s the difference between the 1,929,999,999 websites that don’t make money, <span class="font-[700]">and the .000000002% that do!</span></p>
+     <div class="text-center">
+       <section-heading title="The Funnel Is The Secret To Your Online Success" sub-title="It’s the difference between the 1,929,999,999 websites that don’t make money, and the .000000002% that do!" />
+<!--        <p class="text-[16px] font-[400] text-center text-[#667085] pt-2">It’s the difference between the 1,929,999,999 websites that don’t make money, <span class="font-[700]">and the .000000002% that do!</span></p>-->
      </div>
-     <div class="flex justify-center items-center gap-x-60 pt-12">
-       <div class="bg-[#F1F6FF] px-16 py-6 rounded-md">
+     <div class="flex justify-center items-center gap-x-6 pt-12">
+       <div class="bg-[#F1F6FF] w-[40%] px-16 py-6 rounded-md">
          <p class="text-[24px] font-[600]">Without Funnel</p>
          <template v-for="(item , i) in withOutFunnel" :key="i">
            <div class="flex items-center pt-2">
@@ -14,8 +14,8 @@
            </div>
          </template>
        </div>
-       <div class="bg-[#F1F6FF] px-16 py-6 rounded-md">
-         <p class="text-[24px] font-[600]">Without Funnel</p>
+       <div class="bg-[#F1F6FF] w-[40%] px-16 py-6 rounded-md">
+         <p class="text-[24px] font-[600]">With Funnel</p>
          <template v-for="(item , i) in withFunnel" :key="i">
            <div class="flex items-center pt-2">
              <img class="h-[16px]" src="/withFunnel/green.svg" alt="icon">
@@ -28,6 +28,8 @@
 </template>
 
 <script setup>
+import SectionHeading from "~/components/common/SectionHeading.vue";
+
 const withOutFunnel = ref([
   { name: "No Customer" },
   { name: "No Sales" },

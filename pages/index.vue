@@ -21,6 +21,27 @@
     <div>
       <future-funnel/>
     </div>
+    <div>
+      <funnel-analytics/>
+    </div>
+    <div>
+      <review-section/>
+    </div>
+    <div>
+      <faq-section/>
+    </div>
+    <div>
+      <contact-section/>
+    </div>
+    <div>
+      <funnel-pricing/>
+    </div>
+    <div>
+      <about-funnel/>
+    </div>
+    <div>
+      <trail-section/>
+    </div>
   </div>
 </template>
 
@@ -32,6 +53,13 @@ import WhyFunnelBuilder from "~/components/home/WhyFunnelBuilder.vue";
 import WithFunnel from "~/components/home/WithFunnel.vue";
 import Feature from "~/pages/feature.vue";
 import FutureFunnel from "~/components/home/FutureFunnel.vue";
+import FunnelAnalytics from "~/components/home/FunnelAnalytics.vue";
+import ReviewSection from "~/components/home/ReviewSection.vue";
+import ContactSection from "~/components/home/ContactSection.vue";
+import FunnelPricing from "~/components/home/FunnelPricing.vue";
+import AboutFunnel from "~/components/home/AboutFunnel.vue";
+import TrailSection from "~/components/home/TrailSection.vue";
+import FaqSection from "~/components/home/FaqSection.vue";
 </script>
 <style scoped lang="scss">
 .card {

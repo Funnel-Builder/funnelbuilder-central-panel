@@ -11,21 +11,25 @@
          </div>
        </div>
      </div>
-     <div class="hidden md:flex flex-col items-center gap-y-3 pt-3">
-       <p style="color:#5A78AD" class="font-[600] md:text-[20px]">Company</p>
-       <template v-for="(item, i) in company" :key="i">
-         <nuxt-link :to="item.link">
-           <span class="text">{{ item.label }}</span>
-         </nuxt-link>
-       </template>
+     <div class="flex justify-evenly">
+       <div class="hidden md:flex flex-col items-center gap-y-3 pt-3">
+         <p style="color:#5A78AD" class="font-[600] md:text-[20px]">Company</p>
+         <template v-for="(item, i) in company" :key="i">
+           <nuxt-link :to="item.link">
+             <span class="text">{{ item.label }}</span>
+           </nuxt-link>
+         </template>
+       </div>
      </div>
-     <div class="hidden md:flex flex-col items-center gap-y-3 pt-3">
-       <p style="color:#5A78AD" class="font-[600] md:text-[20px]">Social</p>
-       <template v-for="(item, i) in social" :key="i">
-         <nuxt-link :to="item.link">
-           <span class="text">{{ item.label }}</span>
-         </nuxt-link>
-       </template>
+     <div class="flex justify-evenly">
+       <div class="hidden md:flex flex-col items-center gap-y-3 pt-3">
+         <p style="color:#5A78AD" class="font-[600] md:text-[20px]">Social</p>
+         <template v-for="(item, i) in social" :key="i">
+           <nuxt-link :to="item.link">
+             <span class="text">{{ item.label }}</span>
+           </nuxt-link>
+         </template>
+       </div>
      </div>
 <!--     For Mobile View -->
      <div class="flex justify-evenly md:hidden pb-8">

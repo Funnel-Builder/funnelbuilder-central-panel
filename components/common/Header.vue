@@ -1,28 +1,30 @@
 <template>
   <div>
     <!--    For Web View -->
-    <div class="hidden md:flex shadow justify-between items-center  nav px-8">
-      <div>
-        <utilities-logo classes="h-[70px]"></utilities-logo>
-      </div>
-      <div class="container mx-auto flex justify-center items-center lg:gap-x-6  xl:gap-x-8 2xl:gap-x-12">
-        <div v-for="(item ,i) in items">
-          <nuxt-link class="navActive" :to="item.link">
-            <span class="navItem text-[14px] md:text-[16px] ">{{ item.label }}</span>
-          </nuxt-link>
+    <div class="hidden shadow md:flex  justify-between items-center  nav px-8">
+      <div class="container flex justify-between items-center mx-auto">
+        <div class="">
+          <utilities-logo classes="h-[70px]"></utilities-logo>
         </div>
-      </div>
-      <div>
-        <div v-if="authStore.isLoggedIn" class="flex items-center gap-x-2">
-          <CommonUserMenuDropdown></CommonUserMenuDropdown>
+        <div class="flex justify-center items-center lg:gap-x-6  xl:gap-x-8 2xl:gap-x-4">
+          <div v-for="(item ,i) in items">
+            <nuxt-link class="navActive" :to="item.link">
+              <span class="navItem text-[14px] md:text-[16px] ">{{ item.label }}</span>
+            </nuxt-link>
+          </div>
         </div>
-        <div v-else class="flex justify-center items-center xl:gap-x-2 2xl:gap-x-6">
-          <nuxt-link to="/register">
-            <span class="navItem text-[14px] md:text-[16px] ">Sign up</span>
-          </nuxt-link>
-          <nuxt-link to="/login">
-            <span class="navItem text-[14px] md:text-[16px] ">Get Started</span>
-          </nuxt-link>
+        <div>
+          <div v-if="authStore.isLoggedIn" class="flex items-center gap-x-2">
+            <CommonUserMenuDropdown></CommonUserMenuDropdown>
+          </div>
+          <div v-else class="flex justify-center items-center xl:gap-x-2 2xl:gap-x-0">
+            <nuxt-link to="/register">
+              <span class="navItem text-[14px] md:text-[16px] ">Sign up</span>
+            </nuxt-link>
+            <nuxt-link to="/login">
+              <span class="navItem text-[14px] md:text-[16px] ">Login</span>
+            </nuxt-link>
+          </div>
         </div>
       </div>
     </div>
@@ -145,7 +147,7 @@ const logout = async () => {
 
 .navItem {
   border-radius: 16px;
-  padding: 4px 10px;
+  padding: 5px 10px;
   font-weight: 600;
   text-decoration: none;
   transition: color 0.3s ease; /* Smooth transition for color change */

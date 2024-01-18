@@ -1,8 +1,7 @@
 <template>
   <div class="container mx-auto">
     <div class="text-center">
-      <p class="text-[34px] font-[600] pb-2">How To Set Up Your Online Shop</p>
-      <span class="text-[16px] text-[#667085] font-[400]">You must be thinking of setting up the store nicely. If your answer is yes then follow these five steps.</span>
+      <section-heading title="How To Set Up Your Online Shop" sub-title="You must be thinking of setting up the store nicely. If your answer is yes then follow these five steps." />
     </div>
     <div class="flex justify-center gap-x-6 pt-12">
       <template v-for="(item ,i) in items" :key="i">
@@ -16,12 +15,15 @@
       </template>
     </div>
     <div class="text-center pt-12">
-      <nuxt-link to="/pricing" class="buttonHover hover:ring-1 hover:ring-[#5A78AD] bg-[#5A78AD] text-white px-4 py-1.5 rounded-full font-[600]">Join with Us</nuxt-link>
+      <primary-button text="Join with Us" to="/pricing" type="link" />
     </div>
   </div>
 </template>
 
 <script setup>
+import SectionHeading from "~/components/common/SectionHeading.vue";
+import PrimaryButton from "~/components/buttons/PrimaryButton.vue";
+
 const items = ref([
   {name: 'Create Shop', logo: '/business/shop.svg'},
   {name: 'Use Template', logo: '/business/template.svg'},
