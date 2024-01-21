@@ -1,20 +1,20 @@
 <template>
-  <div class="container mx-auto pt-20 px-16">
+  <div class="container mx-auto pt-20 px-4 md:px-16">
     <div class="text-center">
       <section-heading tag="Pricing" title="Simple, transparent pricing"
                        sub-title="We believe Untitled should be accessible to all companies, no matter the size." />
     </div>
-    <div class="flex justify-center items-center gap-x-16 pt-12">
+    <div class="md:flex justify-center items-center  gap-x-16 pt-12">
        <template v-for="(item, i) in pricing" :key="i">
-         <div class="bg-white rounded-2xl shadow-xl w-[36%] p-8">
+         <div class="bg-white rounded-2xl shadow-xl w-full md:w-[50%] lg:w-[36%] my-4 p-8">
            <div class="text-center pb-8">
-             <p class="text-[30px] font-[600]">{{ item.title }}</p>
-             <p class="text-[20px] font-[600] pb-2">{{ item.tag }}</p>
-             <p class="text-[16px] font-[400] text-[#667085]">{{ item.subTitle }}</p>
+             <p class="text-[24px] xl:text-[30px] font-[600]">{{ item.title }}</p>
+             <p class="text-[16px] xl:text-[20px] font-[600] pb-2">{{ item.tag }}</p>
+             <p class="text-[12px] xl:text-[16px] font-[400] text-[#667085]">{{ item.subTitle }}</p>
            </div>
            <div v-for="(context ,i) in item.context" :key="i" class="pt-2 flex items-center gap-x-2">
              <img class="h-[20px]" src="/pricing/check.svg" alt="image"/>
-             <p class="text-[16px] font-[400] text-[#667085]">{{ context.label }}</p>
+             <p class="text-[14px] xl:text-[16px] font-[400] text-[#667085]">{{ context.label }}</p>
            </div>
            <div class="pt-5">
              <nuxt-link to="/pricing">

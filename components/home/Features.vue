@@ -1,24 +1,24 @@
 <template>
-  <div class="container mx-auto pt-20 px-16">
+  <div class="container mx-auto pt-20 px-4 md:px-8 lg:px-16">
     <div class="text-center">
       <section-heading tag="Features" title="BD Funnel Builder Gives You Everything You Need To Market, Sell And Deliver Your Products Online"
                        sub-title="Powerful, self-serve product and growth analytics to help you convert, engage and retain more users. Trusted by over 4,000 startups." />
     </div>
 <!--    Section 1-->
     <div>
-      <section-feature-element :items="store" image="/features/storePic.svg" order-class-one="order-1"  order-class-two="order-2"/>
+      <section-feature-element :items="store" image="/features/storePic.svg" phone-image="/features/storePhone.svg" order-class-one="order-1"  order-class-two="order-2"/>
     </div>
 <!--    Section 2-->
     <div>
-      <section-feature-element :items="domain" image="/features/domainPic.svg" order-class-one="order-2"  order-class-two="order-1"/>
+      <section-feature-element :items="domain" image="/features/domainPic.svg" phone-image="/features/domainPhone.svg" order-class-one="order-2"  order-class-two="order-1"/>
     </div>
     <!--    Section 3-->
     <div>
-      <section-feature-element :items="templates" image="/features/templatePic.svg" />
+      <section-feature-element :items="templates" image="/features/templatePic.svg" phone-image="/features/templatePhone.svg" />
     </div>
     <!--    Section 4-->
     <div>
-      <section-feature-element :items="sms" image="/features/smsPic.svg" order-class-one="order-2"  order-class-two="order-1"/>
+      <section-feature-element :items="sms" image="/features/smsPic.svg" phone-image="/features/smsPhone.svg" order-class-one="order-2"  order-class-two="order-1"/>
     </div>
 <!--    Button-->
     <div class="text-center pt-12">

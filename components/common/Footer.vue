@@ -1,39 +1,39 @@
 <template>
-  <div class="container mx-auto py-10">
+  <div class="container mx-auto py-10 px-2 md:px-8">
    <div class="grid grid-cols-1 lg:grid-cols-3">
      <div class="flex flex-col items-start px-4 sm:px-0 pb-6">
        <div>
          <img src="/landing/logo.svg" alt="logo"/>
-         <p style="color:#667085;">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document</p>
+         <p style="color:#667085;" class="text-[14px] xl:text-[16px]">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document</p>
          <div class="pt-4">
-           <p style="color:#667085;" class="font-[600]">Address:</p>
-           <p style="color:#667085;" class="pt-2">Sector 10, Uttara, Dhaka, Bangladesh</p>
+           <p style="color:#667085;" class="font-[600] text-[14px] xl:text-[16px]">Address:</p>
+           <p style="color:#667085;" class="pt-2 text-[14px] xl:text-[16px]">Sector 10, Uttara, Dhaka, Bangladesh</p>
          </div>
        </div>
      </div>
      <div class="flex justify-evenly">
-       <div class="hidden md:flex flex-col items-center gap-y-3 pt-3">
-         <p style="color:#5A78AD" class="font-[600] md:text-[20px]">Company</p>
+       <div class="hidden lg:flex flex-col items-center gap-y-3 pt-3">
+         <p style="color:#5A78AD" class="font-[600] text-[18px] xl:text-[20px]">Company</p>
          <template v-for="(item, i) in company" :key="i">
            <nuxt-link :to="item.link">
-             <span class="text">{{ item.label }}</span>
+             <span class="text text-[14px] xl:text-[16px]">{{ item.label }}</span>
            </nuxt-link>
          </template>
        </div>
      </div>
      <div class="flex justify-evenly">
-       <div class="hidden md:flex flex-col items-center gap-y-3 pt-3">
+       <div class="hidden lg:flex flex-col items-center gap-y-3 pt-3">
          <p style="color:#5A78AD" class="font-[600] md:text-[20px]">Social</p>
          <template v-for="(item, i) in social" :key="i">
            <nuxt-link :to="item.link">
-             <span class="text">{{ item.label }}</span>
+             <span class="text text-[14px] xl:text-[16px]">{{ item.label }}</span>
            </nuxt-link>
          </template>
        </div>
      </div>
 <!--     For Mobile View -->
-     <div class="flex justify-evenly md:hidden pb-8">
-       <div class="flex flex-col items-center gap-y-3 pt-3">
+     <div class="flex justify-around lg:hidden pb-8">
+       <div class="flex flex-col items-center gap-y-2 pt-3">
          <p style="color:#5A78AD" class="font-[600] md:text-[20px]">Company</p>
          <template v-for="(item, i) in company" :key="i">
            <nuxt-link :to="item.link">
@@ -53,7 +53,7 @@
    </div>
     <hr>
     <div class="px-4">
-      <p style="color:#667085;" class="text-center pt-4">© {{ new Date().getFullYear() }} BDFunnelBuilder. All rights reserved.</p>
+      <p style="color:#667085;" class="text-center pt-4 text-[12px] xl:text-[14px]">© {{ new Date().getFullYear() }} BDFunnelBuilder. All rights reserved.</p>
     </div>
   </div>
 </template>

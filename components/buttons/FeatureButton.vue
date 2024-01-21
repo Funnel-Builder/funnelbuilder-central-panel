@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="flex items-center gap-x-2 border border-[#5A78AD] rounded-full px-5 py-1.5" >
-      <img :src="imageIcon" alt="icon">
-      <p class="text-[#5A78AD] text-[16px] font-[400]">{{ text }}</p>
+    <div class="flex items-center gap-x-2 border border-[#5A78AD] rounded-full px-3 md:px-5 py-1.5" >
+      <img class="h-[18px] xl:h-auto" :src="imageIcon" alt="icon">
+      <p class="text-[#5A78AD] text-[12px] md:text-[14px] xl:text-[16px] font-[600] md:font-[400]">{{ text }}</p>
     </div>
   </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <div  class="container mx-auto pt-20 px-16">
+  <div  class="container mx-auto pt-8 md:pt-20 px-4 lg:px-16">
     <div class="text-center">
       <section-heading tag="Client Reviews" title="World Class Entrepreneurs Love Using BD Funnel Builder" />
     </div>
@@ -24,7 +24,7 @@
                 }"
       >
         <template #item="slotProps">
-          <div class="w-full border-1 surface-border border-round m-2 text-center py-5 px-3">
+          <div class="w-full border-1 surface-border border-round m-2 text-center py-5 md:px-3">
             <div class="flex justify-center">
               <img class="h-[130px] rounded-full" :src="slotProps.data.image" alt="avatar"/>
             </div>
@@ -32,7 +32,7 @@
               <p class="text-[18px] font-[600] ">{{ slotProps.data.name }}</p>
               <p class="text-[16px] font-[400] text-[#5A78AD]">{{ slotProps.data.position }}</p>
             </div>
-            <div class="pt-3 px-20">
+            <div class="pt-3 md:px-20">
               <p class="text-[16px] font-[400] text-[#667085]">{{ slotProps.data.reviewText }}</p>
             </div>
             <div class="flex justify-center items-center gap-x-4 pt-4">
@@ -61,7 +61,7 @@ const responsiveOptions = ref([
   },
   {
     breakpoint: '1199px',
-    numVisible: 3,
+    numVisible: 1,
     numScroll: 1
   },
   {

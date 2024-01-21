@@ -4,12 +4,12 @@
     <div class="hidden shadow md:flex  justify-between items-center  nav px-8">
       <div class="container flex justify-between items-center mx-auto">
         <div class="">
-          <utilities-logo classes="h-[70px]"></utilities-logo>
+          <utilities-logo classes="md:h-[50px] lg:h-[70px]"></utilities-logo>
         </div>
-        <div class="flex justify-center items-center lg:gap-x-6  xl:gap-x-8 2xl:gap-x-4">
+        <div class="flex justify-center items-center gap-x-2 lg:gap-x-6  xl:gap-x-8 2xl:gap-x-4">
           <div v-for="(item ,i) in items">
             <nuxt-link class="navActive" :to="item.link">
-              <span class="navItem text-[14px] md:text-[16px] ">{{ item.label }}</span>
+              <span class="navItem text-[14px] lg:text-[16px] ">{{ item.label }}</span>
             </nuxt-link>
           </div>
         </div>
@@ -19,10 +19,10 @@
           </div>
           <div v-else class="flex justify-center items-center xl:gap-x-2 2xl:gap-x-0">
             <nuxt-link to="/register">
-              <span class="navItem text-[14px] md:text-[16px] ">Sign up</span>
+              <span class="navItem text-[14px] lg:text-[16px] ">Sign up</span>
             </nuxt-link>
             <nuxt-link to="/login">
-              <span class="navItem text-[14px] md:text-[16px] ">Login</span>
+              <span class="navItem text-[14px] lg:text-[16px] ">Login</span>
             </nuxt-link>
           </div>
         </div>
@@ -30,14 +30,14 @@
     </div>
     <!--    For Mobile View -->
     <div class="w-full flex md:hidden">
-      <div class="nav flex justify-between items-center w-full px-4 py-3">
+      <div class="nav shadow flex justify-between items-center w-full px-4 py-3">
         <div>
           <img class="h-[50px] md:h-[70px]" src="/landing/logo.svg" alt="logo"/>
         </div>
         <div class="flex justify-center items-center gap-x-2">
          <div v-if="!authStore.isLoggedIn">
-           <nuxt-link to="/login" class="text-[14px] md:text-[16px] rounded-full font-[600]"
-                      style="padding: 4px 10px; background-color:#5A78AD; color:white">Get Started
+           <nuxt-link to="/login" class="text-[14px]  md:text-[16px] rounded-full font-[600]"
+                      style="padding: 8px 12px; background-color:#eff1f7; color:#5A78AD">Go to Shop
            </nuxt-link>
          </div>
           <i @click="showMenu()" class="pi pi-bars menu" style="font-size: 20px; padding:10px; color:#5A78AD;"></i>

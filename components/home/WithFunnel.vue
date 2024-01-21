@@ -1,25 +1,25 @@
 <template>
-  <div class="container mx-auto pt-20 px-16">
+  <div class="container mx-auto lg:pt-20 lg:px-16 px-4 md:px-8">
      <div class="text-center">
        <section-heading title="The Funnel Is The Secret To Your Online Success" sub-title="It’s the difference between the 1,929,999,999 websites that don’t make money, and the .000000002% that do!" />
 <!--        <p class="text-[16px] font-[400] text-center text-[#667085] pt-2">It’s the difference between the 1,929,999,999 websites that don’t make money, <span class="font-[700]">and the .000000002% that do!</span></p>-->
      </div>
-     <div class="flex justify-center items-center gap-x-6 pt-12">
-       <div class="bg-[#F1F6FF] w-[40%] px-16 py-6 rounded-md">
-         <p class="text-[24px] font-[600]">Without Funnel</p>
+     <div class="md:flex justify-center items-center gap-x-6 pt-8 md:pt-12">
+       <div class="bg-[#F1F6FF] w-full md:w-[50%] lg:w-[40%] px-8 md:px-16 py-6 rounded-md">
+         <p class="text-[18px] lg:text-[20px] xl:text-[24px] font-[600]">Without Funnel</p>
          <template v-for="(item , i) in withOutFunnel" :key="i">
            <div class="flex items-center pt-2">
              <img class="h-[16px]" src="/withFunnel/red.svg" alt="icon">
-             <p class="pl-2 text-[14px] font-[500]">{{ item.name }}</p>
+             <p class="pl-2 text-[12px] lg:text-[14px] font-[500]">{{ item.name }}</p>
            </div>
          </template>
        </div>
-       <div class="bg-[#F1F6FF] w-[40%] px-16 py-6 rounded-md">
-         <p class="text-[24px] font-[600]">With Funnel</p>
+       <div class="bg-[#F1F6FF] mt-8 md:mt-0 w-full md:w-[50%] lg:w-[40%] px-8 md:px-16 py-6 rounded-md">
+         <p class="text-[18px] lg:text-[20px] xl:text-[24px] font-[600]">With Funnel</p>
          <template v-for="(item , i) in withFunnel" :key="i">
            <div class="flex items-center pt-2">
              <img class="h-[16px]" src="/withFunnel/green.svg" alt="icon">
-             <p class="pl-2 text-[14px] font-[500]">{{ item.name }}</p>
+             <p class="pl-2 text-[12px] lg:text-[14px] font-[500]">{{ item.name }}</p>
            </div>
          </template>
        </div>

@@ -1,18 +1,18 @@
 <template>
   <div class="">
-    <div class="container mx-auto pt-16">
+    <div class="container mx-auto pt-16 lg:pt-8 xl:pt-10 2xl:pt-16">
       <!--     Section One -->
-      <div class="flex flex-col items-center gap-y-7 pb-20 ">
+      <div class="flex flex-col items-center gap-y-6 lg:gap-y-4 xl:gap-y-7 pb-4 md:pb-20 ">
         <feature-button text="Your Perfect Workspace" image-icon="/banner/workIcon.svg" />
         <div class="px-8 md:px-[40px] lg:px-[100px]">
-          <p class="text-[#5A78AD] text-center font-[600] text-[26px] md:text-[40px] lg:text-[52px]">All-In-One Collaboration and
+          <p class="text-[#5A78AD] text-center font-[600] text-[24px] md:text-[36px] xl:text-[46px] 2xl:text-[52px]">All-In-One Collaboration and
             Productivity Platform</p>
         </div>
         <div class="flex justify-center items-center gap-x-4">
           <primary-button text="Demo" to="/" type="icon" icon-class="pi pi-play" />
           <primary-button text="Start Free trial" to="/" type="link" />
         </div>
-        <div class="flex justify-center flex-wrap xl:w-[60%] gap-x-8 gap-y-4 lg:pt-12 xl:pt-6">
+        <div class="flex justify-center  flex-wrap  lg:w-[80%] xl:w-[80%] 2xl:w-[60%] gap-x-2 md:gap-x-8 gap-y-4 pt-4 lg:pt-10 xl:pt-6">
           <div v-for="(item ,i) in bannerItem" :key="i">
             <feature-button :text="item.label" :image-icon="item.icon" />
           </div>

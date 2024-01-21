@@ -1,26 +1,26 @@
 <template>
-  <div class="container mx-auto pt-20 px-16">
+  <div class="container mx-auto pt-20 px-8 lg:px-16">
      <div class="text-center">
        <section-heading title="Analytics that feels like it’s from the future" sub-title="Powerful, self-serve product and growth analytics to help you convert, engage, and retain more users. Trusted by over 4,000 startups." />
      </div>
-    <div class="grid grid-cols-3 gap-x-12 gap-y-12 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-8 md:gap-y-12 py-16">
       <template v-for="(item,i) in items" :key="i">
         <section-feature :title="item.title" :sub-title="item.subtitle" :image-icon="item.image" />
       </template>
     </div>
-    <div class="bannerBg rounded-md h-[600px] flex flex-col justify-center">
-      <div class="relatives flex justify-between items-center">
-        <div class="pl-8">
-          <p class="text-[36px] text-white font-[600]">Providing Some Great Features for You</p>
+    <div class="bannerBg rounded-md h-[720px] md:h-[400px] lg:h-[600px] md:flex flex-col justify-center">
+      <div class="md:relatives md:flex justify-between items-center">
+        <div class="pt-4 pl-5 md:pl-8">
+          <p class="text-[24px] lg:text-[28px] xl:text-[36px] text-white font-[600]">Providing Some Great Features for You</p>
           <template v-for="(item,i) in features" :key="i">
             <div class="flex items-center gap-x-3 pt-3">
               <img class="h-[18px]" src="/futureFunnel/check.svg" alt="icon">
-              <p class="text-[20px] font-[400] text-white">{{ item.name }}</p>
+              <p class="text-[14px] lg:text-[16px] xl:text-[20px] font-[400] text-white">{{ item.name }}</p>
             </div>
           </template>
         </div>
-        <div class="">
-          <img class="h-[500px]" src="/futureFunnel/image.svg" alt="icon">
+        <div class="pl-4 md:pl-0">
+          <img class="h-[400px] lg:h-[500px]" src="/futureFunnel/image.svg" alt="icon">
         </div>
       </div>
     </div>
