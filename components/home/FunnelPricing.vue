@@ -6,7 +6,7 @@
     </div>
     <div class="md:flex justify-center items-center  gap-x-16 pt-12">
        <template v-for="(item, i) in pricing" :key="i">
-         <div class="bg-white rounded-2xl shadow-xl w-full md:w-[50%] lg:w-[36%] my-4 p-8">
+         <div class="bg-white rounded-2xl shadow-xl w-full  lg:w-[36%] my-4 p-8">
            <div class="text-center pb-8">
              <p class="text-[24px] xl:text-[30px] font-[600]">{{ item.title }}</p>
              <p class="text-[16px] xl:text-[20px] font-[600] pb-2">{{ item.tag }}</p>

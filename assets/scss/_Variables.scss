@@ -1,8 +1,7 @@
-$primaryColor: #558B2F;
-$secondaryColor: #ccc;
+$primaryColor: #5A78AD;
+$secondaryColor: #EFF1F7;
 $ternaryColor: #272727;
 $navDarkColor: #444444;
-$textColor: #000000;
 $successColor: #1B5E20;
 $warningColor: #ffff00;
 $dangerColor: #FF0000;
@@ -18,3 +17,7 @@ $breakpoints: (
     xl: 1200px
 );
 $maxWith: 1300px;
+
+$textPrimary: #5A78AD;
+$textSecondary: #667085;
+$textColor: #000000;

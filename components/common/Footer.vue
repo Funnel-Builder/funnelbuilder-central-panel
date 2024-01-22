@@ -32,8 +32,8 @@
        </div>
      </div>
 <!--     For Mobile View -->
-     <div class="flex justify-around lg:hidden pb-8">
-       <div class="flex flex-col items-center gap-y-2 pt-3">
+     <div class="flex justify-between lg:hidden px-4 pb-8">
+       <div class="flex flex-col items-left gap-y-2 pt-3">
          <p style="color:#5A78AD" class="font-[600] md:text-[20px]">Company</p>
          <template v-for="(item, i) in company" :key="i">
            <nuxt-link :to="item.link">
@@ -41,7 +41,7 @@
            </nuxt-link>
          </template>
        </div>
-       <div class="flex flex-col items-center gap-y-3 pt-3">
+       <div class="flex flex-col items-right gap-y-3 pt-3">
          <p style="color:#5A78AD" class="font-[600] md:text-[20px]">Social</p>
          <template v-for="(item, i) in social" :key="i">
            <nuxt-link :to="item.link">

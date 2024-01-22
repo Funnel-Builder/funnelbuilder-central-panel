@@ -11,7 +11,7 @@
     <div class="bannerBg rounded-md h-[720px] md:h-[400px] lg:h-[600px] md:flex flex-col justify-center">
       <div class="md:relatives md:flex justify-between items-center">
         <div class="pt-4 pl-5 md:pl-8">
-          <p class="text-[24px] lg:text-[28px] xl:text-[36px] text-white font-[600]">Providing Some Great Features for You</p>
+          <p class="text-[24px] lg:text-[28px] xl:text-[36px] text-white font-[600] ">Providing Some Great Features for You</p>
           <template v-for="(item,i) in features" :key="i">
             <div class="flex items-center gap-x-3 pt-3">
               <img class="h-[18px]" src="/futureFunnel/check.svg" alt="icon">

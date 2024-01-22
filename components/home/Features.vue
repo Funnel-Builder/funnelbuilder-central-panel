@@ -21,8 +21,9 @@
       <section-feature-element :items="sms" image="/features/smsPic.svg" phone-image="/features/smsPhone.svg" order-class-one="order-2"  order-class-two="order-1"/>
     </div>
 <!--    Button-->
-    <div class="text-center pt-12">
-      <primary-button text="Join with Us" to="/pricing" type="link"/>
+    <div class="text-center flex justify-center pt-16">
+      <animated-button text="Join with Us" to="#pricing"/>
+<!--      <primary-button text="Join with Us" to="/pricing" type="link"/>-->
     </div>
   </div>
 </template>
@@ -31,6 +32,7 @@
 import PrimaryButton from "~/components/buttons/PrimaryButton.vue";
 import SectionHeading from "~/components/common/SectionHeading.vue";
 import SectionFeatureElement from "~/components/common/SectionFeatureElement.vue";
+import AnimatedButton from "~/components/buttons/AnimatedButton.vue";
 
 const store = ref([
   {

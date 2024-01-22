@@ -2,18 +2,22 @@
   <div>
     <!--    For Web View -->
     <div class="hidden shadow md:flex  justify-between items-center  nav px-8">
-      <div class="container flex justify-between items-center mx-auto">
-        <div class="">
+      <div class="container grid grid-cols-4 items-center mx-auto">
+        <div class="col-span-1">
           <utilities-logo classes="md:h-[50px] lg:h-[70px]"></utilities-logo>
         </div>
-        <div class="flex justify-center items-center gap-x-2 lg:gap-x-6  xl:gap-x-8 2xl:gap-x-4">
-          <div v-for="(item ,i) in items">
-            <nuxt-link class="navActive" :to="item.link">
-              <span class="navItem text-[14px] lg:text-[16px] ">{{ item.label }}</span>
-            </nuxt-link>
+        <div class="w-full col-span-2">
+          <div class="flex justify-center items-center gap-x-0 lg:gap-x-2">
+            <div v-for="(item ,i) in items">
+              <nuxt-link :to="item.link"
+                         class="navItem"
+                         :class="{ 'router-link-active': isActive(item.link) }">
+                <span class=" md:text-[14px] lg:text-[16px] ">{{ item.label }}</span>
+              </nuxt-link>
+            </div>
           </div>
         </div>
-        <div>
+        <div class="flex justify-end col-span-1">
           <div v-if="authStore.isLoggedIn" class="flex items-center gap-x-2">
             <CommonUserMenuDropdown></CommonUserMenuDropdown>
           </div>
@@ -46,22 +50,25 @@
       <div :class="showMobileMenu ? 'open-menu' : 'closed-menu'" class="text">
         <div class="nav-menu">
           <div class="flex justify-end items-center gap-x-2">
-            <div v-if="authStore.isLoggedIn" class="flex justify-center items-center px-4 py-2 gap-x-2 rounded-full"
-                 style=" background-color:#eff1f7;">
-              <utilities-logo classes="h-[80px]"></utilities-logo>
-              <p class="text-[14px] font-[600]" style="color:#5a78ad;">{{ authStore.user.name }}</p>
+            <div v-if="authStore.isLoggedIn" class="flex items-center gap-x-2">
+              <nuxt-link to="shop" class="text-[14px] px-2 py-1.5 gap-x-2 rounded-full cursor-pointer font-[600]" style="background-color:#eff1f7; color:#5a78ad;">Go To Shop</nuxt-link>
+              <div class="flex justify-center items-center px-4 py-1.5 gap-x-2 rounded-full"
+                   style=" background-color:#eff1f7;">
+                <img class="h-[20px]" src="/landing/userIcon.svg" alt="logo"/>
+                <p class="text-[14px] font-[600]" style="color:#5a78ad;">{{ truncatedUserName }}</p>
+              </div>
             </div>
             <div v-if="!authStore.isLoggedIn">
               <nuxt-link to="/login" class="text-[14px] md:text-[16px] rounded-full font-[600]"
-                         style="padding: 4px 10px; background-color:#5A78AD; color:white">Get Started
+                         style="padding: 6px 14px; background-color:#5A78AD; color:white">Login
               </nuxt-link>
             </div>
             <i @click="closeMenu" class="pi pi-times-circle menu"
-               style="font-size: 20px; padding:10px;  background-color:#5A78AD;  color:#ffffff;"></i>
+               style="font-size: 18px; padding:8px;  background-color:#5A78AD;  color:#ffffff;"></i>
           </div>
           <div class="px-4 py-12" style="">
             <div v-for="(item ,i) in items" class="py-2">
-              <nuxt-link :to="item.link">
+              <nuxt-link :to="item.link" @click="closeMenu">
                 <span class="px-2 ">{{ item.label }}</span>
               </nuxt-link>
             </div>
@@ -83,13 +90,15 @@ const authStore = useAuthStore();
 const router = useRouter();
 
 const items = ref([
-  {label: 'Home', link: '/'},
-  {label: 'Feature', link: '/feature'},
-  {label: 'Pricing', link: '/pricing'},
-  {label: 'Contact Us', link: '/contact-us'},
+  // {label: 'Home', link: '/'},
+  {label: 'Feature', link: '#feature'},
+  {label: 'Contact Us', link: '#contact'},
+  {label: 'Pricing', link: '#pricing'},
 ]);
 
-
+const isActive = (link) => {
+  return router.currentRoute.value.path === link;
+};
 const menu = ref();
 const itemss = ref([
   {
@@ -125,6 +134,10 @@ const logout = async () => {
   await router.push('/');
 };
 
+const truncatedUserName = computed(() => {
+  const userName = authStore.user.name;
+  return userName.substring(0, 2).toUpperCase();
+});
 </script>
 
 <style scoped lang="scss">
@@ -137,13 +150,6 @@ const logout = async () => {
   z-index: 1000;
 }
 
-.router-link-active {
-  padding: 4px 0px;
-  font-weight: 600;
-  color: #ffffff;
-  background: #5A78AD;
-  border-radius: 16px;
-}
 
 .navItem {
   border-radius: 16px;
@@ -182,24 +188,26 @@ const logout = async () => {
 @media screen and (max-width: 768px) {
   .nav-menu {
     padding: 20px;
-    background: white;
+    background: rgba(255, 255, 255, 0.8); /* Adjust the alpha value for transparency */
     overflow: hidden;
     position: fixed;
     top: 0;
     width: 100%;
     height: auto;
     z-index: 1000;
+    backdrop-filter: blur(10px);
+
   }
   .open-menu {
     opacity: 1;
     height: 150px;
-    //transition:all 0.1s ease-in-out;
+    transition: all 0.2s ease-in-out;
   }
   .closed-menu {
     opacity: 0;
     height: 0;
     padding: 0;
-    //transition:all 0.1s ease-in-out
+    transition: all 0.3s ease-in-out;
   }
   .nav-content {
     flex-direction: column;

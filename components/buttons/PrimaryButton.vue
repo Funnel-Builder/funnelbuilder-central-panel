@@ -32,7 +32,7 @@ const props = defineProps({
 
 <style lang="scss" scoped>
 .buttonHover:hover{
-  background: #DC6803;
+  background: #415984;
   color: white;
   transition: 0.6s;
 }
