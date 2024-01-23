@@ -1,8 +1,8 @@
 <template>
   <div class="">
-    <div class="container mx-auto pt-16 md:pt-4 lg:pt-8 xl:pt-10 2xl:pt-16">
+    <div class="bannerBG container mx-auto pt-16 md:pt-4 lg:pt-8 xl:pt-10 2xl:pt-16">
       <!--     Section One -->
-      <div class="flex flex-col items-center gap-y-6 lg:gap-y-4 xl:gap-y-7 pb-4 md:pb-20 ">
+      <div class="flex flex-col items-center gap-y-6 lg:gap-y-4 xl:gap-y-7 pb-4 md:pb-16 ">
         <feature-button text="Your Perfect Workspace" image-icon="/banner/workIcon.svg" />
         <div class="px-8 md:px-[40px] lg:px-[100px]">
           <p class="textPrimary text-center font-[600] text-[24px] md:text-[36px] xl:text-[46px] 2xl:text-[52px]">All-In-One Collaboration and
@@ -18,8 +18,12 @@
           </div>
         </div>
       </div>
+      <div class="hidden md:flex justify-center">
+        <img class=" md:h-[350px] lg:h-[420px] xl:h-[500px] 2xl:h-[600px]" src="/banner/builder.svg"
+             alt="Banner Image"/>
+      </div>
     </div>
-    <div class="">
+    <div class="block md:hidden">
       <home-banner-image/>
     </div>
   </div>
@@ -41,5 +45,15 @@ const bannerItem = ref([
 </script>
 
 <style scoped>
+
+
+@media only screen and (min-width: 768px) {
+  .bannerBG {
+    background-image: url('/banner/cover.svg') !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-x: center;
+  }
+}
 
 </style>
