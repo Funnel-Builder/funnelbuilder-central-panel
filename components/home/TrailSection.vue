@@ -3,7 +3,7 @@
     <div class="container mx-auto py-8 md:py-12">
       <div class="flex md:flex-row flex-col justify-center gap-y-4 md:justify-around items-center">
         <div class="text-center md:text-left">
-          <p class="text-[24px] xl:text-[32px] text-white font-[600] pb-2">Start your free trial</p>
+          <p class="text-[24px] xl:text-[32px] textWhite font-[600] pb-2">Start your free trial</p>
           <p class="text-[14px] xl:text-[18px] text-[#E9D7FE] font-[400]">Join over 4,000+ startups already growing with BD Funnel Builder.</p>
         </div>
         <div class="flex items-center gap-x-4">

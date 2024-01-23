@@ -13,7 +13,7 @@
               <i :class="{'pi pi-plus': !isShow[i], 'pi pi-minus': isShow[i]}" style="font-size: 0.7rem; font-weight: 600; color: #5a78ad"  class="transition-transform p-1 rounded-full" ></i>
             </div>
             <div v-if="isShow[i]" class="w-full py-2 faq-answer" >
-              <p class="text-[12px] xl:text-[16px] text-[#667085] font-[400]" >{{ item.answer }}</p>
+              <p class="text-[12px] xl:text-[16px] textSecondary font-[400]" >{{ item.answer }}</p>
             </div>
             <hr v-if="i !== faqs.length - 1">
           </div>

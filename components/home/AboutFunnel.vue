@@ -9,13 +9,13 @@
         <img class="h-[300px] xl:h-[500px]" src="/about/image.svg" alt="image"/>
       </div>
       <div class="py-4 md:py-0 text-center md:text-left xl:pt-8 order-1 md:order-2">
-        <p class="text-[16px] font-[600] text-[#5A78AD]">We’ve helped hundreds of companies</p>
-        <p class="text-[24px] xl:text-[36px] font-[600]">We’re only just getting started on our journey</p>
+        <p class="text-[16px] font-[600] textPrimary">We’ve helped hundreds of companies</p>
+        <p class="text-[24px] xl:text-[36px] font-[600] textColor">We’re only just getting started on our journey</p>
         <div class="grid grid-cols-2 pt-6 gap-6">
           <template class="" v-for="(item ,i) in counter" :key="i">
             <div>
-              <p class="text-[30px] xl:text-[40px] font-[600] text-[#5A78AD]">{{ item.number }}</p>
-              <p class="text-[16px] xl:text-[20px] font-[500]">{{ item.label }}</p>
+              <p class="text-[30px] xl:text-[40px] font-[600] textPrimary">{{ item.number }}</p>
+              <p class="text-[16px] xl:text-[20px] font-[500] textColor">{{ item.label }}</p>
             </div>
           </template>
         </div>
@@ -24,9 +24,9 @@
     <div class="flex md:flex-row flex-col gap-y-6 justify-evenly items-center  gap-x-8 pt-16">
        <template v-for="(item ,i) in info" :key="i" class="">
           <div class="text-center">
-            <p class="text-[18px] lg:text-[20px] font-[600]">{{ item.title }}</p>
-            <p class="text-[14px] lg:text-[16px] font-[400] text-[#667085] py-2">{{ item.subTitle }}</p>
-            <p class="text-[14px] lg:text-[16px] font-[600] text-[#5A78AD]">{{ item.tag }}</p>
+            <p class="text-[18px] lg:text-[20px] font-[600] textColor">{{ item.title }}</p>
+            <p class="text-[14px] lg:text-[16px] font-[400] textSecondary py-2">{{ item.subTitle }}</p>
+            <p class="text-[14px] lg:text-[16px] font-[600] textPrimary">{{ item.tag }}</p>
           </div>
        </template>
     </div>

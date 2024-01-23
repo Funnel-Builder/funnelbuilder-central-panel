@@ -90,7 +90,7 @@ const authStore = useAuthStore();
 const router = useRouter();
 
 const items = ref([
-  // {label: 'Home', link: '/'},
+  {label: 'Home', link: '/'},
   {label: 'Feature', link: '#feature'},
   {label: 'Contact Us', link: '#contact'},
   {label: 'Pricing', link: '#pricing'},

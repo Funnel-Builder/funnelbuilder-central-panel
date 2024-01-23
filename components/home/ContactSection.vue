@@ -8,8 +8,8 @@
       </div>
       <div>
         <div class="text-center pt-4">
-          <p class="text-[18px] xl:text-[20px] font-[500]">Still have questions?</p>
-          <span class="text-[14px] xl:text-[18px]">Can’t find the answer you’re looking for? Please chat to our friendly team.</span>
+          <p class="text-[18px] xl:text-[20px] font-[500] textColor">Still have questions?</p>
+          <span class="text-[14px] xl:text-[18px] textColor">Can’t find the answer you’re looking for? Please chat to our friendly team.</span>
         </div>
         <div class="text-center pt-4 xl:pt-8">
           <primary-button text="Get in touch" to="/contact-us" type="contact"/>

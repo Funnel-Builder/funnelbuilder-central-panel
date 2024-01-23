@@ -29,11 +29,11 @@
               <img class="h-[130px] rounded-full" :src="slotProps.data.image" alt="avatar"/>
             </div>
             <div class="pt-1">
-              <p class="text-[18px] font-[600] ">{{ slotProps.data.name }}</p>
-              <p class="text-[16px] font-[400] text-[#5A78AD]">{{ slotProps.data.position }}</p>
+              <p class="text-[18px] font-[600] textColor">{{ slotProps.data.name }}</p>
+              <p class="text-[16px] font-[400] textPrimary">{{ slotProps.data.position }}</p>
             </div>
             <div class="pt-3 md:px-20">
-              <p class="text-[16px] font-[400] text-[#667085]">{{ slotProps.data.reviewText }}</p>
+              <p class="text-[16px] font-[400] textSecondary">{{ slotProps.data.reviewText }}</p>
             </div>
             <div class="flex justify-center items-center gap-x-4 pt-4">
               <div v-for="(item, i) in slotProps.data.media" :key="i">
