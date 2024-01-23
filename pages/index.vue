@@ -3,7 +3,7 @@
     <div class="py-4 bannerBg">
       <HomeBanner/>
     </div>
-    <div class="py-8 md:py-20">
+    <div>
       <sponsors-companies/>
     </div>
     <div>
@@ -36,7 +36,7 @@
     <div id="pricing">
       <funnel-pricing/>
     </div>
-    <div>
+    <div id="about">
       <about-funnel/>
     </div>
     <div>

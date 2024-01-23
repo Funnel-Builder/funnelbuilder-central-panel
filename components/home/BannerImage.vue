@@ -26,18 +26,12 @@
 .pos{
   position : absolute;
 }
-@media (max-width: 1920px) {
+@media (min-width: 1920px) {
   .pos {
     top: 73%;
     left: 0;
     right: 0;
     bottom: 50%;
-  }
-  .clipPath {
-    background-color: #5a78ad;
-    clip-path: polygon(50% 64%, 100% 0, 100% 100%, 0 100%, 0 0);
-    background-image: conic-gradient(from 0deg at 50% 50%, #5a78ad 0deg, #5a78ad 90deg, #5a78ad 180deg, #5a78ad 270deg, #5a78ad 360deg);
-    width: 100%;
   }
 }
 
@@ -48,12 +42,6 @@
     right: 0;
     bottom: 50%;
   }
-  .clipPath {
-    background-color: #5a78ad;
-    clip-path: polygon(50% 64%, 100% 0, 100% 100%, 0 100%, 0 0);
-    background-image: conic-gradient(from 0deg at 50% 50%, #5a78ad 0deg, #5a78ad 90deg, #5a78ad 180deg, #5a78ad 270deg, #5a78ad 360deg);
-    width: 100%;
-  }
 }
 
 @media (max-width: 1280px) {
@@ -62,12 +50,6 @@
     left: 0;
     right: 0;
     bottom: 50%;
-  }
-  .clipPath {
-    background-color: #5a78ad;
-    clip-path: polygon(50% 65%, 100% 0, 100% 100%, 0 100%, 0 0);
-    background-image: conic-gradient(from 0deg at 50% 50%, #5a78ad 0deg, #5a78ad 90deg, #5a78ad 180deg, #5a78ad 270deg, #5a78ad 360deg);
-    width: 100%;
   }
 }
 
@@ -78,12 +60,6 @@
     right: 0;
     bottom: 50%;
   }
-  .clipPath {
-    background-color: #5a78ad;
-    clip-path: polygon(50% 65%, 100% 0, 100% 100%, 0 100%, 0 0);
-    background-image: conic-gradient(from 0deg at 50% 50%, #5a78ad 0deg, #5a78ad 90deg, #5a78ad 180deg, #5a78ad 270deg, #5a78ad 360deg);
-    width: 100%;
-  }
 }
 
 @media (max-width: 768px) {
@@ -92,12 +68,6 @@
     left: 0;
     right: 0;
     bottom: 50%;
-  }
-  .clipPath {
-    background-color: #5a78ad;
-    clip-path: polygon(50% 65%, 100% 0, 100% 100%, 0 100%, 0 0);
-    background-image: conic-gradient(from 0deg at 50% 50%, #5a78ad 0deg, #5a78ad 90deg, #5a78ad 180deg, #5a78ad 270deg, #5a78ad 360deg);
-    width: 100%;
   }
 }
 </style>

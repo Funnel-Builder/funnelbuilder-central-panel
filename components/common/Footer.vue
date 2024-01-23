@@ -60,11 +60,11 @@
 
 <script setup>
 const company = ref([
-  {label: 'About Us', link: '/'},
-  {label: 'Contact', link: '/'},
+  {label: 'About Us', link: '#about'},
+  {label: 'Contact', link: '#contact'},
   {label: 'Terms & Conditions', link: '/terms-and-conditions'},
-  {label: 'Refund Policy', link: '/'},
-  {label: 'Privacy Policy', link: '/'}
+  {label: 'Refund Policy', link: '/refund-policy'},
+  {label: 'Privacy Policy', link: '/privacy-policy'}
 ]);
 const social = ref([
   {label: 'Twitter', link: '/'},

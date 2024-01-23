@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto px-2 md:px-0">
+  <div class="container mx-auto px-2 md:px-0 pt-12 md:pt-12 lg:pt-20 2xl:pt-20">
     <div class="text-center">
       <section-heading title="How To Set Up Your Online Shop" sub-title="You must be thinking of setting up the store nicely. If your answer is yes then follow these five steps." />
     </div>

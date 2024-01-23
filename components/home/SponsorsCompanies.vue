@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto  xl:pt-[50px] 2xl:pt-[60px]">
+  <div class="container mx-auto pt-12 md:pt-24 lg:pt-20  xl:pt-32 2xl:pt-[150px]">
      <div class="text-center">
        <p class="text-[16px] font-[500] textSecondary">Join 4,000+ companies already growing</p>
      </div>
