@@ -18,7 +18,7 @@
           </div>
         </div>
       </div>
-      <div class="flex justify-center py-4 md:py-0">
+      <div class="flex justify-center py-8 md:py-0">
         <img class="md:h-[400px] lg:h-auto" src="/whyFunnelBuilder/image.svg" alt="whyFunnelBuilder"/>
       </div>
     </div>

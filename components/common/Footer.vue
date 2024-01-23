@@ -12,7 +12,7 @@
        </div>
      </div>
      <div class="flex justify-evenly">
-       <div class="hidden lg:flex flex-col items-center gap-y-3 pt-3">
+       <div class="hidden lg:flex flex-col items-start gap-y-3 pt-3">
          <p class="textPrimary font-[600] text-[18px] xl:text-[20px]">Company</p>
          <template v-for="(item, i) in company" :key="i">
            <nuxt-link :to="item.link">
@@ -22,7 +22,7 @@
        </div>
      </div>
      <div class="flex justify-evenly">
-       <div class="hidden lg:flex flex-col items-center gap-y-3 pt-3">
+       <div class="hidden lg:flex flex-col items-start gap-y-3 pt-3">
          <p class="textPrimary font-[600] md:text-[20px]">Social</p>
          <template v-for="(item, i) in social" :key="i">
            <nuxt-link :to="item.link">

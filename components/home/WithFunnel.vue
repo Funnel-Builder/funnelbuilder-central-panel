@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto lg:pt-20 lg:px-16 px-4 md:px-8">
+  <div class="container mx-auto pt-8 lg:pt-20 lg:px-16 px-4 md:px-8">
      <div class="text-center">
        <section-heading title="The Funnel Is The Secret To Your Online Success" sub-title="It’s the difference between the 1,929,999,999 websites that don’t make money, and the .000000002% that do!" />
 <!--        <p class="text-[16px] font-[400] text-center text-[#667085] pt-2">It’s the difference between the 1,929,999,999 websites that don’t make money, <span class="font-[700]">and the .000000002% that do!</span></p>-->
