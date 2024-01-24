@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto pt-20 px-4 md:px-16">
     <div class="text-center pb-8 md:pb-16">
-      <section-heading tag="FAQs" title="Frequently asked questions"
+      <section-heading tag="FAQs" title="Frequently Asked Questions"
                        sub-title="Everything you need to know about the product and billing." />
     </div>
     <div class="md:flex justify-center">
@@ -25,6 +25,8 @@
 
 <script setup>
 import SectionHeading from "~/components/common/SectionHeading.vue";
+
+
 
 const isShow = ref([false,false,false,false,false,false])
 

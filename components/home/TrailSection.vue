@@ -7,8 +7,8 @@
           <p class="text-[14px] xl:text-[18px] text-[#E9D7FE] font-[400]">Join over 4,000+ startups already growing with BD Funnel Builder.</p>
         </div>
         <div class="flex items-center gap-x-4">
-          <primary-button text="Learn more" to="/contact-us" type="trail"/>
-          <primary-button text="Get started" to="/contact-us" type="trail"/>
+          <primary-button text="Learn more" to="#feature" type="trail"/>
+          <primary-button text="Get started" to="#pricing" type="trail"/>
         </div>
       </div>
     </div>

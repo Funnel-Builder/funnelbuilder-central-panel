@@ -72,7 +72,7 @@
                 <span class="px-2 ">{{ item.label }}</span>
               </nuxt-link>
             </div>
-            <div class="mt-8">
+            <div v-if="authStore.isLoggedIn" class="mt-8">
               <button @click="logout" class="flex justify-center items-center gap-x-2 px-8 py-1 rounded-[16px]" style="background-color:#5A78AD; color:#ffffff;">
                 <i class="pi pi-sign-out" style="font-size: 15px; padding:2px 2px; color:#ffffff;"></i>
                 Logout
@@ -92,8 +92,8 @@ const router = useRouter();
 const items = ref([
   {label: 'Home', link: '/'},
   {label: 'Feature', link: '#feature'},
-  {label: 'Contact Us', link: '#contact'},
   {label: 'Pricing', link: '#pricing'},
+  {label: 'Contact Us', link: '#contact'}
 ]);
 
 const isActive = (link) => {

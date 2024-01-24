@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto pt-20 px-8 lg:px-16">
      <div class="text-center">
-       <section-heading title="Analytics that feels like it’s from the future" sub-title="Powerful, self-serve product and growth analytics to help you convert, engage, and retain more users. Trusted by over 4,000 startups." />
+       <section-heading title="Analytics That Feels Like It’s From The Future" sub-title="Powerful, self-serve product and growth analytics to help you convert, engage, and retain more users. Trusted by over 4,000 startups." />
      </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-8 md:gap-y-12 py-16">
       <template v-for="(item,i) in items" :key="i">

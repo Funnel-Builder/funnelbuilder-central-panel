@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto pt-20 px-4 md:px-8 lg:px-16">
     <div class="text-center pb-16">
-      <section-heading tag="About us" title="About the company"
+      <section-heading tag="About us" title="About The Company"
                        sub-title="Learn more about the company and the team behind it." />
     </div>
     <div class="p-2 md:p-8 lg:p-16 gap-x-8 lg:gap-x-16 bg-[#EFF1F7] flex md:flex-row flex-col items-center justify-center">

@@ -30,14 +30,14 @@
     <div>
       <faq-section/>
     </div>
-    <div id="contact">
-      <contact-section/>
-    </div>
     <div id="pricing">
       <funnel-pricing/>
     </div>
     <div id="about">
       <about-funnel/>
+    </div>
+    <div id="contact">
+      <contact-section/>
     </div>
     <div>
       <trail-section/>

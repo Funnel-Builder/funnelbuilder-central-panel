@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto pt-20 px-4 md:px-16">
     <div class="text-center">
-      <section-heading tag="Pricing" title="Simple, transparent pricing"
+      <section-heading tag="Pricing" title="Simple, Transparent Pricing"
                        sub-title="We believe Untitled should be accessible to all companies, no matter the size." />
     </div>
     <div class="md:flex justify-center items-center  gap-x-16 pt-12">
@@ -17,11 +17,20 @@
              <p class="text-[14px] xl:text-[16px] font-[400] textSecondary">{{ context.label }}</p>
            </div>
            <div class="pt-5">
-             <nuxt-link to="/pricing">
-               <div class="buttonHover  hover:ring-1 hover:ring-[white] text-white flex justify-center items-center bg-[#5A78AD] gap-x-1 rounded-md  py-1.5 hover:cursor-pointer">
-                 <p class="font-[600] text-center text-[16px]">Get started</p>
-               </div>
-             </nuxt-link>
+             <template v-if="!authStore.isLoggedIn">
+               <nuxt-link to="/register">
+                 <div class="buttonHover  hover:ring-1 hover:ring-[white] text-white flex justify-center items-center bg-[#5A78AD] gap-x-1 rounded-md  py-1.5 hover:cursor-pointer">
+                   <p class="font-[600] text-center text-[16px]">Get started</p>
+                 </div>
+               </nuxt-link>
+             </template>
+             <template v-if="authStore.isLoggedIn">
+               <nuxt-link to="/login">
+                 <div class="buttonHover  hover:ring-1 hover:ring-[white] text-white flex justify-center items-center bg-[#5A78AD] gap-x-1 rounded-md  py-1.5 hover:cursor-pointer">
+                   <p class="font-[600] text-center text-[16px]">Get started</p>
+                 </div>
+               </nuxt-link>
+             </template>
            </div>
          </div>
        </template>
@@ -31,7 +40,7 @@
 
 <script setup>
 import SectionHeading from "~/components/common/SectionHeading.vue";
-
+const authStore = useAuthStore();
 const pricing = ref([
   { title: 'Free', subTitle: 'Billed annually.', tag:'Basic plan',
     context:[
