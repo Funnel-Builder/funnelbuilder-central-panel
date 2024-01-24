@@ -39,11 +39,16 @@
           <img class="h-[50px] md:h-[70px]" src="/landing/logo.svg" alt="logo"/>
         </div>
         <div class="flex justify-center items-center gap-x-2">
-         <div v-if="!authStore.isLoggedIn">
+         <div v-if="authStore.isLoggedIn">
            <nuxt-link to="/login" class="text-[14px]  md:text-[16px] rounded-full font-[600]"
                       style="padding: 8px 12px; background-color:#eff1f7; color:#5A78AD">Go to Shop
            </nuxt-link>
          </div>
+          <div v-if="!authStore.isLoggedIn">
+            <nuxt-link to="/login" class="text-[14px] md:text-[16px] rounded-full font-[600]"
+                       style="padding: 6px 14px; background-color:#5A78AD; color:white">Login
+            </nuxt-link>
+          </div>
           <i @click="showMenu()" class="pi pi-bars menu" style="font-size: 20px; padding:10px; color:#5A78AD;"></i>
         </div>
       </div>
