@@ -2,7 +2,7 @@
   <div class="container mx-auto px-4 md:px-16 pt-12 md:pt-4 lg:pt-20">
     <div class="md:flex items-center gap-x-8">
       <div class="">
-        <p class="pb-6 text-[18px] lg:text-[24px] xl:text-[32px] font-[600] textColor">Why BD Funnel Builder ?</p>
+        <p class="pb-6 text-[18px] lg:text-[24px] xl:text-[32px] font-[600] textColor md:text-left text-center">Why BD Funnel Builder ?</p>
         <div class="flex items-center">
           <img class="h-[36px] lg:h-[40px] xl:h-[50px] 2xl:h-[50px]" src="/whyFunnelBuilder/icon1.svg" alt="icon"/>
           <div class="text-left px-4">
