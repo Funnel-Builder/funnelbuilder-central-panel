@@ -8,11 +8,11 @@
       <div class="w-full">
         <template v-for="(item ,i) in faqs" :key="i">
           <div class="py-2 px-4 md:px-16">
-            <div @click="open(i)" :class="{ 'active': isShow[i] }" class="faq-question flex py-2 w-full  justify-between items-center cursor-pointer">
+            <div @click="toggleAnswer(i)" :class="{ 'active': activeIndex === i }" class="faq-question flex py-2 w-full justify-between items-center">
               <p class="text-[16px] xl:text-[20px] font-[500]">{{ item.question }}</p>
-              <i :class="{'pi pi-plus': !isShow[i], 'pi pi-minus': isShow[i]}" style="font-size: 0.7rem; font-weight: 600; color: #5a78ad"  class="transition-transform p-1 rounded-full" ></i>
+              <i :class="{'pi pi-plus': activeIndex !== i, 'pi pi-minus': activeIndex === i}" style="font-size: 0.7rem; font-weight: 600; color: #5a78ad"  class="transition-transform p-1 rounded-full" ></i>
             </div>
-            <div v-if="isShow[i]" class="w-full py-2 faq-answer" >
+            <div v-if="activeIndex === i" class="w-full py-2 faq-answer" >
               <p class="text-[12px] xl:text-[16px] textSecondary font-[400]" >{{ item.answer }}</p>
             </div>
             <hr v-if="i !== faqs.length - 1">
@@ -26,18 +26,26 @@
 <script setup>
 import SectionHeading from "~/components/common/SectionHeading.vue";
 
+const activeIndex = ref(0);
 
+const toggleAnswer = (index) => {
+  if (activeIndex.value === index) {
+    activeIndex.value = -1;
+  } else {
+    activeIndex.value = index;
+  }
+};
 
-const isShow = ref([false,false,false,false,false,false])
-
-const open = (index) => {
-  isShow.value.forEach((item,i) => {
-    if(i !== index){
-      isShow.value[i] = false;
-    }
-  })
-  isShow.value[index] = !isShow.value[index];
-}
+// const isShow = ref([false,false,false,false,false,false])
+//
+// const open = (index) => {
+//   isShow.value.forEach((item,i) => {
+//     if(i !== index){
+//       isShow.value[i] = false;
+//     }
+//   })
+//   isShow.value[index] = !isShow.value[index];
+// }
 
 const faqs = ref([
   { question:'Is there a free trial available?', answer: 'Yes, you can try us for free for 7 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.' },

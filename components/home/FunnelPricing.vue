@@ -18,14 +18,14 @@
            </div>
            <div class="pt-5">
              <template v-if="!authStore.isLoggedIn">
-               <nuxt-link to="/register">
+               <nuxt-link to="/login">
                  <div class="buttonHover  hover:ring-1 hover:ring-[white] text-white flex justify-center items-center bg-[#5A78AD] gap-x-1 rounded-md  py-1.5 hover:cursor-pointer">
                    <p class="font-[600] text-center text-[16px]">Get started</p>
                  </div>
                </nuxt-link>
              </template>
              <template v-if="authStore.isLoggedIn">
-               <nuxt-link to="/login">
+               <nuxt-link to="/shop">
                  <div class="buttonHover  hover:ring-1 hover:ring-[white] text-white flex justify-center items-center bg-[#5A78AD] gap-x-1 rounded-md  py-1.5 hover:cursor-pointer">
                    <p class="font-[600] text-center text-[16px]">Get started</p>
                  </div>

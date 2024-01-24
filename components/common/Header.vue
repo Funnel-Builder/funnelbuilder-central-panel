@@ -52,7 +52,7 @@
           <i @click="showMenu()" class="pi pi-bars menu" style="font-size: 20px; padding:10px; color:#5A78AD;"></i>
         </div>
       </div>
-      <div :class="showMobileMenu ? 'open-menu' : 'closed-menu'" class="text">
+      <div :class="showMobileMenu ? 'block' : 'hidden'" class="text">
         <div class="nav-menu">
           <div class="flex justify-end items-center gap-x-2">
             <div v-if="authStore.isLoggedIn" class="flex items-center gap-x-2">
