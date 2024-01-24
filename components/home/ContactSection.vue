@@ -114,8 +114,7 @@ const isActive = computed(() => {
 });
 
 const submit = ()=>{
-  console.log('submit')
-
+  alert('Coming soon')
 }
 
 </script>

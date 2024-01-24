@@ -36,9 +36,7 @@ const open = (index) => {
       isShow.value[i] = false;
     }
   })
-  console.log(index)
   isShow.value[index] = !isShow.value[index];
-  console.log('open')
 }
 
 const faqs = ref([
