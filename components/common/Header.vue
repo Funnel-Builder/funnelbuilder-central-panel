@@ -132,6 +132,8 @@ const closeMenu = () => {
 const logout = async () => {
   const {data, pending, error, refresh} = await authStore.logout();
   await router.push('/');
+  showMobileMenu.value = false;
+
 };
 
 const truncatedUserName = computed(() => {
