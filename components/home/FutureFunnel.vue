@@ -19,7 +19,7 @@
             </div>
           </template>
         </div>
-        <div class="pl-4 md:pl-0">
+        <div class="pl-4 md:pl-0" data-aos="fade-left" data-aos-duration="1500">
           <img class="h-[400px] lg:h-[500px]" src="/futureFunnel/image.svg" alt="icon">
         </div>
       </div>

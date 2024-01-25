@@ -1,8 +1,8 @@
 <template>
   <div class="container mx-auto px-4 md:px-16 pt-12 md:pt-4 lg:pt-20">
     <div class="md:flex items-center gap-x-8">
-      <div class="">
-        <p class="pb-6 text-[18px] lg:text-[24px] xl:text-[32px] font-[600] textColor md:text-left text-center">Why BD Funnel Builder ?</p>
+      <div class="" data-aos="fade-right" data-aos-offset="300" data-aos-duration="1000" data-aos-easing="ease-in-sine">
+        <p class="textAnimation pb-6 text-[18px] lg:text-[24px] xl:text-[32px] font-[600] textColor md:text-left text-center">Why BD Funnel Builder ?</p>
         <div class="flex items-center">
           <img class="h-[36px] lg:h-[40px] xl:h-[50px] 2xl:h-[50px]" src="/whyFunnelBuilder/icon1.svg" alt="icon"/>
           <div class="text-left px-4">
@@ -18,7 +18,7 @@
           </div>
         </div>
       </div>
-      <div class="flex justify-center py-8 md:py-0">
+      <div class="flex justify-center py-8 md:py-0" data-aos="fade-left" data-aos-offset="300" data-aos-duration="1000" data-aos-easing="ease-in-sine">
         <img class="md:h-[400px] lg:h-auto" src="/whyFunnelBuilder/image.svg" alt="whyFunnelBuilder"/>
       </div>
     </div>
@@ -30,5 +30,24 @@
 </script>
 
 <style lang="scss" scoped>
+.textAnimation{
+  animation: flow 30s ease-in-out infinite;
+  background: linear-gradient(-60deg, #5A78AD,#DC6803,#121FCF,#CF1512, #5A78AD,#DC6803,#121FCF);
+  background-size: 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
+@keyframes flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 </style>
