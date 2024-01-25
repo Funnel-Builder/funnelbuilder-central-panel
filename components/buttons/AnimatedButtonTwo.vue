@@ -17,11 +17,11 @@ const props = defineProps({
 .btn{
   text-decoration: none;
   border: 1px solid #5A78AD;
-  border-radius: 20px;
+  border-radius: 50px;
   font-weight: 600;
   font-size: 16px;
   letter-spacing: 1px;
-  padding: 4px 30px;
+  padding: 4px 20px;
   transform: translate(-50%,-50%);
   overflow: hidden;
   transition: all 0.3s;
