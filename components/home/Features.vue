@@ -22,7 +22,8 @@
     </div>
 <!--    Button-->
     <div class="text-center flex justify-center pt-16">
-      <animated-button text="Grow Your Business" to="#pricing"/>
+<!--      <animated-button text="Grow Your Business" to="#pricing"/>-->
+      <animated-button-two text="Grow Your Business" to="#pricing" />
 <!--      <primary-button text="Join with Us" to="/pricing" type="link"/>-->
     </div>
   </div>
@@ -33,6 +34,7 @@ import PrimaryButton from "~/components/buttons/PrimaryButton.vue";
 import SectionHeading from "~/components/common/SectionHeading.vue";
 import SectionFeatureElement from "~/components/common/SectionFeatureElement.vue";
 import AnimatedButton from "~/components/buttons/AnimatedButton.vue";
+import AnimatedButtonTwo from "~/components/buttons/AnimatedButtonTwo.vue";
 
 const store = ref([
   {

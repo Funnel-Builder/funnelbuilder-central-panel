@@ -4,7 +4,7 @@
        <section-heading title="The Funnel Is The Secret To Your Online Success" sub-title="It’s the difference between the 1,929,999,999 websites that don’t make money, and the .000000002% that do!" />
 <!--        <p class="text-[16px] font-[400] text-center text-[#667085] pt-2">It’s the difference between the 1,929,999,999 websites that don’t make money, <span class="font-[700]">and the .000000002% that do!</span></p>-->
      </div>
-     <div class="md:flex justify-center items-center gap-x-6 pt-8 md:pt-12" data-aos="fade-down" data-aos-duration="1000">
+     <div class="md:flex justify-center items-center gap-x-6 pt-8 md:pt-12 aos-container" data-aos="fade-down" data-aos-duration="1000">
        <div class="bg-[#F1F6FF] w-full md:w-[50%] lg:w-[40%] px-8 md:px-16 py-6 rounded-md">
          <p class="text-[18px] lg:text-[20px] xl:text-[24px] font-[600] textColor">Without Funnel</p>
          <template v-for="(item , i) in withOutFunnel" :key="i">
@@ -25,8 +25,7 @@
        </div>
      </div>
     <div class="text-center flex justify-center pt-16">
-      <animated-button text="Let’s Start" to="#pricing"/>
-<!--      <primary-button text="Join with Us" to="#pricing" type="link" />-->
+      <animated-button-two text="Let’s Start" to="#pricing" />
     </div>
   </div>
 </template>
@@ -35,6 +34,7 @@
 import SectionHeading from "~/components/common/SectionHeading.vue";
 import PrimaryButton from "~/components/buttons/PrimaryButton.vue";
 import AnimatedButton from "~/components/buttons/AnimatedButton.vue";
+import AnimatedButtonTwo from "~/components/buttons/AnimatedButtonTwo.vue";
 
 const withOutFunnel = ref([
   { name: "No Customer" },
@@ -53,5 +53,10 @@ const withFunnel = ref([
 </script>
 
 <style lang="scss" scoped>
-
+@media only screen and (max-width: 768px) {
+  .aos-container {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
 </style>

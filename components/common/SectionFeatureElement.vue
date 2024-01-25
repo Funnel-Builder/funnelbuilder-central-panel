@@ -14,7 +14,7 @@
           <p class="pl-2 text-[14px] lg:text-[14px] xl:text-[16px] font-[400] textSecondary">{{ context.name }}</p>
         </div>
       </div>
-      <div class="hidden md:block" :class="orderClassTwo" data-aos="flip-right" data-aos-duration="1500">
+      <div class="hidden md:block aos-container" :class="orderClassTwo" data-aos="flip-right" data-aos-duration="1500">
         <img class="" :src="image" alt="icon">
       </div>
       <div class="md:hidden flex justify-center pt-6" :class="orderClassTwo">
@@ -35,5 +35,10 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
-
+@media only screen and (max-width: 768px) {
+  .aos-container {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
 </style>

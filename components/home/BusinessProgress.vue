@@ -32,8 +32,7 @@
       </div>
     </div>
     <div class="flex justify-center text-center pt-16">
-      <animated-button text="Join with Us" to="#pricing"/>
-<!--      <primary-button text="Join with Us" to="#pricing" type="link" />-->
+      <animated-button-two text="Let’s Start" to="#pricing" />
     </div>
   </div>
 </template>
@@ -42,6 +41,7 @@
 import SectionHeading from "~/components/common/SectionHeading.vue";
 import PrimaryButton from "~/components/buttons/PrimaryButton.vue";
 import AnimatedButton from "~/components/buttons/AnimatedButton.vue";
+import AnimatedButtonTwo from "~/components/buttons/AnimatedButtonTwo.vue";
 
 const items = ref([
   {name: 'Create Shop', logo: '/business/shop.svg'},

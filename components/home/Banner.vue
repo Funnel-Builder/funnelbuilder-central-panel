@@ -26,7 +26,7 @@
              alt="Banner Image"/>
       </div>
     </div>
-    <div class="block md:hidden" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
+    <div class="block md:hidden">
       <home-banner-image/>
     </div>
   </div>
