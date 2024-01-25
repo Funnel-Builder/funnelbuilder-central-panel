@@ -22,7 +22,6 @@
     </div>
 <!--    Button-->
     <div class="text-center flex justify-center pt-16">
-<!--      <animated-button text="Grow Your Business" to="#pricing"/>-->
       <animated-button-two text="Grow Your Business" to="#pricing" />
 <!--      <primary-button text="Join with Us" to="/pricing" type="link"/>-->
     </div>

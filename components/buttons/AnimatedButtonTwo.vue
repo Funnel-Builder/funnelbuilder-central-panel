@@ -1,7 +1,7 @@
 <template>
   <div>
     <nuxt-link :to="to">
-      <button class="original-button">{{ text }}</button>
+      <button class="btn">{{ text }}</button>
     </nuxt-link>
   </div>
 </template>
@@ -14,72 +14,106 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
-.original-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
+.btn{
   text-decoration: none;
-  color:  #5A78AD;
+  border: 1px solid #5A78AD;
+  border-radius: 20px;
+  font-weight: 600;
   font-size: 16px;
-  border-radius: 0px;
-  width: 200px;
-  height: 40px;
-  position: relative;
-  font-weight:600;
-  transition: 0.3s;
-  //background: #121FCF;
-  //background: linear-gradient(to right, #5A78AD 0%, #DC6803 100%);
-  //-webkit-background-clip: text;
-  //-webkit-text-fill-color: transparent;
-}
-
-.original-button::before, .original-button::after {
-  content: "";
+  letter-spacing: 1px;
+  padding: 4px 30px;
+  transform: translate(-50%,-50%);
+  overflow: hidden;
+  transition: all 0.3s;
+  color:#5A78AD;
   display: block;
   position: absolute;
-  width: 100%;
-  height: 100%;
-  transition: .3s;
-  border-width: 2px;
-  border-style: solid;
-  border-image: linear-gradient(to right, #5A78AD,#5A78AD) 1;
 }
 
-.original-button::before {
-  top: -2px;
-  left: -2px;
+.btn:before{
+  content: '';
+  position: absolute;
+  border-radius: 130px;
+  top: 30px;
+  left: 50%;
+  width: 320px;
+  height: 320px;
+  background: #5A78AD;
+  border: 2px solid #5A78AD;
+  transition: all 1s;
+  animation: wave 5s infinite linear;
+  z-index: -1;
+  color:white;
 }
 
-.original-button::after {
-  top: 2px;
-  left: 2px;
-}
-
-.original-button:hover::before, .original-button:hover::after {
-  top: 0;
-  left: 0;
-  //background-color: #5a78ad;
-}
-@media screen and (max-width: 768px) {
-  .original-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;
-    text-decoration: none;
-    color:  #5A78AD;
-    font-size: 12px;
-    border-radius: 0px;
-    width: 160px;
-    height: 34px;
-    position: relative;
-    font-weight:600;
-    transition: 0.3s;
-    //background: #121FCF;
-    //background: linear-gradient(to right, #5A78AD 0%, #DC6803 100%);
-    //-webkit-background-clip: text;
-    //-webkit-text-fill-color: transparent;
+@keyframes wave {
+  0%{
+    transform: translateX(-50%) rotate(0deg);
+  }
+  100%{
+    transform: translateX(-50%) rotate(360deg);
   }
 }
+
+.btn:hover{
+  color: white;
+}
+
+.btn:hover:before{
+  top: -50px;
+  background: #5A78AD;
+  color: white;
+}
+@media only screen and (max-width: 600px) {
+  .btn{
+    text-decoration: none;
+    border: 1px solid #5A78AD;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 1px;
+    padding: 6px 10px;
+    transform: translate(-50%,-50%);
+    overflow: hidden;
+    transition: all 0.3s;
+    color:#5A78AD;
+    display: block;
+    position: absolute;
+  }
+  .btn:before{
+    content: '';
+    position: absolute;
+    border-radius: 130px;
+    top: 30px;
+    left: 50%;
+    width: 320px;
+    height: 320px;
+    background: #5A78AD;
+    border: 2px solid #5A78AD;
+    transition: all 1s;
+    animation: wave 5s infinite linear;
+    z-index: -1;
+    color:white;
+  }
+
+  @keyframes wave {
+    0%{
+      transform: translateX(-50%) rotate(0deg);
+    }
+    100%{
+      transform: translateX(-50%) rotate(360deg);
+    }
+  }
+
+  .btn:hover{
+    color: white;
+  }
+
+  .btn:hover:before{
+    top: -50px;
+    background: #5A78AD;
+    color: white;
+  }
+}
+
 </style>
