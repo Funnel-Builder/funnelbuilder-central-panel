@@ -19,7 +19,7 @@
         </div>
       </div>
       <div class="aos-container flex justify-center py-8 md:py-0" data-aos="fade-left" data-aos-offset="300" data-aos-duration="1000" data-aos-easing="ease-in-sine">
-        <img class="md:h-[400px] lg:h-auto" src="/whyFunnelBuilder/image.svg" alt="whyFunnelBuilder"/>
+        <img class="md:h-[400px] lg:h-auto" src="/whyFunnelBuilder/Image.svg" alt="whyFunnelBuilder"/>
       </div>
     </div>
   </div>
