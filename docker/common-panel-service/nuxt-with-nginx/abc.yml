@@ -6,7 +6,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: "abcd.bdfunnelbuilder.com"
+    - host: "abc.bdfunnelbuilder.com"
       http:
         paths:
           - path: /
