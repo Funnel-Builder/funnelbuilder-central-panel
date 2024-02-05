@@ -1,4 +1,5 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
+import { defineNuxtConfig } from 'nuxt3';
+
 export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: true,
@@ -13,7 +14,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxtjs/tailwindcss'
   ],
-  build : {
+  build: {
     transpile: ['vue-toastification']
   },
   postcss: {
@@ -28,7 +29,16 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       baseURL: process.env.BASE_URL || 'https://auth-service-webserver/api/',
-        sellerServiceFrontendURL: process.env.SELLER_PANEL_URL || 'https://seller-service-webserver/',
+      sellerServiceFrontendURL: process.env.SELLER_PANEL_URL || 'https://seller-service-webserver/',
     },
   },
-})
+  serverMiddleware: [
+    {
+      path: '/health',
+      handler: (req, res) => {
+        res.writeHead(200, { 'Content-Type': 'text/plain' });
+        res.end('OK');
+      },
+    },
+  ],
+});
