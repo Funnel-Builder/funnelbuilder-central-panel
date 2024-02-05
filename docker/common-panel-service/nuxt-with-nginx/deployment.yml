@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: common-panel-service-webserver
+  namespace: funnelbuiler-solution
+  labels:
+    tier: common-panel-frontend
+    layer: webserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      tier: common-panel-frontend
+      layer: webserver
+  template:
+    metadata:
+      labels:
+        tier: common-panel-frontend
+        layer: webserver
+    spec:
+      containers:
+        - name: webserver
+          imagePullPolicy: Always
+          image: bdfunnelbuilder/ota-common-panel:v0.0.1
+          resources:
+            limits:
+              cpu: "0.2"
+              memory: "128M"
+            requests:
+              cpu: "0.2"
+              memory: "128M"
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: common-panel-service
+            - secretRef:
+                name: common-panel-service
+          # Liveness Probe
+#          livenessProbe:
+#            httpGet:
+#              path: /api/health
+#              port: 8080 # Port on which the probe should be performed
+#            initialDelaySeconds: 15 # Delay before the first probe
+#            periodSeconds: 10 # How often to perform the probe
+#            timeoutSeconds: 1 # How long to wait for the probe to complete
+#            failureThreshold: 3 # Number of consecutive failures before marking the container as not ready
+#          # Readiness Probe
+#          readinessProbe:
+#            httpGet:
+#              path: /api/health
+#              port: 8080
+#            initialDelaySeconds: 5
+#            periodSeconds: 5
+#            timeoutSeconds: 1
+#            failureThreshold: 3
+      imagePullSecrets:
+        - name: regcred

@@ -1,14 +1,14 @@
 @import "Variables";
 @import "Typography";
 
-.max-width- {
-  max-width: $maxWith;
-  margin: 0 auto;
-}
-.container {
-  @extend .max-width-;
-  padding: 15px;
-}
+//.max-width- {
+//  max-width: $maxWith;
+//  margin: 0 auto;
+//}
+//.container {
+//  @extend .max-width-;
+//  padding: 15px;
+//}
 
 html, body, #root {
   height: 100%;
@@ -36,5 +36,18 @@ body {
   &:focus {
     border: 1px solid red;
   }
+}
+
+.textPrimary {
+  color: $textPrimary;
+}
+.textSecondary {
+  color: $textSecondary;
+}
+.textColor{
+  color: $textColor;
+}
+.textWhite {
+  color: $textWhite;
 }
 

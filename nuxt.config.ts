@@ -13,6 +13,9 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxtjs/tailwindcss'
   ],
+  build : {
+    transpile: ['vue-toastification']
+  },
   postcss: {
     plugins: {
       tailwindcss: {},
@@ -24,7 +27,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      baseURL: process.env.BASE_URL || 'http://127.0.0.1:8000/api/',
+      baseURL: process.env.BASE_URL || 'https://auth-service-webserver/api/',
+        sellerServiceFrontendURL: process.env.SELLER_PANEL_URL || 'https://seller-service-webserver/',
     },
   },
 })
