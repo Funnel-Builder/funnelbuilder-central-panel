@@ -39,8 +39,8 @@ spec:
           # Liveness Probe
           livenessProbe:
             httpGet:
-              path: /health
-              port: 3000 # Port on which the probe should be performed
+              path: /system-health
+              port: 80 # Port on which the probe should be performed
             initialDelaySeconds: 15 # Delay before the first probe
             periodSeconds: 10 # How often to perform the probe
             timeoutSeconds: 1 # How long to wait for the probe to complete
@@ -48,8 +48,8 @@ spec:
           # Readiness Probe
           readinessProbe:
             httpGet:
-              path: /health
-              port: 3000
+              path: /system-health
+              port: 80
             initialDelaySeconds: 5
             periodSeconds: 5
             timeoutSeconds: 1

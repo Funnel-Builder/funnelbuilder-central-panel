@@ -12,7 +12,7 @@ REGISTRY_WITH_PROJECT_SUFFIX_PROD ?= bdf-common-prod
 
 docker: docker-build docker-push
 
-prod: docker-build-prod
+prod: docker-build-prod docker-push-prod
 
 docker-build:
 	docker build -f docker/Dockerfile.production -t ${REGISTRY}/${REGISTRY_WITH_PROJECT_SUFFIX}:${VERSION} .
@@ -20,8 +20,8 @@ docker-build:
 docker-push:
 	docker push ${REGISTRY}/${REGISTRY_WITH_PROJECT_SUFFIX}:${VERSION}
 
-docker-build:
+docker-build-prod:
 	docker build -f docker/Dockerfile.production -t ${REGISTRY_PROD}/${REGISTRY_WITH_PROJECT_SUFFIX_PROD}:${VERSION_PROD} .
 
-docker-push:
+docker-push-prod:
 	docker push ${REGISTRY_PROD}/${REGISTRY_WITH_PROJECT_SUFFIX_PROD}:${VERSION_PROD}
