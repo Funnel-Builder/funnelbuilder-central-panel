@@ -62,6 +62,8 @@ const props = defineProps({
     }
 });
 
+const authStore = useAuthStore();
+
 const domain_error = ref('');
 const loading = ref(false);
 const awsSignUrl = ref('')
@@ -128,6 +130,7 @@ const createShop = handleSubmit(async (values) => {
         }
     }
     else {
+        await authStore.refreshToken()
         await goToShop(data.value.data.id)
     }
 
