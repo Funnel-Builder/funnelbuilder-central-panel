@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: common-panel-service
+  namespace: funnelbuiler-solution-prod
+data:
+  BASE_URL: "http://auth-service-webserver/api/"
