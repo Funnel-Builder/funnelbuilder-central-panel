@@ -6,7 +6,7 @@
             <p class="text-[12px] md:text-[14px] text-white font-[400]">We have sent six digit code to your email</p>
         </div>
         <div>
-            <form @submit.prevent="submitOtp">
+            <form @keyup.enter="submitOtp">
               <div class="py-16">
                 <div>
                   <p class="text-[12px] md:text-[14px] text-white font-[400] pl-2">Enter Code</p>
