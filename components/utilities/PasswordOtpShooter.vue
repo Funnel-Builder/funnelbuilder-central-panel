@@ -11,7 +11,7 @@
                 <div>
                   <p class="text-[12px] md:text-[14px] text-white font-[400] pl-2">Enter Code</p>
                   <div class="mt-1 flex justify-between">
-                    <v-otp-input @keyup.enter="submitOtp" ref="otpInput" input-classes="otp-input" separator="" :num-inputs="6"
+                    <v-otp-input  ref="otpInput" input-classes="otp-input" separator="" :num-inputs="6"
                                  :should-auto-focus="true" :is-input-num="true" @on-change="handleOnChange"
                                  @on-complete="handleOnComplete">
                     </v-otp-input>

@@ -13,10 +13,10 @@
               Provide your valid email.</p>
           </div>
           <div class="px-4 sm:px-0">
-            <form >
+            <form @submit.prevent="submitData">
               <div class="pt-8">
                 <label class="inputGroupLabel" for="email">Email</label><br>
-                <InputText @keyup.enter="submitData" v-model="email.value.value" :class="{ 'invalid': email.errorMessage.value }"
+                <InputText v-model="email.value.value" :class="{ 'invalid': email.errorMessage.value }"
                            class="inputGroupField focus:shadow-none py-2 sm:py-3" id="email" type="email"
                            placeholder="Enter email address" />
                 <form-input-error :message="email.errorMessage.value" text-color="#FFD600" />
