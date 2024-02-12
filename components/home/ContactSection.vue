@@ -11,44 +11,46 @@
           <p class="text-[18px] xl:text-[20px] font-[500] textColor">Still have questions?</p>
           <span class="text-[14px] lg:text-[18px] textColor">Can’t find the answer you’re looking for? Please chat to our friendly team.</span>
         </div>
-        <div class="flex justify-center">
-          <div class="grid grid-cols-1 gap-x-8 px-4 md:px-16 w-full md:w-[100%] lg:w-[88%] xl:w-[68%] 2xl:w-[56%]">
-            <div class="pt-5">
-              <label class="inputGroupLabel" for="username">Full Name<span class="text-[#D92D20]">*</span></label><br>
-              <InputText v-model="name.value.value" :class="{ 'invalid': name.errorMessage.value }"
-                         class="inputGroupField focus:shadow-none py-2 sm:py-2" id="username" type="text"
-                         placeholder="Enter your name" />
-              <form-input-error :message="name.errorMessage.value" text-color="#D92D20" />
-            </div>
-            <div class="pt-4">
-              <label class="inputGroupLabel" for="email">Email Address<span class="text-[#D92D20]">*</span></label><br>
-              <InputText v-model="email.value.value" :class="{ 'invalid': email.errorMessage.value }"
-                         class="inputGroupField focus:shadow-none py-2 sm:py-2" id="email" type="email"
-                         placeholder="Enter email address" />
-              <form-input-error :message="email.errorMessage.value" text-color="#D92D20" />
-            </div>
-            <div class="pt-4">
-              <label class="inputGroupLabel" for="username">Subject<span class="text-[#D92D20]">*</span></label><br>
-              <InputText v-model="subject.value.value" :class="{ 'invalid': subject.errorMessage.value }"
-                         class="inputGroupField focus:shadow-none py-2 sm:py-2" id="username" type="text"
-                         placeholder="Enter subject" />
-              <form-input-error :message="subject.errorMessage.value" text-color="#D92D20" />
-            </div>
-            <div class="pt-4">
-              <label class="inputGroupLabel" for="username">Message<span class="text-[#D92D20]">*</span></label><br>
-              <Textarea v-model="message.value.value" autoResize rows="5" cols="30" :class="{ 'invalid': message.errorMessage.value }"
-                         class="inputGroupField focus:shadow-none py-2 sm:py-2" id="username" type="text"
-                         placeholder="Enter subject" />
-              <form-input-error :message="message.errorMessage.value" text-color="#D92D20" />
+        <form @submit.prevent="submit" @keyup.enter="submit">
+          <div class="flex justify-center">
+            <div class="grid grid-cols-1 gap-x-8 px-4 md:px-16 w-full md:w-[100%] lg:w-[88%] xl:w-[68%] 2xl:w-[56%]">
+              <div class="pt-5">
+                <label class="inputGroupLabel" for="username">Full Name<span class="text-[#D92D20]">*</span></label><br>
+                <InputText v-model="name.value.value" :class="{ 'invalid': name.errorMessage.value }"
+                           class="inputGroupField focus:shadow-none py-2 sm:py-2" id="username" type="text"
+                           placeholder="Enter your name" />
+                <form-input-error :message="name.errorMessage.value" text-color="#D92D20" />
+              </div>
+              <div class="pt-4">
+                <label class="inputGroupLabel" for="email">Email Address<span class="text-[#D92D20]">*</span></label><br>
+                <InputText v-model="email.value.value" :class="{ 'invalid': email.errorMessage.value }"
+                           class="inputGroupField focus:shadow-none py-2 sm:py-2" id="email" type="email"
+                           placeholder="Enter email address" />
+                <form-input-error :message="email.errorMessage.value" text-color="#D92D20" />
+              </div>
+              <div class="pt-4">
+                <label class="inputGroupLabel" for="username">Subject<span class="text-[#D92D20]">*</span></label><br>
+                <InputText v-model="subject.value.value" :class="{ 'invalid': subject.errorMessage.value }"
+                           class="inputGroupField focus:shadow-none py-2 sm:py-2" id="username" type="text"
+                           placeholder="Enter subject" />
+                <form-input-error :message="subject.errorMessage.value" text-color="#D92D20" />
+              </div>
+              <div class="pt-4">
+                <label class="inputGroupLabel" for="username">Message<span class="text-[#D92D20]">*</span></label><br>
+                <Textarea v-model="message.value.value" autoResize rows="5" cols="30" :class="{ 'invalid': message.errorMessage.value }"
+                          class="inputGroupField focus:shadow-none py-2 sm:py-2" id="username" type="text"
+                          placeholder="Enter subject" />
+                <form-input-error :message="message.errorMessage.value" text-color="#D92D20" />
+              </div>
             </div>
           </div>
-        </div>
-        <div  class="text-center pt-4 xl:pt-8">
-          <button @click="isActive ? submit() : ''"
-                  :class="isActive ? 'buttonHover text-[14px] xl:text-[16px] hover:ring-1 hover:ring-[white] bg-[#5A78AD] text-white px-4 py-1.5 rounded-lg font-[600] cursor-pointer' : 'text-[14px] xl:text-[16px] hover:ring-1 hover:ring-[white] bg-[#667085] cursor-default text-white px-4 py-1.5 rounded-lg font-[600] cursor-default'">
-            Get in touch
-          </button>
-        </div>
+          <div  class="text-center pt-4 xl:pt-8">
+            <button @click="isActive ? submit() : ''"
+                    :class="isActive ? 'buttonHover text-[14px] xl:text-[16px] hover:ring-1 hover:ring-[white] bg-[#5A78AD] text-white px-4 py-1.5 rounded-lg font-[600] cursor-pointer' : 'text-[14px] xl:text-[16px] hover:ring-1 hover:ring-[white] bg-[#667085] cursor-default text-white px-4 py-1.5 rounded-lg font-[600] cursor-default'">
+              Get in touch
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

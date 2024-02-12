@@ -10,7 +10,7 @@
           <div class="flex flex-col items-center w-full ">
             <div class="w-full ">
               <p class="pb-1"><small class="text-[#5A78AD]">Choose your shop*</small></p>
-              <Dropdown v-model="selectedShop" :options="shop" optionLabel="name" placeholder="Select your shop"
+              <Dropdown @keyup.enter="goToShop" v-model="selectedShop" :options="shop" optionLabel="name" placeholder="Select your shop"
                 class="w-full custom-class" />
             </div>
             <div class="w-full pt-8">

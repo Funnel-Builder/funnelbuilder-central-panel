@@ -2,53 +2,55 @@
     <div>
         <div>
             <div class="set_anim pb-8">
-                <div>
+                <form @submit.prevent="createShop">
+                  <div>
                     <FileUploadFileUploader @photoUploaded="photoUploaded($event)"/>
                     <div class="pt-4">
-                        <div>
-                            <p class="text-[rgb(90,120,173)]"><small>Description</small></p>
-                            <Textarea id="description" v-model="description.value.value"
-                                :class="{ 'invalid': description.errorMessage.value }" placeholder="write here ..."
-                                style="background-color: #EFF1F7 !important;"
-                                class="mb-3 w-full h-20 md:h-20 text-xs md:text-lg flex items-center focus:shadow-none"
-                                rows="5" cols="6" />
-                        </div>
-                        <form-input-error :message="description.errorMessage.value" />
-                        <div>
-                            <p class="text-[rgb(90,120,173)]"><small>Phone number</small></p>
-                            <InputText id="phone" v-model="phone.value.value"
-                                :class="{ 'invalid': phone.errorMessage.value }" placeholder="Enter your number"
-                                style="background-color: #EFF1F7 !important;" type="text"
-                                class="mb-3 w-full h-10 md:h-12 text-xs md:text-lg flex items-center focus:shadow-none" />
-                        </div>
-                        <form-input-error :message="phone.errorMessage.value" />
-                        <div>
-                            <p class="text-[#5A78AD]"><small>Shop email</small></p>
-                            <InputText id="email" v-model="email.value.value"
-                                :class="{ 'invalid': email.errorMessage.value }"
-                                placeholder="Enter a email to manage your shop"
-                                style="background-color: #EFF1F7 !important;" type="text"
-                                class="mb-3 w-full h-10 md:h-12 text-xs md:text-lg flex items-center focus:shadow-none" />
-                        </div>
-                        <form-input-error :message="email.errorMessage.value" />
-                        <div>
-                            <p class="text-[#5A78AD]"><small>Shop address</small></p>
-                            <InputText id="address" v-model="address.value.value"
-                                :class="{ 'invalid': address.errorMessage.value }" placeholder="Enter shop address"
-                                style="background-color: #EFF1F7 !important;" type="text"
-                                class="mb-3 w-full h-10 md:h-12 text-xs md:text-lg flex items-center focus:shadow-none" />
-                        </div>
-                        <form-input-error :message="address.errorMessage.value" />
+                      <div>
+                        <p class="text-[rgb(90,120,173)]"><small>Description</small></p>
+                        <Textarea id="description" v-model="description.value.value"
+                                  :class="{ 'invalid': description.errorMessage.value }" placeholder="write here ..."
+                                  style="background-color: #EFF1F7 !important;"
+                                  class="mb-3 w-full h-20 md:h-20 text-xs md:text-lg flex items-center focus:shadow-none"
+                                  rows="5" cols="6" />
+                      </div>
+                      <form-input-error :message="description.errorMessage.value" />
+                      <div>
+                        <p class="text-[rgb(90,120,173)]"><small>Phone number</small></p>
+                        <InputText id="phone" v-model="phone.value.value"
+                                   :class="{ 'invalid': phone.errorMessage.value }" placeholder="Enter your number"
+                                   style="background-color: #EFF1F7 !important;" type="text"
+                                   class="mb-3 w-full h-10 md:h-12 text-xs md:text-lg flex items-center focus:shadow-none" />
+                      </div>
+                      <form-input-error :message="phone.errorMessage.value" />
+                      <div>
+                        <p class="text-[#5A78AD]"><small>Shop email</small></p>
+                        <InputText id="email" v-model="email.value.value"
+                                   :class="{ 'invalid': email.errorMessage.value }"
+                                   placeholder="Enter a email to manage your shop"
+                                   style="background-color: #EFF1F7 !important;" type="text"
+                                   class="mb-3 w-full h-10 md:h-12 text-xs md:text-lg flex items-center focus:shadow-none" />
+                      </div>
+                      <form-input-error :message="email.errorMessage.value" />
+                      <div>
+                        <p class="text-[#5A78AD]"><small>Shop address</small></p>
+                        <InputText id="address" @keyup.enter="createShop" v-model="address.value.value"
+                                   :class="{ 'invalid': address.errorMessage.value }" placeholder="Enter shop address"
+                                   style="background-color: #EFF1F7 !important;" type="text"
+                                   class="mb-3 w-full h-10 md:h-12 text-xs md:text-lg flex items-center focus:shadow-none" />
+                      </div>
+                      <form-input-error :message="address.errorMessage.value" />
                     </div>
-                </div>
-                <div>
+                  </div>
+                  <div>
                     <form-input-error :message="domain_error" />
-                </div>
-                <div class="w-full pt-4">
+                  </div>
+                  <div class="w-full pt-4">
                     <button @click="createShop" :disabled="isDisabled"
-                        :class="{ 'bg-gray-400': isDisabled, 'bg-[#5A78AD]': !isDisabled }"
-                        class="bg-[#5A78AD] rounded-lg w-full h-10 md:h-12 text-xs md:text-lg focus:shadow-none text-white font-semibold">Create</button>
-                </div>
+                            :class="{ 'bg-gray-400': isDisabled, 'bg-[#5A78AD]': !isDisabled }"
+                            class="bg-[#5A78AD] rounded-lg w-full h-10 md:h-12 text-xs md:text-lg focus:shadow-none text-white font-semibold">Create</button>
+                  </div>
+                </form>
             </div>
         </div>
     </div>

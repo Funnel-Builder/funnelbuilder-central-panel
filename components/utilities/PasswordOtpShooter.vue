@@ -6,30 +6,32 @@
             <p class="text-[12px] md:text-[14px] text-white font-[400]">We have sent six digit code to your email</p>
         </div>
         <div>
-            <div class="py-16">
+            <form @submit.prevent="submitOtp">
+              <div class="py-16">
                 <div>
-                    <p class="text-[12px] md:text-[14px] text-white font-[400] pl-2">Enter Code</p>
-                    <div class="mt-1 flex justify-between">
-                        <v-otp-input ref="otpInput" input-classes="otp-input" separator="" :num-inputs="6"
-                            :should-auto-focus="true" :is-input-num="true" @on-change="handleOnChange"
-                            @on-complete="handleOnComplete">
-                        </v-otp-input>
+                  <p class="text-[12px] md:text-[14px] text-white font-[400] pl-2">Enter Code</p>
+                  <div class="mt-1 flex justify-between">
+                    <v-otp-input @keyup.enter="submitOtp" ref="otpInput" input-classes="otp-input" separator="" :num-inputs="6"
+                                 :should-auto-focus="true" :is-input-num="true" @on-change="handleOnChange"
+                                 @on-complete="handleOnComplete">
+                    </v-otp-input>
+                  </div>
+                  <div class="flex justify-between pt-2 pl-2">
+                    <div>
+                      <utilities-otp-timer v-if="setTime > 0" :sec="setTime" @timeEnd="timeEnd($event)" />
                     </div>
-                    <div class="flex justify-between pt-2 pl-2">
-                        <div>
-                            <utilities-otp-timer v-if="setTime > 0" :sec="setTime" @timeEnd="timeEnd($event)" />
-                        </div>
-                        <div>
-                            <button @click="resendOtp" :disabled="timeOver" :class="timeOver ? 'text-gray-400':'text-white'" class="underline">Resend</button>
-                        </div>
+                    <div>
+                      <button @click="resendOtp" :disabled="timeOver" :class="timeOver ? 'text-gray-400':'text-white'" class="underline">Resend</button>
                     </div>
+                  </div>
                 </div>
                 <form-input-error :message="error_mes" text-color="#FFD600" />
-            </div>
-            <div class="text-center">
+              </div>
+              <div class="text-center">
                 <Button @click="submitOtp" :disabled="otpNumber?.length !== 6" class="btn p-2 md:p-2.5  focus:shadow-none"
-                    label="Continue" />
-            </div>
+                        label="Continue" />
+              </div>
+            </form>
         </div>
     </div>
 </template>
