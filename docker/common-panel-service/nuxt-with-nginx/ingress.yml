@@ -16,3 +16,4 @@ spec:
                 name: common-panel-service-webserver
                 port:
                   number: 80
+    
