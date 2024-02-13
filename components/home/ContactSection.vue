@@ -74,12 +74,12 @@ const { handleSubmit, isSubmitting, handleReset, setErrors } = useForm({
     },
     subject(value) {
       if (!value) return 'Subject is required'
-      else if (value.length < 3 || value.length > 100) return 'Subject must be between 3 and 100 characters'
+      else if (value.length < 3 || value.length > 100) return 'Subject must be between 3 and 150 characters'
       return true;
     },
     message(value) {
       if (!value) return 'Message is required'
-      else if (value.length < 3 || value.length > 100) return 'Message must be between 3 and 100 characters'
+      else if (value.length < 3 || value.length > 100) return 'Message must be between 3 and 500 characters'
       return true;
     },
   }
