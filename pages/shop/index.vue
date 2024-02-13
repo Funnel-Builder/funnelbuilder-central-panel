@@ -60,11 +60,12 @@ const getShop = async () => {
 await getShop()
 
 const goToShop = async () => {
-  const { data, pending, error, refresh } = await getData('get-secret')
+  const { data, pending, error, refresh } = await getData('get-secret?shop_id=' + selectedShop.value.id)
   if (error && error.value) {
     console.log(error);
   }
   else {
+    //need to work here
     let redirectUrl = urlService('seller-front')
     window.location.href = `${redirectUrl}/auth/verify?shop_id=${selectedShop.value.id}&token=${data.value.data}`
   }
