@@ -1,9 +1,4 @@
 export default defineNuxtConfig({
-  vite: {
-    plugins: [
-      require('dotenv').config()
-    ]
-  },
   devtools: { enabled: true },
   ssr: true,
   css: [
@@ -31,8 +26,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      baseURL: this.$env.BASE_URL || 'https://auth-service-webserver/api/',
-      sellerServiceFrontendURL: this.$env.SELLER_PANEL_URL || 'https://seller-service-webserver/',
+      baseURL: process.env.BASE_URL || 'https://auth-service-webserver/api/',
+      sellerServiceFrontendURL: process.env.SELLER_PANEL_URL || 'https://seller-service-webserver/',
     },
   }
 });
