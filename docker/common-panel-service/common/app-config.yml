@@ -4,5 +4,11 @@ metadata:
   name: common-panel-service
   namespace: funnelbuiler-solution
 data:
-  BASE_URL: "https://auth-dev.nextivecloud.com/api/"
-  SELLER_PANEL_URL: "https://sellerpanel-dev.nextivecloud.com"
+  nuxt.config.js: |
+    module.exports = {
+      env: {
+          BASE_URL: "https://auth-dev.nextivecloud.com/api/"
+          SELLER_PANEL_URL: "https://sellerpanel-dev.nextivecloud.com"
+      }
+    }
+  
