@@ -31,6 +31,6 @@ jobs:
       - name: Deploy config to Kubernetes
         run: kubectl apply -f docker/common-panel-service/common
       - name: Remove to Kubernetes
-        run: kubectl delete -f docker/common-panel-service/nuxt-with-nginx
+        # run: kubectl delete -f docker/common-panel-service/nuxt-with-nginx
       - name: Deploy to Kubernetes
         run: kubectl apply -f docker/common-panel-service/nuxt-with-nginx
