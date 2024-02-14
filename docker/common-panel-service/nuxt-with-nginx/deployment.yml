@@ -34,9 +34,7 @@ spec:
           envFrom:
             - configMapRef:
                 name: common-panel-service
-      volumes:
-        - name: config-volume
-          configMap:
-            name: common-panel-service
-  imagePullSecrets:
-    - name: regcred
+            - secretRef:
+                name: common-panel-service
+      imagePullSecrets:
+        - name: regcred
