@@ -1,6 +1,6 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  ssr: true,
+  ssr: false,
   css: [
     "@/assets/css/tailwind.css",
     "@/assets/scss/main.scss",

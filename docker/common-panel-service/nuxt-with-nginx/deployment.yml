@@ -36,23 +36,5 @@ spec:
                 name: common-panel-service
             - secretRef:
                 name: common-panel-service
-          # Liveness Probe
-#          livenessProbe:
-#            httpGet:
-#              path: /api/health
-#              port: 8080 # Port on which the probe should be performed
-#            initialDelaySeconds: 15 # Delay before the first probe
-#            periodSeconds: 10 # How often to perform the probe
-#            timeoutSeconds: 1 # How long to wait for the probe to complete
-#            failureThreshold: 3 # Number of consecutive failures before marking the container as not ready
-#          # Readiness Probe
-#          readinessProbe:
-#            httpGet:
-#              path: /api/health
-#              port: 8080
-#            initialDelaySeconds: 5
-#            periodSeconds: 5
-#            timeoutSeconds: 1
-#            failureThreshold: 3
       imagePullSecrets:
         - name: regcred
