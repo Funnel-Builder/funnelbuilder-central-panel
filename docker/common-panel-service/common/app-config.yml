@@ -4,4 +4,5 @@ metadata:
   name: common-panel-service
   namespace: funnelbuiler-solution
 data:
-  BASE_URL: "http://auth-service-webserver/api/"
+  BASE_URL: "https://auth-dev.nextivecloud.com/api/"
+  SELLER_PANEL_URL: "https://sellerpanel-dev.nextivecloud.com"
