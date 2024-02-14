@@ -80,7 +80,6 @@ const password = useField('password');
 const isSubmitDisabled = computed(() => {
   return !(email.value.value && password.value.value)
 });
-console.log(process.env.BASE_URL)
 //Methods
 const isShowPassword = () => {
   isShow.value = !isShow.value;
