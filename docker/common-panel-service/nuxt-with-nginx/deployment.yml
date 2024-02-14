@@ -34,6 +34,9 @@ spec:
           envFrom:
             - configMapRef:
                 name: common-panel-service
+                items:
+                  - key: .env
+                    path: .env
             - secretRef:
                 name: common-panel-service
           # Liveness Probe
