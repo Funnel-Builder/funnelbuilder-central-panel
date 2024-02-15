@@ -31,10 +31,5 @@ spec:
               memory: "128M"
           ports:
             - containerPort: 3000
-          envFrom:
-            - configMapRef:
-                name: common-panel-service
-            - secretRef:
-                name: common-panel-service
       imagePullSecrets:
         - name: regcred
