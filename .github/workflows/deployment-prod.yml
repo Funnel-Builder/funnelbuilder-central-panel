@@ -24,8 +24,5 @@ jobs:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       - name: Save DigitalOcean kubeconfig with short-lived credentials
         run: doctl k8s cluster kubeconfig save --expiry-seconds 600 production-cluster
-
-      - name: Deploy config to Kubernetes
-        run: kubectl apply -f docker/common-panel-service-prod/common
       - name: Deploy to Kubernetes
         run: kubectl apply -f docker/common-panel-service-prod/nuxt-with-nginx
