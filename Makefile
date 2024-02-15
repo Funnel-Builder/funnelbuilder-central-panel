@@ -15,13 +15,13 @@ docker: docker-build docker-push
 prod: docker-build-prod docker-push-prod
 
 docker-build:
-	docker build -f docker/Dockerfile.production -t ${REGISTRY}/${REGISTRY_WITH_PROJECT_SUFFIX}:${VERSION} .
+	docker build --build-arg CONFIG_FILE=dev --build-arg CONFIG_PATH=/docker/common-panel-service/common -f docker/Dockerfile.production -t ${REGISTRY}/${REGISTRY_WITH_PROJECT_SUFFIX}:${VERSION} .
 
 docker-push:
 	docker push ${REGISTRY}/${REGISTRY_WITH_PROJECT_SUFFIX}:${VERSION}
 
 docker-build-prod:
-	docker build -f docker/Dockerfile.production -t ${REGISTRY_PROD}/${REGISTRY_WITH_PROJECT_SUFFIX_PROD}:${VERSION_PROD} .
+	docker build --build-arg CONFIG_FILE=prod --build-arg CONFIG_PATH=/docker/common-panel-service-prod/common -f docker/Dockerfile.production -t ${REGISTRY_PROD}/${REGISTRY_WITH_PROJECT_SUFFIX_PROD}:${VERSION_PROD} .
 
 docker-push-prod:
 	docker push ${REGISTRY_PROD}/${REGISTRY_WITH_PROJECT_SUFFIX_PROD}:${VERSION_PROD}

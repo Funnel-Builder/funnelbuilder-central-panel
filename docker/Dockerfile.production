@@ -1,10 +1,12 @@
 ### STAGE 1: Build ###
 FROM node:20-alpine as build
+ARG CONFIG_FILE
+ARG CONFIG_PATH
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json /app/
 RUN yarn install --silent
-COPY .env.example /app/.env
+COPY ${CONFIG_PATH}/config.${CONFIG_FILE} /app/.env
 COPY . /app
 RUN yarn run build
 
