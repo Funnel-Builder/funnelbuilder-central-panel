@@ -15,23 +15,5 @@ spec:
               service:
                 name: common-panel-service-webserver
                 port:
-                  number: 80    - host: admin.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: domain-service-webserver
-                port:
                   number: 80
-    - host: admin2.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: domain-service-webserver
-                port:
-                  number: 80
+
