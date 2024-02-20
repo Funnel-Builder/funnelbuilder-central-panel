@@ -66,8 +66,8 @@ const goToShop = async () => {
   }
   else {
     //need to work here
-    let redirectUrl = urlService('seller-front')
-    window.location.href = `${redirectUrl}/auth/verify?shop_id=${selectedShop.value.id}&token=${data.value.data}`
+    // let redirectUrl = urlService('seller-front')
+    window.location.href = `//${data.value?.sub_domain}/auth/verify?shop_id=${selectedShop.value.id}&token=${data.value.data}`
   }
 }
 </script>
