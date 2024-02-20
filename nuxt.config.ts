@@ -26,6 +26,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
+      appEnv: process.env.APP_ENV || 'production',
       baseURL: process.env.BASE_URL || 'https://auth-service-webserver/api/',
       sellerServiceFrontendURL: process.env.SELLER_PANEL_URL || 'https://seller-service-webserver/',
     },

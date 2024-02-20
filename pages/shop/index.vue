@@ -65,8 +65,12 @@ const goToShop = async () => {
     console.log(error);
   }
   else {
-    //need to work here
-    // let redirectUrl = urlService('seller-front')
+    const config = useRuntimeConfig();
+    if (config.public.appEnv === 'local') {
+      let redirectUrl = urlService('seller-front')
+      window.location.href = `${redirectUrl}/auth/verify?shop_id=${selectedShop.value.id}&token=${data.value.data}`
+      return
+    }
     window.location.href = `//${data.value?.sub_domain}/auth/verify?shop_id=${selectedShop.value.id}&token=${data.value.data}`
   }
 }
