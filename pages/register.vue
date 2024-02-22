@@ -13,8 +13,8 @@
             <div class="pt-5">
               <label class="inputGroupLabel" for="username">Full Name *</label><br>
               <InputText v-model="name.value.value" :class="{ 'invalid': name.errorMessage.value }"
-                class="inputGroupField focus:shadow-none py-2 sm:py-3" id="username" type="text"
-                placeholder="Enter your name" />
+                         class="inputGroupField focus:shadow-none py-2 sm:py-3" id="username" type="text"
+                         placeholder="Enter your name" />
               <form-input-error :message="name.errorMessage.value" text-color="#FFD600" />
             </div>
             <div class="pt-5">
@@ -25,24 +25,24 @@
                   <p class="text-[14px] md:text-[16px] px-2">+880</p>
                 </InputGroupAddon>
                 <InputText v-model="phone.value.value" :class="{ 'invalid': phone.errorMessage.value }" setErrorMessage
-                  class="inputGroupFieldFlag rounded-l-none rounded-r-xl focus:shadow-none py-2 sm:py-3" id="phone"
-                  type="number" />
+                           class="inputGroupFieldFlag rounded-l-none rounded-r-xl focus:shadow-none py-2 sm:py-3" id="phone"
+                           type="number" />
               </InputGroup>
               <form-input-error :message="phone.errorMessage.value" text-color="#FFD600" />
             </div>
             <div class="pt-5">
               <label class="inputGroupLabel" for="email">Email Address *</label><br>
               <InputText v-model="email.value.value" :class="{ 'invalid': email.errorMessage.value }"
-                class="inputGroupField focus:shadow-none py-2 sm:py-3" id="email" type="email"
-                placeholder="Enter email address" />
+                         class="inputGroupField focus:shadow-none py-2 sm:py-3" id="email" type="email"
+                         placeholder="Enter email address" />
               <form-input-error :message="email.errorMessage.value" text-color="#FFD600" />
             </div>
             <div class="pt-5">
               <label class="inputGroupLabel" for="password">Password *</label><br>
               <div class="p-input-icon-right w-full">
                 <InputText v-model="password.value.value" :class="{ 'invalid': password.errorMessage.value }"
-                  class="inputGroupField focus:shadow-none py-2 sm:py-3" id="password" toggleMask
-                  :type="isShow ? 'text' : 'password'" placeholder="Enter minimum 8 characters" />
+                           class="inputGroupField focus:shadow-none py-2 sm:py-3" id="password" toggleMask
+                           :type="isShow ? 'text' : 'password'" placeholder="Enter minimum 8 characters" />
                 <i @click="isShowPassword" :class="isShow ? 'pi pi-eye' : 'pi pi-eye-slash'" style="color:white"></i>
               </div>
               <form-input-error :message="password.errorMessage.value" text-color="#FFD600" />
@@ -51,29 +51,29 @@
               <label class="inputGroupLabel" for="confirmPassword">Confirm Password *</label><br>
               <div class="p-input-icon-right w-full">
                 <InputText v-model="password_confirmation.value.value"
-                  :disabled="!(password.value.value && password.value.value.length)"
-                  :class="{ 'invalid': password_confirmation.errorMessage.value }"
-                  class="inputGroupField focus:shadow-none py-2 sm:py-3" id="confirmPassword"
-                  :type="isShowConfirm ? 'text' : 'password'" placeholder="Enter minimum 8 characters" />
+                           :disabled="!(password.value.value && password.value.value.length)"
+                           :class="{ 'invalid': password_confirmation.errorMessage.value }"
+                           class="inputGroupField focus:shadow-none py-2 sm:py-3" id="confirmPassword"
+                           :type="isShowConfirm ? 'text' : 'password'" placeholder="Enter minimum 8 characters" />
                 <i @click="isShowConfirmPassword" :class="isShowConfirm ? 'pi pi-eye' : 'pi pi-eye-slash'"
-                  style="color:white"></i>
+                   style="color:white"></i>
               </div>
               <form-input-error :message="password_confirmation.errorMessage.value" text-color="#FFD600" />
             </div>
             <div class="pt-6 xl:flex justify-between items-center">
               <div class="inline-flex items-center gap-x-2">
                 <Checkbox v-model="termsAndCondition.value.value"
-                  :class="{ 'invalid': termsAndCondition.errorMessage.value }"
-                  style="background-color:#6582b2 !important; border: 0 solid #2196F3;"
-                  class="focus:border-0 hover:border-green-500 bg-blue-900 focus:shadow-none focus:outline-none focus:outline-offset-0 check"
-                  id="chbx" binary name="termsAndCondition" value="termsAndCondition" />
+                          :class="{ 'invalid': termsAndCondition.errorMessage.value }"
+                          style="background-color:#6582b2 !important; border: 0 solid #2196F3;"
+                          class="focus:border-0 hover:border-green-500 bg-blue-900 focus:shadow-none focus:outline-none focus:outline-offset-0 check"
+                          id="chbx" binary name="termsAndCondition" value="termsAndCondition" />
                 <p class="text-white text-[14px] sm:text-[16px]">I accept</p><nuxt-link to="/terms-and-conditions"
-                  target="_blank" class="text-white text-[14px] sm:text-[16px] underline">Terms & conditions</nuxt-link>
+                                                                                        target="_blank" class="text-white text-[14px] sm:text-[16px] underline">Terms & conditions</nuxt-link>
               </div>
               <div class="flex py-2 gap-x-2">
                 <p class="text-white text-[14px] sm:text-[16px] ">Already have an account?</p>
                 <nuxt-link to="/login"
-                  class="text-white text-[14px] sm:text-[16px] font-[400] underline">Login</nuxt-link>
+                           class="text-white text-[14px] sm:text-[16px] font-[400] underline">Login</nuxt-link>
               </div>
             </div>
             <form-input-error :message="termsAndCondition.errorMessage.value" text-color="#FFD600" />

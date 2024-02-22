@@ -11,16 +11,16 @@
             <div class="pt-5">
               <label class="inputGroupLabel" for="email">Email Address *</label><br>
               <InputText v-model="email.value.value" :class="{ 'invalid': email.errorMessage.value }"
-                class="inputGroupField focus:shadow-none py-2 sm:py-3" id="email" type="email"
-                placeholder="Enter email address" />
+                         class="inputGroupField focus:shadow-none py-2 sm:py-3" id="email" type="email"
+                         placeholder="Enter email address" />
               <form-input-error :message="email.errorMessage.value" text-color="#FFD600" />
             </div>
             <div class="pt-5">
               <label class="inputGroupLabel" for="password">Password *</label><br>
               <div class="p-input-icon-right w-full">
-                <InputText v-model="password.value.value" :class="{ 'invalid': password.errorMessage.value }"
-                  class="inputGroupField focus:shadow-none py-2 sm:py-3" id="password" toggleMask
-                  :type="isShow ? 'text' : 'password'" placeholder="Enter password" />
+                <InputText @keyup.enter="submitData" v-model="password.value.value" :class="{ 'invalid': password.errorMessage.value }"
+                           class="inputGroupField focus:shadow-none py-2 sm:py-3" id="password" toggleMask
+                           :type="isShow ? 'text' : 'password'" placeholder="Enter password" />
                 <i @click="isShowPassword" :class="isShow ? 'pi pi-eye' : 'pi pi-eye-slash'" style="color:white"></i>
               </div>
               <form-input-error :message="password.errorMessage.value" text-color="#FFD600" />
@@ -31,12 +31,12 @@
               <div class="pt-2 flex items-center gap-x-2">
                 <p class="text-[14px] md:text-[16px] text-white font-[400]">Don’t have an account?</p>
                 <nuxt-link to="/register"
-                  class="text-[14px] md:text-[16px] text-white font-[400] underline">Register</nuxt-link>
+                           class="text-[14px] md:text-[16px] text-white font-[400] underline">Register</nuxt-link>
               </div>
             </div>
             <div class="pt-8 md:pt-12">
-              <buttons-action-button @submitData="submitData" text="Login" :disabled="isSubmitDisabled"
-                :loading="isLoading" />
+              <buttons-action-button @submitData="submitData" type="submit" text="Login" :disabled="isSubmitDisabled"
+                                     :loading="isLoading" />
             </div>
           </div>
         </div>

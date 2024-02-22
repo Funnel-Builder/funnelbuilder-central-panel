@@ -12,32 +12,34 @@
             <p class="text-[12px] md:text-[14px] text-white font-[400]">Must be at least 8 characters</p>
           </div>
           <div class="px-4 sm:px-0">
-            <div class="pt-5">
-              <label class="inputGroupLabel" for="password">Password *</label><br>
-              <div class="p-input-icon-right w-full">
-                <InputText v-model="password.value.value" :class="{ 'invalid': password.errorMessage.value }"
-                  class="inputGroupField focus:shadow-none py-2 sm:py-3" id="password" toggleMask
-                  :type="isShow ? 'text' : 'password'" placeholder="Enter minimum 8 characters" />
-                <i @click="isShowPassword" :class="isShow ? 'pi pi-eye' : 'pi pi-eye-slash'" style="color:white"></i>
+            <form @submit.prevent="submitData">
+              <div class="pt-5">
+                <label class="inputGroupLabel" for="password">Password *</label><br>
+                <div class="p-input-icon-right w-full">
+                  <InputText v-model="password.value.value" :class="{ 'invalid': password.errorMessage.value }"
+                             class="inputGroupField focus:shadow-none py-2 sm:py-3" id="password" toggleMask
+                             :type="isShow ? 'text' : 'password'" placeholder="Enter minimum 8 characters" />
+                  <i @click="isShowPassword" :class="isShow ? 'pi pi-eye' : 'pi pi-eye-slash'" style="color:white"></i>
+                </div>
+                <form-input-error :message="password.errorMessage.value" text-color="#FFD600" />
               </div>
-              <form-input-error :message="password.errorMessage.value" text-color="#FFD600" />
-            </div>
-            <div class="pt-5">
-              <label class="inputGroupLabel" for="confirmPassword">Confirm Password *</label><br>
-              <div class="p-input-icon-right w-full">
-                <InputText v-model="password_confirmation.value.value"
-                  :disabled="!(password.value.value && password.value.value.length)"
-                  :class="{ 'invalid': password_confirmation.errorMessage.value }"
-                  class="inputGroupField focus:shadow-none py-2 sm:py-3" id="confirmPassword"
-                  :type="isShowConfirm ? 'text' : 'password'" placeholder="Enter minimum 8 characters" />
-                <i @click="isShowConfirmPassword" :class="isShowConfirm ? 'pi pi-eye' : 'pi pi-eye-slash'"
-                  style="color:white"></i>
+              <div class="pt-5">
+                <label class="inputGroupLabel" for="confirmPassword">Confirm Password *</label><br>
+                <div class="p-input-icon-right w-full">
+                  <InputText v-model="password_confirmation.value.value"
+                             :disabled="!(password.value.value && password.value.value.length)"
+                             :class="{ 'invalid': password_confirmation.errorMessage.value }"
+                             class="inputGroupField focus:shadow-none py-2 sm:py-3" id="confirmPassword"
+                             :type="isShowConfirm ? 'text' : 'password'" placeholder="Enter minimum 8 characters" />
+                  <i @click="isShowConfirmPassword" :class="isShowConfirm ? 'pi pi-eye' : 'pi pi-eye-slash'"
+                     style="color:white"></i>
+                </div>
+                <form-input-error :message="password_confirmation.errorMessage.value" text-color="#FFD600" />
               </div>
-              <form-input-error :message="password_confirmation.errorMessage.value" text-color="#FFD600" />
-            </div>
-            <div class="pt-12">
-              <buttons-action-button @submitData="submitData" :disabled="isSubmitDisabled" :loading="false" text="Reset Password" />
-            </div>
+              <div class="pt-12">
+                <buttons-action-button @submitData="submitData" :disabled="isSubmitDisabled" :loading="false" text="Reset Password" />
+              </div>
+            </form>
             <div class="pt-12 flex justify-center items-center gap-x-4">
               <i class="pi pi-arrow-left" style="font-size: 0.8rem; color:white;"></i>
               <a href="/login" class=" text-white font-bold">Back to login</a>

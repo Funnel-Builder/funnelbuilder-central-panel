@@ -13,17 +13,19 @@
               Provide your valid email.</p>
           </div>
           <div class="px-4 sm:px-0">
-            <div class="pt-8">
-              <label class="inputGroupLabel" for="email">Email</label><br>
-              <InputText v-model="email.value.value" :class="{ 'invalid': email.errorMessage.value }"
-                         class="inputGroupField focus:shadow-none py-2 sm:py-3" id="email" type="email"
-                         placeholder="Enter email address" />
-              <form-input-error :message="email.errorMessage.value" text-color="#FFD600" />
-            </div>
-            <div class="pt-12 text-center">
-              <Button :disabled="isSubmitDisabled" @click="submitData" class="btn p-2 md:p-2.5  focus:shadow-none"
-                      label="Continue" />
-            </div>
+            <form @submit.prevent="submitData">
+              <div class="pt-8">
+                <label class="inputGroupLabel" for="email">Email</label><br>
+                <InputText v-model="email.value.value" :class="{ 'invalid': email.errorMessage.value }"
+                           class="inputGroupField focus:shadow-none py-2 sm:py-3" id="email" type="email"
+                           placeholder="Enter email address" />
+                <form-input-error :message="email.errorMessage.value" text-color="#FFD600" />
+              </div>
+              <div class="pt-12 text-center">
+                <Button :disabled="isSubmitDisabled"  @click="submitData" class="btn p-2 md:p-2.5  focus:shadow-none"
+                        label="Continue" />
+              </div>
+            </form>
             <div class="pt-12 flex justify-center items-center gap-x-4">
               <i class="pi pi-arrow-left" style="font-size: 0.8rem; color:white;"></i>
               <nuxt-link to="/login" class="text-white font-bold">Back to login</nuxt-link>
