@@ -149,12 +149,13 @@ const truncatedUserName = computed(() => {
 
 <style scoped lang="scss">
 .nav {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.8);
   overflow: hidden;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1000;
+  backdrop-filter: blur(10px);
 }
 
 
