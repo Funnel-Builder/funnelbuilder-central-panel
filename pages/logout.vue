@@ -14,8 +14,8 @@ if (!shopId || !secret) {
 
 const config = useRuntimeConfig();
 if (authStore.isLoggedIn && shopId == authStore.user?.shop_id && config.public.appSecret === secret) {
-  authStore.logout()
-  router.push('/login')
+  await authStore.logout()
+  await router.push('/login')
 } else {
   router.push('/login')
 }
