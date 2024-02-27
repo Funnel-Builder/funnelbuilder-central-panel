@@ -9,10 +9,6 @@ const shopId = route.query.shop_id
 const secret = route.query.secret
 const from = route.query.from
 
-if (!shopId || !secret || !from) {
-  router.push('/login')
-}
-
 
 if (authStore.isLoggedIn) {
   console.log('Logging out...')
