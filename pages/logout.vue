@@ -15,7 +15,8 @@ if (!shopId || !secret) {
 const config = useRuntimeConfig();
 console.log(authStore.isLoggedIn, 'isLoggedIn')
 console.log(secret, 'secret')
-if (authStore.isLoggedIn && config.public.appSecret === secret) {
+console.log(config.public.appSecret, 'appSecret')
+if (authStore.isLoggedIn && config.public.appSecret == secret) {
   console.log('Logging out...')
   await authStore.logout()
   await router.push('/login')
