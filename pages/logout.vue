@@ -14,7 +14,7 @@ if (!shopId || !secret || !from) {
 }
 
 
-if (authStore.isLoggedIn && secret == 'ln01l0oLYoqOhsd6XzKRSn72EHU6A3ynEnv' && from == 'seller') {
+if (authStore.isLoggedIn) {
   console.log('Logging out...')
   await authStore.logout()
   await router.push('/login')
