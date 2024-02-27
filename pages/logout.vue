@@ -5,9 +5,8 @@ definePageMeta({
 const route = useRoute()
 const router = useRouter()
 const authStore = useAuthStore()
-const shopId = route.query.shop_id
-const secret = route.query.secret
-const from = route.query.from
+// const shopId = route.query.shop_id
+// const secret = route.query.secret
 
 
 if (authStore.isLoggedIn) {
@@ -16,7 +15,7 @@ if (authStore.isLoggedIn) {
   await router.push('/login')
 } else {
   console.log('Invalid request')
-  router.push('/login')
+  router.push('/')
 }
 </script>
 <template>
