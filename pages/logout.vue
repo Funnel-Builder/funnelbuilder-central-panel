@@ -1,8 +1,4 @@
 <script setup>
-definePageMeta({
-  layout: false,
-  middleware: ['auth']
-})
 const route = useRoute()
 const router = useRouter()
 const authStore = useAuthStore()
