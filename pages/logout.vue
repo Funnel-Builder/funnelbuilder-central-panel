@@ -13,7 +13,7 @@ if (!shopId || !secret) {
 }
 
 const config = useRuntimeConfig();
-if (authStore.isLoggedIn && shopId == authStore.shopId && config.public.appSecret === secret) {
+if (authStore.isLoggedIn && shopId == authStore.user?.shop_id && config.public.appSecret === secret) {
   authStore.logout()
   router.push('/login')
 } else {
