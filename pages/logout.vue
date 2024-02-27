@@ -13,10 +13,13 @@ if (!shopId || !secret) {
 }
 
 const config = useRuntimeConfig();
-if (authStore.isLoggedIn && shopId == authStore.user?.shop_id && config.public.appSecret === secret) {
+console.log(authStore.user?.shop_id, shopId, config.public.appSecret, secret, authStore.isLoggedIn)
+if (authStore.isLoggedIn &&  authStore.user?.shop_id == shopId && config.public.appSecret === secret) {
+  console.log('Logging out...')
   await authStore.logout()
   await router.push('/login')
 } else {
+  console.log('Invalid request')
   router.push('/login')
 }
 </script>

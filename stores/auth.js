@@ -8,7 +8,7 @@ export const useAuthStore = defineStore('auth', {
     }),
     getters: {
         isLoggedIn: (state) => {
-            return !!(state.token)
+            return !!(state.token) && !!(state.user)
         },
         isVerified: (state) => {
             return !!(state.user?.email_verified_at)
