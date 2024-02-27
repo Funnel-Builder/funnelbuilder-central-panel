@@ -7,16 +7,14 @@ const router = useRouter()
 const authStore = useAuthStore()
 const shopId = route.query.shop_id
 const secret = route.query.secret
+const from = route.query.from
 
-if (!shopId || !secret) {
+if (!shopId || !secret || !from) {
   router.push('/login')
 }
 
-const config = useRuntimeConfig();
-console.log(authStore.isLoggedIn, 'isLoggedIn')
-console.log(secret, 'secret')
-console.log(config.public.appSecret, 'appSecret')
-if (authStore.isLoggedIn && config.public.appSecret == secret) {
+
+if (authStore.isLoggedIn && secret == 'ln01l0oLYoqOhsd6XzKRSn72EHU6A3ynEnv' && from == 'seller') {
   console.log('Logging out...')
   await authStore.logout()
   await router.push('/login')
