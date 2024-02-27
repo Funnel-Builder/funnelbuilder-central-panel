@@ -37,7 +37,7 @@ import {goToShopPanel} from "~/composables/helper.js";
 
 definePageMeta({
   layout: 'shop',
-  // middleware: ['auth', 'should-be-verified']
+  middleware: ['auth', 'should-be-verified']
 })
 
 // addRouteMiddleware('test',()=>{
