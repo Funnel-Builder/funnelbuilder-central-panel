@@ -47,6 +47,7 @@
 
 <script setup>
 import { useField, useForm } from 'vee-validate';
+import {goToShopPanel} from "~/composables/helper.js";
 
 definePageMeta({
   layout: "auth",
@@ -85,6 +86,16 @@ const isShowPassword = () => {
   isShow.value = !isShow.value;
 };
 
+const getSecret = async (shopId) => {
+  const { data, pending, error, refresh } = await getData('get-secret?shop_id=' + shopId)
+  if (error && error.value) {
+    console.log(error);
+  }
+  else {
+    goToShopPanel(shopId, data.value?.sub_domain, data.value.data)
+  }
+};
+
 const submitData = handleSubmit(async (values) => {
   isLoading.value = true;
   const { data, pending, error, refresh } = await authStore.login(values);
@@ -96,8 +107,10 @@ const submitData = handleSubmit(async (values) => {
   else {
     if (data.value.next === 'verify-email') {
       await router.push('/verify-email')
+    } else if (data.value.next === 'create-shop') {
+      await router.push('/shop/create')
     } else {
-      await router.push('/shop')
+      await getSecret(data.value.user.shop_id)
     }
   }
   isLoading.value = false;

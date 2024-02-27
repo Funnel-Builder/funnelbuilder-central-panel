@@ -6,15 +6,15 @@
                   <div>
                     <FileUploadFileUploader @photoUploaded="photoUploaded($event)"/>
                     <div class="pt-4">
-                      <div>
-                        <p class="text-[rgb(90,120,173)]"><small>Description</small></p>
-                        <Textarea id="description" v-model="description.value.value"
-                                  :class="{ 'invalid': description.errorMessage.value }" placeholder="write here ..."
-                                  style="background-color: #EFF1F7 !important;"
-                                  class="mb-3 w-full h-20 md:h-20 text-xs md:text-lg flex items-center focus:shadow-none"
-                                  rows="5" cols="6" />
-                      </div>
-                      <form-input-error :message="description.errorMessage.value" />
+<!--                      <div>-->
+<!--                        <p class="text-[rgb(90,120,173)]"><small>Description</small></p>-->
+<!--                        <Textarea id="description" v-model="description.value.value"-->
+<!--                                  :class="{ 'invalid': description.errorMessage.value }" placeholder="write here ..."-->
+<!--                                  style="background-color: #EFF1F7 !important;"-->
+<!--                                  class="mb-3 w-full h-20 md:h-20 text-xs md:text-lg flex items-center focus:shadow-none"-->
+<!--                                  rows="5" cols="6" />-->
+<!--                      </div>-->
+<!--                      <form-input-error :message="description.errorMessage.value" />-->
                       <div>
                         <p class="text-[rgb(90,120,173)]"><small>Phone number</small></p>
                         <InputText id="phone" v-model="phone.value.value"
@@ -57,6 +57,7 @@
 </template>
 <script setup>
 import { useField, useForm } from 'vee-validate';
+import {goToShopPanel} from "~/composables/helper.js";
 const props = defineProps({
     shopDetails: {
         type: Object,
@@ -78,9 +79,9 @@ const { handleSubmit, isSubmitting, handleReset, setErrors } = useForm({
             return true;
         },
         phone(value) {
-            if (!value) return 'Phone number Name is required'
-            else if (!/^(?:\+88|88)?(01[3-9]\d{8})$/.test(value)) return "Invalid phone number";
-            return true;
+          if (!value) return 'Phone number is required';
+          else if (!/^(?:\+88|01)?(?:\d{11}|\d{13})$/.test(value)) return "Invalid phone number";
+          return true;
         },
         email(value) {
             if (!value) return 'Email is required'
@@ -97,7 +98,6 @@ const { handleSubmit, isSubmitting, handleReset, setErrors } = useForm({
 
 const isDisabled = computed(() => {
     return !(
-        description.value?.value?.length <= 250 &&
         phone.value?.value &&
         email.value?.value &&
         address.value?.value?.length <= 40 &&
@@ -120,7 +120,7 @@ const address = useField('address');
 const createShop = handleSubmit(async (values) => {
     loading.value = true
     values.subdomain = props.shopDetails.shopUrl
-    values.phone = `+88${values.phone}`
+    values.phone = formatPhone(values.phone)
     values.name = props.shopDetails.shopName
     values.image = awsSignUrl.value
 
@@ -144,13 +144,7 @@ const goToShop = async (shopID) => {
     console.log(error);
   }
   else {
-    const config = useRuntimeConfig();
-    if (config.public.appEnv === 'local') {
-      let redirectUrl = urlService('seller-front')
-      window.location.href = `${redirectUrl}/auth/verify?shop_id=${selectedShop.value.id}&token=${data.value.data}`
-      return
-    }
-    window.location.href = `//${data.value?.sub_domain}/auth/verify?shop_id=${shopID}&token=${data.value.data}`
+    goToShopPanel(shopID, data.value?.sub_domain, data.value.data)
   }
 }
 

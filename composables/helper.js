@@ -24,3 +24,24 @@ export const urlService = (type= 'auth') => {
     }
 
 }
+
+export const formatPhone = (phone) => {
+    if (phone.startsWith('0')) {
+        return `+88${phone}`;
+    } else if (phone.startsWith('88')) {
+        return `+${phone}`;
+    } else if (phone.startsWith('+88')) {
+        return phone;
+    }
+    return `+88${phone}`;
+}
+
+export const goToShopPanel = (shopId, redirectDomain, token) => {
+    const config = useRuntimeConfig();
+    if (config.public.appEnv === 'local') {
+        let redirectUrl = urlService('seller-front')
+        window.location.href = `${redirectUrl}/auth/verify?shop_id=${shopId}&token=${token}`
+        return
+    }
+    window.location.href = `//${redirectDomain}/auth/verify?shop_id=${shopId}&token=${token}`
+}

@@ -112,7 +112,7 @@ const submitOtp = async () => {
     console.log(data.value.data)
     if (data.value.data.email_verified_at !== null) {
       authStore.setUser(data.value.data)
-      await router.push('/shop')
+      await router.push('/shop/create')
     }
   }
 }
