@@ -98,11 +98,7 @@ const handleOnComplete = async (value) => {
 const handleOnChange = async (value) => {
   error_msg.value = ''
   console.log(value.length)
-  if (value.length === 6) {
-    isDisabled.value = false
-  } else {
-    isDisabled.value = true
-  }
+  isDisabled.value = value.length !== 6;
 }
 const timeEnd = (evn) => {
   timeOver.value = false;
