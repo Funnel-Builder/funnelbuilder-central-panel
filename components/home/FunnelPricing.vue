@@ -42,7 +42,7 @@
 import SectionHeading from "~/components/common/SectionHeading.vue";
 const authStore = useAuthStore();
 const pricing = ref([
-  { title: 'Free', subTitle: 'Billed annually.', tag:'Basic plan',
+  { title: 'Free', subTitle: 'Billed monthly.', tag:'Basic plan',
     context:[
       { label: "Access to all basic features" },
       { label: "Basic reporting and analytics" },
@@ -51,7 +51,7 @@ const pricing = ref([
       { label: "Basic chat and email support" }
     ]
   },
-  { title: '$20/mth', subTitle: 'Billed annually.', tag:'Business plan',
+  { title: '$20/mth', subTitle: 'Billed monthly.', tag:'Business plan',
     context:[
       { label: "200+ integrations" },
       { label: "Advanced reporting and analytics" },

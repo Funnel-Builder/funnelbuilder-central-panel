@@ -37,8 +37,8 @@
               </div>
               <div class="pt-4">
                 <label class="inputGroupLabel" for="username">Message<span class="text-[#D92D20]">*</span></label><br>
-                <Textarea v-model="message.value.value" autoResize rows="5" cols="30" :class="{ 'invalid': message.errorMessage.value }"
-                          class="inputGroupField focus:shadow-none py-2 sm:py-2" id="username" type="text"
+                <Textarea v-model="message.value.value"  rows="5" cols="30" :class="{ 'invalid': message.errorMessage.value }"
+                          class="inputGroupField focus:shadow-none py-2 sm:py-2 textArea" id="username" type="text"
                           placeholder="Enter subject" />
                 <form-input-error :message="message.errorMessage.value" text-color="#D92D20" />
               </div>
@@ -74,12 +74,12 @@ const { handleSubmit, isSubmitting, handleReset, setErrors } = useForm({
     },
     subject(value) {
       if (!value) return 'Subject is required'
-      else if (value.length < 3 || value.length > 100) return 'Subject must be between 3 and 150 characters'
+      else if (value.length < 3 || value.length > 150) return 'Subject must be between 3 and 150 characters'
       return true;
     },
     message(value) {
       if (!value) return 'Message is required'
-      else if (value.length < 3 || value.length > 100) return 'Message must be between 3 and 500 characters'
+      else if (value.length < 3 || value.length > 500) return 'Message must be between 3 and 500 characters'
       return true;
     },
   }
@@ -136,5 +136,8 @@ const submitForm = handleSubmit(async (values) => {
   background: #415984;
   color: white;
   transition: 0.6s;
+}
+.textArea{
+  resize: none;
 }
 </style>
