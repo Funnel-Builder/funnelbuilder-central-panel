@@ -41,7 +41,7 @@ import moment from "moment";
 const authStore = useAuthStore();
 const router = useRouter()
 
-const isDisabled = ref(false)
+const isDisabled = ref(true)
 const authorizedCode = ref('')
 const otpNumber = ref(null)
 const timeOver = ref(false)
