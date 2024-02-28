@@ -18,7 +18,7 @@
                         <div class="flex items-center">
                           <InputGroup :class="{ 'invalid': shopUrl.errorMessage.value }"
                                       style="background-color: #EFF1F7;" class="rounded-md ">
-                            <InputText v-model="shopUrl.value.value" style="background-color: #EFF1F7;"
+                            <InputText name="shop_url" v-model="shopUrl.value.value" style="background-color: #EFF1F7;"
                                        class="border-0 w-full h-10 md:h-12 text-xs md:text-lg flex items-center focus:shadow-none"
                                        id="shopUrl" type="text"/>
                             <InputGroupAddon style="background-color: #EFF1F7; color: gray;"
@@ -33,7 +33,7 @@
                       </div>
                       <div class="pt-3">
                         <p class="pb-1"><small class="text-[#5A78AD]">Shop Name*</small></p>
-                        <InputText v-model="shopName.value.value"
+                        <InputText name="shop_name" v-model="shopName.value.value"
                                    @keyup.enter="nextStep"
                                    placeholder="Enter shop name minimum 5 character"
                                    style="background-color: #EFF1F7 !important;" type="text"
