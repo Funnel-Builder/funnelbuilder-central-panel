@@ -28,7 +28,7 @@
                 <form-input-error :message="error_mes" text-color="#FFD600" />
               </div>
               <div class="text-center">
-                <Button @click="submitOtp" :disabled="otpNumber?.length !== 6" class="btn p-2 md:p-2.5  focus:shadow-none"
+                <Button @click="submitOtp" :disabled="isDisabled" class="btn p-2 md:p-2.5  focus:shadow-none"
                         label="Continue" />
               </div>
             </form>
@@ -49,6 +49,7 @@ const setTime = ref(0)
 const error_mes = ref('')
 const authStore = useAuthStore();
 const otp = getOtp();
+const isDisabled = ref(true)
 
 onMounted(async () => {
     if (authStore.otp_email_time && Object.keys(authStore.otp_email_time).length > 0) {
@@ -73,10 +74,16 @@ const resendOtp = async () => {
 
 const handleOnComplete = async (value) => {
     otpNumber.value = value;
+    await submitOtp()
 };
 const handleOnChange = async (value) => {
     error_mes.value = ''
     //do some action
+    if (value.length === 6) {
+        isDisabled.value = false
+    } else {
+        isDisabled.value = true
+    }
 }
 const timeEnd = (evn) => {
     timeOver.value = false;
