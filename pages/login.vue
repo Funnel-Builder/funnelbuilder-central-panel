@@ -9,16 +9,16 @@
           </div>
           <div class="px-4 sm:px-0">
             <div class="pt-5">
-              <label class="inputGroupLabel" for="email">Email Address *</label><br>
-              <InputText v-model="email.value.value" :class="{ 'invalid': email.errorMessage.value }"
+              <label class="inputGroupLabel" for="email">Email Address*</label><br>
+              <InputText name="email" v-model="email.value.value" :class="{ 'invalid': email.errorMessage.value }"
                          class="inputGroupField focus:shadow-none py-2 sm:py-3" id="email" type="email"
                          placeholder="Enter email address" />
               <form-input-error :message="email.errorMessage.value" text-color="#FFD600" />
             </div>
             <div class="pt-5">
-              <label class="inputGroupLabel" for="password">Password *</label><br>
+              <label class="inputGroupLabel" for="password">Password*</label><br>
               <div class="p-input-icon-right w-full">
-                <InputText @keyup.enter="submitData" v-model="password.value.value" :class="{ 'invalid': password.errorMessage.value }"
+                <InputText name="password" @keyup.enter="submitData" v-model="password.value.value" :class="{ 'invalid': password.errorMessage.value }"
                            class="inputGroupField focus:shadow-none py-2 sm:py-3" id="password" toggleMask
                            :type="isShow ? 'text' : 'password'" placeholder="Enter password" />
                 <i @click="isShowPassword" :class="isShow ? 'pi pi-eye' : 'pi pi-eye-slash'" style="color:white"></i>

@@ -11,36 +11,36 @@
           </div>
           <div class="px-4 sm:px-0">
             <div class="pt-5">
-              <label class="inputGroupLabel" for="username">Full Name *</label><br>
-              <InputText v-model="name.value.value" :class="{ 'invalid': name.errorMessage.value }"
+              <label class="inputGroupLabel" for="username">Full Name*</label><br>
+              <InputText name="name" v-model="name.value.value" :class="{ 'invalid': name.errorMessage.value }"
                          class="inputGroupField focus:shadow-none py-2 sm:py-3" id="username" type="text"
                          placeholder="Enter your name" />
               <form-input-error :message="name.errorMessage.value" text-color="#FFD600" />
             </div>
             <div class="pt-5">
-              <label class="inputGroupLabel" for="phone">Phone Number *</label><br>
+              <label class="inputGroupLabel" for="phone">Phone Number*</label><br>
               <InputGroup class="">
                 <InputGroupAddon class="inputGroupFieldFlag p-2 md:p-2.5 rounded-l-xl">
                   <img class="rounded-md" src="/auth/bdFlag.svg" alt="flag" />
                   <p class="text-[14px] md:text-[16px] px-2">+880</p>
                 </InputGroupAddon>
-                <InputText v-model="phone.value.value" :class="{ 'invalid': phone.errorMessage.value }" setErrorMessage
+                <InputText name="phone" v-model="phone.value.value" :class="{ 'invalid': phone.errorMessage.value }" setErrorMessage
                            class="inputGroupFieldFlag rounded-l-none rounded-r-xl focus:shadow-none py-2 sm:py-3" id="phone"
                            type="number" />
               </InputGroup>
               <form-input-error :message="phone.errorMessage.value" text-color="#FFD600" />
             </div>
             <div class="pt-5">
-              <label class="inputGroupLabel" for="email">Email Address *</label><br>
-              <InputText v-model="email.value.value" :class="{ 'invalid': email.errorMessage.value }"
+              <label class="inputGroupLabel" for="email">Email Address*</label><br>
+              <InputText name="email" v-model="email.value.value" :class="{ 'invalid': email.errorMessage.value }"
                          class="inputGroupField focus:shadow-none py-2 sm:py-3" id="email" type="email"
                          placeholder="Enter email address" />
               <form-input-error :message="email.errorMessage.value" text-color="#FFD600" />
             </div>
             <div class="pt-5">
-              <label class="inputGroupLabel" for="password">Password *</label><br>
+              <label class="inputGroupLabel" for="password">Password*</label><br>
               <div class="p-input-icon-right w-full">
-                <InputText v-model="password.value.value" :class="{ 'invalid': password.errorMessage.value }"
+                <InputText name="password" v-model="password.value.value" :class="{ 'invalid': password.errorMessage.value }"
                            class="inputGroupField focus:shadow-none py-2 sm:py-3" id="password" toggleMask
                            :type="isShow ? 'text' : 'password'" placeholder="Enter minimum 8 characters" />
                 <i @click="isShowPassword" :class="isShow ? 'pi pi-eye' : 'pi pi-eye-slash'" style="color:white"></i>
@@ -48,9 +48,9 @@
               <form-input-error :message="password.errorMessage.value" text-color="#FFD600" />
             </div>
             <div class="pt-5">
-              <label class="inputGroupLabel" for="confirmPassword">Confirm Password *</label><br>
+              <label class="inputGroupLabel" for="confirmPassword">Confirm Password*</label><br>
               <div class="p-input-icon-right w-full">
-                <InputText v-model="password_confirmation.value.value"
+                <InputText name="password_confirmation" v-model="password_confirmation.value.value"
                            :disabled="!(password.value.value && password.value.value.length)"
                            :class="{ 'invalid': password_confirmation.errorMessage.value }"
                            class="inputGroupField focus:shadow-none py-2 sm:py-3" id="confirmPassword"

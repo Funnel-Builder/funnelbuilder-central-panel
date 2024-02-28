@@ -92,11 +92,17 @@ const handleOnComplete = async (value) => {
     }
   } else {
     authorizedCode.value = data.value.authorization_code
+    await submitOtp()
   }
 };
 const handleOnChange = async (value) => {
   error_msg.value = ''
-  isDisabled.value = value.length < 6;
+  console.log(value.length)
+  if (value.length === 6) {
+    isDisabled.value = false
+  } else {
+    isDisabled.value = true
+  }
 }
 const timeEnd = (evn) => {
   timeOver.value = false;
