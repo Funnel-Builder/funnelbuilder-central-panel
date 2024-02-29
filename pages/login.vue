@@ -110,6 +110,9 @@ const submitData = handleSubmit(async (values) => {
     } else if (data.value.next === 'create-shop') {
       await router.push('/shop/create')
     } else {
+      if (!data.value.user.shop_id) {
+        await router.push('/shop')
+      }
       await getSecret(data.value.user.shop_id)
     }
   }

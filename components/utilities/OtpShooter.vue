@@ -111,10 +111,14 @@ const submitOtp = async () => {
       error_msg.value = error.value.data.message
     }
   } else {
-    console.log(data.value.data)
     if (data.value.data.email_verified_at !== null) {
       authStore.setUser(data.value.data)
-      await router.push('/shop/create')
+      if (data.value.data.shop_id) {
+        await router.push('/shop')
+      } else {
+        await router.push('/shop/create')
+      }
+
     }
   }
 }
