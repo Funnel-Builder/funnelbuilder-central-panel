@@ -6,34 +6,32 @@
       <p class="text-[12px] md:text-[14px] text-white font-[400]">We have sent six digit code to your email</p>
     </div>
     <div>
-      <form @keyup.enter="submitOtp">
-        <div class="py-16">
-          <div>
-            <p class="text-[12px] md:text-[14px] text-white font-[400] pl-2">Enter Code</p>
-            <div class="mt-1 flex justify-between">
-              <v-otp-input ref="otpInput" input-classes="otp-input" separator="" :num-inputs="6"
-                           :should-auto-focus="true" :is-input-num="true" @on-change="handleOnChange"
-                           @on-complete="handleOnComplete">
-              </v-otp-input>
+      <div class="py-16">
+        <div>
+          <p class="text-[12px] md:text-[14px] text-white font-[400] pl-2">Enter Code</p>
+          <div class="mt-1 flex justify-between">
+            <v-otp-input ref="otpInput" input-classes="otp-input" separator="" :num-inputs="6"
+                         :should-auto-focus="true" :is-input-num="true" @on-change="handleOnChange"
+                         @on-complete="handleOnComplete">
+            </v-otp-input>
+          </div>
+          <div class="flex justify-between pt-2 pl-2">
+            <div>
+              <utilities-otp-timer v-if="setTime > 0" :sec="setTime" @timeEnd="timeEnd($event)"/>
             </div>
-            <div class="flex justify-between pt-2 pl-2">
-              <div>
-                <utilities-otp-timer v-if="setTime > 0" :sec="setTime" @timeEnd="timeEnd($event)"/>
-              </div>
-              <div>
-                <button @click="resendOtp" :disabled="timeOver" :class="timeOver ? 'text-gray-400':'text-white'"
-                        class="underline">Resend
-                </button>
-              </div>
+            <div>
+              <button @click="resendOtp" :disabled="timeOver" :class="timeOver ? 'text-gray-400':'text-white'"
+                      class="underline">Resend
+              </button>
             </div>
           </div>
-          <form-input-error :message="error_mes" text-color="#FFD600"/>
         </div>
-        <div class="text-center">
-          <Button @click="submitOtp" :disabled="isDisabled" class="btn p-2 md:p-2.5  focus:shadow-none"
-                  label="Continue"/>
-        </div>
-      </form>
+        <form-input-error :message="error_mes" text-color="#FFD600"/>
+      </div>
+      <div class="text-center">
+        <Button @click="submitOtp" :disabled="isDisabled" class="btn p-2 md:p-2.5  focus:shadow-none"
+                label="Continue"/>
+      </div>
     </div>
   </div>
 </template>
@@ -52,6 +50,7 @@ const error_mes = ref('')
 const authStore = useAuthStore();
 const otp = getOtp();
 const isDisabled = ref(true)
+const isLoading = ref(false)
 
 onMounted(async () => {
   if (authStore.otp_email_time && Object.keys(authStore.otp_email_time).length > 0) {
@@ -93,7 +92,8 @@ const timeEnd = (evn) => {
 }
 
 const submitOtp = async () => {
-  if (isDisabled.value) return
+  if (isLoading.value) return;
+  isLoading.value = true;
   const {data, error} = await postData('verify-otp', {email: authStore.otp_email_time.email, otp: otpNumber.value})
 
   if (error && error.value) {
@@ -104,6 +104,7 @@ const submitOtp = async () => {
     authStore.setAuthorizationCode(data.value.authorization_code)
     await router.push('/reset-password')
   }
+  isLoading.value = false;
 }
 
 const resetOtp = () => {
