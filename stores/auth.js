@@ -51,9 +51,9 @@ export const useAuthStore = defineStore('auth', {
             if (data) {
                 this.setToken(data.value?.authorization)
                 this.setUser(data.value?.user)
-                if (this.user?.email_verified_at === null){
-                    this.setOtpCookies(this.user?.email, 'login')
-                }
+                // if (this.user?.email_verified_at === null){
+                //     this.setOtpCookies(this.user?.email, 'login')
+                // }
             }
             return {data, pending, error, refresh}
         },
@@ -70,6 +70,13 @@ export const useAuthStore = defineStore('auth', {
             const { data, pending, error, refresh } = await getData('user')
             if (data) {
                 this.setUser(data.value?.data)
+            }
+            return { data, pending, error, refresh }
+        },
+        async getOtp() {
+            const { data, pending, error, refresh } = await postData('get-otp', { email: this.user?.email })
+            if (data) {
+                // this.setUserMailAndTime(data.value)
             }
             return { data, pending, error, refresh }
         },

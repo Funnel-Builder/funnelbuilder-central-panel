@@ -50,7 +50,7 @@ export const setUser = (user) => {
     // setCookies('expires_in', expires, cookieMaxAge);
 };
 
-export const setOtpCookies = (data) => {
+export const setOtpCookies = (data, reset = false) => {
     const cookieOptions = {
         ...commonCookieOptions,
         maxAge: 3600,
@@ -76,6 +76,7 @@ export const setAccessToken = (authorization) =>{
 }
 
 export const resetAllCookies = () => {
+    setCookies('otp', '');
     setCookies('token', '');
     setCookies('expires_in', '');
     setCookies('user', '');

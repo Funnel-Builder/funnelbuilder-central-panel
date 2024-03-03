@@ -106,6 +106,8 @@ const submitData = handleSubmit(async (values) => {
   }
   else {
     if (data.value.next === 'verify-email') {
+      await authStore.getOtp()
+      await  authStore.setOtpCookies(data.value.user?.email, 'verify-email')
       await router.push('/verify-email')
     } else if (data.value.next === 'create-shop') {
       await router.push('/shop/create')

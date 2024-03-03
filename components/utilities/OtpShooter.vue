@@ -60,7 +60,7 @@ onMounted(async () => {
       setValue.value = otp.expires_in
     }
   } else {
-    await router.push('/login')
+    await resendOtp()
   }
   // console.log(moment(moment(otp?.expires_in)).diff(moment(), 'seconds'))
 
@@ -79,6 +79,7 @@ const resendOtp = async () => {
       error_msg.value = error.value.data.message
     }
   } else {
+    authStore.setOtpCookies( otp.email, 'verify-email' )
     setTime.value = data.value.retry_after;
   }
 }
@@ -111,7 +112,6 @@ const submitOtp = async () => {
       error_msg.value = error.value.data.message
     }
   } else {
-    console.log(data.value.data)
     if (data.value.data.email_verified_at !== null) {
       authStore.setUser(data.value.data)
       await router.push('/shop/create')
