@@ -34,7 +34,7 @@
                       <form-input-error :message="email.errorMessage.value" />
                       <div>
                         <p class="text-[#5A78AD]"><small>Shop address</small></p>
-                        <InputText name="address" id="address" @keyup.enter="createShop" v-model="address.value.value"
+                        <InputText name="address" id="address"  v-model="address.value.value"
                                    :class="{ 'invalid': address.errorMessage.value }" placeholder="Enter shop address"
                                    style="background-color: #EFF1F7 !important;" type="text"
                                    class="mb-3 w-full h-10 md:h-12 text-xs md:text-lg flex items-center focus:shadow-none" />
@@ -101,7 +101,7 @@ const isDisabled = computed(() => {
         phone.value?.value &&
         email.value?.value &&
         address.value?.value?.length <= 40 &&
-        (!/^(?:\+88|88)?(01[3-9]\d{8})$/.test(email.value?.value)) && !domain_error.value
+        (!/^(?:\+88|88)?(01[3-9]\d{8})$/.test(email.value?.value)) // && !domain_error.value
     );
 });
 
