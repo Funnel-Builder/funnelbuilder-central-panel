@@ -10,7 +10,7 @@
               Get Started.</p>
           </div>
           <div class="px-4 sm:px-0">
-            <form @submit.prevent="submitForm">
+            <form @submit.prevent.stop="submitForm">
               <div class="pt-5">
                 <label class="inputGroupLabel" for="username">Full Name*</label><br>
                 <InputText name="name" v-model="name.value.value" :class="{ 'invalid': name.errorMessage.value }"
@@ -169,6 +169,7 @@ const isShowConfirmPassword = () => {
 };
 
 const submitForm = handleSubmit(async (values) => {
+  if (isLoading.value) return;
   isLoading.value = true;
   if (values.phone.startsWith('0')) {
     values.phone = `+880${values.phone.substring(1)}`;

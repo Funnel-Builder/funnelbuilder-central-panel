@@ -99,6 +99,7 @@ const getSecret = async (shopId) => {
 };
 
 const submitData = handleSubmit(async (values) => {
+  if (isLoading.value) return;
   isLoading.value = true;
   const { data, pending, error, refresh } = await authStore.login(values);
   if (error && error.value) {

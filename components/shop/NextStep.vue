@@ -118,6 +118,7 @@ const address = useField('address');
 
 
 const createShop = handleSubmit(async (values) => {
+    if (loading.value) return;
     loading.value = true
     values.subdomain = props.shopDetails.shopUrl
     values.phone = formatPhone(values.phone)
