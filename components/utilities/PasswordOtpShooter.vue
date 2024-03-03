@@ -68,6 +68,7 @@ const resendOtp = async () => {
             error_mes.value = error.value.data.message
         }
     } else {
+      authStore.setUserMailAndTime({ email: authStore.otp_email_time.email, retry_after: data.value.retry_after })
         setTime.value = data.value.retry_after;
     }
 }
