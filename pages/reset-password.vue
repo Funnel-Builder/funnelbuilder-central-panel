@@ -37,7 +37,7 @@
                 <form-input-error :message="password_confirmation.errorMessage.value" text-color="#FFD600" />
               </div>
               <div class="pt-12">
-                <buttons-action-button @submitData="submitData" :disabled="isSubmitDisabled" :loading="false" text="Reset Password" />
+                <buttons-action-button @submitData="submitData" :loading="false" text="Reset Password" />
               </div>
             </form>
             <div class="pt-12 flex justify-center items-center gap-x-4">

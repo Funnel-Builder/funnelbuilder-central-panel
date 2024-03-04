@@ -36,7 +36,7 @@
                 </div>
               </div>
               <div class="pt-8 md:pt-12">
-                <buttons-action-button  type="submit" text="Login" :disabled="isSubmitDisabled"
+                <buttons-action-button  @submit.prevent="submitData" type="submit" text="Login"
                                        :loading="isLoading" />
               </div>
             </form>
