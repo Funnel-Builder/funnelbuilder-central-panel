@@ -74,10 +74,7 @@ const awsSignUrl = ref('')
 //validation schema
 const { handleSubmit, isSubmitting, handleReset, setErrors } = useForm({
     validationSchema: {
-        description(value) {
-            if (value?.length > 250) return 'Description must less then 250 characters'
-            return true;
-        },
+
         phone(value) {
           if (!value) return 'Phone number is required';
           else if (!/^(?:\+88|01)?(?:\d{11}|\d{13})$/.test(value)) return "Invalid phone number";
@@ -90,7 +87,7 @@ const { handleSubmit, isSubmitting, handleReset, setErrors } = useForm({
         },
         address(value) {
             if (!value) return 'Address is required'
-            else if (value.length > 100) return 'Shop Address must less then 40 characters'
+            else if (value.length > 255) return 'Shop Address must less then 255 characters'
             return true;
         }
     }
