@@ -22,7 +22,7 @@
                 <form-input-error :message="email.errorMessage.value" text-color="#FFD600" />
               </div>
               <div class="pt-12 text-center">
-                <Button :disabled="isSubmitDisabled"  @click="submitData" class="btn p-2 md:p-2.5  focus:shadow-none"
+                <Button  @click="submitData" class="btn p-2 md:p-2.5  focus:shadow-none"
                         label="Continue" />
               </div>
             </form>

@@ -79,7 +79,7 @@
               </div>
               <form-input-error :message="termsAndCondition.errorMessage.value" text-color="#FFD600" />
               <div class="py-4">
-                <buttons-action-button :disabled="isSubmitDisabled" :loading="isLoading" text="Register" />
+                <buttons-action-button  :loading="isLoading" text="Register" />
               </div>
             </form>
           </div>

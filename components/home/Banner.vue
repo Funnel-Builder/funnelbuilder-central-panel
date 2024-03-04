@@ -11,8 +11,8 @@
         <div class="flex justify-center items-center gap-x-4">
 <!--          <primary-button text="Demo" to="/" type="icon" icon-class="pi pi-play" />-->
 <!--          <primary-button text="Start Free trial" to="/" type="link" />-->
-          <hover-button text="Demo" to="/" type="icon" icon-class="pi pi-play"  />
-          <hover-button text="Start Free trial" to="/" type="link"/>
+          <hover-button text="Demo" to="#pricing" type="icon" icon-class="pi pi-play"  />
+          <hover-button text="Start Free trial" to="#pricing" type="link"/>
 
         </div>
         <div class="flex justify-center  flex-wrap md:w-[90%] lg:w-[80%] xl:w-[80%] 2xl:w-[60%] gap-x-2 md:gap-x-8 gap-y-4 pt-4 lg:pt-10 xl:pt-6">
