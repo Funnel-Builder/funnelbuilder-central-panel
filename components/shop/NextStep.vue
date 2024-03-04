@@ -97,7 +97,7 @@ const isDisabled = computed(() => {
     return !(
         phone.value?.value &&
         email.value?.value &&
-        address.value?.value?.length <= 40 &&
+        address.value?.value?.length <= 255 &&
         (!/^(?:\+88|88)?(01[3-9]\d{8})$/.test(email.value?.value)) // && !domain_error.value
     );
 });
