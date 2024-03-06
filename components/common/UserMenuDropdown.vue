@@ -17,6 +17,7 @@
   </div>
 </template>
 
+
 <script setup>
 const authStore = useAuthStore();
 const router = useRouter();
