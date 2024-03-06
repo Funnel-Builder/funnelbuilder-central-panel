@@ -4,7 +4,7 @@
       <nuxt-link to="shop" class="text-[12px] lg:text-[14px] px-3.5 py-1.5 gap-x-2 rounded-full cursor-pointer font-[600] bg-[#eff1f7] text-[#5a78ad] hover:bg-[#5a78ad] hover:text-[white] hover:transition-all">Go To Shop</nuxt-link>
       <div class="flex justify-between items-center gap-x-2 px-3 py-1.5 rounded-full cursor-pointer"
            style=" background-color:#eff1f7; ">
-        <img class=" md:hidden lg:block h-[16px] lg:h-[20px]" src="/landing/userIcon.svg" alt="logo"/>
+        <img class="md:hidden lg:block h-[16px] lg:h-[20px]" src="/landing/userIcon.svg" alt="logo"/>
         <p class="text-[12px] lg:text-[14px] font-[600]" style="color:#5a78ad;">{{ truncatedUserName }}</p>
       </div>
       <div>
