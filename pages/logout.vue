@@ -1,20 +1,19 @@
 <script setup>
+import {onMounted} from "vue";
+
 definePageMeta({
-  middleware: false,
+  middleware: ['auth'],
+  layout: false
 })
 const router = useRouter()
 const authStore = useAuthStore()
 
-console.log('sss')
-if (authStore.isLoggedIn) {
-  const {data, pending, error, refresh} = await authStore.logout();
-  if (error && error.value) {
-    console.log(error);
-  } else {
+onMounted(async () => {
+  if (authStore.isLoggedIn) {
     await authStore.clearAuth();
   }
-}
-await router.push('/');
+  await router.push('/login');
+})
 </script>
 <template>
   <div>
