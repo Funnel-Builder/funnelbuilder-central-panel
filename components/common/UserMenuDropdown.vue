@@ -1,19 +1,21 @@
 <template>
   <div>
     <div class="dropdown">
-      <div class="dropbtn flex items-center p-2 gap-x-2 cursor-pointer rounded-md">
-        <div class="flex justify-between items-center gap-x-2  rounded-full cursor-pointer">
+      <div class="dropbtn flex justify-between items-center p-4 py-2 gap-x-2 cursor-pointer rounded-md">
+        <div class="flex items-center gap-x-2  rounded-full cursor-pointer">
           <img class="md:hidden lg:block h-[16px] lg:h-[20px]" src="/landing/userIconWhite.svg" alt="logo"/>
           <p class="text-[12px] lg:text-[14px] font-[600] text-white">{{ truncatedUserName }}</p>
         </div>
         <i class="pi pi-bars menu" style="font-size: 20px; color:white;"></i>
       </div>
       <div class="dropdown-content rounded-md">
-        <a class="text-center rounded-md">
-          <nuxt-link to="shop" class="text-[12px] lg:text-[14px]  font-[600] ">Go To Shop</nuxt-link>
+        <a class="rounded-md">
+          <div class="text-center">
+            <nuxt-link to="shop" class="text-[12px] p-0 lg:text-[14px]  font-[600] ">Go To Shop</nuxt-link>
+          </div>
         </a>
         <a class="rounded-md">
-          <div @click="logout" class="text-center p-1">
+          <div @click="logout" class="text-center p-1 ">
             <p class="text-[12px] lg:text-[14px]  font-[600] ">Logout</p>
           </div>
         </a>
@@ -88,12 +90,12 @@ const truncatedUserName = computed(() => {
 .dropdown-content a {
   color: black;
   cursor: pointer;
-  padding: 6px 16px;
+  padding: 4px 16px;
   text-decoration: none;
   display: block;
 }
 
-.dropdown-content a:hover {background-color: #ffffff;}
+.dropdown-content a:hover {background-color: #5a78ad; color:white;}
 
 .dropdown:hover .dropdown-content {display: block;}
 
