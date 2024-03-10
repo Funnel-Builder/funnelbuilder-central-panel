@@ -7,7 +7,7 @@ metadata:
     tier: common-panel-frontend
     layer: webserver
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       tier: common-panel-frontend
@@ -21,7 +21,7 @@ spec:
       containers:
         - name: webserver
           imagePullPolicy: Always
-          image: bdfunnelbuilder/bdf-common-prod:v0.0.1
+          image: bdfunnelbuilder/bdf-common-prod:v0.0.3
           resources:
             limits:
               cpu: "0.2"

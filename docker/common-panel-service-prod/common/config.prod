@@ -1,2 +1,2 @@
-BASE_URL=https://auth-dev.nextivecloud.com/api/
-SELLER_PANEL_URL=https://sellerpanel-dev.nextivecloud.com
+BASE_URL=https://auth.bdfunnelbuilder.com/api/
+SELLER_PANEL_URL=https://admin.bdfunnelbuilder.com
