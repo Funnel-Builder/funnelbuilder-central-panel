@@ -1,15 +1,20 @@
 <script setup>
-const route = useRoute()
+definePageMeta({
+  middleware: false,
+})
 const router = useRouter()
 const authStore = useAuthStore()
-// const shopId = route.query.shop_id
-// const secret = route.query.secret
 
-
+console.log('sss')
 if (authStore.isLoggedIn) {
-  authStore.logout()
-  router.push('/login')
+  const {data, pending, error, refresh} = await authStore.logout();
+  if (error && error.value) {
+    console.log(error);
+  } else {
+    await authStore.clearAuth();
+  }
 }
+await router.push('/');
 </script>
 <template>
   <div>

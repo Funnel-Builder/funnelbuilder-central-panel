@@ -56,7 +56,6 @@ const logout = async () => {
   if (error && error.value) {
     console.log(error);
   } else {
-    await authStore.clearAuth();
     await router.push('/');
   }
 };
