@@ -17,7 +17,7 @@
             </div>
           </div>
         </div>
-        <div class="flex justify-end col-span-1">
+        <div class="flex justify-end col-span-1 z-99">
           <div v-if="authStore.isLoggedIn" class="flex items-center gap-x-2">
             <CommonUserMenuDropdown></CommonUserMenuDropdown>
           </div>
@@ -101,6 +101,7 @@ const items = ref([
   {label: 'Contact Us', link: '#contact'}
 ]);
 
+
 const isActive = (link) => {
   return router.currentRoute.value.path === link;
 };
@@ -150,7 +151,7 @@ const truncatedUserName = computed(() => {
 <style scoped lang="scss">
 .nav {
   background: rgba(255, 255, 255, 0.8);
-  overflow: hidden;
+  //overflow: hidden;
   position: fixed;
   top: 0;
   width: 100%;
