@@ -15,7 +15,7 @@
           </div>
         </a>
         <a class="rounded-md">
-          <div @click="logout" class="text-center p-1 ">
+          <div @click="logout()" class="text-center p-1 ">
             <p class="text-[12px] lg:text-[14px]  font-[600] ">Logout</p>
           </div>
         </a>
@@ -53,7 +53,12 @@ const toggleDropdownMenu = () => {
 
 const logout = async () => {
   const {data, pending, error, refresh} = await authStore.logout();
-  await router.push('/');
+  if (error && error.value) {
+    console.log(error);
+  } else {
+    await authStore.clearAuth();
+    await router.push('/');
+  }
 };
 
 const truncatedUserName = computed(() => {
