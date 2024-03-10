@@ -6,8 +6,10 @@ const authStore = useAuthStore()
 // const secret = route.query.secret
 
 
-authStore.logout()
-router.push('/login')
+if (authStore.isLoggedIn) {
+  authStore.logout()
+  router.push('/login')
+}
 </script>
 <template>
   <div>
