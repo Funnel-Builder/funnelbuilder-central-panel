@@ -105,6 +105,10 @@ definePageMeta({
   middleware: ['guest']
 });
 
+useSeoMeta({
+  title: 'Signup to Nextive cloud',
+})
+
 //Define Variables
 const authStore = useAuthStore();
 const router = useRouter();

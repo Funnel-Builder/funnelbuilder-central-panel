@@ -59,6 +59,11 @@ definePageMeta({
   layout: "auth",
   middleware: ['guest']
 });
+
+useSeoMeta({
+  title: 'Login to Nextive Cloud',
+})
+
 //Variables
 const authStore = useAuthStore();
 const router = useRouter();
