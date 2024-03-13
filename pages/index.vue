@@ -66,6 +66,11 @@ import FaqSection from "~/components/home/FaqSection.vue";
 
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 
+
+useSeoMeta({
+  title: 'Nextive Cloud',
+})
+
 const showScrollButton = ref(false);
 
 const scrollToTop = () => {

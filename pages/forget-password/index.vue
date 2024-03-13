@@ -44,6 +44,10 @@ definePageMeta({
   layout: "auth",
   middleware:['guest']
 });
+
+useSeoMeta({
+  title: 'Forget password',
+})
 //Variables
 const authStore = useAuthStore();
 const router = useRouter();
