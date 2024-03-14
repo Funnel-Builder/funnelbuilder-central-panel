@@ -13,7 +13,6 @@
     "@nuxt/devtools": "latest",
     "@nuxtjs/tailwindcss": "^6.9.5",
     "nuxt": "^3.8.1",
-    "nuxt-primevue": "^0.2.0",
     "vue": "^3.3.8"
   },
   "dependencies": {
@@ -21,9 +20,10 @@
     "@vee-validate/rules": "^4.11.8",
     "aos": "^2.3.4",
     "moment": "^2.29.4",
+    "nuxt-primevue": "^0.3.1",
     "pinia": "^2.1.7",
     "primeicons": "^6.0.1",
-    "primevue": "^3.40.1",
+    "primevue": "^3.49.1",
     "sass": "^1.69.5",
     "vee-validate": "^4.11.8",
     "vue-toastification": "^2.0.0-rc.5",

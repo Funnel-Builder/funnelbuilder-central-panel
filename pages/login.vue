@@ -19,10 +19,14 @@
               <div class="pt-5">
                 <label class="inputGroupLabel" for="password">Password*</label><br>
                 <div class="p-input-icon-right w-full">
-                  <InputText name="password" v-model="password.value.value" :class="{ 'invalid': password.errorMessage.value }"
-                             class="inputGroupField focus:shadow-none py-2 sm:py-3" id="password" toggleMask
-                             :type="isShow ? 'text' : 'password'" placeholder="Enter password" />
-                  <i @click="isShowPassword" :class="isShow ? 'pi pi-eye' : 'pi pi-eye-slash'" style="color:white"></i>
+                  <IconField>
+                    <InputIcon>
+                      <i @click="isShowPassword" :class="isShow ? 'pi pi-eye' : 'pi pi-eye-slash'" style="color:black"></i>
+                    </InputIcon>
+                    <InputText name="password" v-model="password.value.value" :class="{ 'invalid': password.errorMessage.value }"
+                               class="inputGroupField focus:shadow-none py-2 sm:py-3" id="password" toggleMask
+                               :type="isShow ? 'text' : 'password'" placeholder="Enter password" />
+                  </IconField>
                 </div>
                 <form-input-error :message="password.errorMessage.value" text-color="#FFD600" />
               </div>
@@ -55,6 +59,11 @@ definePageMeta({
   layout: "auth",
   middleware: ['guest']
 });
+
+useSeoMeta({
+  title: 'Login to Nextive Cloud',
+})
+
 //Variables
 const authStore = useAuthStore();
 const router = useRouter();
@@ -118,7 +127,7 @@ const submitData = handleSubmit(async (values) => {
       if (!data.value.user.shop_id) {
         await router.push('/shop')
       }
-      await getSecret(data.value.user.shop_id)
+       await getSecret(data.value.user.shop_id)
     }
   }
   isLoading.value = false;

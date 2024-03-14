@@ -17,7 +17,7 @@
             </div>
           </div>
         </div>
-        <div class="flex justify-end col-span-1">
+        <div class="flex justify-end col-span-1 z-99">
           <div v-if="authStore.isLoggedIn" class="flex items-center gap-x-2">
             <CommonUserMenuDropdown></CommonUserMenuDropdown>
           </div>
@@ -40,9 +40,9 @@
         </div>
         <div class="flex justify-center items-center gap-x-2">
          <div v-if="authStore.isLoggedIn">
-           <nuxt-link to="/login" class="text-[14px]  md:text-[16px] rounded-full font-[600]"
-                      style="padding: 8px 12px; background-color:#eff1f7; color:#5A78AD">Go to Shop
-           </nuxt-link>
+<!--           <nuxt-link to="/login" class="text-[14px]  md:text-[16px] rounded-full font-[600]"-->
+<!--                      style="padding: 8px 12px; background-color:#eff1f7; color:#5A78AD">Go to Shop-->
+<!--           </nuxt-link>-->
          </div>
           <div v-if="!authStore.isLoggedIn">
             <nuxt-link to="/login" class="text-[14px] md:text-[16px] rounded-full font-[600]"
@@ -56,12 +56,13 @@
         <div class="nav-menu">
           <div class="flex justify-end items-center gap-x-2">
             <div v-if="authStore.isLoggedIn" class="flex items-center gap-x-2">
-              <nuxt-link to="shop" class="text-[14px] px-2 py-1.5 gap-x-2 rounded-full cursor-pointer font-[600]" style="background-color:#eff1f7; color:#5a78ad;">Go To Shop</nuxt-link>
-              <div class="flex justify-center items-center px-4 py-1.5 gap-x-2 rounded-full"
-                   style=" background-color:#eff1f7;">
-                <img class="h-[20px]" src="/landing/userIcon.svg" alt="logo"/>
-                <p class="text-[14px] font-[600]" style="color:#5a78ad;">{{ truncatedUserName }}</p>
-              </div>
+              <CommonUserMenuDropdown></CommonUserMenuDropdown>
+<!--              <nuxt-link to="shop" class="text-[14px] px-2 py-1.5 gap-x-2 rounded-full cursor-pointer font-[600]" style="background-color:#eff1f7; color:#5a78ad;">Go To Shop</nuxt-link>-->
+<!--              <div class="flex justify-center items-center px-4 py-1.5 gap-x-2 rounded-full"-->
+<!--                   style=" background-color:#eff1f7;">-->
+<!--                <img class="h-[20px]" src="/landing/userIcon.svg" alt="logo"/>-->
+<!--                <p class="text-[14px] font-[600]" style="color:#5a78ad;">{{ truncatedUserName }}</p>-->
+<!--              </div>-->
             </div>
             <div v-if="!authStore.isLoggedIn">
               <nuxt-link to="/login" class="text-[14px] md:text-[16px] rounded-full font-[600]"
@@ -100,6 +101,7 @@ const items = ref([
   {label: 'Pricing', link: '#pricing'},
   {label: 'Contact Us', link: '#contact'}
 ]);
+
 
 const isActive = (link) => {
   return router.currentRoute.value.path === link;
@@ -150,7 +152,7 @@ const truncatedUserName = computed(() => {
 <style scoped lang="scss">
 .nav {
   background: rgba(255, 255, 255, 0.8);
-  overflow: hidden;
+  //overflow: hidden;
   position: fixed;
   top: 0;
   width: 100%;
