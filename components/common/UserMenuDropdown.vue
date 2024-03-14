@@ -43,14 +43,12 @@ const getUserInfo = async () => {
   if(error && error.value) {
     console.log(error);
   } else {
-    console.log(data.value.data)
     userInfo.value = data.value.data;
     if(userInfo.value.shop_id) {
       await goToShop();
     } else {
       await router.push('/shop/create');
     }
-    await goToShop();
   }
 };
 
