@@ -68,7 +68,7 @@ import { ref, onMounted, onBeforeUnmount } from 'vue';
 
 
 useSeoMeta({
-  title: 'Nextive Cloud',
+  title: 'BD Funnel Builder',
 })
 
 const showScrollButton = ref(false);
