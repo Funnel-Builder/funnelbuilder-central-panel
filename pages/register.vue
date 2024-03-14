@@ -106,7 +106,7 @@ definePageMeta({
 });
 
 useSeoMeta({
-  title: 'Signup to Nextive cloud',
+  title: 'Signup to BD Funnel Builder',
 })
 
 //Define Variables
