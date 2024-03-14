@@ -21,6 +21,9 @@ export const useAuthStore = defineStore('auth', {
         },
         setUser(user) {
             this.user = user
+            if (user?.permissions) {
+                delete user.permissions
+            }
             setUser(user)
         },
         setOtpCookies(email, from) {
@@ -69,6 +72,9 @@ export const useAuthStore = defineStore('auth', {
         async getLoggedUser() {
             const { data, pending, error, refresh } = await getData('user')
             if (data) {
+                if (data.value.data?.permissions) {
+                    delete data.value.data.permissions
+                }
                 this.setUser(data.value?.data)
             }
             return { data, pending, error, refresh }
