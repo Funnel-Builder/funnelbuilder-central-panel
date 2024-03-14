@@ -6,9 +6,9 @@
           <img class="md:hidden lg:block h-[16px] lg:h-[20px]" src="/landing/userIconWhite.svg" alt="logo"/>
           <p class="text-[12px] lg:text-[14px] font-[600] text-white">{{ truncatedUserName }}</p>
         </div>
-        <div class="hidden md:block items-center">
-          <i  class="pi pi-bars menu" style="font-size: 20px; color:white;"></i>
-        </div>
+<!--        <div class="hidden md:block items-center">-->
+<!--          <i  class="pi pi-bars menu" style="font-size: 20px; color:white;"></i>-->
+<!--        </div>-->
       </div>
       <div class="dropdown-content rounded-md">
         <a @click="getUserInfo" class="rounded-md">
@@ -78,7 +78,7 @@ const logout = async () => {
 
 const truncatedUserName = computed(() => {
   const userName = authStore.user.name;
-  return userName.substring(0, 2).toUpperCase();
+  return userName.substring(0, 5).toUpperCase();
 });
 
 </script>
