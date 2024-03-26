@@ -17,3 +17,14 @@ spec:
                 port:
                   number: 80
 
+    - host: "www.bdfunnelbuilder.com"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: common-panel-service-webserver
+                port:
+                  number: 80
+
