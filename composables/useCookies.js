@@ -4,6 +4,7 @@ const commonCookieOptions = {
     priority: 'high',
     secure: true,
     // sameSite: 'lax',
+    size: 20480
 };
 
 const useTokenCookie = () => useCookie('token', commonCookieOptions);
