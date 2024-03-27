@@ -6,7 +6,7 @@
     </div>
     <div class="p-2 md:p-8 lg:p-12 gap-x-8 lg:gap-x-16 bg-[#EFF1F7] flex md:flex-row flex-col items-center justify-center">
       <div class="order-2 md:order-1 py-4 md:py-0">
-        <img class="h-[300px] xl:h-[450px]" src="/about/image.svg" alt="image"/>
+        <img class="h-[300px] xl:h-[450px]" src="/about/image.png" alt="image"/>
       </div>
       <div class="py-4 md:py-0 text-center md:text-left xl:pt-8 order-1 md:order-2">
         <p class="text-[16px] font-[600] textPrimary">We’ve helped hundreds of companies</p>

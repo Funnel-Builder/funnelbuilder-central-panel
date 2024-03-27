@@ -20,7 +20,7 @@
           </template>
         </div>
         <div class="pl-4 md:pl-0 aos-container" data-aos="fade-left" data-aos-duration="1500">
-          <img class="h-[400px] lg:h-[500px]" src="/futureFunnel/image.svg" alt="icon">
+          <img class="h-[350px] lg:h-[500px] pt-3 md:pt-0" src="/futureFunnel/image.png" alt="icon">
         </div>
       </div>
     </div>

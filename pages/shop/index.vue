@@ -40,6 +40,10 @@ definePageMeta({
   middleware: ['auth', 'should-be-verified']
 })
 
+useSeoMeta({
+  title: 'Shop',
+})
+
 const router = useRouter();
 
 const selectedShop = ref();

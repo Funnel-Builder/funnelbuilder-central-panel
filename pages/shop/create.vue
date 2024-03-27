@@ -80,6 +80,10 @@ definePageMeta({
   middleware: ['auth', 'should-be-verified']
 })
 
+useSeoMeta({
+  title: 'Shop create',
+})
+
 const step = ref(false)
 
 const server_error_message = ref('');
