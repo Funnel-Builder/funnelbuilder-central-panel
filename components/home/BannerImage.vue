@@ -3,7 +3,7 @@
     <div class="py-0 md:py-[60px] lg:py-[80px] xl:py-[100px] 2xl:py-[120px] ">
       <div class="hidden md:block z-10 pos">
         <div class="hidden md:flex  justify-center items-center">
-          <img class=" md:h-[350px] lg:h-[420px] xl:h-[500px] 2xl:h-[600px]" src="/banner/builder.svg"
+          <img class=" md:h-[350px] lg:h-[420px] xl:h-[500px] 2xl:h-[600px]" src="/banner/builder.jpg"
                alt="Banner Image"/>
         </div>
       </div>
