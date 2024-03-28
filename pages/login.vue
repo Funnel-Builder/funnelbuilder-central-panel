@@ -126,6 +126,7 @@ const submitData = handleSubmit(async (values) => {
     } else {
       if (!data.value.user.shop_id) {
         await router.push('/shop')
+        return
       }
        await getSecret(data.value.user.shop_id)
     }
