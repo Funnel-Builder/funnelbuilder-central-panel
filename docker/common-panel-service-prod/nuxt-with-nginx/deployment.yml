@@ -21,7 +21,7 @@ spec:
       containers:
         - name: webserver
           imagePullPolicy: Always
-          image: bdfunnelbuilder/bdf-common-prod:v0.0.14
+          image: bdfunnelbuilder/bdf-common-prod:v0.0.15
           resources:
             limits:
               cpu: "0.2"
