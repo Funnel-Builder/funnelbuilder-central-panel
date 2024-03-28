@@ -3,7 +3,7 @@
     <div class="bg-[#EFF1F7] rounded-2xl py-8">
       <div class="flex justify-center">
         <div>
-          <img src="/contact/avatar.svg" alt="image"/>
+          <img src="/contact/avatar.png" alt="image"/>
         </div>
       </div>
       <div>
