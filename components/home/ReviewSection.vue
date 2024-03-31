@@ -26,7 +26,7 @@
         <template #item="slotProps">
           <div class="w-full border-1 surface-border border-round m-2 text-center py-5 md:px-3">
             <div class="flex justify-center">
-              <img class="h-[130px] rounded-full" :src="slotProps.data.image" alt="avatar"/>
+              <img loading="lazy" class="h-[130px] rounded-full" :src="slotProps.data.image" alt="avatar"/>
             </div>
             <div class="pt-1">
               <p class="text-[18px] font-[600] textColor">{{ slotProps.data.name }}</p>
@@ -38,7 +38,7 @@
             <div class="flex justify-center items-center gap-x-4 pt-4">
               <div v-for="(item, i) in slotProps.data.media" :key="i">
                 <nuxt-link :to="item.link" target="_blank">
-                  <img :src="item.image" alt="image">
+                  <img loading="lazy" :src="item.image" alt="image">
                 </nuxt-link>
               </div>
             </div>

@@ -3,7 +3,7 @@
    <div class="grid grid-cols-1 lg:grid-cols-3">
      <div class="flex flex-col items-start px-4 sm:px-0 pb-6">
        <div>
-         <img src="/landing/logo.svg" alt="logo"/>
+         <img loading="lazy" src="/landing/logo.svg" alt="logo"/>
          <p class="textSecondary text-[14px] xl:text-[16px]">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document</p>
          <div class="pt-4">
            <p class="font-[600] text-[14px] xl:text-[16px] textSecondary">Address:</p>

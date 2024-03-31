@@ -14,13 +14,13 @@
           <p class="text-[24px] lg:text-[28px] xl:text-[36px] textWhite font-[600] ">Providing Some Great Features for You</p>
           <template v-for="(item,i) in features" :key="i">
             <div class="flex items-center gap-x-3 pt-3">
-              <img class="h-[18px]" src="/futureFunnel/check.svg" alt="icon">
+              <img loading="lazy" class="h-[18px]" src="/futureFunnel/check.svg" alt="icon">
               <p class="text-[14px] lg:text-[16px] xl:text-[20px] font-[400] textWhite">{{ item.name }}</p>
             </div>
           </template>
         </div>
         <div class="pl-4 md:pl-0 aos-container" data-aos="fade-left" data-aos-duration="1500">
-          <img class="h-[350px] lg:h-[500px] pt-3 md:pt-0" src="/futureFunnel/image.png" alt="icon">
+          <img loading="lazy" class="h-[350px] lg:h-[500px] pt-3 md:pt-0" src="/futureFunnel/image.png" alt="icon">
         </div>
       </div>
     </div>

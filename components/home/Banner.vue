@@ -22,7 +22,7 @@
         </div>
       </div>
       <div class="hidden md:flex justify-center">
-        <img class=" md:h-[350px] lg:h-[420px] xl:h-[500px] 2xl:h-[600px]" src="/banner/builder.jpg"
+        <img loading="lazy" class=" md:h-[350px] lg:h-[420px] xl:h-[500px] 2xl:h-[600px]" src="/banner/builder.jpg"
              alt="Banner Image"/>
       </div>
     </div>

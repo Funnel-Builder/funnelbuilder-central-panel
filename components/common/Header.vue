@@ -36,7 +36,7 @@
     <div class="w-full flex md:hidden">
       <div class="nav shadow flex justify-between items-center w-full px-4 py-3">
         <div>
-          <img class="h-[50px] md:h-[70px]" src="/landing/logo.svg" alt="logo"/>
+          <img loading="lazy" loading="lazy" class="h-[50px] md:h-[70px]" src="/landing/logo.svg" alt="logo"/>
         </div>
         <div class="flex justify-center items-center gap-x-2">
          <div v-if="authStore.isLoggedIn">
@@ -60,7 +60,7 @@
 <!--              <nuxt-link to="shop" class="text-[14px] px-2 py-1.5 gap-x-2 rounded-full cursor-pointer font-[600]" style="background-color:#eff1f7; color:#5a78ad;">Go To Shop</nuxt-link>-->
 <!--              <div class="flex justify-center items-center px-4 py-1.5 gap-x-2 rounded-full"-->
 <!--                   style=" background-color:#eff1f7;">-->
-<!--                <img class="h-[20px]" src="/landing/userIcon.svg" alt="logo"/>-->
+<!--                <img loading="lazy" loading="lazy" class="h-[20px]" src="/landing/userIcon.svg" alt="logo"/>-->
 <!--                <p class="text-[14px] font-[600]" style="color:#5a78ad;">{{ truncatedUserName }}</p>-->
 <!--              </div>-->
             </div>

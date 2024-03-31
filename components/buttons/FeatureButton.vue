@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="flex items-center gap-x-2 border border-[#5A78AD] rounded-full px-3 md:px-5 py-1.5" >
-      <img class="h-[18px] xl:h-auto" :src="imageIcon" alt="icon">
+      <img loading="lazy" class="h-[18px] xl:h-auto" :src="imageIcon" alt="icon">
       <p class="textPrimary text-[12px] md:text-[14px] xl:text-[16px] font-[600] md:font-[400]">{{ text }}</p>
     </div>
   </div>

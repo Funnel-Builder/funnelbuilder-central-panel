@@ -9,7 +9,7 @@
          <p class="text-[18px] lg:text-[20px] xl:text-[24px] font-[600] textColor">Without Funnel</p>
          <template v-for="(item , i) in withOutFunnel" :key="i">
            <div class="flex items-center pt-2">
-             <img class="h-[16px]" src="/withFunnel/red.svg" alt="icon">
+             <img loading="lazy" class="h-[16px]" src="/withFunnel/red.svg" alt="icon">
              <p class="pl-2 text-[12px] lg:text-[14px] font-[500] textColor">{{ item.name }}</p>
            </div>
          </template>
@@ -18,7 +18,7 @@
          <p class="text-[18px] lg:text-[20px] xl:text-[24px] font-[600] textColor">With Funnel</p>
          <template v-for="(item , i) in withFunnel" :key="i">
            <div class="flex items-center pt-2">
-             <img class="h-[16px]" src="/withFunnel/green.svg" alt="icon">
+             <img loading="lazy" class="h-[16px]" src="/withFunnel/green.svg" alt="icon">
              <p class="pl-2 text-[12px] lg:text-[14px] font-[500] textColor">{{ item.name }}</p>
            </div>
          </template>

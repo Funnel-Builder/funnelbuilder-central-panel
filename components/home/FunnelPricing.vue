@@ -13,7 +13,7 @@
              <p class="text-[12px] xl:text-[16px] font-[400] textSecondary">{{ item.subTitle }}</p>
            </div>
            <div v-for="(context ,i) in item.context" :key="i" class="pt-2 flex items-center gap-x-2">
-             <img class="h-[20px]" src="/pricing/check.svg" alt="image"/>
+             <img loading="lazy" class="h-[20px]" src="/pricing/check.svg" alt="image"/>
              <p class="text-[14px] xl:text-[16px] font-[400] textSecondary">{{ context.label }}</p>
            </div>
            <div class="pt-5">
