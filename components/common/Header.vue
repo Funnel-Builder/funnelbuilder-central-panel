@@ -36,7 +36,7 @@
     <div class="w-full flex md:hidden">
       <div class="nav shadow flex justify-between items-center w-full px-4 py-3">
         <div>
-          <img loading="lazy" loading="lazy" class="h-[50px] md:h-[70px]" src="/landing/logo.svg" alt="logo"/>
+          <img loading="lazy" class="h-[50px] md:h-[70px]" src="/landing/logo.svg" alt="logo"/>
         </div>
         <div class="flex justify-center items-center gap-x-2">
          <div v-if="authStore.isLoggedIn">
