@@ -4,7 +4,7 @@
       <div class="dropbtn flex justify-between items-center p-4 py-2 gap-x-2 cursor-pointer rounded-md">
         <div class="flex items-center gap-x-2  rounded-full cursor-pointer">
           <img loading="lazy" class="md:hidden lg:block h-[16px] lg:h-[20px]" src="/landing/userIconWhite.svg" alt="logo"/>
-          <p class="text-[12px] lg:text-[14px] font-[600] text-white">{{ truncatedUserName }}</p>
+<!--          <p class="text-[12px] lg:text-[14px] font-[600] text-white">{{ truncatedUserName }}</p>-->
         </div>
 <!--        <div class="hidden md:block items-center">-->
 <!--          <i  class="pi pi-bars menu" style="font-size: 20px; color:white;"></i>-->
