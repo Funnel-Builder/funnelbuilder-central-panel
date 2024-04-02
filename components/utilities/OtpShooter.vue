@@ -96,6 +96,7 @@ const handleOnComplete = async (value) => {
     await submitOtp()
   }
 };
+
 const handleOnChange = async (value) => {
   error_msg.value = ''
   console.log(value.length)
