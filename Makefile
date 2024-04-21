@@ -4,7 +4,7 @@ REGISTRY ?= bdfunnelbuilder
 
 REGISTRY_WITH_PROJECT_SUFFIX ?= ota-common-panel
 
-VERSION_PROD ?= v0.0.16
+VERSION_PROD ?= v0.0.17
 
 REGISTRY_PROD ?= bdfunnelbuilder
 
