@@ -46,8 +46,8 @@
                     <form-input-error :message="domain_error" />
                   </div>
                   <div class="w-full pt-4">
-                    <button @click="createShop" :disabled="isDisabled"
-                            :class="{ 'bg-gray-400': isDisabled, 'bg-[#5A78AD]': !isDisabled }"
+                    <button @click="createShop" :disabled="isButtonDisabled"
+                            :class="{ 'bg-gray-400': isButtonDisabled, 'bg-[#5A78AD]': !isButtonDisabled }"
                             class="bg-[#5A78AD] rounded-lg w-full h-10 md:h-12 text-xs md:text-lg focus:shadow-none text-white font-semibold">Create</button>
                   </div>
                 </form>
@@ -58,6 +58,9 @@
 <script setup>
 import { useField, useForm } from 'vee-validate';
 import {goToShopPanel} from "~/composables/helper.js";
+
+
+
 const props = defineProps({
     shopDetails: {
         type: Object,
@@ -71,6 +74,8 @@ const domain_error = ref('');
 const loading = ref(false);
 const awsSignUrl = ref('')
 
+
+
 //validation schema
 const { handleSubmit, isSubmitting, handleReset, setErrors } = useForm({
     validationSchema: {
@@ -82,7 +87,7 @@ const { handleSubmit, isSubmitting, handleReset, setErrors } = useForm({
         },
         email(value) {
             if (!value) return 'Email is required'
-            else if (!/[a-z0-9]+@[a-z]+\.[a-z]{2,3}/.test(value)) return "Invalid email"
+            else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i.test(value)) return 'Invalid email';
             return true;
         },
         address(value) {
@@ -93,13 +98,21 @@ const { handleSubmit, isSubmitting, handleReset, setErrors } = useForm({
     }
 });
 
-const isDisabled = computed(() => {
-    return !(
-        phone.value?.value &&
-        email.value?.value &&
-        address.value?.value?.length <= 255 &&
-        (!/^(?:\+88|88)?(01[3-9]\d{8})$/.test(email.value?.value)) // && !domain_error.value
-    );
+
+
+// const isDisabled = computed(() => {
+//     return !(
+//         phone.value?.value &&
+//         email.value?.value &&
+//         address.value?.value?.length <= 255 &&
+//         (!/^(?:\+88|88)?(01[3-9]\d{8})$/.test(email.value?.value)) // && !domain_error.value
+//     );
+// });
+
+
+
+const isButtonDisabled = computed(() => {
+    return !(phone.value.value && email.value.value && address.value.value)
 });
 
 const photoUploaded = (evn) => {
@@ -112,6 +125,11 @@ const phone = useField('phone');
 const email = useField('email');
 const address = useField('address');
 
+watch(() => phone.value.value, (value) => {
+    if (value && value.length > 0) {
+       isButtonDisabled.value = false
+    }
+})
 
 
 const createShop = handleSubmit(async (values) => {
@@ -127,6 +145,7 @@ const createShop = handleSubmit(async (values) => {
         setErrors(error.value.data.errors || {});
         if (error.value.statusCode === 422) {
             domain_error.value = error.value.data.message;
+          loading.value= false;
         }
     }
     else {
