@@ -28,7 +28,7 @@
 
 
 <script setup>
-import {goToShopPanel} from "~/composables/helper.js";
+import {goToShopPanel, urlService} from "~/composables/helper.js";
 
 const authStore = useAuthStore();
 const router = useRouter();
@@ -72,7 +72,9 @@ const logout = async () => {
   if (error && error.value) {
     console.log(error);
   } else {
-    await router.push('/');
+    // await router.push('/');
+    let redirectUrl = urlService('seller-front')
+    window.location.href = `${redirectUrl}/auth/logout`
   }
 };
 
