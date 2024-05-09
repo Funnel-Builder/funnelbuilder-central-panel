@@ -49,7 +49,11 @@ const getUserInfo = async () => {
     if(userInfo.value.shop_id) {
       await goToShop();
     } else {
-      await router.push('/shop/create');
+      if (userInfo.value.shop_count > 0) {
+        await router.push('/shop');
+      } else {
+        await router.push('/shop/create');
+      }
     }
   }
 };
