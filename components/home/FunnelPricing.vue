@@ -51,7 +51,7 @@ const pricing = ref([
       { label: "Basic chat and email support" }
     ]
   },
-  { title: '$20/mth', subTitle: 'Billed monthly.', tag:'Business plan',
+  { title: '3000 BDT', subTitle: 'Billed monthly.', tag:'Business plan',
     context:[
       { label: "200+ integrations" },
       { label: "Advanced reporting and analytics" },

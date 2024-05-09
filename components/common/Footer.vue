@@ -6,8 +6,8 @@
          <img loading="lazy" src="/landing/logo.svg" alt="logo"/>
          <p class="textSecondary text-[14px] xl:text-[16px]">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document</p>
          <div class="pt-4">
-           <p class="font-[600] text-[14px] xl:text-[16px] textSecondary">Address:</p>
-           <p class="pt-2 text-[14px] xl:text-[16px] textSecondary">Sector 10, Uttara, Dhaka, Bangladesh</p>
+           <p class="font-[700] text-[14px] xl:text-[16px] textSecondary">Address: <span class="font-[500]">KA-78 SAR Bhaban, Progati Saroni Main Road, Vatara, Dhaka.</span></p>
+           <p class="pt-2 text-[14px] xl:text-[16px] textSecondary font-[700]">Trade Licence: <span class="font-[500]">TRAD/DNCC/047011/2023</span></p>
          </div>
        </div>
      </div>
@@ -51,6 +51,9 @@
        </div>
      </div>
    </div>
+    <div class="flex items-center justify-center pb-8 px-2 md:px-0">
+      <img src="/payment/sslPay.jpg" alt="ssl-banner"/>
+    </div>
     <hr>
     <div class="px-4">
       <p class="textSecondary text-center pt-4 text-[12px] xl:text-[14px]">© {{ new Date().getFullYear() }} BDFunnelBuilder. All rights reserved.</p>
