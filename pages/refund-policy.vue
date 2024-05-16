@@ -3,7 +3,7 @@
     <div class="container mx-auto px-3  md:px-0 md:pl-8">
       <!--      Section one -->
       <div>
-        <h1 class="textColor text-[18px] md:text-[24px] font-[600]">Return and Refund Policy</h1>
+        <h1 class="textColor text-[18px] md:text-[24px] font-[600]">Return and Refund Policy - BD Funnel Builder</h1>
         <p class="text-[14px] md:text-[16px] py-2">
           Last updated: May 08, 2024 <br>
           Thank you for shopping at BD Funnel Builder website and BD Funnel Builder app. <br>
