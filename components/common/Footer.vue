@@ -51,7 +51,7 @@
        </div>
      </div>
    </div>
-    <div class="flex items-center justify-center pb-8 px-2 md:px-0">
+    <div class="flex items-center justify-center pb-8 px-2 md:px-0 pt-2 md:pt-4">
       <img src="/payment/sslPay.jpg" alt="ssl-banner"/>
     </div>
     <hr>
@@ -63,11 +63,12 @@
 
 <script setup>
 const company = ref([
-  {label: 'About Us', link: '#about'},
+  {label: 'About Us', link: '/about-us'},
   {label: 'Contact', link: '#contact'},
   {label: 'Terms & Conditions', link: '/terms-and-conditions'},
   {label: 'Refund Policy', link: '/refund-policy'},
-  {label: 'Privacy Policy', link: '/privacy-policy'}
+  {label: 'Privacy Policy', link: '/privacy-policy'},
+  {label: 'Delivery Policy', link: '/delivery-policy'}
 ]);
 const social = ref([
   {label: 'Twitter', link: '/'},
