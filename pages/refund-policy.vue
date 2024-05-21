@@ -49,9 +49,9 @@
       <div class="py-2 md:py-4">
         <h1 class="textColor text-[18px] md:text-[24px] font-[600]">Your Order Cancellation Rights</h1>
         <p class="text-[14px] md:text-[16px] py-2">
-          You are entitled to cancel Your Order within 7-10 days without giving any reason for doing so.<br>
-          The deadline for cancelling an Order is 7-10 days from the date on which You received the Service or on which a
+          The deadline for cancelling an Order is 10-15 business days from the date on which You received the Service or on which a
           third party you have appointed, who is not the carrier, takes possession of the product delivered.<br>
+          The refund may take 7-10 business days to process and will be credited to the original payment method.<br>
           In order to exercise Your right of cancellation, You must inform Us of your decision by means of a clear
           statement. You can inform us of your decision by:
         </p>
@@ -66,7 +66,7 @@
           </ul>
         </div>
         <p class="text-[14px] md:text-[16px] py-2">
-          We will reimburse You no later than 7-10 days from the day on which We receive the Cancellation. We will use the
+          We will reimburse You no later than 7-10 business days from the day on which We receive the Cancellation. We will use the
           same means of payment as You used for the Order, and You will not incur any fees for such reimbursement.
         </p>
       </div>
@@ -78,7 +78,7 @@
         </p>
         <div class="pt-2 md:pt-4 pl-6">
           <ul class="list-disc text-[14px] md:text-[16px]">
-            <li>The Service was purchased in the last 7-10 days</li>
+            <li>The Service was purchased in the last 10-15 business days</li>
 
             <li>The Service should be unused
             </li>
