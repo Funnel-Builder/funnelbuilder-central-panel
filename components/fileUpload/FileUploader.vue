@@ -1,10 +1,5 @@
 <template>
   <div>
-    <!-- <div v-if="loading">
-      <div class="card flex justify-content-center">
-        <ProgressSpinner/>
-      </div>
-    </div> -->
     <div class="flex justify-center">
       <div class="container" @click="openUploader">
         <input type="file" id="file" accept="image/*" @change="uploadImage" hidden>
@@ -12,8 +7,8 @@
           <i id="icon" style="font-size: 2rem; color: gray;" class="pi pi pi-cloud-upload"></i>
         </div>
       </div>
-      <p v-if="errorMessage && errorMessage.length" class="text-red-500 text-center pt-2">{{ errorMessage }}</p>
     </div>
+    <p v-if="errorMessage && errorMessage.length" class="text-red-500 text-center pt-2">{{ errorMessage }}</p>
   </div>
 </template>
 <script setup>
@@ -61,7 +56,7 @@ const uploadImage = async () => {
     }
     reader.readAsDataURL(image);
   } else {
-    errorMessage.value = "Image size more than 2MB";
+    errorMessage.value = "Image size more than 200 kb";
   }
 }
 
