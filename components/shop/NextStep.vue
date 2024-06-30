@@ -6,7 +6,7 @@
           <div>
             <FileUploadFileUploader @photoUploaded="photoUploaded($event)"/>
             <p class="text-center my-2 text-sm text-[#5B78A9]"><strong>Logo</strong> </p>
-            <p class="text-center text-[14px]"><small>(Max Size: 200kb Pixel: 100x100)</small></p>
+            <p class="text-center text-[13px] -mt-1">(Max Size: 200kb Pixel: 100x100)</p>
             <div>
               <div>
                 <p class="text-[rgb(90,120,173)]"><small>Phone number</small></p>
@@ -128,7 +128,7 @@ const createShop = handleSubmit(async (values) => {
   if (loading.value) return;
   loading.value = true
   values.subdomain = props.shopDetails.shopUrl
-  values.phone = formatPhone(values.phone)
+  values.phone = normalizeBDPhoneNumber(values.phone)
   values.name = props.shopDetails.shopName
   values.image = awsSignUrl.value
 
