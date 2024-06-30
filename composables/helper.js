@@ -38,6 +38,25 @@ export const formatPhone = (phone) => {
     return `+88${phone}`;
 }
 
+export const normalizeBDPhoneNumber = (phoneNumber) => {
+    phoneNumber = phoneNumber.replace(/[^\d+]/g, '');
+    if (phoneNumber.startsWith("+880")) {
+        phoneNumber = phoneNumber.replace("+880", "880");
+    } else if (phoneNumber.startsWith("880")) {
+    } else if (phoneNumber.startsWith("0")) {
+        phoneNumber = "880" + phoneNumber.substring(1);
+    } else {
+        phoneNumber = "880" + phoneNumber;
+    }
+    if (phoneNumber.length === 13) {
+        return `+${phoneNumber}`;
+    } else if (phoneNumber.length > 13 && phoneNumber.startsWith("880")) {
+        return `+${phoneNumber}`;
+    } else if (phoneNumber.length < 13) {
+        return null;
+    }
+}
+
 export const goToShopPanel = (shopId, redirectDomain, token) => {
     const config = useRuntimeConfig();
     if (config.public.appEnv === 'local') {
