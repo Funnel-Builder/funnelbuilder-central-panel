@@ -74,7 +74,8 @@ const {handleSubmit, isSubmitting, handleReset, setErrors} = useForm({
 
     phone(value) {
       if (!value) return 'Phone number is required';
-      else if (!/(^(\+88|0088|88)?(01){1}[3456789]{1}(\d){8})$/.test(value)) return "Invalid phone number";
+      else if (! /^(?:\+88|88)?01[3-9]\d{8}$|^(?:\+88|88)?01[3-9]\d{1}[-\s]?\d{3}[-\s]?\d{4}$|^(?:\+88|88)?01[3-9]\d{1}\s?\d{3}\s?\d{4}$|^(?:\+88|88)?01[3-9]\d{1}[-\s]?\d{3}[-\s]?\d{4}$|^(?:\+88|88)?01[3-9]\d{1}\s?\d{3}\s?\d{4}$|^(?:\(\+88\))?01[3-9]\d{1}[-\s]?\d{3}[-\s]?\d{4}$|^(?:\(\+88\))?01[3-9]\d{1}\s?\d{3}\s?\d{4}$|^(?:\+88|88)?1[3-9]\d{8}$|^(?:\(\+88\))?1[3-9]\d{8}$/.test(value?.replace(/[\s()-]/g, ''))) return "Invalid phone number";
+      // else if (!/(^(\+88|0088|88)?(01){1}[3456789]{1}(\d){8})$/.test(value)) return "Invalid phone number";
       return true;
     },
     email(value) {
