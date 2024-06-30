@@ -6,7 +6,7 @@
           <div>
             <FileUploadFileUploader @photoUploaded="photoUploaded($event)"/>
             <p class="text-center my-2 text-sm text-[#5B78A9]"><strong>Logo</strong> </p>
-            <p class="text-center text-[14px]"><small>(Max Size: 200kb Pixel: 100x100)</small></p>
+            <p class="text-center text-[13px] -mt-1"><small>(Max Size: 200kb Pixel: 100x100)</small></p>
             <div>
               <div>
                 <p class="text-[rgb(90,120,173)]"><small>Phone number</small></p>
