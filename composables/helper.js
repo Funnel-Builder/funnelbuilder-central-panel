@@ -15,6 +15,8 @@ export const urlService = (type= 'auth') => {
     switch (type) {
         case 'auth':
             return config.public.baseURL
+        case 'subscription':
+            return config.public.subscriptionServiceURL;
         case 'seller':
             return config.public.sellerServiceURL
         case 'seller-front':

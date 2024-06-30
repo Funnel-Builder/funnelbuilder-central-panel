@@ -29,6 +29,7 @@ export default defineNuxtConfig({
       appEnv: process.env.APP_ENV || 'production',
       appSecret: process.env.APP_SECRET || 'app-secret',
       baseURL: process.env.BASE_URL || 'https://auth-service-webserver/api/',
+      subscriptionServiceURL: process.env.SUBSCRIPTION_SERVICE_URL || 'https://subscription-service-webserver/api/',
       sellerServiceFrontendURL: process.env.SELLER_PANEL_URL || 'https://seller-service-webserver/',
     },
   }

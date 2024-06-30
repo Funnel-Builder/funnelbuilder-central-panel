@@ -5,7 +5,7 @@
         <div class="w-full flex flex-col items-center">
           <div class="text-center pb-10">
             <h2 class="text-[#5A78AD] text-[24px] md:text-[32px] font-bold">Create Shop</h2>
-            <p class="text-[12px] md:text-[14px]">Create your own shop. Enter shop credentials</p>
+            <p class="text-[12px] md:text-[14px]">Enter your shop details in the form</p>
           </div>
           <div class="w-full flex">
             <div class="w-full">
@@ -16,16 +16,9 @@
                       <p class="pb-1"><small class="text-[#5A78AD]">Shop URL*</small></p>
                       <div>
                         <div class="flex items-center">
-                          <InputGroup :class="{ 'invalid': shopUrl.errorMessage.value }"
-                                      style="background-color: #EFF1F7;" class="rounded-md ">
-                            <InputText name="shop_url" v-model="shopUrl.value.value" style="background-color: #EFF1F7;"
-                                       class="border-0 w-full h-10 md:h-12 text-xs md:text-lg flex items-center focus:shadow-none"
-                                       id="shopUrl" type="text"/>
-                            <InputGroupAddon style="background-color: #EFF1F7; color: gray;"
-                                             class="w-full xl:w-[50%] h-10 md:h-12 text-xs md:text-lg flex items-center focus:shadow-none">
-                              .funnelbuilder.com
-                              <i :class="checkShopNameValidity"></i>
-                            </InputGroupAddon>
+                          <InputGroup :class="{ 'invalid': shopUrl.errorMessage.value }"  style="background-color: #EFF1F7;" class="rounded-md ">
+                            <InputText name="shop_url" v-model="shopUrl.value.value" style="background-color: #EFF1F7;" class="border-0 w-full h-10 md:h-12 text-xs md:text-lg flex items-center focus:shadow-none"  id="shopUrl" type="text"/>
+                            <InputGroupAddon style="background-color: #EFF1F7; color: gray;"  class="w-[64%] xl:w-[40%] h-10 md:h-12 text-xs md:text-lg flex items-center focus:shadow-none">  .funnelbuilder.com <i :class="checkShopNameValidity"></i>  </InputGroupAddon>
                           </InputGroup>
                         </div>
                         <form-input-error

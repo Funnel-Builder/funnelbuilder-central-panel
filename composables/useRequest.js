@@ -1,10 +1,10 @@
 import moment from "moment";
 import {useToast} from "vue-toastification";
 
-const createRequest = async (url, method, body = null) => {
+const createRequest = async (base ='auth', url, method, body = null) => {
     const config = useRuntimeConfig();
     const { data, pending, error, refresh } = await useFetch(url, {
-        baseURL: config.public.baseURL,
+        baseURL: urlService(base),
         onRequest({ request, options }) {
             options.method = method;
             options.headers = options.headers || {};
@@ -55,14 +55,14 @@ const createRequest = async (url, method, body = null) => {
     return { data, pending, error, refresh };
 }
 
-export const getData = async (url) => {
-    return createRequest(url, 'GET');
+export const getData = async (url, baseUrl='auth') => {
+    return createRequest(baseUrl,url, 'GET');
 };
 
-export const postData = async (url, body) => {
-    return createRequest(url, 'POST', body);
+export const postData = async (url, body,  baseUrl='auth') => {
+    return createRequest(baseUrl,url, 'POST', body);
 };
 
-export const deleteData = async (url) => {
-    return createRequest(url, 'DELETE');
+export const deleteData = async (url, baseUrl='auth') => {
+    return createRequest(baseUrl,url, 'DELETE');
 };
