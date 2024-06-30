@@ -4,8 +4,9 @@
       <div class="set_anim pb-8">
         <form @submit.prevent="createShop">
           <div>
-            <p class="text-gray-700 text-center my-2 text-sm"><strong>Logo (max size 200kb)</strong> </p>
             <FileUploadFileUploader @photoUploaded="photoUploaded($event)"/>
+            <p class="text-center my-2 text-sm text-[#5B78A9]"><strong>Logo</strong> </p>
+            <p class="text-center text-[14px]"><small>(Max Size: 200kb Pixel: 100x100)</small></p>
             <div>
               <div>
                 <p class="text-[rgb(90,120,173)]"><small>Phone number</small></p>
