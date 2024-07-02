@@ -128,7 +128,7 @@ const createShop = handleSubmit(async (values) => {
   if (loading.value) return;
   loading.value = true
   values.subdomain = props.shopDetails.shopUrl
-  values.phone = normalizeBDPhoneNumber(values.phone)
+  values.phone = normalizeBDPhoneNumber(values?.phone)
   values.name = props.shopDetails.shopName
   values.image = awsSignUrl.value
 
