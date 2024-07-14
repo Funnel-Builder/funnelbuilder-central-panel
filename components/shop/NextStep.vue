@@ -42,7 +42,7 @@
             <button @click="createShop" :disabled="isButtonDisabled"
                     :class="{ 'bg-gray-400': isButtonDisabled, 'bg-[#5A78AD]': !isButtonDisabled }"
                     class="bg-[#5A78AD] rounded-lg w-full h-10 md:h-12 text-xs md:text-lg focus:shadow-none text-white font-semibold">
-              Create
+              Create <i v-if="loading" class="pi pi-spin pi-spinner" style="font-size: 1rem; margin-left: 5px;"></i>
             </button>
           </div>
         </form>
